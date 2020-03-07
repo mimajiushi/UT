@@ -116,7 +116,8 @@ logging:
   file:
     max-size: 10MB
     max-history: 20
-#  level:
+  level:
+    run.ut.app.core: debug
 #    root: debug
 #    org.springframework.web.client.RestTemplate: debug
 #    com.alibaba.cloud.nacos.client.NacosPropertySourceBuilder: debug
