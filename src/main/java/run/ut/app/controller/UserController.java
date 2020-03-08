@@ -1,6 +1,7 @@
 package run.ut.app.controller;
 
 import cn.hutool.core.lang.Validator;
+import cn.hutool.crypto.digest.BCrypt;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -53,6 +54,7 @@ public class UserController implements UserControllerApi {
 
         user.setNickname("UT_" + UtUtils.randomUUIDWithoutDash());
         user.setSex(SexEnum.UNKNOW);
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
 
         userService.save(user);
 
