@@ -33,10 +33,11 @@ public class DataAreaServiceImpl extends ServiceImpl<DataAreaMapper, DataArea> i
         if (StringUtils.isEmpty(redisRes)){
             List<DataArea> dataAreas = dataAreaMapper.
                     selectList(
-                            new QueryWrapper<DataArea>().select("parent_id", "name").eq("parent_id", parentId).orderByAsc("sort"));
+                            new QueryWrapper<DataArea>().select("id", "parent_id", "name").eq("parent_id", parentId).orderByAsc("sort"));
             if (!ObjectUtils.isEmpty(dataAreas)){
                 String value = JSON.toJSONString(dataAreas);
                 redisService.setKeyValTTL(key, value, RedisConfig.AREA_TTL);
+                return dataAreas;
             }
             throw new NotFoundException("The areaa with id " + parentId + " could not be found or have been deleted");
         }

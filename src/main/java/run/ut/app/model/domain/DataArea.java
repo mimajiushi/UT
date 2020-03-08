@@ -21,6 +21,8 @@ import java.io.Serializable;
 @Data
 @Accessors(chain = true)
 @ApiModel(value="DataArea对象", description="行政区域数据表")
+@NoArgsConstructor
+@AllArgsConstructor
 public class DataArea implements Serializable {
 
     private Integer id;

@@ -1,15 +1,12 @@
-package run.ut.app.controller.area;
+package run.ut.app.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import run.ut.app.api.area.AreaControllerApi;
-import run.ut.app.model.domain.DataSchool;
+import run.ut.app.api.AreaControllerApi;
 import run.ut.app.model.dto.DataAreaDTO;
 import run.ut.app.model.dto.DataSchoolDTO;
 import run.ut.app.service.DataAreaService;

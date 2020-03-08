@@ -37,6 +37,7 @@ public class DataSchoolServiceImpl extends ServiceImpl<DataSchoolMapper, DataSch
             );
             if (!ObjectUtils.isEmpty(dataSchools)){
                 redisService.setKeyValTTL(key, JSON.toJSONString(dataSchools), RedisConfig.AREA_TTL);
+                return dataSchools;
             }
             throw new NotFoundException("The schools with id " + provinceId + " could not be found or have been deleted");
         }
@@ -60,6 +61,7 @@ public class DataSchoolServiceImpl extends ServiceImpl<DataSchoolMapper, DataSch
             DataSchool dataSchool = dataSchoolMapper.selectById(id);
             if (!ObjectUtils.isEmpty(dataSchool)){
                 redisService.setKeyValTTL(key, JSON.toJSONString(dataSchool), RedisConfig.AREA_TTL);
+                return dataSchool;
             }
             throw new NotFoundException("The school with id " + id + " could not be found or has been deleted");
         }

@@ -1,6 +1,7 @@
 package run.ut.app.config.thirdapi;
 
 import com.baidu.aip.face.AipFace;
+import com.github.qcloudsms.SmsSingleSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,5 +24,11 @@ public class AipFaceConfig {
         aipFace.setConnectionTimeoutInMillis(baidu.getConnTimeout());
         aipFace.setSocketTimeoutInMillis(baidu.getSocketTimeOut());
         return aipFace;
+    }
+
+    @Bean
+    SmsSingleSender getSmsSingleSender(){
+        SmsConfig smsConfig = thirdApiConfig.getSms();
+        return new SmsSingleSender(smsConfig.getAppId(),smsConfig.getAppKey());
     }
 }

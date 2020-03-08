@@ -23,16 +23,4 @@ public class BCryptTest {
         System.out.println(BCrypt.checkpw("mimajiushi", password));
         System.out.println(BCrypt.checkpw("mimajiushi2", password));
     }
-
-//    @Test
-//    public void insert() throws InterruptedException {
-//        User user = User.builder().build();
-//        user.setAvatar("1");
-//        user.setEmail("1");
-//        user.setPassword("1");
-//        user.setUsername("1");
-//        user.setPhoneNumber(1);
-//        this.userMapper.insert(user);
-////        userMapper.deleteById(2);
-//    }
 }

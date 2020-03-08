@@ -1,4 +1,4 @@
-package run.ut.app.api.area;
+package run.ut.app.api;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -8,11 +8,10 @@ import run.ut.app.model.dto.DataSchoolDTO;
 
 import java.util.List;
 
-
 @Api(value="获取地址相关api",tags = "地址controller")
 public interface AreaControllerApi {
 
-    @ApiOperation("获取地址列表")
+    @ApiOperation("获取地址列表（传入0则是获取所有省，传入省id则是返回省下的所有市）")
     public List<DataAreaDTO> getAreaDataByParentId(@PathVariable Integer id) throws Exception;
 
     @ApiOperation("根据行政id（provinceId）获取该区的学校信息列表")
