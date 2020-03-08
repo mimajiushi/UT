@@ -18,8 +18,6 @@ import java.io.Serializable;
  * @author wenjie
  */
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 @Accessors(chain = true)
 @ApiModel(value="DataArea对象", description="行政区域数据表")
@@ -51,6 +49,7 @@ public class DataArea implements Serializable {
 
     @ApiModelProperty(value = "状态(0启用/1禁用)")
     private Integer status;
+
 
 
 }

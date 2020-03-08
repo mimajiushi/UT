@@ -11,26 +11,25 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * @author wenjie
+ */
 @Slf4j
 @RequiredArgsConstructor
 @SuppressWarnings("WeakerAccess")
 @Component
 public class JwtOperator {
     /**
-     * 秘钥
-     * - 默认uuuuuuuuuutttttttttt
+     * secret key
      */
     @Value("${secret:uuuuuuuuuutttttttttt}")
     private String secret;
-    /**
-     * 有效期，单位秒
-     * - 默认2周
-     */
+
     @Value("${expire-time-in-second:1209600}")
     private Long expirationTimeInSecond;
 
     /**
-     * 从token中获取claim
+     * get Claims from token
      *
      * @param token token
      * @return claim
@@ -47,11 +46,9 @@ public class JwtOperator {
         }
     }
 
+
     /**
-     * 获取token的过期时间
-     *
-     * @param token token
-     * @return 过期时间
+     * Get expiration date from token
      */
     public Date getExpirationDateFromToken(String token) {
         return getClaimsFromToken(token)
@@ -59,10 +56,7 @@ public class JwtOperator {
     }
 
     /**
-     * 判断token是否过期
-     *
-     * @param token token
-     * @return 已过期返回true，未过期返回false
+     * @return Expired - true, Not Expired - false
      */
     private Boolean isTokenExpired(String token) {
         Date expiration = getExpirationDateFromToken(token);
@@ -70,19 +64,14 @@ public class JwtOperator {
     }
 
     /**
-     * 计算token的过期时间
-     *
-     * @return 过期时间
+     * Calculate the expiration time of token
      */
     private Date getExpirationTime() {
         return new Date(System.currentTimeMillis() + this.expirationTimeInSecond * 1000);
     }
 
     /**
-     * 为指定用户生成token
-     *
-     * @param claims 用户信息
-     * @return token
+     * Generate token
      */
     public String generateToken(Map<String, Object> claims) {
         Date createdTime = new Date();
