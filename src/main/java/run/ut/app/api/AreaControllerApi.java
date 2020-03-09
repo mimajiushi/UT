@@ -11,8 +11,8 @@ import java.util.List;
 @Api(value="获取地址相关API",tags = "获取地址相关API")
 public interface AreaControllerApi {
 
-    @ApiOperation("获取地址列表（传入0则是获取所有省，传入省id则是返回省下的所有市）")
-    public List<DataAreaDTO> getAreaDataByParentId(@PathVariable Integer id) throws Exception;
+    @ApiOperation("获取地址列表（传入0则是获取所有省，传入省id则是返回省下的所有市，传入市id则是返回市下所有区）")
+    public List<DataAreaDTO> getCityByParentId(@PathVariable Integer id) throws Exception;
 
     @ApiOperation("根据行政id（provinceId）获取该区的学校信息列表")
     public List<DataSchoolDTO> getSchoolByProvinceId(@PathVariable Integer provinceId);

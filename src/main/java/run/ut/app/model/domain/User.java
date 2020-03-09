@@ -12,12 +12,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
+import run.ut.app.model.domain.BaseEntity;
 import run.ut.app.model.enums.SexEnum;
 import run.ut.app.model.enums.UserRolesEnum;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wenjie
@@ -33,7 +34,7 @@ import run.ut.app.model.enums.UserRolesEnum;
 public class User extends BaseEntity {
 
     @TableId(value = "uid", type = IdType.AUTO)
-    private Integer uid;
+    private Long uid;
 
     private String openid;
 
@@ -41,10 +42,8 @@ public class User extends BaseEntity {
 
     private String nickname;
 
-    @JSONField(serialzeFeatures= SerializerFeature.WriteEnumUsingToString)
     private SexEnum sex;
 
-    @JSONField(serialzeFeatures= SerializerFeature.WriteEnumUsingToString)
     private UserRolesEnum roles;
 
     private String avatar;

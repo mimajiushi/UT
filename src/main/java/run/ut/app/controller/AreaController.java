@@ -28,8 +28,8 @@ public class AreaController implements AreaControllerApi {
      */
     @GetMapping("/{id}/child")
     @Override
-    public List<DataAreaDTO> getAreaDataByParentId(@PathVariable Integer id) throws Exception {
-        return dataAreaService.getAreasByParentId(id)
+    public List<DataAreaDTO> getCityByParentId(@PathVariable Integer id) throws Exception {
+        return dataAreaService.getAreaDataByParentId(id)
                 .stream().map(e -> (DataAreaDTO)new DataAreaDTO().convertFrom(e)).collect(Collectors.toList());
     }
 

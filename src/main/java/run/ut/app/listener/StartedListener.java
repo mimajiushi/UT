@@ -68,16 +68,16 @@ public class StartedListener implements ApplicationListener<ApplicationStartedEv
                 new ThreadFactoryBuilder().setNameFormat("data-company-loader").build());
         executorService.scheduleWithFixedDelay(() -> {
             /*
-             * 加载全国行政区信息
+             * 加载所有省、市级信息
              */
-            log.info("开始加载全国行政区信息...");
+            log.info("开始加载所有省、市级信息...");
             List<Integer> parentIdDistinct = dataAreaService.selectParentIdDistinct();
             for (Integer parentId : parentIdDistinct) {
                 String key = RedisConfig.AREA_PREFIX + "::" + parentId;
-                List<DataArea> areasByParentId = dataAreaService.getAreasByParentId(parentId);
+                List<DataArea> areasByParentId = dataAreaService.getAreaDataByParentId(parentId);
                 redisService.setKeyValTTL(key, JSON.toJSONString(areasByParentId), RedisConfig.AREA_TTL);
             }
-            log.info("加载全国行政区信息结束...");
+            log.info("加载所有省、市级信息结束...");
 
             /*
              * 加载学校信息缓存

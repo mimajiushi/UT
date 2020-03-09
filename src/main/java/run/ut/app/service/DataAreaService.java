@@ -12,7 +12,7 @@ public interface DataAreaService {
      * @param parentId parentId
      * @return 地址信息列表
      */
-    List<DataArea> getAreasByParentId(Integer parentId);
+    List<DataArea> getAreaDataByParentId(Integer parentId);
 
     /**
      * 查询所有行政id(parent_id)

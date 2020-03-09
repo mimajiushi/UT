@@ -41,6 +41,8 @@
         <rocketmq-spring-boot-starter.version>2.0.3</rocketmq-spring-boot-starter.version>
         <hutool-all.version>5.0.3</hutool-all.version>
         <jjwt-jackson.version>0.10.7</jjwt-jackson.version>
+        <qiniu-java-sdk.version>7.2.18</qiniu-java-sdk.version>
+        <image4j.version>0.7zensight1</image4j.version>
     </properties>
     <!--<dependencyManagement>-->
 
@@ -97,6 +99,11 @@
         </dependency>
 
         <!--工具-->
+        <dependency>
+            <groupId>net.sf.image4j</groupId>
+            <artifactId>image4j</artifactId>
+            <version>${image4j.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
@@ -210,7 +217,12 @@
             <artifactId>java-sdk</artifactId>
             <version>${java-sdk.version}</version>
         </dependency>
-
+        <!--七牛云存储sdk-->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>${qiniu-java-sdk.version}</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
         <dependency>
             <groupId>org.springframework.security</groupId>

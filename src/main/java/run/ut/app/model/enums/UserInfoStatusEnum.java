@@ -4,26 +4,28 @@ import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 
 /**
- * sex enum
+ * UserInfoStatusEnum
  *
  * @author wenjie
  */
 @Getter
-public enum SexEnum implements IEnum<Integer> {
-    UNKNOW(-1 , "保密"),
-    MALE(1, "男"),
-    FEMALE(0, "女");
+public enum UserInfoStatusEnum implements IEnum<Integer> {
+    PASS(1 , "审核通过"),
+    WAITING(0, "审核中"),
+    FAIL(-1, "审核不通过");
 
     private int type;
 
     @JsonValue
     private String name;
 
-    SexEnum(int type, String name) {
+
+    UserInfoStatusEnum(int type, String name) {
         this.type = type;
         this.name = name;
     }
@@ -33,12 +35,11 @@ public enum SexEnum implements IEnum<Integer> {
         return this.type;
     }
 
-
-    public static SexEnum getByType(int type) {
+    public static UserInfoStatusEnum getByType(int type) {
         return Arrays.stream(values()).filter(e -> e.getType() == type).findFirst().orElse(null);
     }
 
-    public static SexEnum getByName(String name) {
+    public static UserInfoStatusEnum getByName(String name) {
         return Arrays.stream(values()).filter(e -> e.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
     }
 }

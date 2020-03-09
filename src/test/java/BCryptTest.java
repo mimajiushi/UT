@@ -6,7 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import run.ut.app.UtApplication;
 import run.ut.app.mapper.UserMapper;
-import run.ut.app.model.domain.User;
 
 
 @RunWith(SpringRunner.class)

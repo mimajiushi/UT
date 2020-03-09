@@ -1,7 +1,9 @@
 package run.ut.app.model.enums;
 
 import com.baomidou.mybatisplus.core.enums.IEnum;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.Arrays;
 
@@ -11,19 +13,21 @@ import java.util.Arrays;
  * @author wenjie
  */
 @Getter
+@ToString
 public enum UserRolesEnum implements IEnum<Integer> {
     ROLE_ADMIN(1, "ROLE_ADMIN", "系统管理员"),
     ROLE_TOURIST(2, "ROLE_TOURIST", "游客"),
-    ROLE_USER(3, "ROLE_USER", "正式用户"),
-    ROLE_VIP_USER(4, "ROLE_VIP_USER", "VIP"),
+    ROLE_STUDENT(3, "ROLE_STUDENT", "学生"),
+    ROLE_VIP_STUDENT(4, "ROLE_VIP_STUDENT", "学生VIP"),
     ROLE_TUTOR(5, "ROLE_TUTOR", "导师"),
-    ROLE_SPONSOR(5, "ROLE_SPONSOR", "赛事主办方")
+    ROLE_SPONSOR(6, "ROLE_SPONSOR", "赛事主办方")
     ;
 
     private int type;
 
     private String name;
 
+    @JsonValue
     private String cnName;
 
     UserRolesEnum(int type, String name, String cnName) {

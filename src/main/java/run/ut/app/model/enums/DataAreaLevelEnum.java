@@ -1,7 +1,9 @@
 package run.ut.app.model.enums;
 
 import com.baomidou.mybatisplus.core.enums.IEnum;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * 地理级别枚举
@@ -15,6 +17,7 @@ public enum DataAreaLevelEnum implements IEnum<Integer> {
 
     private int level;
 
+    @JsonValue
     private String name;
 
     DataAreaLevelEnum(int level, String name) {

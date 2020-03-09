@@ -7,12 +7,7 @@ import lombok.Data;
 import lombok.ToString;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.dto.base.InputConverter;
-import run.ut.app.model.support.CreateCheck;
-import run.ut.app.model.support.UpdateCheck;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
