@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Map;
 
@@ -22,7 +25,7 @@ public class JwtOperator {
     /**
      * secret key
      */
-    @Value("${secret:uuuuuuuuuutttttttttt}")
+    @Value("${secret:uuuuuuuuuuttttttttttuuuuuuuuuuttttttttttuuuuuuuuuuttttttttttuuuuuuuuuutttttttttt}")
     private String secret;
 
     @Value("${expire-time-in-second:1209600}")
@@ -66,7 +69,7 @@ public class JwtOperator {
     /**
      * Calculate the expiration time of token
      */
-    private Date getExpirationTime() {
+    public Date getExpirationTime() {
         return new Date(System.currentTimeMillis() + this.expirationTimeInSecond * 1000);
     }
 
@@ -82,13 +85,12 @@ public class JwtOperator {
         SecretKey key = Keys.hmacShaKeyFor(keyBytes);
 
         return Jwts.builder()
-            .setClaims(claims)
-            .setIssuedAt(createdTime)
-            .setExpiration(expirationTime)
-            // 你也可以改用你喜欢的算法
-            // 支持的算法详见：https://github.com/jwtk/jjwt#features
-            .signWith(key, SignatureAlgorithm.HS256)
-            .compact();
+                .setClaims(claims)
+                .setIssuedAt(createdTime)
+                .setExpiration(expirationTime)
+                // more：https://github.com/jwtk/jjwt#features
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
     }
 
     /**

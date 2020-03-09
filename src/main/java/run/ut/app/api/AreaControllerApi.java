@@ -8,7 +8,7 @@ import run.ut.app.model.dto.DataSchoolDTO;
 
 import java.util.List;
 
-@Api(value="获取地址相关api",tags = "地址controller")
+@Api(value="获取地址相关API",tags = "获取地址相关API")
 public interface AreaControllerApi {
 
     @ApiOperation("获取地址列表（传入0则是获取所有省，传入省id则是返回省下的所有市）")

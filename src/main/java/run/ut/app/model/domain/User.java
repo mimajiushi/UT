@@ -13,6 +13,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
 import run.ut.app.model.enums.SexEnum;
+import run.ut.app.model.enums.UserRolesEnum;
 
 /**
  * <p>
@@ -42,6 +43,9 @@ public class User extends BaseEntity {
 
     @JSONField(serialzeFeatures= SerializerFeature.WriteEnumUsingToString)
     private SexEnum sex;
+
+    @JSONField(serialzeFeatures= SerializerFeature.WriteEnumUsingToString)
+    private UserRolesEnum roles;
 
     private String avatar;
 

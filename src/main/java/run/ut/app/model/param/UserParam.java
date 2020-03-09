@@ -11,6 +11,7 @@ import run.ut.app.model.support.CreateCheck;
 import run.ut.app.model.support.UpdateCheck;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
@@ -34,17 +35,19 @@ public class UserParam implements InputConverter<User> {
     @ApiModelProperty(value = "微信授权码")
     private String weChatCode;
 
-    @ApiModelProperty(value = "短信授权码")
+    @ApiModelProperty(value = "短信验证码", example = "395362")
     private String smsCode;
 
-    @Null(groups = UpdateCheck.class)
     @Size(min = 8, max = 100, message = "密码的字符长度必须在 {min} - {max} 之间")
     private String password;
 
+    @Size(max = 50, message = "用户昵称的字符长度不能超过 {max}")
+    private String nickname;
+
+    @ApiModelProperty(value = "手机号码", example = "15521245562")
     @Size(max = 11, message = "手机号码的字符长度不能超过 {max}")
     private String phoneNumber;
 
-    @Email(message = "电子邮件地址的格式不正确")
     @Size(max = 127, message = "电子邮件的字符长度不能超过 {max}")
     private String email;
 
