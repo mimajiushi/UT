@@ -1,6 +1,7 @@
 package run.ut.app.exception.handler;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import run.ut.app.exception.UtException;
 import run.ut.app.model.support.BaseResponse;
@@ -35,9 +37,24 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public BaseResponse handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
         BaseResponse<?> baseResponse = handleBaseException(e);
-        baseResponse.setMessage(String.format("请求字段缺失, 类型为 %s，名称为 %s", e.getParameterType(), e.getParameterName()));
+        if (StringUtils.isBlank(e.getParameterType())){
+            baseResponse.setMessage(String.format("请求字段缺失，名称为 %s", e.getParameterName()));
+        }else {
+            baseResponse.setMessage(String.format("请求字段缺失, 类型为 %s，名称为 %s", e.getParameterType(), e.getParameterName()));
+        }
+        baseResponse.setStatus(HttpStatus.BAD_REQUEST.value());
         return baseResponse;
     }
+
+    @ExceptionHandler(MissingServletRequestPartException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public BaseResponse handleMissingServletRequestParameterException(MissingServletRequestPartException e) {
+        BaseResponse<?> baseResponse = handleBaseException(e);
+        baseResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+        baseResponse.setMessage(String.format("请求缺失，名称为 %s", e.getRequestPartName()));
+        return baseResponse;
+    }
+
 
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

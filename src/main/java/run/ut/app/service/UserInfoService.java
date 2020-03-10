@@ -1,7 +1,11 @@
 package run.ut.app.service;
 
+import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.model.domain.UserInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import run.ut.app.model.dto.UserInfoDTO;
+import run.ut.app.model.param.UserInfoParam;
+import run.ut.app.model.support.BaseResponse;
 
 /**
  * <p>
@@ -13,4 +17,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserInfoService extends IService<UserInfo> {
 
+    BaseResponse<UserInfoDTO> applyForCertification(UserInfoParam userInfoParam,
+                                                    MultipartFile credentialsPhotoFront,
+                                                    MultipartFile credentialsPhotoReverse);
 }

@@ -54,7 +54,7 @@ public class DataSchoolServiceImpl extends ServiceImpl<DataSchoolMapper, DataSch
     }
 
     @Override
-    public DataSchool getById(String id) {
+    public DataSchool getById(Integer id) {
         String key = RedisConfig.SCHOOL_DATA_PREFIX + "::" + id;
         String value = redisService.get(key);
         if (StringUtils.isEmpty(value)){

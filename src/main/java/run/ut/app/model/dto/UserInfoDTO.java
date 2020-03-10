@@ -6,6 +6,7 @@ import lombok.*;
 import run.ut.app.model.domain.BaseEntity;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.base.OutputConverter;
+import run.ut.app.model.enums.DegreeEnum;
 import run.ut.app.model.enums.UserInfoStatusEnum;
 import run.ut.app.model.enums.UserRolesEnum;
 
@@ -28,11 +29,11 @@ public class UserInfoDTO extends BaseEntity implements OutputConverter<UserInfoD
 
     private Long uid;
 
-    private Integer schoolId;
+    private String school;
 
-    private Integer degreeId;
+    private DegreeEnum degreeId;
 
-    private Integer areaId;
+    private String area;
 
     @ApiModelProperty(value = "Role of user application")
     private UserRolesEnum role;

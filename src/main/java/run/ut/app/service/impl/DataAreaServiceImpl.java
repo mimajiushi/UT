@@ -49,4 +49,20 @@ public class DataAreaServiceImpl extends ServiceImpl<DataAreaMapper, DataArea> i
     public List<Integer> selectParentIdDistinct() {
         return dataAreaMapper.selectParentIdDistinct();
     }
+
+    @Override
+    public DataArea getById(Integer id) {
+        String key = RedisConfig.AREA_INFO_PREFIX + "::" + id;
+        String redisRes = redisService.get(key);
+        if (StringUtils.isEmpty(redisRes)){
+            DataArea dataArea = dataAreaMapper.selectById(id);
+            if (!ObjectUtils.isEmpty(dataArea)){
+                String value = JSON.toJSONString(dataArea);
+                redisService.setKeyValTTL(key, value, RedisConfig.AREA_TTL);
+                return dataArea;
+            }
+            throw new NotFoundException("The areaa with id " + id + " could not be found or have been deleted");
+        }
+        return JSON.parseObject(redisRes, DataArea.class);
+    }
 }

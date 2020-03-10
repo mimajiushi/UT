@@ -1,11 +1,12 @@
 package run.ut.app.service;
 
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import run.ut.app.model.domain.DataArea;
 
 import java.util.List;
 
-public interface DataAreaService {
+public interface DataAreaService extends IService<DataArea> {
 
     /**
      * 获取id下的所有地址
@@ -18,4 +19,6 @@ public interface DataAreaService {
      * 查询所有行政id(parent_id)
      */
     List<Integer> selectParentIdDistinct();
+
+    DataArea getById(Integer id);
 }

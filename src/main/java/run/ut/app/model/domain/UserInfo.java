@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
+import run.ut.app.model.enums.DegreeEnum;
 import run.ut.app.model.enums.UserInfoStatusEnum;
 import run.ut.app.model.enums.UserRolesEnum;
 
@@ -36,7 +37,7 @@ public class UserInfo extends BaseEntity {
 
     private Integer schoolId;
 
-    private Integer degreeId;
+    private DegreeEnum degreeId;
 
     private Integer areaId;
 
