@@ -10,8 +10,10 @@ import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.persistent.FileRecorder;
 import com.qiniu.util.Auth;
 import com.qiniu.util.StringMap;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
@@ -21,6 +23,7 @@ import run.ut.app.model.enums.AttachmentType;
 import run.ut.app.model.properties.QiniuOssProperties;
 import run.ut.app.model.support.QiNiuPutSet;
 import run.ut.app.model.support.UploadResult;
+import run.ut.app.service.OptionsService;
 import run.ut.app.utils.FilenameUtils;
 import run.ut.app.utils.ImageUtils;
 import run.ut.app.utils.JsonUtils;
@@ -43,28 +46,25 @@ import static run.ut.app.handler.FileHandler.isImageType;
  */
 @Slf4j
 @Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class QiniuOssFileHandler implements FileHandler {
 
-    private final OptionService optionService;
-
-    public QiniuOssFileHandler(OptionService optionService) {
-        this.optionService = optionService;
-    }
+    private final OptionsService optionsService;
 
     @Override
     public UploadResult upload(MultipartFile file) {
         Assert.notNull(file, "Multipart file must not be null");
 
         // Get all config
-        Zone zone = optionService.getQnYunZone();
-        String accessKey = optionService.getByPropertyOfNonNull(QiniuOssProperties.OSS_ACCESS_KEY).toString();
-        String secretKey = optionService.getByPropertyOfNonNull(QiniuOssProperties.OSS_SECRET_KEY).toString();
-        String bucket = optionService.getByPropertyOfNonNull(QiniuOssProperties.OSS_BUCKET).toString();
-        String protocol = optionService.getByPropertyOfNonNull(QiniuOssProperties.OSS_PROTOCOL).toString();
-        String domain = optionService.getByPropertyOfNonNull(QiniuOssProperties.OSS_DOMAIN).toString();
-        String source = optionService.getByPropertyOrDefault(QiniuOssProperties.OSS_SOURCE, String.class, "");
-        String styleRule = optionService.getByPropertyOrDefault(QiniuOssProperties.OSS_STYLE_RULE, String.class, "");
-        String thumbnailStyleRule = optionService.getByPropertyOrDefault(QiniuOssProperties.OSS_THUMBNAIL_STYLE_RULE, String.class, "");
+        Zone zone = optionsService.getQnYunZone();
+        String accessKey = optionsService.getByPropertyOfNonNull(QiniuOssProperties.OSS_ACCESS_KEY).toString();
+        String secretKey = optionsService.getByPropertyOfNonNull(QiniuOssProperties.OSS_SECRET_KEY).toString();
+        String bucket = optionsService.getByPropertyOfNonNull(QiniuOssProperties.OSS_BUCKET).toString();
+        String protocol = optionsService.getByPropertyOfNonNull(QiniuOssProperties.OSS_PROTOCOL).toString();
+        String domain = optionsService.getByPropertyOfNonNull(QiniuOssProperties.OSS_DOMAIN).toString();
+        String source = optionsService.getByPropertyOrDefault(QiniuOssProperties.OSS_SOURCE, String.class, "");
+        String styleRule = optionsService.getByPropertyOrDefault(QiniuOssProperties.OSS_STYLE_RULE, String.class, "");
+        String thumbnailStyleRule = optionsService.getByPropertyOrDefault(QiniuOssProperties.OSS_THUMBNAIL_STYLE_RULE, String.class, "");
 
         // Create configuration
         Configuration configuration = new Configuration(zone);
@@ -155,10 +155,10 @@ public class QiniuOssFileHandler implements FileHandler {
         Assert.notNull(key, "File key must not be blank");
 
         // Get all config
-        Zone zone = optionService.getQnYunZone();
-        String accessKey = optionService.getByPropertyOfNonNull(QiniuOssProperties.OSS_ACCESS_KEY).toString();
-        String secretKey = optionService.getByPropertyOfNonNull(QiniuOssProperties.OSS_SECRET_KEY).toString();
-        String bucket = optionService.getByPropertyOfNonNull(QiniuOssProperties.OSS_BUCKET).toString();
+        Zone zone = optionsService.getQnYunZone();
+        String accessKey = optionsService.getByPropertyOfNonNull(QiniuOssProperties.OSS_ACCESS_KEY).toString();
+        String secretKey = optionsService.getByPropertyOfNonNull(QiniuOssProperties.OSS_SECRET_KEY).toString();
+        String bucket = optionsService.getByPropertyOfNonNull(QiniuOssProperties.OSS_BUCKET).toString();
 
         // Create configuration
         Configuration configuration = new Configuration(zone);

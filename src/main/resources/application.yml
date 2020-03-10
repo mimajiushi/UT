@@ -1,6 +1,6 @@
 ##########################################################
 ##
-## 端口，app名字
+## 端口，app名字等应用基础配置
 ##
 ##########################################################
 server:
@@ -12,6 +12,10 @@ spring:
     name: ut-app
   thymeleaf:
     cache: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
   ##########################################################
   ##
   ## mysql 数据源配置
@@ -141,4 +145,7 @@ logging:
 #  pattern:
 #    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%t]){faint} %clr(%-40.40logger{39}) %replace(%caller{1}){'\t|Caller.{1}0|\r\n', ''} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
 #    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39}[lineno:%line]: %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+
+ut:
+  download-timeout: 5m
 

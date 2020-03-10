@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import run.ut.app.service.RedisService;
 
 import java.util.List;
@@ -21,11 +22,17 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public void set(String key, String value) {
+        Assert.hasText(key, "redis key must not be blank");
+        Assert.hasText(value, "redis value must not be blank");
+
         stringRedisTemplate.opsForValue().set(key, value);
     }
 
     @Override
     public long setList(String key, List list){
+        Assert.hasText(key, "redis key must not be blank");
+        Assert.notEmpty(list, "redis list must not be empty");
+
         Long count = redisTemplate.opsForList().rightPushAll(key, list);
         if (null == count){
             count = 0L;
@@ -35,11 +42,15 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public String get(String key) {
+        Assert.hasText(key, "redis key must not be blank");
         return stringRedisTemplate.opsForValue().get(key);
     }
 
     @Override
     public boolean setKeyValTTL(String key, String value, long ttl) {
+        Assert.hasText(key, "redis key must not be blank");
+        Assert.hasText(value, "redis value must not be blank");
+
         stringRedisTemplate.boundValueOps(key).set(value,ttl, TimeUnit.SECONDS);
         Long expire = stringRedisTemplate.getExpire(key, TimeUnit.SECONDS);
         if (null == expire){
@@ -50,6 +61,7 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public boolean expire(String key, long expire) {
+        Assert.hasText(key, "redis key must not be blank");
         Boolean res = stringRedisTemplate.expire(key, expire, TimeUnit.SECONDS);
         if (null == res){
             res = false;
@@ -58,8 +70,13 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public void remove(String key) {
-        stringRedisTemplate.delete(key);
+    public boolean remove(String key) {
+        Assert.hasText(key, "redis key must not be blank");
+        Boolean deleted = stringRedisTemplate.delete(key);
+        if (null == deleted){
+            deleted = false;
+        }
+        return deleted;
     }
 
     @Override

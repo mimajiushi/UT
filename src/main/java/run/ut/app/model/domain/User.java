@@ -25,8 +25,8 @@ import run.ut.app.model.enums.UserRolesEnum;
  * @since 2020-03-08
  */
 @Data
-  @EqualsAndHashCode(callSuper = false)
-  @Accessors(chain = true)
+@EqualsAndHashCode(callSuper = true)
+@Accessors(chain = true)
 @ApiModel(value="User对象", description="")
 @Builder
 @NoArgsConstructor

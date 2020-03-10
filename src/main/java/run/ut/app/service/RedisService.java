@@ -1,5 +1,6 @@
 package run.ut.app.service;
 
+
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public interface RedisService {
 
     boolean expire(String key, long expire);
 
-    void remove(String key);
+    boolean remove(String key);
 
     public Boolean zadd(String key, String menber, double score);
 
