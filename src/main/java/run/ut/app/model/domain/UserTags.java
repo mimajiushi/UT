@@ -1,7 +1,6 @@
 package run.ut.app.model.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
@@ -13,28 +12,25 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ * UserTags
  * </p>
  *
  * @author wenjie
- * @since 2020-03-10
+ * @since 2020-03-11
  */
-
+@Data
+@EqualsAndHashCode(callSuper = true)
+@Accessors(chain = true)
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Builder
-@Accessors(chain = true)
-@EqualsAndHashCode(callSuper = true)
-@ApiModel(value="Options对象", description="")
-public class Options extends BaseEntity {
+@ApiModel(value="UserTags对象", description="")
+public class UserTags extends BaseEntity {
 
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
-    private String optionKey;
+    private Long uid;
 
-    private String optionValue;
-
-    private Integer type;
+    private Integer tagId;
 }

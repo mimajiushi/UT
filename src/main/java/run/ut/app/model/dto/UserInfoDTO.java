@@ -3,6 +3,7 @@ package run.ut.app.model.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+import lombok.experimental.Accessors;
 import run.ut.app.model.domain.BaseEntity;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.base.OutputConverter;
@@ -20,10 +21,13 @@ import run.ut.app.model.enums.UserRolesEnum;
  * @since 2020-03-09
  */
 @Data
-@ToString
 @EqualsAndHashCode(callSuper = true)
+@Accessors(chain = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @ApiModel(value="UserInfoDTO对象", description="")
-public class UserInfoDTO extends BaseEntity implements OutputConverter<UserInfoDTO, UserInfo> {
+public class UserInfoDTO extends BaseDTO implements OutputConverter<UserInfoDTO, UserInfo> {
 
     private Long id;
 

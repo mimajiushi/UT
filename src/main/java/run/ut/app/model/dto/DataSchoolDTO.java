@@ -1,14 +1,16 @@
 package run.ut.app.model.dto;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.Accessors;
 import run.ut.app.model.domain.DataSchool;
 import run.ut.app.model.dto.base.OutputConverter;
 
 @Data
-@ToString
 @EqualsAndHashCode
+@Accessors(chain = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class DataSchoolDTO implements OutputConverter<DataSchoolDTO, DataSchool> {
     private Integer id;
 

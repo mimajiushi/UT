@@ -26,9 +26,9 @@
         <guava.version>27.1-jre</guava.version>
         <spring-security-crypto.version>5.2.0.RELEASE</spring-security-crypto.version>
         <spring-security-jwt.version>1.0.10.RELEASE</spring-security-jwt.version>
-        <mybatis-plus-boot-starter.version>3.3.0</mybatis-plus-boot-starter.version>
-        <mybatis-plus.version>3.3.0</mybatis-plus.version>
-        <mybatis-plus-generator.version>3.3.0</mybatis-plus-generator.version>
+        <mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
+        <!--<mybatis-plus.version>3.3.0</mybatis-plus.version>-->
+        <mybatis-plus-generator.version>3.3.1</mybatis-plus-generator.version>
         <alipay-sdk-java.version>3.0.52.ALL</alipay-sdk-java.version>
         <qcloudsms.version>1.0.2</qcloudsms.version>
         <commons-pool2.version>2.4.2</commons-pool2.version>

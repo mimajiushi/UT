@@ -23,8 +23,11 @@ import java.io.Serializable;
  * @author wenjie
  */
 @Data
-@ToString
 @EqualsAndHashCode
+@Accessors(chain = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class DataAreaDTO implements OutputConverter<DataAreaDTO, DataArea>, Serializable {
 
     private Integer id;

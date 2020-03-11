@@ -24,10 +24,10 @@ import run.ut.app.model.enums.UserRolesEnum;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="UserInfo对象", description="")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel(value="UserInfo对象", description="")
 public class UserInfo extends BaseEntity {
 
     @TableId(value = "id", type = IdType.AUTO)

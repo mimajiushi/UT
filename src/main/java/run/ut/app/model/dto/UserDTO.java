@@ -5,9 +5,8 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.Accessors;
 import run.ut.app.model.domain.BaseEntity;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.dto.base.OutputConverter;
@@ -26,10 +25,15 @@ import java.time.LocalDateTime;
  * @since 2020-03-08
  */
 @Data
-@ToString
 @EqualsAndHashCode(callSuper = true)
+@Accessors(chain = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @ApiModel(value="UserDTO对象", description="")
-public class UserDTO extends BaseEntity implements OutputConverter<UserDTO, User> {
+public class UserDTO extends BaseDTO implements OutputConverter<UserDTO, User> {
+
+    private Integer id;
 
     private Long uid;
 

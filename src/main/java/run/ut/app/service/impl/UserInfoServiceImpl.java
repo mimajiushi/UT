@@ -42,20 +42,22 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
                                                            MultipartFile credentialsPhotoFront,
                                                            MultipartFile credentialsPhotoReverse){
 
+        // TODO 如果当前有处于待审核的记录，也不允许申请
+
         UserInfo userInfo = userInfoParam.convertTo();
         UploadResult upload1 = fileHandlers.upload(credentialsPhotoFront);
         UploadResult upload2 = fileHandlers.upload(credentialsPhotoReverse);
-        userInfo.setCredentialsPhotoFront(upload1.getFilePath());
-        userInfo.setCredentialsPhotoReverse(upload2.getFilePath());
-        userInfo.setStatus(UserInfoStatusEnum.WAITING);
-        userInfo.setRole(UserRolesEnum.getByType(userInfoParam.getRole()));
-        userInfo.setDegreeId(DegreeEnum.getByType(userInfoParam.getDegreeId()));
+        userInfo.setCredentialsPhotoFront(upload1.getFilePath())
+                .setCredentialsPhotoReverse(upload2.getFilePath())
+                .setStatus(UserInfoStatusEnum.WAITING)
+                .setRole(UserRolesEnum.getByType(userInfoParam.getRole()))
+                .setDegreeId(DegreeEnum.getByType(userInfoParam.getDegreeId()));
 
         save(userInfo);
 
         UserInfoDTO userInfoDTO = new UserInfoDTO().convertFrom(userInfo);
-        userInfoDTO.setSchool(dataSchoolService.getById(userInfo.getSchoolId()).getName());
-        userInfoDTO.setArea(dataAreaService.getById(userInfo.getAreaId()).getName());
+        userInfoDTO.setSchool(dataSchoolService.getById(userInfo.getSchoolId()).getName())
+                .setArea(dataAreaService.getById(userInfo.getAreaId()).getName());
 
         return BaseResponse.ok("提交资料成功！请耐心等待审核", userInfoDTO);
     }

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import run.ut.app.api.AreaControllerApi;
 import run.ut.app.model.dto.DataAreaDTO;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @RestController
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequestMapping("area")
 public class AreaController implements AreaControllerApi {
 
     private final DataAreaService dataAreaService;

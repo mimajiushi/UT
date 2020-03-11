@@ -1,7 +1,7 @@
 package run.ut.app.model.dto;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+import lombok.experimental.Accessors;
 import run.ut.app.model.enums.OptionsType;
 
 import java.util.Date;
@@ -11,8 +11,11 @@ import java.util.Date;
  *
  * @author wenjie
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class OptionsSimpleDTO extends OptionsDTO {
 
     private Integer id;

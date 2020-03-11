@@ -1,6 +1,7 @@
 package run.ut.app.controller;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.UserControllerApi;
@@ -13,39 +14,46 @@ import org.springframework.lang.NonNull;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.exception.BadRequestException;
-import run.ut.app.model.domain.DataSchool;
 import run.ut.app.model.domain.User;
+import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserDTO;
+import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.dto.UserInfoDTO;
 import run.ut.app.model.enums.SexEnum;
 import run.ut.app.model.enums.UserRolesEnum;
+import run.ut.app.model.param.UserExperiencesParam;
 import run.ut.app.model.param.UserInfoParam;
 import run.ut.app.model.param.UserParam;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.security.CheckLogin;
 import run.ut.app.security.token.AuthToken;
 import run.ut.app.security.util.JwtOperator;
 import run.ut.app.service.*;
+import run.ut.app.utils.ImageUtils;
 import run.ut.app.utils.ObjectUtils;
 import run.ut.app.utils.RandomUtils;
 import run.ut.app.utils.UtUtils;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class UserController implements UserControllerApi {
+@RequestMapping("user")
+public class UserController extends BaseController implements UserControllerApi {
 
     private final UserService userService;
     private final SmsService smsService;
     private final JwtOperator jwtOperator;
     private final UserInfoService userInfoService;
+    private final UserExperiencesService userExperiencesService;
 
     @Override
     @PostMapping("webPageLogin")
-    public UserDTO webPageLogin(@RequestBody @Valid UserParam userParam) {
+    public UserDTO webPageLogin(@Valid UserParam userParam) {
         Assert.notNull(userParam.getSmsCode(), "Sms code must not be null");
         Assert.notNull(userParam.getPhoneNumber(), "Phone number must not be null");
 
@@ -90,12 +98,16 @@ public class UserController implements UserControllerApi {
 
     @Override
     @PostMapping("applyForCertification")
+    @CheckLogin
     public BaseResponse<UserInfoDTO> applyForCertification(UserInfoParam userInfoParam,
                                                            @RequestPart("file_front") MultipartFile credentialsPhotoFront,
-                                                           @RequestPart("file_reverse") MultipartFile credentialsPhotoReverse) throws MissingServletRequestParameterException {
-        // TODO 必须登录状态才能申请
-
+                                                           @RequestPart("file_reverse") MultipartFile credentialsPhotoReverse) throws Exception {
+        userInfoParam.setUid(Long.parseLong(request.getAttribute("uid")+""));
         String missParam = ObjectUtils.allfieldIsNotNUll(userInfoParam);
+        boolean isImage = ImageUtils.isImage(credentialsPhotoFront, credentialsPhotoReverse);
+        if (!isImage){
+            throw new HttpMediaTypeNotAcceptableException("只接受图片格式文件！");
+        }
         if (!StringUtils.isBlank(missParam)){
             throw new MissingServletRequestParameterException(missParam, null);
         }
@@ -103,11 +115,34 @@ public class UserController implements UserControllerApi {
         return userInfoService.applyForCertification(userInfoParam, credentialsPhotoFront, credentialsPhotoReverse);
     }
 
+    @Override
+    @PostMapping("saveUserTags")
+    @CheckLogin
+    public List<TagsDTO> saveUserTags(String[] tagIds) throws Exception {
+
+        for (String tagId : tagIds) {
+            Assert.hasText(tagId, "tagId must be not blank");
+        }
+
+        long uid = Long.parseLong(request.getAttribute("uid")+"");
+
+        return userService.saveUserTags(uid, tagIds);
+    }
+
+    @Override
+    @PostMapping("saveUserExperiences")
+    @CheckLogin
+    public UserExperiencesDTO saveUserExperiences(@Valid UserExperiencesParam userExperiencesParam) {
+        long uid = Long.parseLong(request.getAttribute("uid") + "");
+        userExperiencesParam.setUid(uid);
+        return userExperiencesService.saveUserExperiences(userExperiencesParam);
+    }
+
     private AuthToken buildAuthToken(@NonNull User user){
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put("uid", user.getUid());
         userInfo.put("openid", user.getOpenid());
-        userInfo.put("roles", user.getRoles());
+        userInfo.put("roles", user.getRoles().getName());
 
         return AuthToken.builder()
                 .accessToken(jwtOperator.generateToken(userInfo))

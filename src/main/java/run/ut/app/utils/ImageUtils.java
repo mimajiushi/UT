@@ -2,8 +2,10 @@ package run.ut.app.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import net.sf.image4j.codec.ico.ICODecoder;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,5 +28,16 @@ public class ImageUtils {
         } else {
             return ImageIO.read(is);
         }
+    }
+
+    public static boolean isImage(MultipartFile... file){
+        for (MultipartFile multipartFile : file) {
+            String mimetype = multipartFile.getContentType();
+            String type = mimetype.split("/")[0];
+            if (!type.equals("image")){
+                return false;
+            }
+        }
+        return true;
     }
 }

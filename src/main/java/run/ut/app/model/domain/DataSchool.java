@@ -14,11 +14,11 @@ import java.io.Serializable;
  *
  * @author wenjie
  */
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Accessors(chain = true)
+@Builder
 @ApiModel(value="DataSchool对象", description="高校数据表")
 public class DataSchool implements Serializable {
 

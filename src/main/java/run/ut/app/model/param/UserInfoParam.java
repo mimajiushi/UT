@@ -26,7 +26,6 @@ import javax.validation.constraints.NotNull;
   @EqualsAndHashCode(callSuper = false)
   @Accessors(chain = true)
 @ApiModel(value="UserInfoParam对象", description="")
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserInfoParam implements InputConverter<UserInfo> {

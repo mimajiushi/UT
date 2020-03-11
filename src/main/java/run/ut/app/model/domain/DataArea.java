@@ -17,12 +17,12 @@ import java.io.Serializable;
  *
  * @author wenjie
  */
-@Builder
 @Data
 @Accessors(chain = true)
-@ApiModel(value="DataArea对象", description="行政区域数据表")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel(value="DataArea对象", description="行政区域数据表")
 public class DataArea implements Serializable {
 
     private Integer id;

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import run.ut.app.exception.AuthenticationException;
 import run.ut.app.security.util.JwtOperator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,11 +50,11 @@ public class AuthAspect {
 
             // 3. 如果校验成功，那么就将用户的信息设置到request的attribute里面
             Claims claims = jwtOperator.getClaimsFromToken(token);
-            request.setAttribute("id", claims.get("id"));
-            request.setAttribute("wxNickname", claims.get("wxNickname"));
-            request.setAttribute("role", claims.get("role"));
+            request.setAttribute("uid", claims.get("uid"));
+            request.setAttribute("openid", claims.get("openid"));
+            request.setAttribute("roles", claims.get("roles"));
         } catch (Throwable throwable) {
-            throw new SecurityException("Token不合法");
+            throw new AuthenticationException("Token不合法/登录状态过期，请重新登录");
         }
     }
 
@@ -76,7 +77,7 @@ public class AuthAspect {
             // 2. 验证用户角色是否匹配
             Claims claimsFromToken = jwtOperator.getClaimsFromToken(token);
             // 再回忆一次，用+""是防止空指针
-            String role = claimsFromToken.get("role") + "";
+            String role = claimsFromToken.get("roles") + "";
 
             MethodSignature signature = (MethodSignature) point.getSignature();
             Method method = signature.getMethod();
@@ -86,10 +87,10 @@ public class AuthAspect {
             String value = annotation.value();
 
             if (!Objects.equals(role, value)) {
-                throw new SecurityException("用户无权访问！");
+                throw new AuthenticationException("用户无权访问！");
             }
         } catch (Throwable throwable) {
-            throw new SecurityException("用户无权访问！", throwable);
+            throw new AuthenticationException("用户无权访问！");
         }
         return point.proceed();
     }
