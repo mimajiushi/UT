@@ -77,6 +77,7 @@ public class UserController extends BaseController implements UserControllerApi 
             user.setNickname("UT_" + UtUtils.randomUUIDWithoutDash());
             user.setSex(SexEnum.UNKNOW);
             user.setRoles(UserRolesEnum.ROLE_TOURIST);
+            user.setAvatar("https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg");
             userService.save(user);
 
             UserDTO userDTO = new UserDTO().convertFrom(user);
