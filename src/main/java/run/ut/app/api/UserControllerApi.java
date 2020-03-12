@@ -36,11 +36,14 @@ public interface UserControllerApi {
                                                            @RequestPart("file_front") @ApiParam( name = "file_front", value = "证件照正面") MultipartFile credentialsPhotoFront,
                                                            @RequestPart("file_reverse") @ApiParam(name = "file_reverse", value = "证件照反面") MultipartFile credentialsPhotoReverse) throws Exception;
 
-    @ApiOperation(value = "用户设置自己标签", notes = "传入标签id，该接口需要登录（Token）")
+    @ApiOperation(value = "用户设置自己标签", notes = "传入标签id，该接口需要登录（Token）且用户通过认证")
     public List<TagsDTO> saveUserTags(String[] tagIds) throws Exception;
 
     @ApiOperation(value = "用户添加/更新经历", notes = "该接口需要登录（Token）")
     public UserExperiencesDTO saveUserExperiences(UserExperiencesParam userExperiencesParam);
+
+    @ApiOperation(value = "用户删除经历", notes = "该接口需要登录（Token）")
+    public BaseResponse<String> deleteUserExperiences(String id);
 
 
 }

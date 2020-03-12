@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="run.ut.app.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="resMap" type="run.ut.app.model.vo.StudentVO">
+        <result column="uid" property="uid" />
+        <result column="nickname" property="nickname" />
+        <result column="real_name" property="realName" />
+        <result column="avatar" property="avatar" />
+        <result column="degree_id" property="degree" />
+        <result column="tag_ids" property="tagIds" />
+        <result column="grade" property="grade" />
+        <result column="school_id" property="schoolId" />
+        <result column="description" property="description" />
+    </resultMap>
+    
+    <select id="listStudentByParam" resultMap="resMap">
+        select u.uid uid, nickname, real_name, avatar, description, degree_id, grade, school_id, tag_ids
+        from (`user` u, user_tags ut)
+	      inner join user_info ui on u.uid = ui.uid
+	    <where>
+            1=1
+            <if test="grade!=null">
+                and ui.grade = #{grade}
+            </if>
+            <if test="tagId!=null">
+                and ut.uid = u.uid and ut.tag_id = #{tagId}
+            </if>
+            <if test="schoolId!=null">
+                and ui.school_id = #{schoolId}
+            </if>
+            <if test="degreeId!=null">
+                and ui.degree_id = #{degreeId}
+            </if>
+        </where>
+        and u.deleted = 0
+        and ui.role = 3
+        and ui.status = 1
+        group by u.uid
+        order by ui.create_time desc
+    </select>
+
+</mapper>

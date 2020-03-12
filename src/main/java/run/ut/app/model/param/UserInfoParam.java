@@ -47,5 +47,5 @@ public class UserInfoParam implements InputConverter<UserInfo> {
     @ApiModelProperty(value = "For example: Information Engineering, software engineering and other disciplines")
     private String subject;
 
-    private String readName;
+    private String realName;
 }

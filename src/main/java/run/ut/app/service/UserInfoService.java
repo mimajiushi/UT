@@ -20,4 +20,6 @@ public interface UserInfoService extends IService<UserInfo> {
     BaseResponse<UserInfoDTO> applyForCertification(UserInfoParam userInfoParam,
                                                     MultipartFile credentialsPhotoFront,
                                                     MultipartFile credentialsPhotoReverse);
+
+    UserInfo getOneByUid(Long uid);
 }

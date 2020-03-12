@@ -50,7 +50,7 @@ public class UserInfo extends BaseEntity {
     @ApiModelProperty(value = "For example: Information Engineering, software engineering and other disciplines")
     private String subject;
 
-    private String readName;
+    private String realName;
 
     @ApiModelProperty(value = "photo url")
     private String credentialsPhotoFront;
@@ -59,5 +59,7 @@ public class UserInfo extends BaseEntity {
     private String credentialsPhotoReverse;
 
     private UserInfoStatusEnum status;
+
+    private String tagIds;
 
 }

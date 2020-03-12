@@ -28,4 +28,8 @@ public class BaseController {
         this.session = request.getSession();
 
     }
+
+    protected Long getUid(){
+        return Long.parseLong(request.getAttribute("uid") + "");
+    }
 }

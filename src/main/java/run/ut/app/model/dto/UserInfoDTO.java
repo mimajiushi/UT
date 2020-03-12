@@ -48,7 +48,7 @@ public class UserInfoDTO extends BaseDTO implements OutputConverter<UserInfoDTO,
     @ApiModelProperty(value = "For example: Information Engineering, software engineering and other disciplines")
     private String subject;
 
-    private String readName;
+    private String realName;
 
     @ApiModelProperty(value = "photo url")
     private String credentialsPhotoFront;
@@ -58,4 +58,5 @@ public class UserInfoDTO extends BaseDTO implements OutputConverter<UserInfoDTO,
 
     private UserInfoStatusEnum status;
 
+    private String tagIds;
 }

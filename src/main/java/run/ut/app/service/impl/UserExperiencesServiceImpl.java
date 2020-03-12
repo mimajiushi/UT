@@ -9,7 +9,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.param.UserExperiencesParam;
+import run.ut.app.model.support.BaseResponse;
 import run.ut.app.service.UserExperiencesService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -41,4 +44,16 @@ public class UserExperiencesServiceImpl extends ServiceImpl<UserExperiencesMappe
         save(userExperiences);
         return new UserExperiencesDTO().convertFrom(userExperiences);
     }
+
+    @Override
+    public BaseResponse<String> deleteUserExperiences(Long uid, String id){
+        boolean removed = remove(new QueryWrapper<UserExperiences>().eq("uid", uid).eq("id", id));
+        return removed?BaseResponse.ok("删除成功"):BaseResponse.ok("删除失败");
+    }
+
+    @Override
+    public List<UserExperiences> getUserExperiencesByUid(Long uid) {
+        return list(new QueryWrapper<UserExperiences>().eq("uid", uid));
+    }
+
 }

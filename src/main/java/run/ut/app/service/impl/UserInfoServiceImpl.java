@@ -1,5 +1,6 @@
 package run.ut.app.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,6 +61,11 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
                 .setArea(dataAreaService.getById(userInfo.getAreaId()).getName());
 
         return BaseResponse.ok("提交资料成功！请耐心等待审核", userInfoDTO);
+    }
+
+    @Override
+    public UserInfo getOneByUid(Long uid) {
+        return getOne(new QueryWrapper<UserInfo>().eq("uid", uid));
     }
 
 }

@@ -103,7 +103,7 @@ public class UserController extends BaseController implements UserControllerApi 
     public BaseResponse<UserInfoDTO> applyForCertification(UserInfoParam userInfoParam,
                                                            @RequestPart("file_front") MultipartFile credentialsPhotoFront,
                                                            @RequestPart("file_reverse") MultipartFile credentialsPhotoReverse) throws Exception {
-        userInfoParam.setUid(Long.parseLong(request.getAttribute("uid")+""));
+        userInfoParam.setUid(getUid());
         String missParam = ObjectUtils.allfieldIsNotNUll(userInfoParam);
         boolean isImage = ImageUtils.isImage(credentialsPhotoFront, credentialsPhotoReverse);
         if (!isImage){
@@ -134,9 +134,17 @@ public class UserController extends BaseController implements UserControllerApi 
     @PostMapping("saveUserExperiences")
     @CheckLogin
     public UserExperiencesDTO saveUserExperiences(@Valid UserExperiencesParam userExperiencesParam) {
-        long uid = Long.parseLong(request.getAttribute("uid") + "");
+        long uid = getUid();
         userExperiencesParam.setUid(uid);
         return userExperiencesService.saveUserExperiences(userExperiencesParam);
+    }
+
+    @Override
+    @PostMapping("deleteUserExperiences")
+    @CheckLogin
+    public BaseResponse<String> deleteUserExperiences(String id) {
+        long uid = getUid();
+        return userExperiencesService.deleteUserExperiences(uid, id);
     }
 
     private AuthToken buildAuthToken(@NonNull User user){
