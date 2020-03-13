@@ -76,7 +76,7 @@ public class UserController extends BaseController implements UserControllerApi 
 
             user.setNickname("UT_" + UtUtils.randomUUIDWithoutDash());
             user.setSex(SexEnum.UNKNOW);
-            user.setRoles(UserRolesEnum.ROLE_TOURIST);
+            user.setRoles(UserRolesEnum.ROLE_TOURIST.getType());
             user.setAvatar("https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg");
             userService.save(user);
 
@@ -151,7 +151,7 @@ public class UserController extends BaseController implements UserControllerApi 
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put("uid", user.getUid());
         userInfo.put("openid", user.getOpenid());
-        userInfo.put("roles", user.getRoles().getName());
+        userInfo.put("roles", user.getRoles());
 
         return AuthToken.builder()
                 .accessToken(jwtOperator.generateToken(userInfo))

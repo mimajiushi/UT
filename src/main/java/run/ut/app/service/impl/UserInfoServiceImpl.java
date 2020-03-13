@@ -2,10 +2,14 @@ package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.handler.FileHandlers;
+import run.ut.app.mapper.UserMapper;
+import run.ut.app.model.domain.User;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.mapper.UserInfoMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -36,6 +40,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     private final FileHandlers fileHandlers;
     private final DataSchoolService dataSchoolService;
     private final DataAreaService dataAreaService;
+    private final UserMapper userMapper;
 
     @Override
     @Transactional
@@ -43,7 +48,15 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
                                                            MultipartFile credentialsPhotoFront,
                                                            MultipartFile credentialsPhotoReverse){
 
-        // TODO 如果当前有处于待审核的记录，也不允许申请
+        int count = count(new QueryWrapper<UserInfo>().eq("status", UserInfoStatusEnum.WAITING.getType()));
+        if (count > 0){
+            throw new AlreadyExistsException("还耐心等待审核完成后再申请！");
+        }
+
+        User user = userMapper.selectById(userInfoParam.getUid());
+        if ((user.getRoles() & userInfoParam.getRole()) == userInfoParam.getRole()){
+            throw new AlreadyExistsException("角色重复申请！");
+        }
 
         UserInfo userInfo = userInfoParam.convertTo();
         UploadResult upload1 = fileHandlers.upload(credentialsPhotoFront);
@@ -51,7 +64,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         userInfo.setCredentialsPhotoFront(upload1.getFilePath())
                 .setCredentialsPhotoReverse(upload2.getFilePath())
                 .setStatus(UserInfoStatusEnum.WAITING)
-                .setRole(UserRolesEnum.getByType(userInfoParam.getRole()))
+                .setRole(UserRolesEnum.getByType(userInfoParam.getRole()).getType())
                 .setDegreeId(DegreeEnum.getByType(userInfoParam.getDegreeId()));
 
         save(userInfo);
@@ -66,6 +79,37 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Override
     public UserInfo getOneByUid(Long uid) {
         return getOne(new QueryWrapper<UserInfo>().eq("uid", uid));
+    }
+
+    @Override
+    @Transactional
+    public BaseResponse<String> verifyUserInfo(Integer id, Integer status, String reason) {
+
+        UserInfo userInfo = getById(id);
+        User user = userMapper.selectById(userInfo.getUid());
+
+        // If the audit fails
+        if (status == UserInfoStatusEnum.FAIL.getType()){
+            userInfo.setStatus(UserInfoStatusEnum.FAIL);
+            if (!StringUtils.isBlank(reason)){
+                userInfo.setReason(reason);
+            }
+            updateById(userInfo);
+            return BaseResponse.ok("审核完成，结果：" + userInfo.getStatus().getName());
+        }
+
+        // If approved
+        // delete old userinfo
+        remove(new QueryWrapper<UserInfo>()
+                .eq("uid", userInfo.getUid())
+                .eq("status", UserInfoStatusEnum.PASS.getType()));
+        // update new userinfo and user
+        user.setRoles(user.getRoles() + userInfo.getRole());
+        userInfo.setRole(user.getRoles());
+        userInfo.setStatus(UserInfoStatusEnum.PASS);
+        updateById(userInfo);
+        userMapper.updateById(user);
+        return BaseResponse.ok("审核完成，结果：" + userInfo.getStatus().getName());
     }
 
 }

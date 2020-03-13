@@ -9,5 +9,5 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Retention(RetentionPolicy.RUNTIME) // 为了通过反射取到注解上的东西
 public @interface CheckAuthorization {
-    String value();
+    String[] roles() default {};
 }

@@ -12,5 +12,4 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "third-api-config")
 public class ThirdApiConfig {
     private SmsConfig sms;
-    private BaiduFaceConfig baidu;
 }

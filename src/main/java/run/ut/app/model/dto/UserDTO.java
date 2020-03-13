@@ -54,7 +54,7 @@ public class UserDTO extends BaseDTO implements OutputConverter<UserDTO, User> {
 
     private SexEnum sex;
 
-    private UserRolesEnum roles;
+    private Integer roles;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;

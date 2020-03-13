@@ -1,6 +1,5 @@
 package run.ut.app.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.domain.UserTags;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.enums.UserInfoStatusEnum;
-import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.service.TagsService;
 import run.ut.app.service.UserInfoService;
 import run.ut.app.service.UserService;

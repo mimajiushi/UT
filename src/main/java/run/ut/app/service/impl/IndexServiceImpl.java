@@ -8,8 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import run.ut.app.mapper.UserMapper;
-import run.ut.app.model.domain.DataSchool;
-import run.ut.app.model.domain.Tags;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.TagsDTO;

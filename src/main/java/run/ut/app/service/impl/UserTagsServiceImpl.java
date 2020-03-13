@@ -3,7 +3,6 @@ package run.ut.app.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.ObjectUtils;
 import run.ut.app.mapper.TagsMapper;
 import run.ut.app.model.domain.Tags;
 import run.ut.app.model.domain.UserTags;

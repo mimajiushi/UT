@@ -54,11 +54,11 @@ public class EntityGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent(null);
-        pc.setEntity("run.ut.app.model.domain");
+//        pc.setEntity("run.ut.app.model.domain");
         pc.setMapper("run.ut.app.mapper");
-        pc.setXml("run.ut.app.mapper");
-        pc.setService("run.ut.app.service");
-        pc.setServiceImpl("run.ut.app.service.impl");
+//        pc.setXml("run.ut.app.mapper");
+//        pc.setService("run.ut.app.service");
+//        pc.setServiceImpl("run.ut.app.service.impl");
 //        pc.setController(null);
         mpg.setPackageInfo(pc);
 
@@ -72,7 +72,7 @@ public class EntityGenerator {
 
         mpg.setCfg(cfg);
 
-        String[] tables = {""};
+        String[] tables = {"teams", "teams_menbers", "teams_recruitments", "teams_tags", "user_team_apply_log"};
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);

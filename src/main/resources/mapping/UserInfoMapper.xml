@@ -16,6 +16,7 @@
         <result column="credentials_photo_front" property="credentialsPhotoFront" />
         <result column="credentials_photo_reverse" property="credentialsPhotoReverse" />
         <result column="status" property="status" />
+        <result column="reason" property="reason" />
         <result column="deleted" property="deleted" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />

@@ -29,14 +29,6 @@ public class TagsController implements TagsControllerApi {
 
     private final TagsService tagsService;
 
-
-    @PostMapping("saveTag")
-    @CheckAuthorization("ROLE_ADMIN")
-    @Override
-    public BaseResponse<TagsDTO> saveTag(@Valid TagsParam tagsParam) {
-        return tagsService.saveTag(tagsParam);
-    }
-
     @Override
     @GetMapping("listTagsByParentId/{parentId}")
     public List<TagsDTO> listTagsByParentId(@PathVariable Integer parentId) {

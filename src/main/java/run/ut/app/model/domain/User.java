@@ -44,7 +44,7 @@ public class User extends BaseEntity {
 
     private SexEnum sex;
 
-    private UserRolesEnum roles;
+    private Integer roles;
 
     private String avatar;
 

@@ -58,5 +58,7 @@ public class UserInfoDTO extends BaseDTO implements OutputConverter<UserInfoDTO,
 
     private UserInfoStatusEnum status;
 
+    private String reason;
+
     private String tagIds;
 }

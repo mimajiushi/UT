@@ -42,7 +42,7 @@ public class UserInfo extends BaseEntity {
     private Integer areaId;
 
     @ApiModelProperty(value = "Role of user application")
-    private UserRolesEnum role;
+    private Integer role;
 
     @ApiModelProperty(value = "If he is a grade 17 student, fill in 17")
     private Integer grade;
@@ -59,6 +59,8 @@ public class UserInfo extends BaseEntity {
     private String credentialsPhotoReverse;
 
     private UserInfoStatusEnum status;
+
+    private String reason;
 
     private String tagIds;
 

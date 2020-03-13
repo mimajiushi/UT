@@ -12,6 +12,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import run.ut.app.exception.AuthenticationException;
+import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.security.util.JwtOperator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,10 @@ import java.lang.reflect.Method;
 import java.util.Objects;
 
 /**
- * aop处理注解
+ * 处理认证注解
+ *
+ * 使用位运算实现角色校验
+ *
  * @author wenjie
  */
 
@@ -75,22 +79,29 @@ public class AuthAspect {
             this.checkToken();
 
             // 2. 验证用户角色是否匹配
-            Claims claimsFromToken = jwtOperator.getClaimsFromToken(token);
+            Claims claims = jwtOperator.getClaimsFromToken(token);
             // 再回忆一次，用+""是防止空指针
-            String role = claimsFromToken.get("roles") + "";
+            int roles = Integer.parseInt(claims.get("roles") + "");
 
             MethodSignature signature = (MethodSignature) point.getSignature();
             Method method = signature.getMethod();
             CheckAuthorization annotation = method.getAnnotation(CheckAuthorization.class);
 
             // 获取注解上的值
-            String value = annotation.value();
-
-            if (!Objects.equals(role, value)) {
-                throw new AuthenticationException("用户无权访问！");
+            String[] values = annotation.roles();
+            for (String value : values) {
+                int role = UserRolesEnum.getByName(value).getType();
+                if ((role & roles) != role){
+                    throw new AuthenticationException("用户没有相关权限！");
+                }
             }
+
+            request.setAttribute("uid", claims.get("uid"));
+            request.setAttribute("openid", claims.get("openid"));
+            request.setAttribute("roles", roles);
+
         } catch (Throwable throwable) {
-            throw new AuthenticationException("用户无权访问！");
+            throw new AuthenticationException("用户没有相关权限！");
         }
         return point.proceed();
     }

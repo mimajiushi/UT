@@ -22,4 +22,6 @@ public interface UserInfoService extends IService<UserInfo> {
                                                     MultipartFile credentialsPhotoReverse);
 
     UserInfo getOneByUid(Long uid);
+
+    BaseResponse<String> verifyUserInfo(Integer id, Integer status, String reason);
 }

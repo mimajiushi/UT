@@ -15,12 +15,11 @@ import java.util.Arrays;
 @Getter
 @ToString
 public enum UserRolesEnum implements IEnum<Integer> {
-    ROLE_ADMIN(1, "ROLE_ADMIN", "系统管理员"),
-    ROLE_TOURIST(2, "ROLE_TOURIST", "游客"),
-    ROLE_STUDENT(3, "ROLE_STUDENT", "学生"),
-    ROLE_VIP_STUDENT(4, "ROLE_VIP_STUDENT", "学生VIP"),
-    ROLE_TUTOR(5, "ROLE_TUTOR", "导师"),
-    ROLE_SPONSOR(6, "ROLE_SPONSOR", "赛事主办方")
+    ROLE_ADMIN(8, "ROLE_ADMIN", "系统管理员"),
+    ROLE_TOURIST(0, "ROLE_TOURIST", "游客"),
+    ROLE_STUDENT(1, "ROLE_STUDENT", "学生"),
+    ROLE_TUTOR(2, "ROLE_TUTOR", "导师"),
+    ROLE_SPONSOR(4, "ROLE_SPONSOR", "活动主办方")
     ;
 
     private int type;
