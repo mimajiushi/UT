@@ -13,8 +13,14 @@ import java.util.Arrays;
  */
 @Getter
 public enum TeamsStatusEnum implements IEnum<Integer> {
-    PRIVATE(0, "未在寻找团队页面展示"),
-    PUBLIC(1, "已在寻找团队页面展示");
+    /**
+     * 不招人
+     */
+    PRIVATE(0, "不招募"),
+    /**
+     * 招人
+     */
+    PUBLIC(1, "招募中");
 
     private int type;
 

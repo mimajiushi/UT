@@ -41,7 +41,7 @@ public class TeamsParam implements Serializable {
     @Size(max = 5000, message = "团队描述不能超过 {max} 个字符（包含可能的 富文本 or MarkDown）")
     private String description;
 
-    @ApiModelProperty(value = "0-待发布 1-发布中，只有发布中状态的团队才会展示在首页")
+    @ApiModelProperty(value = "0-不招人 1-招募中，只有招募中状态的团队才会展示在首页")
     @Min(value = -1, message = "必须设置发布状态")
     private Integer status;
 

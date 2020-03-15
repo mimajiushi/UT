@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
 import run.ut.app.model.enums.TeamsMemberEnum;
+import run.ut.app.model.enums.TeamsStatusEnum;
 import run.ut.app.model.param.TeamsParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.UploadResult;
@@ -74,7 +75,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         Teams team = new Teams()
                 .setDescription(teamsParam.getDescription())
                 .setName(teamsParam.getName())
-                .setStatus(teamsParam.getStatus());
+                .setStatus(TeamsStatusEnum.getByType(teamsParam.getStatus()));
         if (hasLogo){
             team.setLogo(uploadResult.getFilePath());
         }
@@ -91,7 +92,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
 
     @Override
     @Transactional
-    public List<TagsDTO> saveTeamsTags(String[] tagIds, Long leaderId) {
+    public List<TagsDTO> saveTeamsTags(String[] tagIds, Long leaderId, Long teamsId) {
         // Verify whether the tags exist
         List<Tags> tags = tagsService.listByIds(new HashSet<>(Arrays.asList(tagIds)));
 
@@ -99,8 +100,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
             throw new BadRequestException("传入tagIds有误");
         }
 
-        Teams team = getAndCheckTeamByLeaderId(leaderId);
-        Long teamsId = team.getId();
+        Teams team = getAndCheckTeamByLeaderIdAndTeamId(leaderId, teamsId);
 
         // Verify that the newly saved tags are the same as the original ones
         List<Tags> tags2 = teamsTagsService.listByTeamsId(teamsId);
@@ -129,19 +129,22 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
     }
 
     @Override
-    public BaseResponse<String> updateTeamsLogo(MultipartFile logo, Long leaderId) {
+    public BaseResponse<String> updateTeamsLogo(MultipartFile logo, Long leaderId, Long teamsId) {
 
-        Teams team = getAndCheckTeamByLeaderId(leaderId);
+        Teams team = getAndCheckTeamByLeaderIdAndTeamId(leaderId, teamsId);
         UploadResult uploadResult = fileHandlers.upload(logo);
         team.setLogo(uploadResult.getFilePath());
+        team.setUpdateTime(null);
         updateById(team);
         return BaseResponse.ok("更新团队头像成功！");
     }
 
     @Override
-    public Teams getTeamByLeaderId(Long leaderId) {
+    public Teams getTeamByLeaderIdAndTeamId(Long leaderId, Long teamsId) {
         TeamsMembers teamsMembers = teamsMembersMapper.selectOne(new QueryWrapper<TeamsMembers>()
-                .eq("uid", leaderId).eq("is_leader", TeamsMemberEnum.LEADER));
+                .eq("uid", leaderId)
+                .eq("is_leader", TeamsMemberEnum.LEADER)
+                .eq("team_id", teamsId));
         if (ObjectUtils.isEmpty(teamsMembers)){
             return null;
         }
@@ -149,8 +152,8 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
     }
 
     @Override
-    public Teams getAndCheckTeamByLeaderId(Long leaderId){
-        Teams team = getTeamByLeaderId(leaderId);
+    public Teams getAndCheckTeamByLeaderIdAndTeamId(Long leaderId, Long teamsId){
+        Teams team = getTeamByLeaderIdAndTeamId(leaderId, teamsId);
         if (ObjectUtils.isEmpty(team)){
             throw new NotFoundException("团队不存在！");
         }

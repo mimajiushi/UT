@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
+import run.ut.app.model.enums.TeamsStatusEnum;
 
 /**
  * <p>
@@ -40,6 +41,6 @@ public class Teams extends BaseEntity {
     private String tagIds;
 
     @ApiModelProperty(value = "0-待发布 1-发布中")
-    private Integer status;
+    private TeamsStatusEnum status;
 
 }

@@ -22,15 +22,15 @@ public interface TeamsService extends IService<Teams> {
 
     TeamsDTO createTeam(TeamsParam teamsParam, Long leaderId, MultipartFile logo);
 
-    List<TagsDTO> saveTeamsTags(String[] tagIds, Long leaderId);
+    List<TagsDTO> saveTeamsTags(String[] tagIds, Long leaderId, Long teamsId);
 
-    BaseResponse<String> updateTeamsLogo(MultipartFile logo, Long leaderId);
+    BaseResponse<String> updateTeamsLogo(MultipartFile logo, Long leaderId, Long teamsId);
 
-    Teams getTeamByLeaderId(Long leaderId);
+    Teams getTeamByLeaderIdAndTeamId(Long leaderId, Long TeamsId);
 
     /**
-     * Get team by leader's uid, if could not found team by uid, throw NotFoundException
+     * Get team by leader's uid and team's id, if could not found team by uid, throw NotFoundException
      * @param leaderId leader's uid
      */
-    Teams getAndCheckTeamByLeaderId(Long leaderId);
+    Teams getAndCheckTeamByLeaderIdAndTeamId(Long leaderId, Long TeamsId);
 }

@@ -18,10 +18,10 @@ public interface TeamsControllerApi {
     public TeamsDTO createTeam(TeamsParam teamsParam, @RequestPart("logo") MultipartFile logo);
 
     @ApiOperation(value = "设置团队标签", notes = "需要登录（Token）验证，且只有队长才可以设置团队标签")
-    public List<TagsDTO> saveTeamsTags(String[] tagIds);
+    public List<TagsDTO> saveTeamsTags(String[] tagIds, Long teamsId);
 
     @ApiOperation(value = "更新团队logo", notes = "需要登录（Token）验证，只有队长才能更改团队logo")
-    public BaseResponse<String> updateTeamsLogo(@RequestPart("logo") MultipartFile logo);
+    public BaseResponse<String> updateTeamsLogo(@RequestPart("logo") MultipartFile logo, Long teamsId);
 
 
 }

@@ -31,7 +31,7 @@ public interface UserControllerApi {
     @ApiOperation("发送短信验证码接口")
     public BaseResponse<String> sendSms(String phoneNumber);
 
-    @ApiOperation(value = "认证申请", notes = "role字段说明：3-学生认证  5-导师认证  6-赛事主办方认证")
+    @ApiOperation(value = "认证申请", notes = "role字段说明：1-学生认证  2-导师认证  4-赛事主办方认证")
     public BaseResponse<UserInfoDTO> applyForCertification(UserInfoParam userInfoParam,
                                                            @RequestPart("file_front") @ApiParam( name = "file_front", value = "证件照正面") MultipartFile credentialsPhotoFront,
                                                            @RequestPart("file_reverse") @ApiParam(name = "file_reverse", value = "证件照反面") MultipartFile credentialsPhotoReverse) throws Exception;

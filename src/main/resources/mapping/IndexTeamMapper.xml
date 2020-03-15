@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="run.ut.app.mapper.TeamsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="teamVO" type="run.ut.app.model.vo.TeamVO">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="logo" property="logo" />
+        <result column="description" property="description" />
+        <result column="tag_ids" property="tagIds" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <select id="listTeamByParam" resultMap="teamVO">
+        select te.id, te.`name`, te.logo, te.description, te.tag_ids, te.`status`, te.create_time
+	    from (teams te, teams_tags tet)
+	    <where>
+            1=1
+            <if test="stp.name!=null and stp.name!=''">
+                and instr(te.`name`, 'u') > 0
+            </if>
+            <if test="stp.tagId!=null">
+                and te.id = tet.team_id and tet.tag_id = #{stp.tagId}
+            </if>
+            and te.`status` = 1 and te.deleted = 0
+        </where>
+	    group by te.id
+	    order by create_time desc
+    </select>
+
+</mapper>

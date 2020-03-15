@@ -51,24 +51,23 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @Override
     @PostMapping("saveTeamsTags")
     @CheckLogin
-    public List<TagsDTO> saveTeamsTags(String[] tagIds) {
+    public List<TagsDTO> saveTeamsTags(String[] tagIds, Long teamsId) {
         Long leaderId = getUid();
         checkUser(leaderId);
-        return teamsService.saveTeamsTags(tagIds, leaderId);
+        return teamsService.saveTeamsTags(tagIds, leaderId, teamsId);
     }
 
     @Override
     @PostMapping("updateTeamsLogo")
     @CheckLogin
-    public BaseResponse<String> updateTeamsLogo(@RequestPart("logo") MultipartFile logo){
+    public BaseResponse<String> updateTeamsLogo(@RequestPart("logo") MultipartFile logo, Long teamsId){
         Long leaderId = getUid();
         checkUser(leaderId);
 
         if (!ImageUtils.isImage(logo)){
             throw new FileOperationException("只接受图片格式文件！");
         }
-
-        return teamsService.updateTeamsLogo(logo, leaderId);
+        return teamsService.updateTeamsLogo(logo, leaderId, teamsId);
     }
 
     /**

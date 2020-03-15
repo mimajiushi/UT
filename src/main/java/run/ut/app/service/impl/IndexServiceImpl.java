@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import run.ut.app.mapper.TeamsMapper;
 import run.ut.app.mapper.UserMapper;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.domain.UserInfo;
@@ -14,8 +15,10 @@ import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.SearchStudentParam;
+import run.ut.app.model.param.SearchTeamParam;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.StudentVO;
+import run.ut.app.model.vo.TeamVO;
 import run.ut.app.service.*;
 
 import java.util.Arrays;
@@ -28,6 +31,7 @@ import java.util.stream.Collectors;
 public class IndexServiceImpl implements IndexService {
 
     private final UserMapper userMapper;
+    private final TeamsMapper teamsMapper;
     private final TagsService tagsService;
     private final UserTagsService userTagsService;
     private final UserExperiencesService userExperiencesService;
@@ -55,6 +59,23 @@ public class IndexServiceImpl implements IndexService {
         long total = studentVOIPage.getTotal();
 
         return new CommentPage<>(total, records);
+    }
+
+    @Override
+    public CommentPage<TeamVO> listTeamByParam(SearchTeamParam searchTeamParam, Page page) {
+        IPage<TeamVO> teamsPage = teamsMapper.listTeamByParam(page, searchTeamParam);
+        List<TeamVO> teamVOList = teamsPage.getRecords();
+        for (int i = 0; i < teamVOList.size(); i++){
+            TeamVO teamVO = teamVOList.get(i);
+            String tagIds = teamVO.getTagIds();
+            if (!StringUtils.isBlank(tagIds)){
+                List<TagsDTO> tagsDTOList = tagsService.listByIds(Arrays.asList(tagIds.split(","))).stream().map(e -> {
+                    return (TagsDTO) new TagsDTO().convertFrom(e);
+                }).collect(Collectors.toList());
+                teamVO.setTags(tagsDTOList);
+            }
+        }
+        return new CommentPage<>(teamsPage.getTotal(), teamVOList);
     }
 
     @Override
