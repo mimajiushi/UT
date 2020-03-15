@@ -7,10 +7,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.multipart.MultipartFile;
-import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
+import run.ut.app.exception.FileOperationException;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.handler.FileHandlers;
 import run.ut.app.mapper.TeamsMembersMapper;
@@ -21,12 +20,10 @@ import org.springframework.stereotype.Service;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
 import run.ut.app.model.enums.TeamsMemberEnum;
-import run.ut.app.model.enums.TeamsStatusEnum;
-import run.ut.app.model.enums.UserInfoStatusEnum;
 import run.ut.app.model.param.TeamsParam;
+import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.UploadResult;
 import run.ut.app.service.TagsService;
-import run.ut.app.service.TeamsMembersService;
 import run.ut.app.service.TeamsService;
 import run.ut.app.service.TeamsTagsService;
 import run.ut.app.utils.ImageUtils;
@@ -56,7 +53,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
 
     @Override
     @Transactional
-    public TeamsDTO createTeam(TeamsParam teamsParam, Long leaderId, MultipartFile logo) throws HttpMediaTypeNotAcceptableException {
+    public TeamsDTO createTeam(TeamsParam teamsParam, Long leaderId, MultipartFile logo){
 
         int count = count(new QueryWrapper<Teams>().eq("name", teamsParam.getName()));
         if (count > 0){
@@ -68,7 +65,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         boolean hasLogo = !ObjectUtils.isEmpty(logo);
         if (hasLogo){
             if (!ImageUtils.isImage()){
-                throw new HttpMediaTypeNotAcceptableException("只接受图片格式文件！");
+                throw new FileOperationException("只接受图片格式文件！");
             }
             uploadResult = fileHandlers.upload(logo);
         }
@@ -102,11 +99,8 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
             throw new BadRequestException("传入tagIds有误");
         }
 
-        Teams team = getTeamByLeaderId(leaderId);
+        Teams team = getAndCheckTeamByLeaderId(leaderId);
         Long teamsId = team.getId();
-        if (ObjectUtils.isEmpty(team)){
-            throw new NotFoundException("团队不存在！");
-        }
 
         // Verify that the newly saved tags are the same as the original ones
         List<Tags> tags2 = teamsTagsService.listByTeamsId(teamsId);
@@ -135,6 +129,16 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
     }
 
     @Override
+    public BaseResponse<String> updateTeamsLogo(MultipartFile logo, Long leaderId) {
+
+        Teams team = getAndCheckTeamByLeaderId(leaderId);
+        UploadResult uploadResult = fileHandlers.upload(logo);
+        team.setLogo(uploadResult.getFilePath());
+        updateById(team);
+        return BaseResponse.ok("更新团队头像成功！");
+    }
+
+    @Override
     public Teams getTeamByLeaderId(Long leaderId) {
         TeamsMembers teamsMembers = teamsMembersMapper.selectOne(new QueryWrapper<TeamsMembers>()
                 .eq("uid", leaderId).eq("is_leader", TeamsMemberEnum.LEADER));
@@ -142,5 +146,14 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
             return null;
         }
         return getById(teamsMembers.getTeamId());
+    }
+
+    @Override
+    public Teams getAndCheckTeamByLeaderId(Long leaderId){
+        Teams team = getTeamByLeaderId(leaderId);
+        if (ObjectUtils.isEmpty(team)){
+            throw new NotFoundException("团队不存在！");
+        }
+        return team;
     }
 }

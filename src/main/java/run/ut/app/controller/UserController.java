@@ -1,7 +1,6 @@
 package run.ut.app.controller;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.UserControllerApi;
@@ -14,6 +13,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.exception.BadRequestException;
+import run.ut.app.exception.FileOperationException;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserDTO;
@@ -107,7 +107,7 @@ public class UserController extends BaseController implements UserControllerApi 
         String missParam = ObjectUtils.allfieldIsNotNUll(userInfoParam);
         boolean isImage = ImageUtils.isImage(credentialsPhotoFront, credentialsPhotoReverse);
         if (!isImage){
-            throw new HttpMediaTypeNotAcceptableException("只接受图片格式文件！");
+            throw new FileOperationException("只接受图片格式文件！");
         }
         if (!StringUtils.isBlank(missParam)){
             throw new MissingServletRequestParameterException(missParam, null);

@@ -17,4 +17,6 @@ public interface IndexControllerApi {
 
     @ApiOperation(value = "学生展示给别人看的主页", notes = "非自己看自己的个人主页，不包含手机号等敏感信息")
     public StudentVO showStudentInfo(Long uid);
+
+//    @ApiOperation(value = "获取首页的团队列表（找团队）")
 }

@@ -1,0 +1,3651 @@
+{
+	"info": {
+		"_postman_id": "e368ae96-e4cd-4e48-afec-8e3aec9ff3e0",
+		"name": "UT系统API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "用户操作API",
+			"item": [
+				{
+					"name": "手机号+验证码登录（自动注册）",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/user/webPageLogin?smsCode=123456&phoneNumber=15521245562",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"user",
+								"webPageLogin"
+							],
+							"query": [
+								{
+									"key": "smsCode",
+									"value": "123456"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "15521245562"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "手机号+验证码登录（自动注册）（成功案例）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/user/webPageLogin?smsCode=123456&phoneNumber=15521245562",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"webPageLogin"
+									],
+									"query": [
+										{
+											"key": "smsCode",
+											"value": "123456"
+										},
+										{
+											"key": "phoneNumber",
+											"value": "15521245562"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 14:35:45 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-09 13:41:30\",\n        \"updateTime\": \"2020-02-25 15:19:05\",\n        \"deleted\": 0,\n        \"id\": null,\n        \"uid\": 21,\n        \"openid\": \"\",\n        \"nickname\": \"UT_9a7293\",\n        \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n        \"phoneNumber\": \"15521245562\",\n        \"email\": \"\",\n        \"description\": \"\",\n        \"sex\": \"保密\",\n        \"roles\": \"游客\",\n        \"token\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6IlJPTEVfVE9VUklTVCIsImlhdCI6MTU4MzkzNzM0MywiZXhwIjoxNjE1NDczMzQzfQ.yb7TUOrpBTQBbQ98PmI9LGlof2hjrz0kMhzLuYnhPN4\",\n            \"expiration_time\": 1615473345064\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "发送短信验证码",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/user/sendSms?phoneNumber=13533533208",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"user",
+								"sendSms"
+							],
+							"query": [
+								{
+									"key": "phoneNumber",
+									"value": "13533533208"
+								}
+							]
+						},
+						"description": "验证码有效时间为5分钟"
+					},
+					"response": [
+						{
+							"name": "发送短信验证码（成功案例）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/user/sendSms?phoneNumber=13533533208",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"sendSms"
+									],
+									"query": [
+										{
+											"key": "phoneNumber",
+											"value": "13533533208"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 04:53:58 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"发送验证码成功！\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "申请角色认证",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIzLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MTA0NTkwLCJleHAiOjE2MTU2NDA1OTB9.MCLu4EEaIrQDlVbIQzzbD5ndBd9r-YN5MA7niloZdIc",
+								"description": "测试token，有效期10年",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file_front",
+									"description": "证件照正面",
+									"type": "file",
+									"src": "/D:/图包/P站3/1.jpg"
+								},
+								{
+									"key": "file_reverse",
+									"description": "证件照反面",
+									"type": "file",
+									"src": "/D:/图包/P站3/2.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/user/applyForCertification?schoolId=1367&degreeId=2&areaId=110000&role=4&grade=2017&subject=信息工程&realName=陈文杰",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"user",
+								"applyForCertification"
+							],
+							"query": [
+								{
+									"key": "uid",
+									"value": "23",
+									"description": "用户uid",
+									"disabled": true
+								},
+								{
+									"key": "schoolId",
+									"value": "1367",
+									"description": "学校id"
+								},
+								{
+									"key": "degreeId",
+									"value": "2",
+									"description": "学位id  1-大专 2-本科 3-博士及以上"
+								},
+								{
+									"key": "areaId",
+									"value": "110000",
+									"description": "省/市/区id"
+								},
+								{
+									"key": "role",
+									"value": "4",
+									"description": "角色id  1-学生认证  2-导师认证  4-赛事主办方认证 8-管理员认证"
+								},
+								{
+									"key": "grade",
+									"value": "2017",
+									"description": "2017级学生就填2017，学生以外填0"
+								},
+								{
+									"key": "subject",
+									"value": "信息工程",
+									"description": "填专业，如软件工程、信息工程"
+								},
+								{
+									"key": "realName",
+									"value": "陈文杰",
+									"description": "真实姓名"
+								}
+							]
+						},
+						"description": "所有参数都缺一不可,也可以是表单形式提交"
+					},
+					"response": [
+						{
+							"name": "申请角色认证（成功案例）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIzLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MTA0NTkwLCJleHAiOjE2MTU2NDA1OTB9.MCLu4EEaIrQDlVbIQzzbD5ndBd9r-YN5MA7niloZdIc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file_front",
+											"description": "证件照正面",
+											"type": "file",
+											"src": "/D:/图包/P站3/1.jpg"
+										},
+										{
+											"key": "file_reverse",
+											"description": "证件照反面",
+											"type": "file",
+											"src": "/D:/图包/P站3/2.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/user/applyForCertification?uid=21&schoolId=1367&degreeId=2&areaId=110000&role=4&grade=2017&subject=信息工程&realName=陈文杰",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"applyForCertification"
+									],
+									"query": [
+										{
+											"key": "uid",
+											"value": "21",
+											"description": "用户uid"
+										},
+										{
+											"key": "schoolId",
+											"value": "1367",
+											"description": "学校id"
+										},
+										{
+											"key": "degreeId",
+											"value": "2",
+											"description": "学位id  1-大专 2-本科 3-博士及以上"
+										},
+										{
+											"key": "areaId",
+											"value": "110000",
+											"description": "省/市/区id"
+										},
+										{
+											"key": "role",
+											"value": "4",
+											"description": "角色id  1-学生认证  2-导师认证  4-赛事主办方认证"
+										},
+										{
+											"key": "grade",
+											"value": "2017",
+											"description": "2017级学生就填2017，学生以外填0"
+										},
+										{
+											"key": "subject",
+											"value": "信息工程",
+											"description": "填专业，如软件工程、信息工程"
+										},
+										{
+											"key": "realName",
+											"value": "陈文杰",
+											"description": "真实姓名"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 07:00:30 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"提交资料成功！请耐心等待审核\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-11 15:00:30\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 16,\n        \"uid\": 21,\n        \"school\": \"北京大学\",\n        \"degreeId\": \"本科\",\n        \"area\": \"北京\",\n        \"role\": \"学生\",\n        \"grade\": 2017,\n        \"subject\": \"信息工程\",\n        \"readName\": \"陈文杰\",\n        \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1583910029607.jpg\",\n        \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1583910029949.jpg\",\n        \"status\": \"审核中\"\n    }\n}"
+						},
+						{
+							"name": "申请角色认证（未登录或登录token过期案例）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file_front",
+											"description": "证件照正面",
+											"type": "file",
+											"src": "/D:/图包/P站3/1.jpg"
+										},
+										{
+											"key": "file_reverse",
+											"description": "证件照反面",
+											"type": "file",
+											"src": "/D:/图包/P站3/2.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/user/applyForCertification?uid=21&schoolId=1367&degreeId=2&areaId=110000&role=4&grade=2017&subject=信息工程&realName=陈文杰",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"applyForCertification"
+									],
+									"query": [
+										{
+											"key": "uid",
+											"value": "21",
+											"description": "用户uid"
+										},
+										{
+											"key": "schoolId",
+											"value": "1367",
+											"description": "学校id"
+										},
+										{
+											"key": "degreeId",
+											"value": "2",
+											"description": "学位id  1-大专 2-本科 3-博士及以上"
+										},
+										{
+											"key": "areaId",
+											"value": "110000",
+											"description": "省/市/区id"
+										},
+										{
+											"key": "role",
+											"value": "4",
+											"description": "角色id  1-学生认证  2-导师认证  4-赛事主办方认证"
+										},
+										{
+											"key": "grade",
+											"value": "2017",
+											"description": "2017级学生就填2017，学生以外填0"
+										},
+										{
+											"key": "subject",
+											"value": "信息工程",
+											"description": "填专业，如软件工程、信息工程"
+										},
+										{
+											"key": "realName",
+											"value": "陈文杰",
+											"description": "真实姓名"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 06:58:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"message\": \"Token不合法/登录状态过期，请重新登录\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "用户设置自己的标签",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6Iua4uOWuoiIsImlhdCI6MTU4MzkwOTg4NSwiZXhwIjoxNjE1NDQ1ODg1fQ.oY8patR4hX-vH_pacCFOOJl6-4IbYQc-T5JDJT5XJTI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tagIds",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "tagIds",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "tagIds",
+									"value": "3",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/user/saveUserTags",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"user",
+								"saveUserTags"
+							]
+						},
+						"description": "必须是登录状态才能设置，且用户必须通过认证。"
+					},
+					"response": [
+						{
+							"name": "用户设置自己的标签（成功案例）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "tagIds",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "tagIds",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "tagIds",
+											"value": "3",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/user/saveUserTags",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"saveUserTags"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=189A8C4910CF1EA33392B5F550D7928E; Path=/ut; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 12:43:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"createTime\": \"2020-03-11 13:04:03\",\n            \"updateTime\": \"2020-02-25 13:45:33\",\n            \"deleted\": 0,\n            \"id\": 1,\n            \"parentId\": 0,\n            \"name\": \"技术\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 13:04:34\",\n            \"updateTime\": \"2020-02-25 13:45:43\",\n            \"deleted\": 0,\n            \"id\": 2,\n            \"parentId\": 1,\n            \"name\": \"Java\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 13:04:53\",\n            \"updateTime\": \"2020-02-25 13:45:50\",\n            \"deleted\": 0,\n            \"id\": 3,\n            \"parentId\": 1,\n            \"name\": \"PHP\",\n            \"level\": 1\n        }\n    ]\n}"
+						},
+						{
+							"name": "用户设置自己的标签（当传入的tagIds不存在时）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6Iua4uOWuoiIsImlhdCI6MTU4MzkwOTg4NSwiZXhwIjoxNjE1NDQ1ODg1fQ.oY8patR4hX-vH_pacCFOOJl6-4IbYQc-T5JDJT5XJTI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "tagIds",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "tagIds",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "tagIds",
+											"value": "999",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/user/saveUserTags",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"saveUserTags"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 07:30:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"message\": \"传入tagIds有误\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "添加/更新个人经历",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "11",
+									"description": "更新时必传",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "智慧食堂4",
+									"type": "text"
+								},
+								{
+									"key": "awards",
+									"value": "吹牛一等奖",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "后端开发",
+									"type": "text"
+								},
+								{
+									"key": "projectUrl",
+									"value": "https://wenjie.store",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "项目描述xxxxx",
+									"description": "不可超过1200字",
+									"type": "text"
+								},
+								{
+									"key": "startTime",
+									"value": "2017-09-10",
+									"type": "text"
+								},
+								{
+									"key": "endTime",
+									"value": "2018-09-10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/user/saveUserExperiences",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"user",
+								"saveUserExperiences"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "添加个人经历",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"type": "text",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "智慧食堂3",
+											"type": "text"
+										},
+										{
+											"key": "awards",
+											"value": "吹牛七等奖",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "后端开发",
+											"type": "text"
+										},
+										{
+											"key": "projectUrl",
+											"value": "https://wenjie.store",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "项目描述",
+											"description": "不可超过1200字",
+											"type": "text"
+										},
+										{
+											"key": "startTime",
+											"value": "2017",
+											"type": "text"
+										},
+										{
+											"key": "endTime",
+											"value": "2018",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/user/saveUserExperiences",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"saveUserExperiences"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Mar 2020 07:18:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-12 15:18:05\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 11,\n        \"uid\": 21,\n        \"name\": \"智慧食堂3\",\n        \"awards\": \"吹牛七等奖\",\n        \"role\": \"后端开发\",\n        \"projectUrl\": \"https://wenjie.store\",\n        \"description\": \"项目描述\",\n        \"startTime\": \"2017\",\n        \"endTime\": \"2018\"\n    }\n}"
+						},
+						{
+							"name": "更新个人经历",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"type": "text",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "智慧食堂4",
+											"type": "text"
+										},
+										{
+											"key": "awards",
+											"value": "吹牛一等奖",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "后端开发",
+											"type": "text"
+										},
+										{
+											"key": "projectUrl",
+											"value": "https://wenjie.store",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "项目描述xxxxx",
+											"description": "不可超过1200字",
+											"type": "text"
+										},
+										{
+											"key": "startTime",
+											"value": "2017-09-10",
+											"type": "text"
+										},
+										{
+											"key": "endTime",
+											"value": "2018-09-10",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/user/saveUserExperiences",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"saveUserExperiences"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Mar 2020 07:19:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": null,\n        \"updateTime\": \"2020-03-12 15:19:43\",\n        \"deleted\": 0,\n        \"id\": 11,\n        \"uid\": 21,\n        \"name\": \"智慧食堂4\",\n        \"awards\": \"吹牛一等奖\",\n        \"role\": \"后端开发\",\n        \"projectUrl\": \"https://wenjie.store\",\n        \"description\": \"项目描述xxxxx\",\n        \"startTime\": \"2017-09-10\",\n        \"endTime\": \"2018-09-10\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "用户删除经历",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6Iua4uOWuoiIsImlhdCI6MTU4MzkyNjQ1NCwiZXhwIjoxNjE1NDYyNDU0fQ.4hx0ekACmB5LY_Dkqd3aN8P4bZ2D0z8dWZwPSNHvQ64",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/user/deleteUserExperiences?id=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"user",
+								"deleteUserExperiences"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "删除成功案例",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6Iua4uOWuoiIsImlhdCI6MTU4MzkyNjQ1NCwiZXhwIjoxNjE1NDYyNDU0fQ.4hx0ekACmB5LY_Dkqd3aN8P4bZ2D0z8dWZwPSNHvQ64",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/user/deleteUserExperiences?id=4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"deleteUserExperiences"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=FA66C956DE1D85A51DCEC64C525DE03D; Path=/ut; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Mar 2020 08:10:58 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"删除成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "地址（学校）相关API",
+			"item": [
+				{
+					"name": "获取高校信息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ut/area/school/info/{schoolId}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"area",
+								"school",
+								"info",
+								"{schoolId}"
+							]
+						},
+						"description": "将{schoolId}换成实际的学校id即可，比如换成http://localhost:8080/ut/school/info/1369就是获取清华大学信息。"
+					},
+					"response": [
+						{
+							"name": "获取高校信息（成功案例）",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/area/school/info/1367",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"area",
+										"school",
+										"info",
+										"1367"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 04:56:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"id\": 1367,\n        \"name\": \"北京大学\",\n        \"provinceId\": 110000,\n        \"level\": \"本科\",\n        \"website\": \"http://www.pku.edu.cn/\",\n        \"abbreviation\": \"pku\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "获取某个省下所有高校",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ut/area/school/440000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"area",
+								"school",
+								"440000"
+							]
+						},
+						"description": "获取某个省下的所有高校，比如{provinceId}换成110000就是获取北京市（不属于任何省）下所有高校"
+					},
+					"response": [
+						{
+							"name": "获取某个省下所有高校（获取广东省案例）",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/area/school/440000",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"area",
+										"school",
+										"440000"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 04:58:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"id\": 3197,\n            \"name\": \"中山大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.sysu.edu.cn/\",\n            \"abbreviation\": \"sysu\"\n        },\n        {\n            \"id\": 3198,\n            \"name\": \"暨南大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.jnu.edu.cn/\",\n            \"abbreviation\": \"jnu\"\n        },\n        {\n            \"id\": 3199,\n            \"name\": \"汕头大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.stu.edu.cn/\",\n            \"abbreviation\": \"stu\"\n        },\n        {\n            \"id\": 3200,\n            \"name\": \"华南理工大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.scut.edu.cn/\",\n            \"abbreviation\": \"scut\"\n        },\n        {\n            \"id\": 3201,\n            \"name\": \"华南农业大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.scau.edu.cn/\",\n            \"abbreviation\": \"scau\"\n        },\n        {\n            \"id\": 3202,\n            \"name\": \"广东海洋大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdou.edu.cn/\",\n            \"abbreviation\": \"gdou\"\n        },\n        {\n            \"id\": 3203,\n            \"name\": \"广州医科大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gzhmu.edu.cn/\",\n            \"abbreviation\": \"gzhmu\"\n        },\n        {\n            \"id\": 3204,\n            \"name\": \"广东医科大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdmu.edu.cn/\",\n            \"abbreviation\": \"gdmu\"\n        },\n        {\n            \"id\": 3205,\n            \"name\": \"广州中医药大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gzhtcm.edu.cn/\",\n            \"abbreviation\": \"gzhtcm\"\n        },\n        {\n            \"id\": 3206,\n            \"name\": \"广东药科大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdpu.edu.cn/\",\n            \"abbreviation\": \"gdpu\"\n        },\n        {\n            \"id\": 3207,\n            \"name\": \"华南师范大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.scnu.edu.cn/\",\n            \"abbreviation\": \"scnu\"\n        },\n        {\n            \"id\": 3208,\n            \"name\": \"韶关学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.sgu.edu.cn/\",\n            \"abbreviation\": \"sgu\"\n        },\n        {\n            \"id\": 3209,\n            \"name\": \"惠州学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.hzu.edu.cn/\",\n            \"abbreviation\": \"hzu\"\n        },\n        {\n            \"id\": 3210,\n            \"name\": \"韩山师范学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.hstc.edu.cn/\",\n            \"abbreviation\": \"hstc\"\n        },\n        {\n            \"id\": 3211,\n            \"name\": \"岭南师范学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.lingnan.edu.cn/\",\n            \"abbreviation\": \"lingnan\"\n        },\n        {\n            \"id\": 3212,\n            \"name\": \"肇庆学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.zqu.edu.cn/\",\n            \"abbreviation\": \"zqu\"\n        },\n        {\n            \"id\": 3213,\n            \"name\": \"嘉应学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.jyu.edu.cn/\",\n            \"abbreviation\": \"jyu\"\n        },\n        {\n            \"id\": 3214,\n            \"name\": \"广州体育学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gipe.edu.cn/\",\n            \"abbreviation\": \"gipe\"\n        },\n        {\n            \"id\": 3215,\n            \"name\": \"广州美术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gzarts.edu.cn/\",\n            \"abbreviation\": \"gzarts\"\n        },\n        {\n            \"id\": 3216,\n            \"name\": \"星海音乐学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.xhcom.edu.cn/\",\n            \"abbreviation\": \"xhcom\"\n        },\n        {\n            \"id\": 3217,\n            \"name\": \"广东技术师范学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdin.edu.cn/\",\n            \"abbreviation\": \"gdin\"\n        },\n        {\n            \"id\": 3218,\n            \"name\": \"深圳大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.szu.edu.cn/\",\n            \"abbreviation\": \"szu\"\n        },\n        {\n            \"id\": 3219,\n            \"name\": \"广东财经大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdufe.edu.cn/\",\n            \"abbreviation\": \"gdufe\"\n        },\n        {\n            \"id\": 3220,\n            \"name\": \"广东白云学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.bvtc.edu.cn/\",\n            \"abbreviation\": \"bvtc\"\n        },\n        {\n            \"id\": 3221,\n            \"name\": \"广州大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gzhu.edu.cn/\",\n            \"abbreviation\": \"gzhu\"\n        },\n        {\n            \"id\": 3222,\n            \"name\": \"广州航海学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gzhmt.edu.cn/\",\n            \"abbreviation\": \"gzhmt\"\n        },\n        {\n            \"id\": 3223,\n            \"name\": \"广东警官学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdppla.edu.cn/\",\n            \"abbreviation\": \"gdppla\"\n        },\n        {\n            \"id\": 3224,\n            \"name\": \"仲恺农业工程学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.zhku.edu.cn/\",\n            \"abbreviation\": \"zhku\"\n        },\n        {\n            \"id\": 3225,\n            \"name\": \"五邑大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.wyu.edu.cn/\",\n            \"abbreviation\": \"wyu\"\n        },\n        {\n            \"id\": 3226,\n            \"name\": \"广东金融学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gduf.edu.cn/\",\n            \"abbreviation\": \"gduf\"\n        },\n        {\n            \"id\": 3227,\n            \"name\": \"电子科技大学中山学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.zsc.edu.cn/\",\n            \"abbreviation\": \"zsc\"\n        },\n        {\n            \"id\": 3228,\n            \"name\": \"广东石油化工学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdpa.edu.cn/\",\n            \"abbreviation\": \"gdpa\"\n        },\n        {\n            \"id\": 3229,\n            \"name\": \"东莞理工学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.dgut.edu.cn/\",\n            \"abbreviation\": \"dgut\"\n        },\n        {\n            \"id\": 3230,\n            \"name\": \"广东工业大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdut.edu.cn/\",\n            \"abbreviation\": \"gdut\"\n        },\n        {\n            \"id\": 3231,\n            \"name\": \"广东外语外贸大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdufs.edu.cn/\",\n            \"abbreviation\": \"gdufs\"\n        },\n        {\n            \"id\": 3232,\n            \"name\": \"佛山科学技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.fosu.edu.cn/\",\n            \"abbreviation\": \"fosu\"\n        },\n        {\n            \"id\": 3233,\n            \"name\": \"广东培正学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.peizheng.net.cn/\",\n            \"abbreviation\": \"peizheng\"\n        },\n        {\n            \"id\": 3234,\n            \"name\": \"南方医科大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.fimmu.com/\",\n            \"abbreviation\": \"fimmu\"\n        },\n        {\n            \"id\": 3235,\n            \"name\": \"广东东软学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.neusoft.gd.cn/\",\n            \"abbreviation\": \"neusoft\"\n        },\n        {\n            \"id\": 3236,\n            \"name\": \"华南理工大学广州学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gcu.edu.cn/\",\n            \"abbreviation\": \"gcu\"\n        },\n        {\n            \"id\": 3237,\n            \"name\": \"广州大学华软软件学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.sise.com.cn/\",\n            \"abbreviation\": \"sise\"\n        },\n        {\n            \"id\": 3238,\n            \"name\": \"中山大学南方学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.nfsysu.cn/\",\n            \"abbreviation\": \"nfsysu\"\n        },\n        {\n            \"id\": 3239,\n            \"name\": \"广东外语外贸大学南国商学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gwng.edu.cn/\",\n            \"abbreviation\": \"gwng\"\n        },\n        {\n            \"id\": 3240,\n            \"name\": \"广东财经大学华商学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdhsc.edu.cn/\",\n            \"abbreviation\": \"gdhsc\"\n        },\n        {\n            \"id\": 3241,\n            \"name\": \"广东海洋大学寸金学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdcjxy.com/\",\n            \"abbreviation\": \"gdcjxy\"\n        },\n        {\n            \"id\": 3242,\n            \"name\": \"华南农业大学珠江学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.scauzhujiang.cn/\",\n            \"abbreviation\": \"scauzhujia\"\n        },\n        {\n            \"id\": 3243,\n            \"name\": \"广东技术师范学院天河学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.thxy.cn/\",\n            \"abbreviation\": \"thxy\"\n        },\n        {\n            \"id\": 3244,\n            \"name\": \"北京师范大学珠海分校\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.bnuep.com/\",\n            \"abbreviation\": \"bnuep\"\n        },\n        {\n            \"id\": 3245,\n            \"name\": \"广东工业大学华立学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.hualixy.com/\",\n            \"abbreviation\": \"hualixy\"\n        },\n        {\n            \"id\": 3246,\n            \"name\": \"广州大学松田学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.sontan.net/\",\n            \"abbreviation\": \"sontan\"\n        },\n        {\n            \"id\": 3247,\n            \"name\": \"广州商学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gzcc.cn/\",\n            \"abbreviation\": \"gzcc\"\n        },\n        {\n            \"id\": 3248,\n            \"name\": \"北京理工大学珠海学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.zhbit.com/\",\n            \"abbreviation\": \"zhbit\"\n        },\n        {\n            \"id\": 3249,\n            \"name\": \"吉林大学珠海学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.jluzh.com/\",\n            \"abbreviation\": \"jluzh\"\n        },\n        {\n            \"id\": 3250,\n            \"name\": \"广州工商学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gzgs.org.cn/\",\n            \"abbreviation\": \"gzgs\"\n        },\n        {\n            \"id\": 3251,\n            \"name\": \"广东科技学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdst.cc/\",\n            \"abbreviation\": \"gdst\"\n        },\n        {\n            \"id\": 3252,\n            \"name\": \"广东理工学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdlgxy.com/\",\n            \"abbreviation\": \"gdlgxy\"\n        },\n        {\n            \"id\": 3253,\n            \"name\": \"东莞理工学院城市学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://csxy.dgut.edu.cn/\",\n            \"abbreviation\": \"dgut\"\n        },\n        {\n            \"id\": 3254,\n            \"name\": \"中山大学新华学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://xh.sysu.edu.cn/\",\n            \"abbreviation\": \"sysu\"\n        },\n        {\n            \"id\": 3255,\n            \"name\": \"广东第二师范学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gdei.edu.cn/\",\n            \"abbreviation\": \"gdei\"\n        },\n        {\n            \"id\": 3256,\n            \"name\": \"南方科技大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.sustc.edu.cn/\",\n            \"abbreviation\": \"sustc\"\n        },\n        {\n            \"id\": 3257,\n            \"name\": \"北京师范大学－香港浸会大学联合国际学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://uic.edu.hk/cn\",\n            \"abbreviation\": \"edu\"\n        },\n        {\n            \"id\": 3258,\n            \"name\": \"香港中文大学（深圳）\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.cuhk.edu.cn/\",\n            \"abbreviation\": \"cuhk\"\n        },\n        {\n            \"id\": 3259,\n            \"name\": \"深圳北理莫斯科大学\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.szmsubit.edu.cn/\",\n            \"abbreviation\": \"szmsubit\"\n        },\n        {\n            \"id\": 3260,\n            \"name\": \"广东以色列理工学院\",\n            \"provinceId\": 440000,\n            \"level\": \"本科\",\n            \"website\": \"http://www.gtiit.edu.cn/\",\n            \"abbreviation\": \"gtiit\"\n        },\n        {\n            \"id\": 3261,\n            \"name\": \"顺德职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.sdpt.com.cn/\",\n            \"abbreviation\": \"sdpt\"\n        },\n        {\n            \"id\": 3262,\n            \"name\": \"广东轻工职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdqy.edu.cn/\",\n            \"abbreviation\": \"gdqy\"\n        },\n        {\n            \"id\": 3263,\n            \"name\": \"广东交通职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdcp.cn/\",\n            \"abbreviation\": \"gdcp\"\n        },\n        {\n            \"id\": 3264,\n            \"name\": \"广东水利电力职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdsdxy.edu.cn/\",\n            \"abbreviation\": \"gdsdxy\"\n        },\n        {\n            \"id\": 3265,\n            \"name\": \"潮汕职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.chaoshan.cn/\",\n            \"abbreviation\": \"chaoshan\"\n        },\n        {\n            \"id\": 3266,\n            \"name\": \"深圳职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.szpt.edu.cn/\",\n            \"abbreviation\": \"szpt\"\n        },\n        {\n            \"id\": 3267,\n            \"name\": \"广东南华工商职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.nhic.edu.cn/\",\n            \"abbreviation\": \"nhic\"\n        },\n        {\n            \"id\": 3268,\n            \"name\": \"私立华联学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.hlu.edu.cn/\",\n            \"abbreviation\": \"hlu\"\n        },\n        {\n            \"id\": 3269,\n            \"name\": \"广州民航职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.caac.net/\",\n            \"abbreviation\": \"caac\"\n        },\n        {\n            \"id\": 3270,\n            \"name\": \"广州番禺职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gzpyp.edu.cn/\",\n            \"abbreviation\": \"gzpyp\"\n        },\n        {\n            \"id\": 3271,\n            \"name\": \"广东松山职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdsspt.net/\",\n            \"abbreviation\": \"gdsspt\"\n        },\n        {\n            \"id\": 3272,\n            \"name\": \"广东农工商职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdaib.edu.cn/\",\n            \"abbreviation\": \"gdaib\"\n        },\n        {\n            \"id\": 3273,\n            \"name\": \"广东新安职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdxa.cn/\",\n            \"abbreviation\": \"gdxa\"\n        },\n        {\n            \"id\": 3274,\n            \"name\": \"佛山职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.fspt.net/\",\n            \"abbreviation\": \"fspt\"\n        },\n        {\n            \"id\": 3275,\n            \"name\": \"广东科学技术职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdit.edu.cn/\",\n            \"abbreviation\": \"gdit\"\n        },\n        {\n            \"id\": 3276,\n            \"name\": \"广东食品药品职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdyzy.edu.cn/\",\n            \"abbreviation\": \"gdyzy\"\n        },\n        {\n            \"id\": 3277,\n            \"name\": \"广州康大职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.kdvtc-edu.cn/\",\n            \"abbreviation\": \"kdvtc-edu\"\n        },\n        {\n            \"id\": 3278,\n            \"name\": \"珠海艺术职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.zhac.net/\",\n            \"abbreviation\": \"zhac\"\n        },\n        {\n            \"id\": 3279,\n            \"name\": \"广东行政职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdxzzy.cn/\",\n            \"abbreviation\": \"gdxzzy\"\n        },\n        {\n            \"id\": 3280,\n            \"name\": \"广东体育职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdvcp.net/\",\n            \"abbreviation\": \"gdvcp\"\n        },\n        {\n            \"id\": 3281,\n            \"name\": \"广东职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdptc.cn/\",\n            \"abbreviation\": \"gdptc\"\n        },\n        {\n            \"id\": 3282,\n            \"name\": \"广东建设职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdcvi.net/\",\n            \"abbreviation\": \"gdcvi\"\n        },\n        {\n            \"id\": 3283,\n            \"name\": \"广东女子职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdfs.edu.cn/\",\n            \"abbreviation\": \"gdfs\"\n        },\n        {\n            \"id\": 3284,\n            \"name\": \"广东机电职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdmec.com/\",\n            \"abbreviation\": \"gdmec\"\n        },\n        {\n            \"id\": 3285,\n            \"name\": \"广东岭南职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.lingnancollege.com.\",\n            \"abbreviation\": \"lingnancol\"\n        },\n        {\n            \"id\": 3286,\n            \"name\": \"汕尾职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.swvtc.cn/\",\n            \"abbreviation\": \"swvtc\"\n        },\n        {\n            \"id\": 3287,\n            \"name\": \"罗定职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.ldpoly.com/\",\n            \"abbreviation\": \"ldpoly\"\n        },\n        {\n            \"id\": 3288,\n            \"name\": \"阳江职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.yjcollege.net/\",\n            \"abbreviation\": \"yjcollege\"\n        },\n        {\n            \"id\": 3289,\n            \"name\": \"河源职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.hycollege.net/\",\n            \"abbreviation\": \"hycollege\"\n        },\n        {\n            \"id\": 3290,\n            \"name\": \"广东邮电职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gupt.net/\",\n            \"abbreviation\": \"gupt\"\n        },\n        {\n            \"id\": 3291,\n            \"name\": \"汕头职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdwlxy.cn/\",\n            \"abbreviation\": \"gdwlxy\"\n        },\n        {\n            \"id\": 3292,\n            \"name\": \"揭阳职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.jyc.edu.cn/\",\n            \"abbreviation\": \"jyc\"\n        },\n        {\n            \"id\": 3293,\n            \"name\": \"深圳信息职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.sziit.com.cn/\",\n            \"abbreviation\": \"sziit\"\n        },\n        {\n            \"id\": 3294,\n            \"name\": \"清远职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.qypt.com.cn/\",\n            \"abbreviation\": \"qypt\"\n        },\n        {\n            \"id\": 3295,\n            \"name\": \"广东工贸职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdgm.cn/\",\n            \"abbreviation\": \"gdgm\"\n        },\n        {\n            \"id\": 3296,\n            \"name\": \"广东司法警官职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdsfjy.cn/\",\n            \"abbreviation\": \"gdsfjy\"\n        },\n        {\n            \"id\": 3297,\n            \"name\": \"广东亚视演艺职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.atvcn.com/\",\n            \"abbreviation\": \"atvcn\"\n        },\n        {\n            \"id\": 3298,\n            \"name\": \"广东省外语艺术职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gtcfla.net/\",\n            \"abbreviation\": \"gtcfla\"\n        },\n        {\n            \"id\": 3299,\n            \"name\": \"广东文艺职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdla.edu.cn/\",\n            \"abbreviation\": \"gdla\"\n        },\n        {\n            \"id\": 3300,\n            \"name\": \"广州体育职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gztzy.edu.cn/\",\n            \"abbreviation\": \"gztzy\"\n        },\n        {\n            \"id\": 3301,\n            \"name\": \"广州工程技术职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gzvtc.cn/\",\n            \"abbreviation\": \"gzvtc\"\n        },\n        {\n            \"id\": 3302,\n            \"name\": \"中山火炬职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.zstp.cn/\",\n            \"abbreviation\": \"zstp\"\n        },\n        {\n            \"id\": 3303,\n            \"name\": \"江门职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.jmpt.cn/\",\n            \"abbreviation\": \"jmpt\"\n        },\n        {\n            \"id\": 3304,\n            \"name\": \"茂名职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.mmvtc.cn/\",\n            \"abbreviation\": \"mmvtc\"\n        },\n        {\n            \"id\": 3305,\n            \"name\": \"珠海城市职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.zhcpt.edu.cn/\",\n            \"abbreviation\": \"zhcpt\"\n        },\n        {\n            \"id\": 3306,\n            \"name\": \"广州涉外经济职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gziec.net/\",\n            \"abbreviation\": \"gziec\"\n        },\n        {\n            \"id\": 3307,\n            \"name\": \"广州南洋理工职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.nyjy.cn/\",\n            \"abbreviation\": \"nyjy\"\n        },\n        {\n            \"id\": 3308,\n            \"name\": \"广州科技职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gzkjxy.net/\",\n            \"abbreviation\": \"gzkjxy\"\n        },\n        {\n            \"id\": 3309,\n            \"name\": \"惠州经济职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.hzcollege.com/\",\n            \"abbreviation\": \"hzcollege\"\n        },\n        {\n            \"id\": 3310,\n            \"name\": \"广东工商职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.zqtbu.com/\",\n            \"abbreviation\": \"zqtbu\"\n        },\n        {\n            \"id\": 3311,\n            \"name\": \"肇庆医学高等专科学校\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.zqmc.net/\",\n            \"abbreviation\": \"zqmc\"\n        },\n        {\n            \"id\": 3312,\n            \"name\": \"广州现代信息工程职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gzmodern.cn/\",\n            \"abbreviation\": \"gzmodern\"\n        },\n        {\n            \"id\": 3313,\n            \"name\": \"广东理工职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdpi.edu.cn/\",\n            \"abbreviation\": \"gdpi\"\n        },\n        {\n            \"id\": 3314,\n            \"name\": \"广州华南商贸职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.hnsmxy.cn/\",\n            \"abbreviation\": \"hnsmxy\"\n        },\n        {\n            \"id\": 3315,\n            \"name\": \"广州华立科技职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.hlxy.net/\",\n            \"abbreviation\": \"hlxy\"\n        },\n        {\n            \"id\": 3316,\n            \"name\": \"广州城市职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gcp.edu.cn/\",\n            \"abbreviation\": \"gcp\"\n        },\n        {\n            \"id\": 3317,\n            \"name\": \"广东工程职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gpc.net.cn/\",\n            \"abbreviation\": \"gpc\"\n        },\n        {\n            \"id\": 3318,\n            \"name\": \"广州铁路职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gtxy.cn/\",\n            \"abbreviation\": \"gtxy\"\n        },\n        {\n            \"id\": 3319,\n            \"name\": \"广东科贸职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdkm.edu.cn/\",\n            \"abbreviation\": \"gdkm\"\n        },\n        {\n            \"id\": 3320,\n            \"name\": \"广州科技贸易职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gzkmu.com/\",\n            \"abbreviation\": \"gzkmu\"\n        },\n        {\n            \"id\": 3321,\n            \"name\": \"中山职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.zspt.cn/\",\n            \"abbreviation\": \"zspt\"\n        },\n        {\n            \"id\": 3322,\n            \"name\": \"广州珠江职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gzzjedu.cn/\",\n            \"abbreviation\": \"gzzjedu\"\n        },\n        {\n            \"id\": 3323,\n            \"name\": \"广州松田职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.sontanedu.cn/\",\n            \"abbreviation\": \"sontanedu\"\n        },\n        {\n            \"id\": 3324,\n            \"name\": \"广东文理职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdwlxy.cn/\",\n            \"abbreviation\": \"gdwlxy\"\n        },\n        {\n            \"id\": 3325,\n            \"name\": \"广州城建职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gzccc.edu.cn/\",\n            \"abbreviation\": \"gzccc\"\n        },\n        {\n            \"id\": 3326,\n            \"name\": \"东莞职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.dgpt.edu.cn/\",\n            \"abbreviation\": \"dgpt\"\n        },\n        {\n            \"id\": 3327,\n            \"name\": \"广东南方职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdnfu.com/\",\n            \"abbreviation\": \"gdnfu\"\n        },\n        {\n            \"id\": 3328,\n            \"name\": \"广州华商职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gzhsvc.com/\",\n            \"abbreviation\": \"gzhsvc\"\n        },\n        {\n            \"id\": 3329,\n            \"name\": \"广州华夏职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gzhxtc.cn/\",\n            \"abbreviation\": \"gzhxtc\"\n        },\n        {\n            \"id\": 3330,\n            \"name\": \"广东环境保护工程职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdepc.cn/\",\n            \"abbreviation\": \"gdepc\"\n        },\n        {\n            \"id\": 3331,\n            \"name\": \"广东青年职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdylc.cn/\",\n            \"abbreviation\": \"gdylc\"\n        },\n        {\n            \"id\": 3332,\n            \"name\": \"广州东华职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gzdhxy.com/\",\n            \"abbreviation\": \"gzdhxy\"\n        },\n        {\n            \"id\": 3333,\n            \"name\": \"广东创新科技职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdcxxy.net/\",\n            \"abbreviation\": \"gdcxxy\"\n        },\n        {\n            \"id\": 3334,\n            \"name\": \"广东舞蹈戏剧职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdddc.cn/\",\n            \"abbreviation\": \"gdddc\"\n        },\n        {\n            \"id\": 3335,\n            \"name\": \"惠州卫生职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.hzwx.cn/\",\n            \"abbreviation\": \"hzwx\"\n        },\n        {\n            \"id\": 3336,\n            \"name\": \"广东信息工程职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://121.10.238.88/\",\n            \"abbreviation\": \"10\"\n        },\n        {\n            \"id\": 3337,\n            \"name\": \"广东生态工程职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdsty.cn/\",\n            \"abbreviation\": \"gdsty\"\n        },\n        {\n            \"id\": 3338,\n            \"name\": \"惠州城市职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.hzc.edu.cn/\",\n            \"abbreviation\": \"hzc\"\n        },\n        {\n            \"id\": 3339,\n            \"name\": \"广东碧桂园职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.bgypt.com/\",\n            \"abbreviation\": \"bgypt\"\n        },\n        {\n            \"id\": 3340,\n            \"name\": \"广东酒店管理职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdjdxy.com/\",\n            \"abbreviation\": \"gdjdxy\"\n        },\n        {\n            \"id\": 3341,\n            \"name\": \"广东茂名幼儿师范专科学校\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdgzsf.cn/\",\n            \"abbreviation\": \"gdgzsf\"\n        },\n        {\n            \"id\": 3342,\n            \"name\": \"广州卫生职业技术学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gzws.net/\",\n            \"abbreviation\": \"gzws\"\n        },\n        {\n            \"id\": 3343,\n            \"name\": \"广东江门中医药职业学院\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.gdjmcmc.com/\",\n            \"abbreviation\": \"gdjmcmc\"\n        },\n        {\n            \"id\": 3344,\n            \"name\": \"湛江市幼儿师范学校\",\n            \"provinceId\": 440000,\n            \"level\": \"专科\",\n            \"website\": \"http://www.zjys.net/\",\n            \"abbreviation\": \"zjys\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "获取所有省",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ut/area/0/child",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"area",
+								"0",
+								"child"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取所有省（成功案例）",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/area/0/child",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"area",
+										"0",
+										"child"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 04:58:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"id\": 110000,\n            \"parentId\": 0,\n            \"name\": \"北京\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 120000,\n            \"parentId\": 0,\n            \"name\": \"天津\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 130000,\n            \"parentId\": 0,\n            \"name\": \"河北省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 140000,\n            \"parentId\": 0,\n            \"name\": \"山西省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 150000,\n            \"parentId\": 0,\n            \"name\": \"内蒙古自治区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 210000,\n            \"parentId\": 0,\n            \"name\": \"辽宁省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 220000,\n            \"parentId\": 0,\n            \"name\": \"吉林省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 230000,\n            \"parentId\": 0,\n            \"name\": \"黑龙江省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 310000,\n            \"parentId\": 0,\n            \"name\": \"上海\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 320000,\n            \"parentId\": 0,\n            \"name\": \"江苏省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 330000,\n            \"parentId\": 0,\n            \"name\": \"浙江省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 340000,\n            \"parentId\": 0,\n            \"name\": \"安徽省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 350000,\n            \"parentId\": 0,\n            \"name\": \"福建省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 360000,\n            \"parentId\": 0,\n            \"name\": \"江西省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 370000,\n            \"parentId\": 0,\n            \"name\": \"山东省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 410000,\n            \"parentId\": 0,\n            \"name\": \"河南省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 420000,\n            \"parentId\": 0,\n            \"name\": \"湖北省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 430000,\n            \"parentId\": 0,\n            \"name\": \"湖南省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440000,\n            \"parentId\": 0,\n            \"name\": \"广东省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 450000,\n            \"parentId\": 0,\n            \"name\": \"广西壮族自治区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 460000,\n            \"parentId\": 0,\n            \"name\": \"海南省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 500000,\n            \"parentId\": 0,\n            \"name\": \"重庆\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 510000,\n            \"parentId\": 0,\n            \"name\": \"四川省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 520000,\n            \"parentId\": 0,\n            \"name\": \"贵州省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 530000,\n            \"parentId\": 0,\n            \"name\": \"云南省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 540000,\n            \"parentId\": 0,\n            \"name\": \"西藏自治区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 610000,\n            \"parentId\": 0,\n            \"name\": \"陕西省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 620000,\n            \"parentId\": 0,\n            \"name\": \"甘肃省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 630000,\n            \"parentId\": 0,\n            \"name\": \"青海省\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 640000,\n            \"parentId\": 0,\n            \"name\": \"宁夏回族自治区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 650000,\n            \"parentId\": 0,\n            \"name\": \"新疆维吾尔自治区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 810000,\n            \"parentId\": 0,\n            \"name\": \"香港特别行政区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 820000,\n            \"parentId\": 0,\n            \"name\": \"澳门特别行政区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 710000,\n            \"parentId\": 0,\n            \"name\": \"台湾\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "获取省下所有市/区",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/area/{id}/child",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"area",
+								"{id}",
+								"child"
+							]
+						},
+						"description": "比如{id}换成440000就是获取广东省下所有市\n（传入0则是获取所有省，传入省id则是返回省下的所有市，传入市id则是返回市下所有区）"
+					},
+					"response": [
+						{
+							"name": "获取省下所有市/区（获取广东省下所有市）",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/area/440000/child",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"area",
+										"440000",
+										"child"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 05:00:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"id\": 445100,\n            \"parentId\": 440000,\n            \"name\": \"潮州市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 441900,\n            \"parentId\": 440000,\n            \"name\": \"东莞市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 442101,\n            \"parentId\": 440000,\n            \"name\": \"东沙群岛\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440600,\n            \"parentId\": 440000,\n            \"name\": \"佛山市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440100,\n            \"parentId\": 440000,\n            \"name\": \"广州市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 441600,\n            \"parentId\": 440000,\n            \"name\": \"河源市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 441300,\n            \"parentId\": 440000,\n            \"name\": \"惠州市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440700,\n            \"parentId\": 440000,\n            \"name\": \"江门市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 445200,\n            \"parentId\": 440000,\n            \"name\": \"揭阳市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440900,\n            \"parentId\": 440000,\n            \"name\": \"茂名市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 441400,\n            \"parentId\": 440000,\n            \"name\": \"梅州市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 441800,\n            \"parentId\": 440000,\n            \"name\": \"清远市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440500,\n            \"parentId\": 440000,\n            \"name\": \"汕头市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 441500,\n            \"parentId\": 440000,\n            \"name\": \"汕尾市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440200,\n            \"parentId\": 440000,\n            \"name\": \"韶关市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440300,\n            \"parentId\": 440000,\n            \"name\": \"深圳市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 441700,\n            \"parentId\": 440000,\n            \"name\": \"阳江市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 445300,\n            \"parentId\": 440000,\n            \"name\": \"云浮市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440800,\n            \"parentId\": 440000,\n            \"name\": \"湛江市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 441200,\n            \"parentId\": 440000,\n            \"name\": \"肇庆市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 442000,\n            \"parentId\": 440000,\n            \"name\": \"中山市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440400,\n            \"parentId\": 440000,\n            \"name\": \"珠海市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        }\n    ]\n}"
+						},
+						{
+							"name": "获取省下所有市/区（获取广州市下所有区）",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/area/440100/child",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"area",
+										"440100",
+										"child"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 04:59:57 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"id\": 440111,\n            \"parentId\": 440100,\n            \"name\": \"白云区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440184,\n            \"parentId\": 440100,\n            \"name\": \"从化市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440104,\n            \"parentId\": 440100,\n            \"name\": \"越秀区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440105,\n            \"parentId\": 440100,\n            \"name\": \"海珠区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440114,\n            \"parentId\": 440100,\n            \"name\": \"花都区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440112,\n            \"parentId\": 440100,\n            \"name\": \"黄埔区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440103,\n            \"parentId\": 440100,\n            \"name\": \"荔湾区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440116,\n            \"parentId\": 440100,\n            \"name\": \"萝岗区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440115,\n            \"parentId\": 440100,\n            \"name\": \"南沙区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440113,\n            \"parentId\": 440100,\n            \"name\": \"番禺区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440106,\n            \"parentId\": 440100,\n            \"name\": \"天河区\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        },\n        {\n            \"id\": 440183,\n            \"parentId\": 440100,\n            \"name\": \"增城市\",\n            \"shortName\": null,\n            \"longitude\": null,\n            \"latitude\": null,\n            \"level\": null,\n            \"sort\": null,\n            \"status\": null\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "文件相关测试",
+			"item": [
+				{
+					"name": "上传文件测试",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/图包/P站3/1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/test/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"test",
+								"upload"
+							]
+						},
+						"description": "如果发现失败，有可能是我七牛云没钱了"
+					},
+					"response": [
+						{
+							"name": "上传文件测试",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/D:/图包/P站3/1.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/test/upload",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"test",
+										"upload"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 10 Mar 2020 12:03:35 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"filename\": \"1\",\n        \"filePath\": \"https://www.wenjie.store/ut/img/1_1583841815255.jpg\",\n        \"key\": \"ut/img/1_1583841815255.jpg\",\n        \"thumbPath\": \"https://www.wenjie.store/ut/img/1_1583841815255.jpg\",\n        \"suffix\": \"jpg\",\n        \"mediaType\": {\n            \"type\": \"image\",\n            \"subtype\": \"jpeg\",\n            \"parameters\": {},\n            \"qualityValue\": 1,\n            \"concrete\": true,\n            \"charset\": null,\n            \"wildcardType\": false,\n            \"wildcardSubtype\": false\n        },\n        \"size\": 441044,\n        \"width\": 1169,\n        \"height\": 733\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "管理员操作API",
+			"item": [
+				{
+					"name": "获取管理员身份token（测试用）",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ut/user/webPageLogin?phoneNumber=15920323196&smsCode=123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"user",
+								"webPageLogin"
+							],
+							"query": [
+								{
+									"key": "phoneNumber",
+									"value": "15920323196"
+								},
+								{
+									"key": "smsCode",
+									"value": "123456"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取管理员身份token（测试用）（成功案例）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/user/webPageLogin?phoneNumber=15920323196&smsCode=123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"webPageLogin"
+									],
+									"query": [
+										{
+											"key": "phoneNumber",
+											"value": "15920323196"
+										},
+										{
+											"key": "smsCode",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 14:36:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-11 19:18:36\",\n        \"updateTime\": \"2020-02-25 15:19:04\",\n        \"deleted\": 0,\n        \"id\": null,\n        \"uid\": 1,\n        \"openid\": \"\",\n        \"nickname\": \"admin\",\n        \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n        \"phoneNumber\": \"15920323196\",\n        \"email\": \" \",\n        \"description\": \"\",\n        \"sex\": \"保密\",\n        \"roles\": \"系统管理员\",\n        \"token\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsIm9wZW5pZCI6IiIsInJvbGVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU4MzkzNzQwMCwiZXhwIjoxNjE1NDczNDAwfQ.-A1KrQ1fwaRVj7gxHq_5zCnpO1X3DUQvzEmDFElgojA\",\n            \"expiration_time\": 1615473400622\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "新增/更新标签",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/admin/saveTag?parentId=0&name=新增标签",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"admin",
+								"saveTag"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "35",
+									"disabled": true
+								},
+								{
+									"key": "parentId",
+									"value": "0"
+								},
+								{
+									"key": "name",
+									"value": "新增标签"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "新增/更新标签（更新理财子标签）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsIm9wZW5pZCI6IiIsInJvbGVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU4MzkyNjk2OSwiZXhwIjoxNjE1NDYyOTY5fQ.vPCLEp4PCZYtiLPog3tJV92AnC76dLR9sClZeFNPPDA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 12,\r\n  \"parentId\": 7,\r\n  \"name\": \"更新（理财子标签）\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/tags/saveTag?id=12&parentId=7&name=更新（理财子标签）",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"tags",
+										"saveTag"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "12"
+										},
+										{
+											"key": "parentId",
+											"value": "7"
+										},
+										{
+											"key": "name",
+											"value": "更新（理财子标签）"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 14:47:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"设置标签成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-11 19:58:41\",\n        \"updateTime\": \"2020-02-25 13:13:05\",\n        \"deleted\": 0,\n        \"id\": 12,\n        \"parentId\": 7,\n        \"name\": \"更新（理财子标签）\",\n        \"level\": 2\n    }\n}"
+						},
+						{
+							"name": "新增/更新标签（新增金融子标签）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsIm9wZW5pZCI6IiIsInJvbGVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU4MzkyNjk2OSwiZXhwIjoxNjE1NDYyOTY5fQ.vPCLEp4PCZYtiLPog3tJV92AnC76dLR9sClZeFNPPDA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 12,\r\n  \"parentId\": 7,\r\n  \"name\": \"更新（理财子标签）\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/tags/saveTag?parentId=6&name=测试标签（金融子标签）",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"tags",
+										"saveTag"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "parentId",
+											"value": "6"
+										},
+										{
+											"key": "name",
+											"value": "测试标签（金融子标签）"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 14:41:36 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"设置标签成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-11 22:41:36\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 34,\n        \"parentId\": 6,\n        \"name\": \"测试标签（金融子标签）\",\n        \"level\": 1\n    }\n}"
+						},
+						{
+							"name": "新增/更新标签（创建顶级标签）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsIm9wZW5pZCI6IiIsInJvbGVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU4MzkyNjk2OSwiZXhwIjoxNjE1NDYyOTY5fQ.vPCLEp4PCZYtiLPog3tJV92AnC76dLR9sClZeFNPPDA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 12,\r\n  \"parentId\": 7,\r\n  \"name\": \"更新（理财子标签）\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/tags/saveTag?parentId=0&name=测试标签（顶级标签）",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"tags",
+										"saveTag"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "parentId",
+											"value": "0"
+										},
+										{
+											"key": "name",
+											"value": "测试标签（顶级标签）"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 14:44:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"设置标签成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-11 22:44:39\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 36,\n        \"parentId\": 0,\n        \"name\": \"测试标签（顶级标签）\",\n        \"level\": 0\n    }\n}"
+						},
+						{
+							"name": "新增/更新标签（更新金融子标签）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsIm9wZW5pZCI6IiIsInJvbGVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU4MzkyNjk2OSwiZXhwIjoxNjE1NDYyOTY5fQ.vPCLEp4PCZYtiLPog3tJV92AnC76dLR9sClZeFNPPDA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 12,\r\n  \"parentId\": 7,\r\n  \"name\": \"更新（理财子标签）\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/tags/saveTag?id=9&parentId=6&name=更新（金融子标签）",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"tags",
+										"saveTag"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "9"
+										},
+										{
+											"key": "parentId",
+											"value": "6"
+										},
+										{
+											"key": "name",
+											"value": "更新（金融子标签）"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 14:45:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"设置标签成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-11 19:37:28\",\n        \"updateTime\": \"2020-02-25 12:50:09\",\n        \"deleted\": 0,\n        \"id\": 9,\n        \"parentId\": 6,\n        \"name\": \"更新（金融子标签）\",\n        \"level\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "获取标签集",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ut/tags/listTagsByParentId/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"tags",
+								"listTagsByParentId",
+								"0"
+							]
+						},
+						"description": "parentId为0时，获取顶层标签list，为其它值时，返回其子标签list"
+					},
+					"response": [
+						{
+							"name": "获取顶层标签",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/tags/listTagsByParentId/0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"tags",
+										"listTagsByParentId",
+										"0"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 12:39:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"createTime\": \"2020-03-11 13:04:03\",\n            \"updateTime\": \"2020-02-25 13:45:33\",\n            \"deleted\": 0,\n            \"id\": 1,\n            \"parentId\": 0,\n            \"name\": \"技术\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 13:06:13\",\n            \"updateTime\": \"2020-02-25 13:46:25\",\n            \"deleted\": 0,\n            \"id\": 6,\n            \"parentId\": 0,\n            \"name\": \"金融\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 20:29:41\",\n            \"updateTime\": \"2020-02-25 13:46:43\",\n            \"deleted\": 0,\n            \"id\": 13,\n            \"parentId\": 0,\n            \"name\": \"产品\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 20:30:54\",\n            \"updateTime\": \"2020-02-25 13:49:29\",\n            \"deleted\": 0,\n            \"id\": 17,\n            \"parentId\": 0,\n            \"name\": \"设计\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 20:32:00\",\n            \"updateTime\": \"2020-02-25 13:49:27\",\n            \"deleted\": 0,\n            \"id\": 21,\n            \"parentId\": 0,\n            \"name\": \"运营\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 20:33:55\",\n            \"updateTime\": \"2020-02-25 13:51:20\",\n            \"deleted\": 0,\n            \"id\": 25,\n            \"parentId\": 0,\n            \"name\": \"市场\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 20:35:34\",\n            \"updateTime\": \"2020-02-25 13:53:09\",\n            \"deleted\": 0,\n            \"id\": 30,\n            \"parentId\": 0,\n            \"name\": \"人事\",\n            \"level\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "获取产品标签的子标签",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/tags/listTagsByParentId/13",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"tags",
+										"listTagsByParentId",
+										"13"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 12:42:33 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"createTime\": \"2020-03-11 20:30:04\",\n            \"updateTime\": \"2020-02-25 13:47:08\",\n            \"deleted\": 0,\n            \"id\": 14,\n            \"parentId\": 13,\n            \"name\": \"产品经理\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:30:22\",\n            \"updateTime\": \"2020-02-25 13:47:27\",\n            \"deleted\": 0,\n            \"id\": 15,\n            \"parentId\": 13,\n            \"name\": \"产品总监\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:30:38\",\n            \"updateTime\": \"2020-02-25 13:47:45\",\n            \"deleted\": 0,\n            \"id\": 16,\n            \"parentId\": 13,\n            \"name\": \"数据产品经理\",\n            \"level\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "审核用户认证",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/admin/verifyUserInfo?id=20&status=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"admin",
+								"verifyUserInfo"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "20"
+								},
+								{
+									"key": "status",
+									"value": "1",
+									"description": "1 - 审核通过    -1 - 审核不通过"
+								},
+								{
+									"key": "reason",
+									"value": "证件照模糊",
+									"description": "不通过的原因（10字以内）",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "审核不通过",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/verifyUserInfo?id=20&status=-1&reason=证件照模糊",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"verifyUserInfo"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "20"
+										},
+										{
+											"key": "status",
+											"value": "-1",
+											"description": "1 - 审核通过    -1 - 审核不通过"
+										},
+										{
+											"key": "reason",
+											"value": "证件照模糊",
+											"description": "不通过的原因（10字以内）"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 13 Mar 2020 14:51:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"审核完成，结果：审核不通过\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						},
+						{
+							"name": "审核通过",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/verifyUserInfo?id=20&status=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"verifyUserInfo"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "20"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"description": "1 - 审核通过    -1 - 审核不通过"
+										},
+										{
+											"key": "reason",
+											"value": "证件照模糊",
+											"description": "不通过的原因（10字以内）",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 13 Mar 2020 14:53:24 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"审核完成，结果：审核通过\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "获取用户申请资料（用户详情）list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsIm9wZW5pZCI6IiIsInJvbGVzIjo4LCJpYXQiOjE1ODQxMDMxNzEsImV4cCI6MTYxNTYzOTE3MX0.0LYh7nruGwRZHDRPpANSpaW5bbmIAcc101FgS65ew6A",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/admin/listUserInfoByParam?status=1&pageNum=1&pageSize=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"admin",
+								"listUserInfoByParam"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "1",
+									"description": "0-审核中 1-审核通过 -1-审核不通过"
+								},
+								{
+									"key": "pageNum",
+									"value": "1",
+									"description": "页码"
+								},
+								{
+									"key": "pageSize",
+									"value": "10",
+									"description": "页大小"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取所有状态的用户申请资料（用户详情）",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsIm9wZW5pZCI6IiIsInJvbGVzIjo4LCJpYXQiOjE1ODQxMDMxNzEsImV4cCI6MTYxNTYzOTE3MX0.0LYh7nruGwRZHDRPpANSpaW5bbmIAcc101FgS65ew6A",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/listUserInfoByParam?pageNum=1&pageSize=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"listUserInfoByParam"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "0",
+											"description": "0-审核中 1-审核通过 -1-审核不通过",
+											"disabled": true
+										},
+										{
+											"key": "pageNum",
+											"value": "1",
+											"description": "页码"
+										},
+										{
+											"key": "pageSize",
+											"value": "10",
+											"description": "页大小"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Mar 2020 07:32:02 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 10,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-03-27 19:35:10\",\n                \"updateTime\": \"2020-03-13 09:16:48\",\n                \"deleted\": 0,\n                \"id\": 19,\n                \"uid\": 22,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2017,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰2\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1583926508010.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1583926508842.jpg\",\n                \"status\": \"审核通过\",\n                \"reason\": \"\",\n                \"tagIds\": \"1,2\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 12:08:01\",\n                \"deleted\": 0,\n                \"id\": 20,\n                \"uid\": 23,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2017,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰3\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核通过\",\n                \"reason\": \"证件照模糊\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:37:35\",\n                \"deleted\": 0,\n                \"id\": 21,\n                \"uid\": 24,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2017,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰4\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:38:10\",\n                \"deleted\": 0,\n                \"id\": 22,\n                \"uid\": 25,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰5\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:38:10\",\n                \"deleted\": 0,\n                \"id\": 23,\n                \"uid\": 26,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰6\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:38:10\",\n                \"deleted\": 0,\n                \"id\": 24,\n                \"uid\": 27,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰7\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:38:10\",\n                \"deleted\": 0,\n                \"id\": 25,\n                \"uid\": 28,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰8\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:39:38\",\n                \"deleted\": 0,\n                \"id\": 26,\n                \"uid\": 29,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰9\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核通过\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:40:05\",\n                \"deleted\": 0,\n                \"id\": 27,\n                \"uid\": 30,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2019,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰10\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-11 19:35:10\",\n                \"updateTime\": \"2020-03-13 09:16:46\",\n                \"deleted\": 0,\n                \"id\": 18,\n                \"uid\": 21,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2017,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1583926508010.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1583926508842.jpg\",\n                \"status\": \"审核通过\",\n                \"reason\": \"\",\n                \"tagIds\": \"1,2,3\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "获取审核通过的list（也即为当前有效的用户详情）",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsIm9wZW5pZCI6IiIsInJvbGVzIjo4LCJpYXQiOjE1ODQxMDMxNzEsImV4cCI6MTYxNTYzOTE3MX0.0LYh7nruGwRZHDRPpANSpaW5bbmIAcc101FgS65ew6A",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/listUserInfoByParam?status=1&pageNum=1&pageSize=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"listUserInfoByParam"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "1",
+											"description": "0-审核中 1-审核通过 -1-审核不通过"
+										},
+										{
+											"key": "pageNum",
+											"value": "1",
+											"description": "页码"
+										},
+										{
+											"key": "pageSize",
+											"value": "10",
+											"description": "页大小"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Mar 2020 07:36:47 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 4,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-03-27 19:35:10\",\n                \"updateTime\": \"2020-03-13 09:16:48\",\n                \"deleted\": 0,\n                \"id\": 19,\n                \"uid\": 22,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2017,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰2\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1583926508010.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1583926508842.jpg\",\n                \"status\": \"审核通过\",\n                \"reason\": \"\",\n                \"tagIds\": \"1,2\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 12:08:01\",\n                \"deleted\": 0,\n                \"id\": 20,\n                \"uid\": 23,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2017,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰3\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核通过\",\n                \"reason\": \"证件照模糊\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:39:38\",\n                \"deleted\": 0,\n                \"id\": 26,\n                \"uid\": 29,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰9\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核通过\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-11 19:35:10\",\n                \"updateTime\": \"2020-03-13 09:16:46\",\n                \"deleted\": 0,\n                \"id\": 18,\n                \"uid\": 21,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2017,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1583926508010.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1583926508842.jpg\",\n                \"status\": \"审核通过\",\n                \"reason\": \"\",\n                \"tagIds\": \"1,2,3\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "获取审核不通过的list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsIm9wZW5pZCI6IiIsInJvbGVzIjo4LCJpYXQiOjE1ODQxMDMxNzEsImV4cCI6MTYxNTYzOTE3MX0.0LYh7nruGwRZHDRPpANSpaW5bbmIAcc101FgS65ew6A",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/listUserInfoByParam?status=-1&pageNum=1&pageSize=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"listUserInfoByParam"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "-1",
+											"description": "0-审核中 1-审核通过 -1-审核不通过"
+										},
+										{
+											"key": "pageNum",
+											"value": "1",
+											"description": "页码"
+										},
+										{
+											"key": "pageSize",
+											"value": "10",
+											"description": "页大小"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Mar 2020 07:36:20 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 16:04:21\",\n                \"deleted\": 0,\n                \"id\": 23,\n                \"uid\": 26,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰6\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核不通过\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 16:04:24\",\n                \"deleted\": 0,\n                \"id\": 24,\n                \"uid\": 27,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰7\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核不通过\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "获取审核中list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsIm9wZW5pZCI6IiIsInJvbGVzIjo4LCJpYXQiOjE1ODQxMDMxNzEsImV4cCI6MTYxNTYzOTE3MX0.0LYh7nruGwRZHDRPpANSpaW5bbmIAcc101FgS65ew6A",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/listUserInfoByParam?status=0&pageNum=1&pageSize=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"listUserInfoByParam"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "0",
+											"description": "0-审核中 1-审核通过 -1-审核不通过"
+										},
+										{
+											"key": "pageNum",
+											"value": "1",
+											"description": "页码"
+										},
+										{
+											"key": "pageSize",
+											"value": "10",
+											"description": "页大小"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Mar 2020 07:35:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 6,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:37:35\",\n                \"deleted\": 0,\n                \"id\": 21,\n                \"uid\": 24,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2017,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰4\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:38:10\",\n                \"deleted\": 0,\n                \"id\": 22,\n                \"uid\": 25,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰5\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:38:10\",\n                \"deleted\": 0,\n                \"id\": 23,\n                \"uid\": 26,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰6\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:38:10\",\n                \"deleted\": 0,\n                \"id\": 24,\n                \"uid\": 27,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰7\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:38:10\",\n                \"deleted\": 0,\n                \"id\": 25,\n                \"uid\": 28,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰8\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:40:05\",\n                \"deleted\": 0,\n                \"id\": 27,\n                \"uid\": 30,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2019,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰10\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "首页（展示页）API",
+			"item": [
+				{
+					"name": "首页条件查询学生list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ut/index/listStudentByParam?grade=2017&tagId=2&schoolId=3237&degreeId=2&pageNum=1&pageSize=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"index",
+								"listStudentByParam"
+							],
+							"query": [
+								{
+									"key": "grade",
+									"value": "2017"
+								},
+								{
+									"key": "tagId",
+									"value": "2"
+								},
+								{
+									"key": "schoolId",
+									"value": "3237"
+								},
+								{
+									"key": "degreeId",
+									"value": "2"
+								},
+								{
+									"key": "pageNum",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "查询华软的2017学生",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listStudentByParam?grade=2017&schoolId=3237&pageNum=1&pageSize=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listStudentByParam"
+									],
+									"query": [
+										{
+											"key": "grade",
+											"value": "2017"
+										},
+										{
+											"key": "tagId",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "schoolId",
+											"value": "3237"
+										},
+										{
+											"key": "degreeId",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Mar 2020 14:53:51 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"realName\": \"陈文杰2\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "查询2017级的",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listStudentByParam?grade=2017&pageNum=1&pageSize=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listStudentByParam"
+									],
+									"query": [
+										{
+											"key": "grade",
+											"value": "2017"
+										},
+										{
+											"key": "tagId",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "schoolId",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "degreeId",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Mar 2020 14:52:33 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"realName\": \"陈文杰2\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "查询tagid=2且2017的",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listStudentByParam?grade=2017&tagId=2&pageNum=1&pageSize=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listStudentByParam"
+									],
+									"query": [
+										{
+											"key": "grade",
+											"value": "2017"
+										},
+										{
+											"key": "tagId",
+											"value": "2"
+										},
+										{
+											"key": "schoolId",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "degreeId",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Mar 2020 14:53:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"realName\": \"陈文杰2\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "全条件查询",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listStudentByParam?grade=2017&tagId=2&schoolId=3237&degreeId=2&pageNum=1&pageSize=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listStudentByParam"
+									],
+									"query": [
+										{
+											"key": "grade",
+											"value": "2017"
+										},
+										{
+											"key": "tagId",
+											"value": "2"
+										},
+										{
+											"key": "schoolId",
+											"value": "3237"
+										},
+										{
+											"key": "degreeId",
+											"value": "2"
+										},
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Mar 2020 14:54:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"realName\": \"陈文杰2\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "不带条件",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listStudentByParam?pageNum=1&pageSize=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listStudentByParam"
+									],
+									"query": [
+										{
+											"key": "grade",
+											"value": "2017",
+											"disabled": true
+										},
+										{
+											"key": "tagId",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "schoolId",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "degreeId",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Mar 2020 14:51:54 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 3,\n        \"rows\": [\n            {\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"realName\": \"陈文杰2\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 23,\n                \"nickname\": \"UT_8B1266\",\n                \"realName\": \"陈文杰3\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2018,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "查看用户（暂时是学生）的个人页",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ut/index/student/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"index",
+								"student",
+								"21"
+							]
+						},
+						"description": "非自己查看自己，不包含手机号等敏感信息"
+					},
+					"response": [
+						{
+							"name": "案例",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/student/21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"student",
+										"21"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Mar 2020 15:46:52 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"uid\": 21,\n        \"nickname\": \"UT_9a7293\",\n        \"realName\": \"陈文杰\",\n        \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n        \"degree\": \"本科\",\n        \"grade\": 2017,\n        \"subject\": \"信息工程\",\n        \"tags\": [\n            {\n                \"createTime\": \"2020-03-11 13:04:03\",\n                \"updateTime\": \"2020-02-25 13:45:33\",\n                \"deleted\": 0,\n                \"id\": 1,\n                \"parentId\": 0,\n                \"name\": \"技术\",\n                \"level\": 0\n            },\n            {\n                \"createTime\": \"2020-03-11 13:04:34\",\n                \"updateTime\": \"2020-02-25 13:45:43\",\n                \"deleted\": 0,\n                \"id\": 2,\n                \"parentId\": 1,\n                \"name\": \"Java\",\n                \"level\": 1\n            },\n            {\n                \"createTime\": \"2020-03-11 13:04:53\",\n                \"updateTime\": \"2020-02-25 13:45:50\",\n                \"deleted\": 0,\n                \"id\": 3,\n                \"parentId\": 1,\n                \"name\": \"PHP\",\n                \"level\": 1\n            }\n        ],\n        \"tagIds\": null,\n        \"schoolId\": null,\n        \"school\": \"广州大学华软软件学院\",\n        \"experiences\": [\n            {\n                \"createTime\": \"2020-03-11 23:32:09\",\n                \"updateTime\": \"2020-03-11 23:33:06\",\n                \"deleted\": 0,\n                \"id\": 1,\n                \"uid\": 21,\n                \"name\": \"智慧食堂\",\n                \"awards\": \"吹牛二等奖\",\n                \"role\": \"后端开发\",\n                \"projectUrl\": \"https://wenjie.store\",\n                \"description\": \"智慧食堂是一个xxx的系统\",\n                \"startTime\": \"2017-09-09\",\n                \"endTime\": \"2020-09-09\"\n            },\n            {\n                \"createTime\": \"2020-03-11 23:37:40\",\n                \"updateTime\": \"2020-02-25 17:10:20\",\n                \"deleted\": 0,\n                \"id\": 2,\n                \"uid\": 21,\n                \"name\": \"智慧饭堂\",\n                \"awards\": \"吹牛一等奖\",\n                \"role\": \"后端开发\",\n                \"projectUrl\": \"https://wenjie.store\",\n                \"description\": \"智慧食堂是一个xxx的系统\",\n                \"startTime\": \"2017-09-09\",\n                \"endTime\": \"2020-09-09\"\n            },\n            {\n                \"createTime\": \"2020-03-11 23:39:09\",\n                \"updateTime\": \"2020-02-25 17:11:55\",\n                \"deleted\": 0,\n                \"id\": 3,\n                \"uid\": 21,\n                \"name\": \"智慧饭堂\",\n                \"awards\": \"吹牛二等奖\",\n                \"role\": \"后端开发\",\n                \"projectUrl\": \"https://wenjie.store\",\n                \"description\": \"智慧食堂是一个xxx的系统\",\n                \"startTime\": \"2017-09-09\",\n                \"endTime\": \"2020-09-09\"\n            }\n        ],\n        \"description\": \"我是xxxxx\",\n        \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1583926508010.jpg\",\n        \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1583926508842.jpg\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "团队操作API",
+			"item": [
+				{
+					"name": "设置团队标签",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"description": "全角色+队长身份token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tagIds",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "tagIds",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "tagIds",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/teams/saveTeamsTags",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"teams",
+								"saveTeamsTags"
+							]
+						},
+						"description": "只有通过认证+队长身份才能设置团队标签"
+					},
+					"response": [
+						{
+							"name": "成功设置案例",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"description": "全角色+队长身份token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "tagIds",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "tagIds",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/saveTeamsTags",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"saveTeamsTags"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Mar 2020 13:17:18 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"createTime\": \"2020-03-11 13:04:03\",\n            \"updateTime\": \"2020-02-25 13:45:33\",\n            \"deleted\": 0,\n            \"id\": 1,\n            \"parentId\": 0,\n            \"name\": \"技术\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 13:04:34\",\n            \"updateTime\": \"2020-02-25 13:45:43\",\n            \"deleted\": 0,\n            \"id\": 2,\n            \"parentId\": 1,\n            \"name\": \"Java\",\n            \"level\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "用户创建队伍",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"description": "拥有所有角色的Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "UT小分队2",
+									"description": "团队名",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"description": "团队logo",
+									"type": "file",
+									"src": "/D:/图包/P站3/78572402_p0_master1200.jpg"
+								},
+								{
+									"key": "description",
+									"value": "UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍",
+									"description": "团队描述（可能含有富文本）",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "1",
+									"description": "0-待发布 1-发布中，只有发布中状态的团队才会展示在首页",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/teams/createTeam",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"teams",
+								"createTeam"
+							]
+						},
+						"description": "注意，必须是通过认证的用户才可以创建队伍\n另外，团队名不能重复"
+					},
+					"response": [
+						{
+							"name": "创建失败案例（团队名重复）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"description": "拥有所有角色的Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "UT小分队",
+											"description": "团队名",
+											"type": "text"
+										},
+										{
+											"key": "logo",
+											"description": "团队logo",
+											"type": "file",
+											"src": "/D:/图包/P站3/78572402_p0_master1200.jpg"
+										},
+										{
+											"key": "description",
+											"value": "UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍",
+											"description": "团队描述（可能含有富文本）",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"description": "0-待发布 1-发布中，只有发布中状态的团队才会展示在首页",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/createTeam",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"createTeam"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Mar 2020 12:12:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"message\": \"团队名已重复！\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						},
+						{
+							"name": "创建成功案例",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"description": "拥有所有角色的Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "UT小分队2",
+											"description": "团队名",
+											"type": "text"
+										},
+										{
+											"key": "logo",
+											"description": "团队logo",
+											"type": "file",
+											"src": "/D:/图包/P站3/78572402_p0_master1200.jpg"
+										},
+										{
+											"key": "description",
+											"value": "UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍",
+											"description": "团队描述（可能含有富文本）",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"description": "0-待发布 1-发布中，只有发布中状态的团队才会展示在首页",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/createTeam",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"createTeam"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Mar 2020 13:16:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-14 21:16:49\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 1,\n        \"name\": \"UT小分队2\",\n        \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584191808364.jpg\",\n        \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n        \"tagIds\": null,\n        \"status\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "更新团队logo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/D:/图包/P站3/79765660_p0_master1200.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/teams/updateTeamsLogo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"teams",
+								"updateTeamsLogo"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "更新成功案例",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": "/D:/图包/P站3/79765660_p0_master1200.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/updateTeamsLogo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"updateTeamsLogo"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Mar 2020 03:03:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"更新团队头像成功！\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
