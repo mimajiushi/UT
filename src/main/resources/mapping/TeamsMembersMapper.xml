@@ -13,4 +13,21 @@
         <result column="update_time" property="updateTime" />
     </resultMap>
 
+    <resultMap id="memberVO" type="run.ut.app.model.vo.TeamMemberVO">
+        <result column="id" property="id" />
+        <result column="uid" property="uid" />
+        <result column="nickname" property="nickname" />
+        <result column="avatar" property="avatar" />
+        <result column="is_leader" property="role" />
+    </resultMap>
+    
+    <select id="listSimpleMemberInfoByTeamsId" resultMap="memberVO">
+        select tem.id, u.uid, u.avatar, u.nickname, tem.is_leader
+        from teams_members tem
+            inner join `user` u on u.uid = tem.uid
+        where tem.team_id = #{teamsId}
+                    and tem.deleted = 0
+        order by tem.create_time;
+    </select>
+
 </mapper>

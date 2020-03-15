@@ -610,7 +610,7 @@
 								"saveUserTags"
 							]
 						},
-						"description": "必须是登录状态才能设置，且用户必须通过认证。"
+						"description": "必须是登录状态才能设置，且用户必须通过认证。删除则是不传任何tagIds"
 					},
 					"response": [
 						{
@@ -3195,6 +3195,77 @@
 							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"uid\": 21,\n        \"nickname\": \"UT_9a7293\",\n        \"realName\": \"陈文杰\",\n        \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n        \"degree\": \"本科\",\n        \"grade\": 2017,\n        \"subject\": \"信息工程\",\n        \"tags\": [\n            {\n                \"createTime\": \"2020-03-11 13:04:03\",\n                \"updateTime\": \"2020-02-25 13:45:33\",\n                \"deleted\": 0,\n                \"id\": 1,\n                \"parentId\": 0,\n                \"name\": \"技术\",\n                \"level\": 0\n            },\n            {\n                \"createTime\": \"2020-03-11 13:04:34\",\n                \"updateTime\": \"2020-02-25 13:45:43\",\n                \"deleted\": 0,\n                \"id\": 2,\n                \"parentId\": 1,\n                \"name\": \"Java\",\n                \"level\": 1\n            },\n            {\n                \"createTime\": \"2020-03-11 13:04:53\",\n                \"updateTime\": \"2020-02-25 13:45:50\",\n                \"deleted\": 0,\n                \"id\": 3,\n                \"parentId\": 1,\n                \"name\": \"PHP\",\n                \"level\": 1\n            }\n        ],\n        \"tagIds\": null,\n        \"schoolId\": null,\n        \"school\": \"广州大学华软软件学院\",\n        \"experiences\": [\n            {\n                \"createTime\": \"2020-03-11 23:32:09\",\n                \"updateTime\": \"2020-03-11 23:33:06\",\n                \"deleted\": 0,\n                \"id\": 1,\n                \"uid\": 21,\n                \"name\": \"智慧食堂\",\n                \"awards\": \"吹牛二等奖\",\n                \"role\": \"后端开发\",\n                \"projectUrl\": \"https://wenjie.store\",\n                \"description\": \"智慧食堂是一个xxx的系统\",\n                \"startTime\": \"2017-09-09\",\n                \"endTime\": \"2020-09-09\"\n            },\n            {\n                \"createTime\": \"2020-03-11 23:37:40\",\n                \"updateTime\": \"2020-02-25 17:10:20\",\n                \"deleted\": 0,\n                \"id\": 2,\n                \"uid\": 21,\n                \"name\": \"智慧饭堂\",\n                \"awards\": \"吹牛一等奖\",\n                \"role\": \"后端开发\",\n                \"projectUrl\": \"https://wenjie.store\",\n                \"description\": \"智慧食堂是一个xxx的系统\",\n                \"startTime\": \"2017-09-09\",\n                \"endTime\": \"2020-09-09\"\n            },\n            {\n                \"createTime\": \"2020-03-11 23:39:09\",\n                \"updateTime\": \"2020-02-25 17:11:55\",\n                \"deleted\": 0,\n                \"id\": 3,\n                \"uid\": 21,\n                \"name\": \"智慧饭堂\",\n                \"awards\": \"吹牛二等奖\",\n                \"role\": \"后端开发\",\n                \"projectUrl\": \"https://wenjie.store\",\n                \"description\": \"智慧食堂是一个xxx的系统\",\n                \"startTime\": \"2017-09-09\",\n                \"endTime\": \"2020-09-09\"\n            }\n        ],\n        \"description\": \"我是xxxxx\",\n        \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1583926508010.jpg\",\n        \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1583926508842.jpg\"\n    }\n}"
 						}
 					]
+				},
+				{
+					"name": "根据队伍id获取队伍信息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ut/index/team/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"index",
+								"team",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取队伍id为1的队伍信息",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/team/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"team",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Mar 2020 15:11:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"UT小分队2\",\n        \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n        \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n        \"tags\": [\n            {\n                \"createTime\": \"2020-03-11 13:04:03\",\n                \"updateTime\": \"2020-02-25 13:45:33\",\n                \"deleted\": 0,\n                \"id\": 1,\n                \"parentId\": 0,\n                \"name\": \"技术\",\n                \"level\": 0\n            },\n            {\n                \"createTime\": \"2020-03-11 13:04:34\",\n                \"updateTime\": \"2020-02-25 13:45:43\",\n                \"deleted\": 0,\n                \"id\": 2,\n                \"parentId\": 1,\n                \"name\": \"Java\",\n                \"level\": 1\n            }\n        ],\n        \"tagIds\": \"1,2\",\n        \"status\": \"招募中\",\n        \"recruitments\": [\n            {\n                \"createTime\": \"2020-03-15 16:42:27\",\n                \"updateTime\": \"2020-03-15 18:21:06\",\n                \"deleted\": 0,\n                \"id\": 1,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发1批\",\n                \"tagIds\": \"1,2,3\",\n                \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 16:43:14\",\n                \"updateTime\": \"2020-03-15 17:08:25\",\n                \"deleted\": 0,\n                \"id\": 2,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发2批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:29\",\n                \"updateTime\": \"2020-03-14 06:29:02\",\n                \"deleted\": 0,\n                \"id\": 3,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发3批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:32\",\n                \"updateTime\": \"2020-03-14 06:29:05\",\n                \"deleted\": 0,\n                \"id\": 4,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发4批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:36\",\n                \"updateTime\": \"2020-03-14 06:29:09\",\n                \"deleted\": 0,\n                \"id\": 5,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发5批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n            }\n        ],\n        \"members\": [\n            {\n                \"id\": 1,\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"队长\"\n            },\n            {\n                \"id\": 23,\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            },\n            {\n                \"id\": 24,\n                \"uid\": 23,\n                \"nickname\": \"UT_8B1266\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            },\n            {\n                \"id\": 25,\n                \"uid\": 24,\n                \"nickname\": \"UT_8B1265\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            },\n            {\n                \"id\": 26,\n                \"uid\": 25,\n                \"nickname\": \"UT_8B1264\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            }\n        ],\n        \"createTime\": \"2020-03-14 21:16:50\"\n    }\n}"
+						}
+					]
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -3254,7 +3325,7 @@
 								"saveTeamsTags"
 							]
 						},
-						"description": "只有通过认证+队长身份才能设置团队标签"
+						"description": "只有通过认证+队长身份才能设置团队标签，删除则是不传任何tagIds"
 					},
 					"response": [
 						{
@@ -3909,6 +3980,375 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 22,\n        \"rows\": [\n            {\n                \"id\": 22,\n                \"name\": \"UT小分队3\",\n                \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248460308.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-15 13:01:01\"\n            },\n            {\n                \"id\": 21,\n                \"name\": \"UT小分队\",\n                \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248275363.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-15 12:57:57\"\n            },\n            {\n                \"id\": 1,\n                \"name\": \"UT小分队2\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"adawa\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"2,3\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 3,\n                \"name\": \"uilul\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 4,\n                \"name\": \"rjfdber\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 5,\n                \"name\": \"yyyy\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 6,\n                \"name\": \"xxxxx\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 7,\n                \"name\": \"qqqq\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 8,\n                \"name\": \"uuuu\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "团队设置招聘职位",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "2",
+									"description": "职位id，更新时传",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "teamId",
+									"value": "1",
+									"description": "岗位所属的团队id",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Java后端开发5批",
+									"description": "岗位名称",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "要求：Java基础扎实，能熟练运用现有的流行框架",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"teams",
+								"saveTeamsRecruitment"
+							]
+						},
+						"description": "必须是已通过认证+队长身份才可设置"
+					},
+					"response": [
+						{
+							"name": "新增职位案例",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "",
+											"description": "职位id，更新时传",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "teamId",
+											"value": "1",
+											"description": "岗位所属的团队id",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Java后端开发",
+											"description": "岗位名称",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "要求：Java基础扎实，能熟练运用现有的流行框架",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"saveTeamsRecruitment"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Mar 2020 08:43:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"新增职位信息成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-15 16:43:14\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 2,\n        \"teamId\": 1,\n        \"name\": \"Java后端开发\",\n        \"tagIds\": null,\n        \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n    }\n}"
+						},
+						{
+							"name": "更新招聘职位案例",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "职位id，更新时传",
+											"type": "text"
+										},
+										{
+											"key": "teamId",
+											"value": "1",
+											"description": "岗位所属的团队id",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Java后端开发2批",
+											"description": "岗位名称",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "要求：Java基础扎实，能熟练运用现有的流行框架",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"saveTeamsRecruitment"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Mar 2020 08:45:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"更新职位信息成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-15 16:42:27\",\n        \"updateTime\": \"2020-03-15 16:45:16\",\n        \"deleted\": 0,\n        \"id\": 1,\n        \"teamId\": 1,\n        \"name\": \"Java后端开发2批\",\n        \"tagIds\": \"\",\n        \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "设置招聘岗位的标签",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"description": "全角色+队长身份token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tagIds",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "tagIds",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "tagIds",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "TeamId",
+									"value": "1",
+									"description": "团队id，用于验证是否是队长",
+									"type": "text"
+								},
+								{
+									"key": "teamRecruitmentId",
+									"value": "1",
+									"description": "职位id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitmentsTags",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"teams",
+								"saveTeamsRecruitmentsTags"
+							]
+						},
+						"description": "只有通过认证+队长身份才能设置团队标签，删除则是不传任何tagIds"
+					},
+					"response": [
+						{
+							"name": "设置成功",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"description": "全角色+队长身份token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "tagIds",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "tagIds",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "tagIds",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "TeamId",
+											"value": "1",
+											"description": "团队id，用于验证是否是队长",
+											"type": "text"
+										},
+										{
+											"key": "teamRecruitmentId",
+											"value": "1",
+											"description": "职位id",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitmentsTags",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"saveTeamsRecruitmentsTags"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Mar 2020 10:21:06 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"createTime\": \"2020-03-11 13:04:03\",\n            \"updateTime\": \"2020-02-25 13:45:33\",\n            \"deleted\": 0,\n            \"id\": 1,\n            \"parentId\": 0,\n            \"name\": \"技术\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 13:04:34\",\n            \"updateTime\": \"2020-02-25 13:45:43\",\n            \"deleted\": 0,\n            \"id\": 2,\n            \"parentId\": 1,\n            \"name\": \"Java\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 13:04:53\",\n            \"updateTime\": \"2020-02-25 13:45:50\",\n            \"deleted\": 0,\n            \"id\": 3,\n            \"parentId\": 1,\n            \"name\": \"PHP\",\n            \"level\": 1\n        }\n    ]\n}"
 						}
 					]
 				}

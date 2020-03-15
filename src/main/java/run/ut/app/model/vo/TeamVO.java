@@ -8,8 +8,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import run.ut.app.model.domain.Teams;
 import run.ut.app.model.dto.TagsDTO;
+import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
+import run.ut.app.model.dto.base.InputConverter;
 import run.ut.app.model.enums.DegreeEnum;
 import run.ut.app.model.enums.TeamsStatusEnum;
 
@@ -19,6 +22,7 @@ import java.util.List;
 
 /**
  * TeamVO
+ * @author wenjie
  */
 @Data
 @Accessors(chain = true)
@@ -48,8 +52,14 @@ public class TeamVO {
     @ApiModelProperty("团队状态")
     private TeamsStatusEnum status;
 
+    @ApiModelProperty("团队招聘的职位")
+    private List<TeamsRecruitmentsDTO> recruitments;
+
+    @ApiModelProperty("团队成员简要信息")
+    private List<TeamMemberVO> members;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;
 
-    // TODO 增加显示团队成员头像、姓名的VO
+
 }

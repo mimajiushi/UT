@@ -31,4 +31,6 @@ public interface IndexService {
      */
     StudentVO showStudentPage(Long uid);
 
+    TeamVO showTeamsInfo(Long teamsId);
+
 }

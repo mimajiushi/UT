@@ -1,5 +1,6 @@
 package run.ut.app.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import run.ut.app.model.param.TeamsRecruitmentsParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.service.TeamsRecruitmentsService;
 import run.ut.app.utils.BeanUtils;
+
+import java.util.List;
 
 /**
  * <p>
@@ -46,5 +49,10 @@ public class TeamsRecruitmentsServiceImpl extends ServiceImpl<TeamsRecruitmentsM
         // insert
         save(teamsRecruitments);
         return BaseResponse.ok("新增职位信息成功！", new TeamsRecruitmentsDTO().convertFrom(teamsRecruitments));
+    }
+
+    @Override
+    public List<TeamsRecruitments> listTeamsRecruitmentsByTeamsId(Long teamsId) {
+        return list(new QueryWrapper<TeamsRecruitments>().eq("team_id", teamsId));
     }
 }

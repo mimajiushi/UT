@@ -89,7 +89,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         // set leader
         TeamsMembers teamsMember = new TeamsMembers()
                 .setUid(leaderId)
-                .setIsLeader(TeamsMemberEnum.LEADER.getType())
+                .setIsLeader(TeamsMemberEnum.LEADER)
                 .setTeamId(team.getId());
         teamsMembersMapper.insert(teamsMember);
         return new TeamsDTO().convertFrom(team);

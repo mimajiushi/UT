@@ -52,6 +52,11 @@ public class IndexController implements IndexControllerApi {
         return indexService.showStudentPage(uid);
     }
 
+    @Override
+    @GetMapping("/team/{teamsId}")
+    public TeamVO showTeamsInfo(@PathVariable Long teamsId) {
+        return indexService.showTeamsInfo(teamsId);
+    }
 
 
 }

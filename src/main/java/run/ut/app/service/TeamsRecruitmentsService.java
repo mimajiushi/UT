@@ -6,6 +6,8 @@ import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.param.TeamsRecruitmentsParam;
 import run.ut.app.model.support.BaseResponse;
 
+import java.util.List;
+
 /**
  * <p>
  *  TeamsRecruitmentsService
@@ -17,5 +19,7 @@ import run.ut.app.model.support.BaseResponse;
 public interface TeamsRecruitmentsService extends IService<TeamsRecruitments> {
 
     BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(TeamsRecruitmentsParam teamsRecruitmentsParam);
+
+    List<TeamsRecruitments> listTeamsRecruitmentsByTeamsId(Long teamsId);
 
 }

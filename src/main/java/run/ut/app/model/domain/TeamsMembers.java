@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
+import run.ut.app.model.enums.TeamsMemberEnum;
 
 /**
  * <p>
@@ -35,6 +36,6 @@ public class TeamsMembers extends BaseEntity {
     private Long uid;
 
     @ApiModelProperty(value = "0-队员 1-队长")
-    private Integer isLeader;
+    private TeamsMemberEnum isLeader;
 
 }

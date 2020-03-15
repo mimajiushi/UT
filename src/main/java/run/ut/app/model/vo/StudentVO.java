@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * studentVO
+ * @author wenjie
  */
 @Data
 @Accessors(chain = true)
