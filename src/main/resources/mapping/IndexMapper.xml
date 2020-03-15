@@ -35,7 +35,7 @@
             </if>
         </where>
         and u.deleted = 0
-        and ui.role = 3
+        and ui.role = #{roleId}
         and ui.status = 1
         group by u.uid
         order by ui.create_time desc

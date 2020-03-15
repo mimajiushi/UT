@@ -12,11 +12,11 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * UserExperiences
+ * TeamsMembers
  * </p>
  *
  * @author wenjie
- * @since 2020-03-11
+ * @since 2020-03-14
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -24,28 +24,17 @@ import lombok.experimental.Accessors;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="UserExperiences对象", description="")
-public class UserExperiences extends BaseEntity {
+@ApiModel(value="TeamsMembers对象", description="")
+public class TeamsMembers extends BaseEntity {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
+    private Long teamId;
+
     private Long uid;
 
-    private String name;
+    @ApiModelProperty(value = "0-队员 1-队长")
+    private Integer isLeader;
 
-    @ApiModelProperty(value = "Just fill in the award")
-    private String awards;
-
-    @ApiModelProperty(value = "role in the project")
-    private String role;
-
-    @ApiModelProperty(value = "It can be GitHub or online URL and so on")
-    private String projectUrl;
-
-    private String description;
-
-    private String startTime;
-
-    private String endTime;
 }

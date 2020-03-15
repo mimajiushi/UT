@@ -22,6 +22,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     IPage<StudentVO> listStudentByParam(Page page,
                                         @Param("grade") Integer grade, @Param("tagId") Integer tagId,
-                                        @Param("schoolId") Integer schoolId, @Param("degreeId") Integer degreeId);
+                                        @Param("schoolId") Integer schoolId, @Param("degreeId") Integer degreeId,
+                                        @Param("roleId") Integer roleId);
 
 }

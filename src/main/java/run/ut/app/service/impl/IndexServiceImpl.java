@@ -12,6 +12,7 @@ import run.ut.app.model.domain.User;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
+import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.SearchStudentParam;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.StudentVO;
@@ -37,7 +38,7 @@ public class IndexServiceImpl implements IndexService {
     public CommentPage<StudentVO> listStudentByParam(SearchStudentParam searchStudentParam, Page page) {
 
         IPage<StudentVO> studentVOIPage = userMapper.listStudentByParam(page, searchStudentParam.getGrade(), searchStudentParam.getTagId(),
-                searchStudentParam.getSchoolId(), searchStudentParam.getDegreeId());
+                searchStudentParam.getSchoolId(), searchStudentParam.getDegreeId(), UserRolesEnum.ROLE_STUDENT.getType());
         List<StudentVO> records = studentVOIPage.getRecords();
         for (int i = 0; i < records.size(); i++){
             StudentVO studentVO = records.get(i);
@@ -59,7 +60,7 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public StudentVO showStudentPage(Long uid) {
         User user = userMapper.selectById(uid);
-        UserInfo userInfo = userInfoService.getOneByUid(uid);
+        UserInfo userInfo = userInfoService.getOneActivatedByUid(uid);
         List<TagsDTO> tagsDTOList = userTagsService.listByUid(uid)
                 .stream().map(e -> (TagsDTO) new TagsDTO().convertFrom(e)).collect(Collectors.toList());
         List<UserExperiencesDTO> userExperiencesDTOList = userExperiencesService.getUserExperiencesByUid(uid)

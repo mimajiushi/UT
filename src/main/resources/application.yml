@@ -93,22 +93,6 @@ third-api-config:
     interval-min: 1
     # 短信有效分钟
     valid-min: 5
-  # 百度人脸识别
-  baidu:
-    # 应用 APPID
-    app-id: 17565026
-    # 应用API KEY
-    app-key: PNqLm2TjvWQiGhYwrGN1G08X
-    # 应用 Secret Key
-    secret-key: WbsZhASOKx9TNvGbMC97YpHFFW1UBe0O
-    # 连接超时ms，默认 2000
-    conn-timeout: 2000
-    # socket超时ms，默认60000
-    socket-timeout: 60000
-    # 最低被接受的人脸置信分数[1,100]，分数越高，要求越严格，也越准确。
-    accept-score: 90
-    # 人脸分组
-    group-id: 1
 
   # 支付宝支付
 alipay:

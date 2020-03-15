@@ -55,7 +55,7 @@ public class UserExperiencesParam extends BaseDTO implements InputConverter<User
 
     @ApiModelProperty(value = "对项目的描述", required = true)
     @NotBlank(message = "description must not be null")
-    @Size(max = 1200, message = "Length of description must not be more than {max}")
+    @Size(max = 5000, message = "Length of description must not be more than {max}")
     private String description;
 
     @ApiModelProperty(value = "开始时间")

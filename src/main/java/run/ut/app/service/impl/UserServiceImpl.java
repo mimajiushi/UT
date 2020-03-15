@@ -47,7 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Transactional
     public List<TagsDTO> saveUserTags(Long uid, String[] tagIds) throws Exception {
 
-        UserInfo userInfo = userInfoService.getOneByUid(uid);
+        UserInfo userInfo = userInfoService.getOneActivatedByUid(uid);
         if (ObjectUtils.isEmpty(userInfo) || (userInfo.getStatus() != UserInfoStatusEnum.PASS)){
             throw new AuthenticationException("只有经过认证的用户才能设置标签！");
         }
@@ -78,6 +78,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         userTagsService.saveBatch(userTags);
 
         String tagIdsString = StringUtils.join(tagIds, ",");
+        userInfo.setUpdateTime(null);
         userInfoService.updateById(userInfo.setTagIds(tagIdsString));
 
         return tags.stream().map(e -> {

@@ -1,17 +1,22 @@
 package run.ut.app.controller.admin;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.admin.AdminUserInfoControllerAPI;
+import run.ut.app.model.domain.UserInfo;
+import run.ut.app.model.dto.UserInfoDTO;
+import run.ut.app.model.param.UserInfoParam;
 import run.ut.app.model.support.AuthorizeRoles;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.support.CommentPage;
 import run.ut.app.security.CheckAuthorization;
 import run.ut.app.service.UserInfoService;
+
+import java.util.List;
 
 
 @RestController
@@ -29,5 +34,16 @@ public class AdminUserInfoController implements AdminUserInfoControllerAPI {
         Assert.notNull(id, "id must not be null");
         Assert.notNull(id, "status must not be null");
         return userInfoService.verifyUserInfo(id, status, reason);
+    }
+
+
+    @Override
+    @CheckAuthorization(roles = AuthorizeRoles.ROLE_ADMIN)
+    @GetMapping("listUserInfoByParam")
+    public CommentPage<UserInfoDTO> listUserInfoByParam(UserInfoParam userInfoParam,
+                                                        @RequestParam(defaultValue = "1") Integer pageNum,
+                                                        @RequestParam(defaultValue = "10") Integer pageSize) {
+        Page<UserInfo> page = new Page<>(pageNum, pageSize);
+        return userInfoService.listUserInfoByParam(userInfoParam, page);
     }
 }
