@@ -34,6 +34,8 @@ public class TeamsRecruitmentsDTO extends BaseDTO implements OutputConverter<Tea
     @ApiModelProperty(value = "招聘岗位名称")
     private String name;
 
+    private String tagIds;
+
     @ApiModelProperty(value = "岗位要求、描述")
     private String description;
 

@@ -24,6 +24,8 @@ public interface TeamsService extends IService<Teams> {
 
     List<TagsDTO> saveTeamsTags(String[] tagIds, Long leaderId, Long teamsId);
 
+    List<TagsDTO> saveTeamsRecruitmentsTags(String[] tagIds, Long teamRecruitmentId);
+
     BaseResponse<String> updateTeamsLogo(MultipartFile logo, Long leaderId, Long teamsId);
 
     Teams getTeamByLeaderIdAndTeamId(Long leaderId, Long TeamsId);
@@ -33,4 +35,5 @@ public interface TeamsService extends IService<Teams> {
      * @param leaderId leader's uid
      */
     Teams getAndCheckTeamByLeaderIdAndTeamId(Long leaderId, Long TeamsId);
+
 }

@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
+import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.param.TeamsParam;
+import run.ut.app.model.param.TeamsRecruitmentsParam;
 import run.ut.app.model.support.BaseResponse;
 
 import java.util.List;
@@ -23,5 +25,10 @@ public interface TeamsControllerApi {
     @ApiOperation(value = "更新团队logo", notes = "需要登录（Token）验证，只有队长才能更改团队logo")
     public BaseResponse<String> updateTeamsLogo(@RequestPart("logo") MultipartFile logo, Long teamsId);
 
+    @ApiOperation(value = "设置招聘的职位", notes = "新增/更新，需要登录验证，只有队长才能设置")
+    public BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(TeamsRecruitmentsParam teamsRecruitmentsParam);
+
+    @ApiOperation(value = "设置招聘职位的标签", notes = "需要登录（Token）验证，只有队长才能设置")
+    public List<TagsDTO> saveTeamsRecruitmentsTags(String[] tagIds, Long TeamId, Long teamRecruitmentId);
 
 }

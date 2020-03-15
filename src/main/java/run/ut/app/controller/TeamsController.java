@@ -16,14 +16,18 @@ import run.ut.app.exception.FileOperationException;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
+import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.enums.TeamsStatusEnum;
 import run.ut.app.model.param.TeamsParam;
+import run.ut.app.model.param.TeamsRecruitmentsParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.security.CheckLogin;
+import run.ut.app.service.TeamsRecruitmentsService;
 import run.ut.app.service.TeamsService;
 import run.ut.app.service.UserInfoService;
 import run.ut.app.utils.ImageUtils;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -35,6 +39,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
 
     private final UserInfoService userInfoService;
     private final TeamsService teamsService;
+    private final TeamsRecruitmentsService teamsRecruitmentsService;
 
     @Override
     @PostMapping("createTeam")
@@ -68,6 +73,26 @@ public class TeamsController extends BaseController implements TeamsControllerAp
             throw new FileOperationException("只接受图片格式文件！");
         }
         return teamsService.updateTeamsLogo(logo, leaderId, teamsId);
+    }
+
+    @Override
+    @CheckLogin
+    @PostMapping("saveTeamsRecruitment")
+    public BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(@Valid TeamsRecruitmentsParam teamsRecruitmentsParam) {
+        Long uid = getUid();
+        checkUser(uid);
+        teamsService.getAndCheckTeamByLeaderIdAndTeamId(uid, teamsRecruitmentsParam.getTeamId());
+        return teamsRecruitmentsService.saveTeamsRecruitment(teamsRecruitmentsParam);
+    }
+
+    @Override
+    @CheckLogin
+    @PostMapping("saveTeamsRecruitmentsTags")
+    public List<TagsDTO> saveTeamsRecruitmentsTags(String[] tagIds, Long TeamId, Long teamRecruitmentId) {
+        Long uid = getUid();
+        checkUser(uid);
+        teamsService.getAndCheckTeamByLeaderIdAndTeamId(uid, teamRecruitmentId);
+        return teamsService.saveTeamsRecruitmentsTags(tagIds, teamRecruitmentId);
     }
 
     /**

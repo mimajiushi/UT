@@ -12,11 +12,11 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ * TeamsRecruitmentsTags
  * </p>
  *
  * @author wenjie
- * @since 2020-03-13
+ * @since 2020-03-15
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -24,20 +24,14 @@ import lombok.experimental.Accessors;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="TeamsRecruitments对象", description="")
-public class TeamsRecruitments extends BaseEntity {
+@ApiModel(value="TeamsRecruitmentsTags 对象", description="")
+public class TeamsRecruitmentsTags extends BaseEntity {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    private Long teamId;
+    private Long teamRecruitmentId;
 
-    @ApiModelProperty(value = "招聘岗位名称")
-    private String name;
-
-    private String tagIds;
-
-    @ApiModelProperty(value = "岗位要求、描述")
-    private String description;
+    private Integer tagId;
 
 }

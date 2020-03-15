@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="run.ut.app.mapper.TeamsRecruitmentsMapper">
+<mapper namespace="run.ut.app.mapper.TeamsRecruitmentsTagsMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="run.ut.app.model.domain.TeamsRecruitments">
+    <resultMap id="BaseResultMap" type="run.ut.app.model.domain.TeamsRecruitmentsTags">
         <id column="id" property="id" />
-        <result column="team_id" property="teamId" />
-        <result column="name" property="name" />
-        <result column="description" property="description" />
+        <result column="team_recruitment_id" property="teamRecruitmentId" />
+        <result column="tag_id" property="tagId" />
         <result column="deleted" property="deleted" />
-        <result column="tag_ids" property="tagIds" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>

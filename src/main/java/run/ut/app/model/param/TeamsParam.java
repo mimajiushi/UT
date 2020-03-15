@@ -35,6 +35,7 @@ public class TeamsParam implements Serializable {
     private Long id;
 
     @NotBlank(message = "团队名不能为空")
+    @Size(max = 10, message = "团队名不能超过{max}字")
     private String name;
 
     @ApiModelProperty(value = "团队描述，关于团队表，暂时不额外附加经历表了，经历也都写在这")

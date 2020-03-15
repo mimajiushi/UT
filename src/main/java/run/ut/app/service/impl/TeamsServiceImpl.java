@@ -13,6 +13,7 @@ import run.ut.app.exception.FileOperationException;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.handler.FileHandlers;
 import run.ut.app.mapper.TeamsMembersMapper;
+import run.ut.app.mapper.TeamsRecruitmentsMapper;
 import run.ut.app.model.domain.*;
 import run.ut.app.mapper.TeamsMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -25,10 +26,12 @@ import run.ut.app.model.param.TeamsParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.UploadResult;
 import run.ut.app.service.TagsService;
+import run.ut.app.service.TeamsRecruitmentsTagsService;
 import run.ut.app.service.TeamsService;
 import run.ut.app.service.TeamsTagsService;
 import run.ut.app.utils.ImageUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -51,6 +54,8 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
     private final TeamsMembersMapper teamsMembersMapper;
     private final TagsService tagsService;
     private final TeamsTagsService teamsTagsService;
+    private final TeamsRecruitmentsTagsService teamsRecruitmentsTagsService;
+    private final TeamsRecruitmentsMapper teamsRecruitmentsMapper;
 
     @Override
     @Transactional
@@ -93,14 +98,22 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
     @Override
     @Transactional
     public List<TagsDTO> saveTeamsTags(String[] tagIds, Long leaderId, Long teamsId) {
+
+        Teams team = getAndCheckTeamByLeaderIdAndTeamId(leaderId, teamsId);
+
+        if (null == tagIds || tagIds.length < 1){
+            teamsTagsService.deleteByTeamsId(teamsId);
+            team.setTagIds("").setUpdateTime(null);
+            updateById(team);
+            return new ArrayList<>();
+        }
+
         // Verify whether the tags exist
         List<Tags> tags = tagsService.listByIds(new HashSet<>(Arrays.asList(tagIds)));
 
         if (tags.size() != tagIds.length){
             throw new BadRequestException("传入tagIds有误");
         }
-
-        Teams team = getAndCheckTeamByLeaderIdAndTeamId(leaderId, teamsId);
 
         // Verify that the newly saved tags are the same as the original ones
         List<Tags> tags2 = teamsTagsService.listByTeamsId(teamsId);
@@ -123,6 +136,51 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         team.setUpdateTime(null);
         updateById(team.setTagIds(tagIdsString));
 
+        return tags.stream().map(e -> {
+            return (TagsDTO)new TagsDTO().convertFrom(e);
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public List<TagsDTO> saveTeamsRecruitmentsTags(String[] tagIds, Long teamRecruitmentId) {
+
+        TeamsRecruitments recruitment = teamsRecruitmentsMapper.selectById(teamRecruitmentId);
+
+        if (null == tagIds || tagIds.length < 1){
+            teamsRecruitmentsTagsService.deleteByTeamsRecruitmentsId(teamRecruitmentId);
+            recruitment.setTagIds("").setUpdateTime(null);
+            teamsRecruitmentsMapper.updateById(recruitment);
+            return new ArrayList<>();
+        }
+
+        // Verify whether the tags exist
+        List<Tags> tags = tagsService.listByIds(new HashSet<>(Arrays.asList(tagIds)));
+        if (tags.size() != tagIds.length){
+            throw new BadRequestException("传入tagIds有误");
+        }
+
+        // Verify that the newly saved tags are the same as the original ones
+        List<Tags> tags2 = teamsRecruitmentsTagsService.listByTeamsRecruitmentsId(teamRecruitmentId);
+        if (tags.equals(tags2)){
+            return tags.stream().map(e -> {
+                return (TagsDTO)new TagsDTO().convertFrom(e);
+            }).collect(Collectors.toList());
+        }
+
+        // delete old tags
+        teamsRecruitmentsTagsService.deleteByTeamsRecruitmentsId(teamRecruitmentId);
+
+        // Repopulate New Tags
+        List<TeamsRecruitmentsTags> recruitmentsTags = tags.stream().map(e -> {
+            return new TeamsRecruitmentsTags().setTagId(e.getId()).setTeamRecruitmentId(teamRecruitmentId);
+        }).collect(Collectors.toList());
+        teamsRecruitmentsTagsService.saveBatch(recruitmentsTags);
+
+        String tagIdsString = StringUtils.join(tagIds, ",");
+        recruitment.setTagIds(tagIdsString)
+                .setUpdateTime(null);
+        teamsRecruitmentsMapper.updateById(recruitment);
         return tags.stream().map(e -> {
             return (TagsDTO)new TagsDTO().convertFrom(e);
         }).collect(Collectors.toList());

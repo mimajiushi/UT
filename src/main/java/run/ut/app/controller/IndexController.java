@@ -36,21 +36,22 @@ public class IndexController implements IndexControllerApi {
     }
 
     @Override
-    @GetMapping("/student/{uid}")
-    public StudentVO showStudentInfo(@PathVariable Long uid) {
-        return indexService.showStudentPage(uid);
-    }
-
-    @Override
     @GetMapping("listTeamByParam")
     public CommentPage<TeamVO> listTeamByParam(SearchTeamParam searchTeamParam,
-                                        @RequestParam(defaultValue = "1") Integer pageNum,
-                                        @RequestParam(defaultValue = "10") Integer pageSize) {
+                                               @RequestParam(defaultValue = "1") Integer pageNum,
+                                               @RequestParam(defaultValue = "10") Integer pageSize) {
         String name = searchTeamParam.getName();
         searchTeamParam.setName(MysqlEscapeUtils.escape(name));
         Page page = new Page(pageNum, pageSize);
         return indexService.listTeamByParam(searchTeamParam, page);
     }
+
+    @Override
+    @GetMapping("/student/{uid}")
+    public StudentVO showStudentInfo(@PathVariable Long uid) {
+        return indexService.showStudentPage(uid);
+    }
+
 
 
 }

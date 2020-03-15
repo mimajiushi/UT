@@ -21,6 +21,7 @@ import run.ut.app.service.UserInfoService;
 import run.ut.app.service.UserService;
 import run.ut.app.service.UserTagsService;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -48,6 +49,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public List<TagsDTO> saveUserTags(Long uid, String[] tagIds) throws Exception {
 
         UserInfo userInfo = userInfoService.getOneActivatedByUid(uid);
+
+        if (null == tagIds || tagIds.length < 1){
+            userTagsService.deleteByUid(uid);
+            userInfo.setTagIds("").setUpdateTime(null);
+            userInfoService.updateById(userInfo);
+            return new ArrayList<>();
+        }
+
+
         if (ObjectUtils.isEmpty(userInfo) || (userInfo.getStatus() != UserInfoStatusEnum.PASS)){
             throw new AuthenticationException("只有经过认证的用户才能设置标签！");
         }
