@@ -8,20 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
+import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.FileOperationException;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.handler.FileHandlers;
 import run.ut.app.mapper.TeamsMembersMapper;
 import run.ut.app.mapper.TeamsRecruitmentsMapper;
+import run.ut.app.mapper.UserTeamApplyLogMapper;
 import run.ut.app.model.domain.*;
 import run.ut.app.mapper.TeamsMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
+import run.ut.app.model.enums.ApplyModeEnum;
+import run.ut.app.model.enums.ApplyStatusEnum;
 import run.ut.app.model.enums.TeamsMemberEnum;
 import run.ut.app.model.enums.TeamsStatusEnum;
+import run.ut.app.model.param.TeamApplyOrInviteParam;
 import run.ut.app.model.param.TeamsParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.UploadResult;
@@ -56,6 +61,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
     private final TeamsTagsService teamsTagsService;
     private final TeamsRecruitmentsTagsService teamsRecruitmentsTagsService;
     private final TeamsRecruitmentsMapper teamsRecruitmentsMapper;
+    private final UserTeamApplyLogMapper userTeamApplyLogMapper;
 
     @Override
     @Transactional
@@ -207,6 +213,94 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
             return null;
         }
         return getById(teamsMembers.getTeamId());
+    }
+
+    @Override
+    public BaseResponse<String> userApplyToTeam(TeamApplyOrInviteParam teamApplyParam) {
+
+        UserTeamApplyLog userTeamApplyLog = teamApplyParam.convertTo();
+        userTeamApplyLog.setId(null);
+
+        Long uid = userTeamApplyLog.getUid();
+        Long teamId = userTeamApplyLog.getTeamId();
+        Long recruitmentId = userTeamApplyLog.getRecruitmentId();
+
+        // Verify that the user is already in the team
+        Integer count1 = teamsMembersMapper.selectCount(new QueryWrapper<TeamsMembers>()
+                .eq("uid", uid).eq("team_id", teamId));
+        if (count1 > 0){
+            throw new AlreadyExistsException("您已经是该团队的成员~");
+        }
+
+        Integer count = userTeamApplyLogMapper.selectCount(new QueryWrapper<UserTeamApplyLog>()
+                .eq("uid", uid).eq("team_id", teamId)
+                .eq("status", ApplyStatusEnum.WAITING.getType())
+                .eq("mode", ApplyModeEnum.USER_TO_TEAM.getType()));
+        if (count > 0){
+            throw new AlreadyExistsException("你已申请过该团队！不过仍处于审核阶段~, 还请耐心等候");
+        }
+
+        Teams teams = this.baseMapper.selectById(teamId);
+        if (ObjectUtils.isEmpty(teams)){
+            throw new NotFoundException("申请加入的团队不存在！");
+        }
+
+        if (recruitmentId != 0){
+            Integer count2 = teamsRecruitmentsMapper.selectCount(new QueryWrapper<TeamsRecruitments>()
+                    .eq("team_id", teamId).eq("id", recruitmentId));
+            if (count2 < 1){
+                throw new NotFoundException("申请的职位不存在！");
+            }
+        }
+
+        userTeamApplyLog.setMode(ApplyModeEnum.USER_TO_TEAM)
+                .setStatus(ApplyStatusEnum.WAITING);
+
+
+        // TODO send resume email
+
+        userTeamApplyLogMapper.insert(userTeamApplyLog);
+
+        return BaseResponse.ok("申请成功！请耐心等待审核");
+    }
+
+    @Override
+    public BaseResponse<String> teamInvitesUser(TeamApplyOrInviteParam teamInviteParam) {
+        UserTeamApplyLog userTeamApplyLog = teamInviteParam.convertTo();
+        userTeamApplyLog.setId(null);
+
+        Long uid = userTeamApplyLog.getUid();
+        Long teamId = userTeamApplyLog.getTeamId();
+        Long recruitmentId = userTeamApplyLog.getRecruitmentId();
+
+        // Verify that the user is already in the team
+        Integer count1 = teamsMembersMapper.selectCount(new QueryWrapper<TeamsMembers>()
+                .eq("uid", uid).eq("team_id", teamId));
+        if (count1 > 0){
+            throw new AlreadyExistsException("邀请者该团队的成员~");
+        }
+
+        Integer count = userTeamApplyLogMapper.selectCount(new QueryWrapper<UserTeamApplyLog>()
+                .eq("uid", uid).eq("team_id", teamId)
+                .eq("status", ApplyStatusEnum.WAITING.getType())
+                .eq("mode", ApplyModeEnum.TEAM_TO_USER.getType()));
+        if (count > 0){
+            throw new AlreadyExistsException("你已邀请过该用户！不过对方还在考虑~, 还请耐心等候");
+        }
+
+        if (recruitmentId != 0){
+            Integer count2 = teamsRecruitmentsMapper.selectCount(new QueryWrapper<TeamsRecruitments>()
+                    .eq("team_id", teamId).eq("id", recruitmentId));
+            if (count2 < 1){
+                throw new NotFoundException("邀请的职位不存在！");
+            }
+        }
+
+        userTeamApplyLog.setMode(ApplyModeEnum.TEAM_TO_USER)
+                .setStatus(ApplyStatusEnum.WAITING);
+        userTeamApplyLogMapper.insert(userTeamApplyLog);
+
+        return BaseResponse.ok("邀请成功！请耐心等待回应~");
     }
 
     @Override

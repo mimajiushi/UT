@@ -5,6 +5,7 @@ import run.ut.app.model.domain.Teams;
 import com.baomidou.mybatisplus.extension.service.IService;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
+import run.ut.app.model.param.TeamApplyOrInviteParam;
 import run.ut.app.model.param.TeamsParam;
 import run.ut.app.model.support.BaseResponse;
 
@@ -29,6 +30,10 @@ public interface TeamsService extends IService<Teams> {
     BaseResponse<String> updateTeamsLogo(MultipartFile logo, Long leaderId, Long teamsId);
 
     Teams getTeamByLeaderIdAndTeamId(Long leaderId, Long TeamsId);
+
+    BaseResponse<String> userApplyToTeam(TeamApplyOrInviteParam teamApplyParam);
+
+    BaseResponse<String> teamInvitesUser(TeamApplyOrInviteParam teamInviteParam);
 
     /**
      * Get team by leader's uid and team's id, if could not found team by uid, throw NotFoundException

@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
 import run.ut.app.model.dto.TeamsRecruitmentsDTO;
+import run.ut.app.model.param.TeamApplyOrInviteParam;
 import run.ut.app.model.param.TeamsParam;
 import run.ut.app.model.param.TeamsRecruitmentsParam;
 import run.ut.app.model.support.BaseResponse;
@@ -30,5 +31,11 @@ public interface TeamsControllerApi {
 
     @ApiOperation(value = "设置招聘职位的标签", notes = "需要登录（Token）验证，只有队长才能设置")
     public List<TagsDTO> saveTeamsRecruitmentsTags(String[] tagIds, Long TeamId, Long teamRecruitmentId);
+
+    @ApiOperation(value = "用户申请加入团队", notes = "需要登录（Token）验证，且必须通过认证")
+    public BaseResponse<String> userApplyToTeam(TeamApplyOrInviteParam teamApplyParam);
+
+    @ApiOperation(value = "团队邀请用户加入", notes = "需要登录（Token）验证、通过认证、队长身份才能操作")
+    public BaseResponse<String> teamInvitesUser(TeamApplyOrInviteParam teamInviteParam);
 
 }

@@ -18,6 +18,7 @@ import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
 import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.enums.TeamsStatusEnum;
+import run.ut.app.model.param.TeamApplyOrInviteParam;
 import run.ut.app.model.param.TeamsParam;
 import run.ut.app.model.param.TeamsRecruitmentsParam;
 import run.ut.app.model.support.BaseResponse;
@@ -93,6 +94,29 @@ public class TeamsController extends BaseController implements TeamsControllerAp
         checkUser(uid);
         teamsService.getAndCheckTeamByLeaderIdAndTeamId(uid, teamRecruitmentId);
         return teamsService.saveTeamsRecruitmentsTags(tagIds, teamRecruitmentId);
+    }
+
+    @Override
+    @PostMapping("userApplyToTeam")
+    @CheckLogin
+    public BaseResponse<String> userApplyToTeam(TeamApplyOrInviteParam teamApplyParam) {
+        Long uid = getUid();
+        checkUser(uid);
+        teamApplyParam.setUid(uid);
+        return teamsService.userApplyToTeam(teamApplyParam);
+    }
+
+    @Override
+    @PostMapping("teamInvitesUser")
+    @CheckLogin
+    public BaseResponse<String> teamInvitesUser(TeamApplyOrInviteParam teamInviteParam) {
+        Long leaderId = getUid();
+        teamsService.getAndCheckTeamByLeaderIdAndTeamId(leaderId, teamInviteParam.getTeamId());
+        UserInfo userInfo = userInfoService.getOneActivatedByUid(teamInviteParam.getUid());
+        if (ObjectUtils.isEmpty(userInfo)){
+            throw new AuthenticationException("只能邀请通过认证的用户！");
+        }
+        return teamsService.teamInvitesUser(teamInviteParam);
     }
 
     /**
