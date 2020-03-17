@@ -12,6 +12,7 @@ import org.springframework.util.ObjectUtils;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.mapper.TeamsMapper;
 import run.ut.app.mapper.TeamsMembersMapper;
+import run.ut.app.mapper.TeamsRecruitmentsMapper;
 import run.ut.app.mapper.UserMapper;
 import run.ut.app.model.domain.*;
 import run.ut.app.model.dto.TagsDTO;
@@ -20,6 +21,7 @@ import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.enums.TeamsStatusEnum;
 import run.ut.app.model.enums.UserRolesEnum;
+import run.ut.app.model.param.SearchRecruitmentParam;
 import run.ut.app.model.param.SearchStudentParam;
 import run.ut.app.model.param.SearchTeamParam;
 import run.ut.app.model.support.CommentPage;
@@ -49,6 +51,7 @@ public class IndexServiceImpl implements IndexService {
     private final TeamsTagsService teamsTagsService;
     private final TeamsMembersMapper teamsMembersMapper;
     private final TeamsRecruitmentsService teamsRecruitmentsService;
+    private final TeamsRecruitmentsMapper teamsRecruitmentsMapper;
     private final TeamsRecruitmentsTagsService teamsRecruitmentsTagsService;
 
     @Override
@@ -92,6 +95,25 @@ public class IndexServiceImpl implements IndexService {
             }
         }
         return new CommentPage<>(teamsPage.getTotal(), teamVOList);
+    }
+
+    @Override
+    public CommentPage<TeamsRecruitmentsVO> listRecruitmentByParam(SearchRecruitmentParam searchRecruitmentParam, Page page) {
+        IPage<TeamsRecruitmentsVO> teamsRecruitmentsVOIPage = teamsRecruitmentsMapper.listRecruitmentByParam(page, searchRecruitmentParam);
+        long total = teamsRecruitmentsVOIPage.getTotal();
+
+        List<TeamsRecruitmentsVO> records = teamsRecruitmentsVOIPage.getRecords();
+        for (int i = 0; i < records.size(); i++){
+            TeamsRecruitmentsVO teamsRecruitmentsVO = records.get(i);
+            String tagIds = teamsRecruitmentsVO.getTagIds();
+            if (!StringUtils.isBlank(tagIds)){
+                List<TagsDTO> tagsDTOList = tagsService.listByIds(Arrays.asList(tagIds.split(","))).stream().map(e -> {
+                    return (TagsDTO) new TagsDTO().convertFrom(e);
+                }).collect(Collectors.toList());
+                teamsRecruitmentsVO.setTags(tagsDTOList);
+            }
+        }
+        return new CommentPage<>(total, records);
     }
 
     @Override

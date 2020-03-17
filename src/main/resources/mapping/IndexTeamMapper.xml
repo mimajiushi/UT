@@ -30,7 +30,7 @@
             and te.deleted = 0
         </where>
 	    group by te.id
-	    order by create_time desc
+	    order by te.create_time desc
     </select>
 
 </mapper>

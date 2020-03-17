@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.IndexControllerApi;
+import run.ut.app.model.enums.TeamsStatusEnum;
+import run.ut.app.model.param.SearchRecruitmentParam;
 import run.ut.app.model.param.SearchStudentParam;
 import run.ut.app.model.param.SearchTeamParam;
 import run.ut.app.model.support.CommentPage;
@@ -45,6 +47,16 @@ public class IndexController implements IndexControllerApi {
         searchTeamParam.setName(MysqlEscapeUtils.escape(name));
         Page page = new Page(pageNum, pageSize);
         return indexService.listTeamByParam(searchTeamParam, page);
+    }
+
+    @Override
+    @GetMapping("listRecruitmentByParam")
+    public CommentPage<TeamsRecruitmentsVO> listRecruitmentByParam(SearchRecruitmentParam searchRecruitmentParam,
+                                                                   @RequestParam(defaultValue = "1") Integer pageNum,
+                                                                   @RequestParam(defaultValue = "10") Integer pageSize) {
+        Page page = new Page(pageNum, pageSize);
+        searchRecruitmentParam.setStatus(TeamsStatusEnum.PUBLIC.getType());
+        return indexService.listRecruitmentByParam(searchRecruitmentParam, page);
     }
 
     @Override

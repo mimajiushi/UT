@@ -2,6 +2,7 @@ package run.ut.app.api;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import run.ut.app.model.param.SearchRecruitmentParam;
 import run.ut.app.model.param.SearchStudentParam;
 import run.ut.app.model.param.SearchTeamParam;
 import run.ut.app.model.support.CommentPage;
@@ -20,6 +21,9 @@ public interface IndexControllerApi {
 
     @ApiOperation(value = "获取首页的团队列表（找团队）")
     public CommentPage<TeamVO> listTeamByParam(SearchTeamParam searchTeamParam, Integer pageNum, Integer pageSize);
+
+    @ApiOperation(value = "获取职位列表")
+    public CommentPage<TeamsRecruitmentsVO> listRecruitmentByParam(SearchRecruitmentParam searchRecruitmentParam, Integer pageNum, Integer pageSize);
 
     @ApiOperation(value = "学生展示给别人看的主页", notes = "非自己看自己的个人主页，不包含手机号等敏感信息")
     public StudentVO showStudentInfo(Long uid);

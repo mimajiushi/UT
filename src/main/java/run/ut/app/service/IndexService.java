@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.PathVariable;
+import run.ut.app.model.param.SearchRecruitmentParam;
 import run.ut.app.model.param.SearchStudentParam;
 import run.ut.app.model.param.SearchTeamParam;
 import run.ut.app.model.support.CommentPage;
@@ -31,6 +32,12 @@ public interface IndexService {
      */
     @NonNull
     CommentPage<TeamVO> listTeamByParam(@NonNull SearchTeamParam searchTeamParam, @NonNull Page page);
+
+    /**
+     * list recruitments by param
+     * @return recruitment vo list
+     */
+    CommentPage<TeamsRecruitmentsVO> listRecruitmentByParam(@NonNull SearchRecruitmentParam searchRecruitmentParam, @NonNull Page page);
 
     /**
      * @return Student's non-private information

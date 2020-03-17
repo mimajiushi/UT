@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="run.ut.app.mapper.TeamsRecruitmentsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="resMap" type="run.ut.app.model.vo.TeamsRecruitmentsVO">
+        <result column="id" property="id" />
+        <result column="team_id" property="teamId" />
+        <result column="name" property="name" />
+        <result column="tag_ids" property="tagIds" />
+        <result column="description" property="description" />
+        <result column="team_name" property="teamName" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+    
+    <select id="listRecruitmentByParam" resultMap="resMap">
+            select tr.id, tr.team_id, tr.tag_ids, tr.`name`, tr.description, tr.create_time, t.`name` team_name
+                from (teams_recruitments tr, teams_recruitments_tags trt)
+                    inner join teams t on t.id = tr.team_id
+                <where>
+                    1=1
+                    <if test="srp.name!=null">
+                        and instr(tr.`name`, #{srp.name}) > 0
+                    </if>
+                    <if test="srp.tagId!=null">
+                        and tr.id = trt.team_recruitment_id  and trt.tag_id = #{srp.tagId}
+                    </if>
+                    <if test="srp.status!=null">
+                        and t.`status` = #{srp.status}
+                    </if>
+                </where>
+                group by tr.id
+                order by tr.create_time desc
+    </select>
+
+
+</mapper>

@@ -4,6 +4,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+/**
+ * @author wenjie
+ */
+
 @Data
 @ApiModel(description="查询学生list的参数")
 public class SearchStudentParam {
