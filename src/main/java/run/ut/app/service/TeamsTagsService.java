@@ -1,5 +1,6 @@
 package run.ut.app.service;
 
+import org.springframework.lang.NonNull;
 import run.ut.app.model.domain.Tags;
 import run.ut.app.model.domain.TeamsTags;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -16,7 +17,8 @@ import java.util.List;
  */
 public interface TeamsTagsService extends IService<TeamsTags> {
 
-    List<Tags> listByTeamsId(Long teamsId);
+    @NonNull
+    List<Tags> listByTeamsId(@NonNull Long teamsId);
 
-    void deleteByTeamsId(Long teamsId);
+    void deleteByTeamsId(@NonNull Long teamsId);
 }

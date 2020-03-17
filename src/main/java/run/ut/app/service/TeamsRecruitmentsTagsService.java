@@ -1,5 +1,6 @@
 package run.ut.app.service;
 
+import org.springframework.lang.NonNull;
 import run.ut.app.model.domain.Tags;
 import run.ut.app.model.domain.TeamsRecruitmentsTags;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -16,7 +17,9 @@ import java.util.List;
  */
 public interface TeamsRecruitmentsTagsService extends IService<TeamsRecruitmentsTags> {
 
-    List<Tags> listByTeamsRecruitmentsId(Long teamRecruitmentId);
+    @NonNull
+    List<Tags> listByTeamsRecruitmentsId(@NonNull Long teamRecruitmentId);
 
-    void deleteByTeamsRecruitmentsId(Long teamRecruitmentId);
+    @NonNull
+    void deleteByTeamsRecruitmentsId(@NonNull Long teamRecruitmentId);
 }

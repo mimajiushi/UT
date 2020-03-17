@@ -1,5 +1,6 @@
 package run.ut.app.service;
 
+import org.springframework.lang.NonNull;
 import run.ut.app.model.domain.TeamsRecruitments;
 import com.baomidou.mybatisplus.extension.service.IService;
 import run.ut.app.model.dto.TeamsRecruitmentsDTO;
@@ -18,8 +19,9 @@ import java.util.List;
  */
 public interface TeamsRecruitmentsService extends IService<TeamsRecruitments> {
 
-    BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(TeamsRecruitmentsParam teamsRecruitmentsParam);
+    @NonNull
+    BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(@NonNull TeamsRecruitmentsParam teamsRecruitmentsParam);
 
-    List<TeamsRecruitments> listTeamsRecruitmentsByTeamsId(Long teamsId);
+    List<TeamsRecruitments> listTeamsRecruitmentsByTeamsId(@NonNull Long teamsId);
 
 }

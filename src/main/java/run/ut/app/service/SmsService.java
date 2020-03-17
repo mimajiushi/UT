@@ -1,6 +1,7 @@
 package run.ut.app.service;
 
 
+import org.springframework.lang.NonNull;
 
 /**
  * SMS service
@@ -13,12 +14,12 @@ public interface SmsService {
      * @param tel phone number
      * @param code Verification code
      */
-    void sendCode(String tel, String code);
+    void sendCode(@NonNull String tel, @NonNull String code);
 
     /**
      * check verification code
      * @param tel phone number
      * @param code Verification code
      */
-    void checkCode(String tel, String code);
+    void checkCode(@NonNull String tel, @NonNull String code);
 }

@@ -1,5 +1,7 @@
 package run.ut.app.service;
 
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.model.domain.Teams;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -21,24 +23,32 @@ import java.util.List;
  */
 public interface TeamsService extends IService<Teams> {
 
-    TeamsDTO createTeam(TeamsParam teamsParam, Long leaderId, MultipartFile logo);
+    @NonNull
+    TeamsDTO createTeam(@NonNull TeamsParam teamsParam, @NonNull Long leaderId, @NonNull MultipartFile logo);
 
-    List<TagsDTO> saveTeamsTags(String[] tagIds, Long leaderId, Long teamsId);
+    @NonNull
+    List<TagsDTO> saveTeamsTags(String[] tagIds, @NonNull Long leaderId, @NonNull Long teamsId);
 
-    List<TagsDTO> saveTeamsRecruitmentsTags(String[] tagIds, Long teamRecruitmentId);
+    @NonNull
+    List<TagsDTO> saveTeamsRecruitmentsTags(@Nullable String[] tagIds, @NonNull Long teamRecruitmentId);
 
-    BaseResponse<String> updateTeamsLogo(MultipartFile logo, Long leaderId, Long teamsId);
+    @NonNull
+    BaseResponse<String> updateTeamsLogo(@NonNull MultipartFile logo, @NonNull Long leaderId, @NonNull Long teamsId);
 
-    Teams getTeamByLeaderIdAndTeamId(Long leaderId, Long TeamsId);
+    @NonNull
+    Teams getTeamByLeaderIdAndTeamId(@NonNull Long leaderId, @NonNull Long TeamsId);
 
-    BaseResponse<String> userApplyToTeam(TeamApplyOrInviteParam teamApplyParam);
+    @NonNull
+    BaseResponse<String> userApplyToTeam(@NonNull TeamApplyOrInviteParam teamApplyParam);
 
-    BaseResponse<String> teamInvitesUser(TeamApplyOrInviteParam teamInviteParam);
+    @NonNull
+    BaseResponse<String> teamInvitesUser(@NonNull TeamApplyOrInviteParam teamInviteParam);
 
     /**
      * Get team by leader's uid and team's id, if could not found team by uid, throw NotFoundException
      * @param leaderId leader's uid
      */
-    Teams getAndCheckTeamByLeaderIdAndTeamId(Long leaderId, Long TeamsId);
+    @NonNull
+    Teams getAndCheckTeamByLeaderIdAndTeamId(@NonNull Long leaderId, @NonNull Long TeamsId);
 
 }

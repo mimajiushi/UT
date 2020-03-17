@@ -8,6 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+import run.ut.app.exception.NotFoundException;
 import run.ut.app.mapper.TeamsMapper;
 import run.ut.app.mapper.TeamsMembersMapper;
 import run.ut.app.mapper.UserMapper;
@@ -16,6 +18,7 @@ import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
 import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
+import run.ut.app.model.enums.TeamsStatusEnum;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.SearchStudentParam;
 import run.ut.app.model.param.SearchTeamParam;
@@ -23,6 +26,7 @@ import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.model.vo.TeamMemberVO;
 import run.ut.app.model.vo.TeamVO;
+import run.ut.app.model.vo.TeamsRecruitmentsVO;
 import run.ut.app.service.*;
 
 import java.util.ArrayList;
@@ -45,6 +49,7 @@ public class IndexServiceImpl implements IndexService {
     private final TeamsTagsService teamsTagsService;
     private final TeamsMembersMapper teamsMembersMapper;
     private final TeamsRecruitmentsService teamsRecruitmentsService;
+    private final TeamsRecruitmentsTagsService teamsRecruitmentsTagsService;
 
     @Override
     public CommentPage<StudentVO> listStudentByParam(SearchStudentParam searchStudentParam, Page page) {
@@ -71,6 +76,9 @@ public class IndexServiceImpl implements IndexService {
 
     @Override
     public CommentPage<TeamVO> listTeamByParam(SearchTeamParam searchTeamParam, Page page) {
+        if (StringUtils.isAllBlank(searchTeamParam.getName(), searchTeamParam.getTagId()+"")){
+            searchTeamParam.setStatus(TeamsStatusEnum.PUBLIC.getType());
+        }
         IPage<TeamVO> teamsPage = teamsMapper.listTeamByParam(page, searchTeamParam);
         List<TeamVO> teamVOList = teamsPage.getRecords();
         for (int i = 0; i < teamVOList.size(); i++){
@@ -89,6 +97,9 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public StudentVO showStudentPage(Long uid) {
         User user = userMapper.selectById(uid);
+        if (ObjectUtils.isEmpty(user)){
+            throw new NotFoundException("该id的用户不存在！");
+        }
         UserInfo userInfo = userInfoService.getOneActivatedByUid(uid);
         List<TagsDTO> tagsDTOList = userTagsService.listByUid(uid)
                 .stream().map(e -> (TagsDTO) new TagsDTO().convertFrom(e)).collect(Collectors.toList());
@@ -118,6 +129,9 @@ public class IndexServiceImpl implements IndexService {
 
         // Basic info of the team
         Teams team = teamsMapper.selectById(teamsId);
+        if (ObjectUtils.isEmpty(team)){
+            throw new NotFoundException("该id的团队不存在！");
+        }
         BeanUtils.copyProperties(team, teamVO);
 
         // Get tags
@@ -137,5 +151,25 @@ public class IndexServiceImpl implements IndexService {
         return teamVO;
     }
 
+    @Override
+    public TeamsRecruitmentsVO showRecruitmentsInfo(Long recruitmentsId) {
+        TeamsRecruitments recruitment = teamsRecruitmentsService.getById(recruitmentsId);
+        if (ObjectUtils.isEmpty(recruitment)){
+            throw new NotFoundException("该id的职位不存在！");
+        }
+
+        TeamsRecruitmentsVO teamsRecruitmentsVO = new TeamsRecruitmentsVO().convertFrom(recruitment);
+
+        // Get tags
+        List<TagsDTO> tags = teamsRecruitmentsTagsService.listByTeamsRecruitmentsId(recruitmentsId)
+                .stream().map(e -> (TagsDTO) new TagsDTO().convertFrom(e)).collect(Collectors.toList());
+        teamsRecruitmentsVO.setTags(tags);
+
+        // Get info about the team
+        Teams teams = teamsMapper.selectById(recruitment.getTeamId());
+        teamsRecruitmentsVO.setTeamVO(new TeamVO().convertFrom(teams));
+
+        return teamsRecruitmentsVO;
+    }
 
 }

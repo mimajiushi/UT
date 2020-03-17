@@ -1,6 +1,8 @@
 package run.ut.app.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.model.domain.UserInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -21,13 +23,17 @@ import java.util.List;
  */
 public interface UserInfoService extends IService<UserInfo> {
 
-    BaseResponse<UserInfoDTO> applyForCertification(UserInfoParam userInfoParam,
-                                                    MultipartFile credentialsPhotoFront,
-                                                    MultipartFile credentialsPhotoReverse);
+    @NonNull
+    BaseResponse<UserInfoDTO> applyForCertification(@NonNull UserInfoParam userInfoParam,
+                                                    @NonNull MultipartFile credentialsPhotoFront,
+                                                    @NonNull MultipartFile credentialsPhotoReverse);
 
-    UserInfo getOneActivatedByUid(Long uid);
+    @NonNull
+    UserInfo getOneActivatedByUid(@NonNull Long uid);
 
-    BaseResponse<String> verifyUserInfo(Integer id, Integer status, String reason);
+    @NonNull
+    BaseResponse<String> verifyUserInfo(@NonNull Integer id, @NonNull Integer status, @Nullable String reason);
 
-    CommentPage<UserInfoDTO> listUserInfoByParam(UserInfoParam userInfoParam, Page<UserInfo> page);
+    @NonNull
+    CommentPage<UserInfoDTO> listUserInfoByParam(@NonNull UserInfoParam userInfoParam, @NonNull Page<UserInfo> page);
 }

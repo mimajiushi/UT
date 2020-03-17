@@ -11,6 +11,7 @@ import run.ut.app.model.param.SearchTeamParam;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.model.vo.TeamVO;
+import run.ut.app.model.vo.TeamsRecruitmentsVO;
 import run.ut.app.service.IndexService;
 import run.ut.app.utils.MysqlEscapeUtils;
 
@@ -47,15 +48,21 @@ public class IndexController implements IndexControllerApi {
     }
 
     @Override
-    @GetMapping("/student/{uid}")
+    @GetMapping("/student/{uid:\\d+}")
     public StudentVO showStudentInfo(@PathVariable Long uid) {
         return indexService.showStudentPage(uid);
     }
 
     @Override
-    @GetMapping("/team/{teamsId}")
+    @GetMapping("/team/{teamsId:\\d+}")
     public TeamVO showTeamsInfo(@PathVariable Long teamsId) {
         return indexService.showTeamsInfo(teamsId);
+    }
+
+    @Override
+    @GetMapping("/recruitment/{recruitmentsId:\\d+}")
+    public TeamsRecruitmentsVO showRecruitmentsInfo(@PathVariable Long recruitmentsId) {
+        return indexService.showRecruitmentsInfo(recruitmentsId);
     }
 
 

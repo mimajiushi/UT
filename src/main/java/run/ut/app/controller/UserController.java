@@ -121,10 +121,6 @@ public class UserController extends BaseController implements UserControllerApi 
     @CheckLogin
     public List<TagsDTO> saveUserTags(String[] tagIds) throws Exception {
 
-        for (String tagId : tagIds) {
-            Assert.hasText(tagId, "tagId must be not blank");
-        }
-
         long uid = Long.parseLong(request.getAttribute("uid")+"");
 
         return userService.saveUserTags(uid, tagIds);

@@ -7,6 +7,7 @@ import run.ut.app.model.param.SearchTeamParam;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.model.vo.TeamVO;
+import run.ut.app.model.vo.TeamsRecruitmentsVO;
 
 import java.util.List;
 
@@ -26,4 +27,6 @@ public interface IndexControllerApi {
     @ApiOperation(value = "团队展示给别人看的主页", notes = "包含成员信息、团队经历、团队标签等")
     public TeamVO showTeamsInfo(Long teamsId);
 
+    @ApiOperation(value = "展示招聘职位详情", notes = "包含职位所属团队，职位描述，职位标签等信息")
+    public TeamsRecruitmentsVO showRecruitmentsInfo(Long recruitmentsId);
 }

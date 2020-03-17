@@ -1,5 +1,6 @@
 package run.ut.app.service;
 
+import org.springframework.lang.NonNull;
 import run.ut.app.model.domain.UserExperiences;
 import com.baomidou.mybatisplus.extension.service.IService;
 import run.ut.app.model.dto.UserExperiencesDTO;
@@ -22,17 +23,20 @@ public interface UserExperiencesService extends IService<UserExperiences> {
     /**
      * insert or update user's experiences
      */
-    UserExperiencesDTO saveUserExperiences(UserExperiencesParam userExperiencesParam);
+    @NonNull
+    UserExperiencesDTO saveUserExperiences(@NonNull UserExperiencesParam userExperiencesParam);
 
     /**
      * delete user's experience
      */
-    BaseResponse<String> deleteUserExperiences(Long uid, String id);
+    @NonNull
+    BaseResponse<String> deleteUserExperiences(@NonNull Long uid, @NonNull String id);
 
     /**
      * get user's experiences list by uid
      */
-    List<UserExperiences> getUserExperiencesByUid(Long uid);
+    @NonNull
+    List<UserExperiences> getUserExperiencesByUid(@NonNull Long uid);
 
 
 }

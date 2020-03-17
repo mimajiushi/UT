@@ -19,12 +19,15 @@
 	    <where>
             1=1
             <if test="stp.name!=null and stp.name!=''">
-                and instr(te.`name`, 'u') > 0
+                and instr(te.`name`, #{stp.name}) > 0
             </if>
             <if test="stp.tagId!=null">
                 and te.id = tet.team_id and tet.tag_id = #{stp.tagId}
             </if>
-            and te.`status` = 1 and te.deleted = 0
+            <if test="stp.status!=null">
+                and te.`status` = #{stp.status}
+            </if>
+            and te.deleted = 0
         </where>
 	    group by te.id
 	    order by create_time desc

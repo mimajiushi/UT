@@ -24,13 +24,15 @@ public interface TagsService extends IService<Tags> {
      * @param tagsParam tags param
      * @return success message and dto
      */
-    public BaseResponse<TagsDTO> saveTag(TagsParam tagsParam);
+    @NonNull
+    public BaseResponse<TagsDTO> saveTag(@NonNull TagsParam tagsParam);
 
     /**
      * Get child tags, if parentId == 0, get top-level tags
      * @param parentId tag's parentId
      * @return list collection for TagsDTO
      */
+    @NonNull
     public List<TagsDTO> listTagsByParentId(@NonNull Integer parentId);
 
 }

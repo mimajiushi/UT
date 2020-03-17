@@ -1,5 +1,6 @@
 package run.ut.app.service;
 
+import org.springframework.lang.NonNull;
 import run.ut.app.model.domain.Tags;
 import run.ut.app.model.domain.UserTags;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -17,8 +18,9 @@ import java.util.List;
  */
 public interface UserTagsService extends IService<UserTags> {
 
-    public List<Tags> listByUid(Long uid);
+    @NonNull
+    public List<Tags> listByUid(@NonNull Long uid);
 
-    public void deleteByUid(Long uid);
+    public void deleteByUid(@NonNull Long uid);
 
 }
