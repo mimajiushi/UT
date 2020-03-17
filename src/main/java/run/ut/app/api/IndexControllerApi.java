@@ -6,6 +6,7 @@ import run.ut.app.model.param.SearchRecruitmentParam;
 import run.ut.app.model.param.SearchStudentParam;
 import run.ut.app.model.param.SearchTeamParam;
 import run.ut.app.model.support.CommentPage;
+import run.ut.app.model.vo.ApplyOrInviteMsgVO;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.model.vo.TeamVO;
 import run.ut.app.model.vo.TeamsRecruitmentsVO;

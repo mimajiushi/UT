@@ -11,6 +11,8 @@ import run.ut.app.model.param.TeamApplyOrInviteParam;
 import run.ut.app.model.param.TeamsParam;
 import run.ut.app.model.param.TeamsRecruitmentsParam;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.support.CommentPage;
+import run.ut.app.model.vo.ApplyOrInviteMsgVO;
 
 import java.util.List;
 
@@ -37,5 +39,17 @@ public interface TeamsControllerApi {
 
     @ApiOperation(value = "团队邀请用户加入", notes = "需要登录（Token）验证、通过认证、队长身份才能操作")
     public BaseResponse<String> teamInvitesUser(TeamApplyOrInviteParam teamInviteParam);
+
+    @ApiOperation(value = "获取用户历史申请的列表", notes = "需要用户登录（Token）")
+    public CommentPage<ApplyOrInviteMsgVO> listUserApplyMsg(Integer pageNum, Integer pageSize, Integer status);
+
+    @ApiOperation(value = "获取用户收到的列表", notes = "需要用户登录（Token）")
+    public CommentPage<ApplyOrInviteMsgVO> listUserInviteMsg(Integer pageNum, Integer pageSize, Integer status);
+
+    @ApiOperation(value = "获取团队收到的申请列表", notes = "需要用户登录（Token）,必须是队长身份")
+    public CommentPage listTeamApplyMsg(Integer pageNum, Integer pageSize, Integer status);
+
+    @ApiOperation(value = "获取团队历史邀请列表", notes = "需要用户登录（Token）, 必须是队长身份")
+    public CommentPage<ApplyOrInviteMsgVO> listTeamInviteMsg(Integer pageNum, Integer pageSize, Integer status);
 
 }

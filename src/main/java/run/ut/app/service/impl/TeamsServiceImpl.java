@@ -311,4 +311,17 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         }
         return team;
     }
+
+    @Override
+    public List<Long> getTeamIdsByLeaderId(Long leaderId){
+        List<TeamsMembers> teamsMembers = teamsMembersMapper.selectList(new QueryWrapper<TeamsMembers>()
+                .select("team_id")
+                .eq("uid", leaderId)
+                .eq("is_leader", TeamsMemberEnum.LEADER.getType()));
+        List<Long> teamIds = new ArrayList<>();
+        for (TeamsMembers teamsMember : teamsMembers) {
+            teamIds.add(teamsMember.getTeamId());
+        }
+        return teamIds;
+    }
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,4 +21,7 @@ public class CommentPage<T> {
 
     private List<T> rows;
 
+    public static <T> CommentPage<T> emptyPage(){
+        return new CommentPage<>(0, new ArrayList<>());
+    }
 }

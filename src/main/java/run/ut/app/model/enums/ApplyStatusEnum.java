@@ -13,9 +13,9 @@ import java.util.Arrays;
  */
 @Getter
 public enum ApplyStatusEnum implements IEnum<Integer> {
-    PASS(1 , "审核通过"),
-    WAITING(0, "审核中"),
-    FAIL(-1, "审核不通过");
+    PASS(1 , "同意"),
+    WAITING(0, "处理中"),
+    FAIL(-1, "拒绝");
 
     private int type;
 
