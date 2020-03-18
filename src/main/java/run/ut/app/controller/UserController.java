@@ -119,7 +119,7 @@ public class UserController extends BaseController implements UserControllerApi 
     @Override
     @PostMapping("saveUserTags")
     @CheckLogin
-    public List<TagsDTO> saveUserTags(String[] tagIds) throws Exception {
+    public List<TagsDTO> saveUserTags(@RequestBody String[] tagIds) throws Exception {
 
         long uid = Long.parseLong(request.getAttribute("uid")+"");
 

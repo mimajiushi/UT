@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
 import run.ut.app.model.dto.TeamsRecruitmentsDTO;
+import run.ut.app.model.param.DealInvitationOrApplyParam;
 import run.ut.app.model.param.TeamApplyOrInviteParam;
 import run.ut.app.model.param.TeamsParam;
 import run.ut.app.model.param.TeamsRecruitmentsParam;
@@ -51,5 +52,11 @@ public interface TeamsControllerApi {
 
     @ApiOperation(value = "获取团队历史邀请列表", notes = "需要用户登录（Token）, 必须是队长身份")
     public CommentPage<ApplyOrInviteMsgVO> listTeamInviteMsg(Integer pageNum, Integer pageSize, Integer status);
+
+    @ApiOperation(value = "用户处理团队发送给自己的邀请", notes = "需要用户登录（Token）")
+    public BaseResponse<String> userDealWithInvitation(DealInvitationOrApplyParam param);
+
+    @ApiOperation(value = "队长处理收到的用户申请（加入团队的申请）", notes = "需要队长登录Token")
+    public BaseResponse<String> teamDealWithApplication(DealInvitationOrApplyParam param);
 
 }

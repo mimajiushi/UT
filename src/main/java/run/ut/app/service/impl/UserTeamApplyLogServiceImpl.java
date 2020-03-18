@@ -1,18 +1,34 @@
 package run.ut.app.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import run.ut.app.exception.AlreadyExistsException;
+import run.ut.app.exception.AuthenticationException;
+import run.ut.app.exception.BadRequestException;
+import run.ut.app.model.domain.TeamsMembers;
 import run.ut.app.model.domain.UserTeamApplyLog;
 import run.ut.app.mapper.UserTeamApplyLogMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import run.ut.app.model.enums.ApplyModeEnum;
+import run.ut.app.model.enums.ApplyStatusEnum;
+import run.ut.app.model.enums.TeamsMemberEnum;
+import run.ut.app.model.param.DealInvitationOrApplyParam;
+import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.ApplyOrInviteMsgVO;
 import run.ut.app.service.UserTeamApplyLogService;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,6 +45,7 @@ import java.util.List;
 public class UserTeamApplyLogServiceImpl extends ServiceImpl<UserTeamApplyLogMapper, UserTeamApplyLog> implements UserTeamApplyLogService {
 
     private final UserTeamApplyLogMapper userTeamApplyLogMapper;
+    private final TeamsMembersServiceImpl teamsMembersService;
 
     @Override
     public CommentPage<ApplyOrInviteMsgVO> listUserApplyMsg(Long uid, Integer status, Page page) {
@@ -65,6 +82,99 @@ public class UserTeamApplyLogServiceImpl extends ServiceImpl<UserTeamApplyLogMap
         fillRecruitmentName(records);
         return new CommentPage<>(total, records);
     }
+
+    @Override
+    @Transactional
+    public BaseResponse<String> userDealWithInvitation(Long uid, DealInvitationOrApplyParam param) {
+        Long[] ids = param.getIds();
+        String reason = param.getReason();
+        Integer status = param.getStatus();
+        ApplyStatusEnum statusEnum = ApplyStatusEnum.getByType(status);
+        // check ids
+        List<UserTeamApplyLog> userTeamApplyLogs = this.baseMapper.selectList(new QueryWrapper<UserTeamApplyLog>()
+                .in("id", Arrays.asList(ids))
+                .eq("mode", ApplyModeEnum.TEAM_TO_USER.getType())
+                .eq("status", ApplyStatusEnum.WAITING.getType()));
+        if (userTeamApplyLogs.size() != ids.length){
+            throw new BadRequestException("ids参数有误");
+        }
+
+        List<TeamsMembers> teamsMembers = new ArrayList<>(ids.length);
+
+        // check team's member
+        for (int i = 0; i < userTeamApplyLogs.size(); i++){
+            UserTeamApplyLog userTeamApplyLog = userTeamApplyLogs.get(i);
+            Long teamId = userTeamApplyLog.getTeamId();
+            Integer count = teamsMembersService.countByUid(uid, teamId);
+            checkAndSetMember(reason, statusEnum, teamsMembers, userTeamApplyLog, count);
+        }
+
+        // save
+        updateBatchById(userTeamApplyLogs);
+        teamsMembersService.saveBatch(teamsMembers);
+        return BaseResponse.ok("处理完成，处理结果：" + statusEnum.getName());
+    }
+
+    @Override
+    @Transactional
+    public BaseResponse<String> teamDealWithApplication(Long leaderId, DealInvitationOrApplyParam param) {
+        Long[] ids = param.getIds();
+        String reason = param.getReason();
+        Integer status = param.getStatus();
+        ApplyStatusEnum statusEnum = ApplyStatusEnum.getByType(status);
+
+        // check ids
+        List<UserTeamApplyLog> userTeamApplyLogs = this.baseMapper.selectList(new QueryWrapper<UserTeamApplyLog>()
+                .in("id", Arrays.asList(ids))
+                .eq("mode", ApplyModeEnum.USER_TO_TEAM.getType())
+                .eq("status", ApplyStatusEnum.WAITING.getType()));
+        if (userTeamApplyLogs.size() != ids.length){
+            throw new BadRequestException("ids参数有误");
+        }
+
+        // check leader
+        for (UserTeamApplyLog userTeamApplyLog : userTeamApplyLogs) {
+            Long teamId = userTeamApplyLog.getTeamId();
+            Integer count1 = teamsMembersService.countByLeaderId(leaderId, teamId);
+            if (count1 < 1){
+                throw new AuthenticationException("对不起，你没有操作权限！");
+            }
+        }
+
+        List<TeamsMembers> teamsMembers = new ArrayList<>(ids.length);
+
+        // check team's member
+        for (int i = 0; i < userTeamApplyLogs.size(); i++){
+            UserTeamApplyLog userTeamApplyLog = userTeamApplyLogs.get(i);
+            Long teamId = userTeamApplyLog.getTeamId();
+            Long uid = userTeamApplyLog.getUid();
+            Integer count = teamsMembersService.countByUid(uid, teamId);
+            checkAndSetMember(reason, statusEnum, teamsMembers, userTeamApplyLog, count);
+        }
+
+        // save
+        updateBatchById(userTeamApplyLogs);
+        teamsMembersService.saveBatch(teamsMembers);
+        return BaseResponse.ok("处理完成，处理结果：" + statusEnum.getName());
+    }
+
+    private void checkAndSetMember(String reason, ApplyStatusEnum statusEnum, List<TeamsMembers> teamsMembers, UserTeamApplyLog userTeamApplyLog, Integer count) {
+        if (count > 0 && statusEnum == ApplyStatusEnum.PASS){
+            throw new AlreadyExistsException("接受的邀请中有已加入的团队！");
+        }else if (statusEnum == ApplyStatusEnum.FAIL){
+            userTeamApplyLog.setReason(reason)
+                    .setStatus(ApplyStatusEnum.FAIL)
+                    .setUpdateTime(null);
+        }else {
+            // when == ApplyStatusEnum.PASS or count = 0
+            userTeamApplyLog.setStatus(ApplyStatusEnum.PASS).setUpdateTime(null);
+            TeamsMembers teamsMember = new TeamsMembers().setTeamId(userTeamApplyLog.getTeamId()).
+                    setUid(userTeamApplyLog.getUid()).
+                    setIsLeader(TeamsMemberEnum.NORMAL);
+            teamsMembers.add(teamsMember);
+        }
+    }
+
 
     private void fillRecruitmentName(List<ApplyOrInviteMsgVO> applyOrInviteMsgVOList){
         for(int i = 0; i < applyOrInviteMsgVOList.size(); i++){

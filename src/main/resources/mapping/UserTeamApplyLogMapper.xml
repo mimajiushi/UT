@@ -25,12 +25,13 @@
         <result column="recruitment_name" property="recruitmentName" />
         <result column="status" property="status" />
         <result column="reason" property="reason" />
-        <result column="createTime" property="createTime" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
     <!--这里可以合并成两条动态sql，我不合并的原因是方便前端,如果实在觉得难看，以后会改-->
     <select id="listUserApplyMsg" resultMap="applyOrInviteMsgVO">
-        select utal.id, utal.uid, utal.`status`, utal.reason, utal.recruitment_id, tr.`name` recruitment_name, t.id team_id, t.`name` team_name
+        select utal.id, utal.uid, utal.`status`, utal.reason, utal.recruitment_id, tr.`name` recruitment_name, t.id team_id, t.`name` team_name, utal.create_time, utal.update_time
             from user_team_apply_log utal
                 inner join teams t on t.id = utal.team_id
                 left join teams_recruitments tr on (tr.id = utal.recruitment_id and tr.team_id = t.id)
@@ -45,7 +46,7 @@
     </select>
 
     <select id="listUserInviteMsg" resultMap="applyOrInviteMsgVO">
-        select utal.id, utal.uid, utal.`status`, utal.reason, utal.recruitment_id, tr.`name` recruitment_name, t.id team_id, t.`name` team_name
+        select utal.id, utal.uid, utal.`status`, utal.reason, utal.recruitment_id, tr.`name` recruitment_name, t.id team_id, t.`name` team_name, utal.create_time, utal.update_time
             from user_team_apply_log utal
                 inner join teams t on t.id = utal.team_id
                 left join teams_recruitments tr on (tr.id = utal.recruitment_id and tr.team_id = t.id)
@@ -60,7 +61,7 @@
     </select>
 
     <select id="listTeamApplyMsg" resultMap="applyOrInviteMsgVO">
-        select utal.id, utal.uid, utal.`status`, utal.reason, utal.recruitment_id, tr.`name` recruitment_name, u.nickname
+        select utal.id, utal.uid, utal.`status`, utal.reason, utal.recruitment_id, tr.`name` recruitment_name, u.nickname, utal.create_time, utal.update_time
             from user_team_apply_log utal
                 left join teams_recruitments tr on utal.recruitment_id = tr.id
                 inner join `user` u on u.uid = utal.uid
@@ -79,7 +80,7 @@
     </select>
 
     <select id="listTeamInviteMsg" resultMap="applyOrInviteMsgVO">
-        select utal.id, utal.uid, utal.`status`, utal.reason, utal.recruitment_id, tr.`name` recruitment_name, u.nickname
+        select utal.id, utal.uid, utal.`status`, utal.reason, utal.recruitment_id, tr.`name` recruitment_name, u.nickname, utal.create_time, utal.update_time
             from user_team_apply_log utal
                 left join teams_recruitments tr on utal.recruitment_id = tr.id
                 inner join `user` u on u.uid = utal.uid

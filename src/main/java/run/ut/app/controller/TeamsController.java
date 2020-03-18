@@ -15,7 +15,9 @@ import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
 import run.ut.app.model.dto.TeamsRecruitmentsDTO;
+import run.ut.app.model.enums.ApplyStatusEnum;
 import run.ut.app.model.enums.TeamsStatusEnum;
+import run.ut.app.model.param.DealInvitationOrApplyParam;
 import run.ut.app.model.param.TeamApplyOrInviteParam;
 import run.ut.app.model.param.TeamsParam;
 import run.ut.app.model.param.TeamsRecruitmentsParam;
@@ -62,7 +64,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @Override
     @PostMapping("saveTeamsTags")
     @CheckLogin
-    public List<TagsDTO> saveTeamsTags(String[] tagIds, Long teamsId) {
+    public List<TagsDTO> saveTeamsTags(@RequestBody String[] tagIds, Long teamsId) {
         Long leaderId = getUid();
         checkUser(leaderId);
         return teamsService.saveTeamsTags(tagIds, leaderId, teamsId);
@@ -94,7 +96,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @Override
     @CheckLogin
     @PostMapping("saveTeamsRecruitmentsTags")
-    public List<TagsDTO> saveTeamsRecruitmentsTags(String[] tagIds, Long TeamId, Long teamRecruitmentId) {
+    public List<TagsDTO> saveTeamsRecruitmentsTags(@RequestBody String[] tagIds, Long TeamId, Long teamRecruitmentId) {
         Long uid = getUid();
         checkUser(uid);
         teamsService.getAndCheckTeamByLeaderIdAndTeamId(uid, teamRecruitmentId);
@@ -174,6 +176,32 @@ public class TeamsController extends BaseController implements TeamsControllerAp
         }
         Page page = new Page(pageNum, pageSize);
         return userTeamApplyLogService.listTeamInviteMsg(teamIds, status, page);
+    }
+
+    @Override
+    @PostMapping("userDealWithInvitation")
+    @CheckLogin
+    public BaseResponse<String> userDealWithInvitation(@Valid @RequestBody DealInvitationOrApplyParam param) {
+        ApplyStatusEnum statusEnum = ApplyStatusEnum.getByType(param.getStatus());
+        if (ObjectUtils.isEmpty(statusEnum) || statusEnum == ApplyStatusEnum.WAITING){
+            throw new BadRequestException("status参数有误！");
+        }
+        Long uid = getUid();
+
+        return userTeamApplyLogService.userDealWithInvitation(uid, param);
+    }
+
+    @Override
+    @PostMapping("teamDealWithApplication")
+    @CheckLogin
+    public BaseResponse<String> teamDealWithApplication(@Valid @RequestBody DealInvitationOrApplyParam param) {
+        ApplyStatusEnum statusEnum = ApplyStatusEnum.getByType(param.getStatus());
+        if (ObjectUtils.isEmpty(statusEnum) || statusEnum == ApplyStatusEnum.WAITING){
+            throw new BadRequestException("status参数有误！");
+        }
+        Long leaderId = getUid();
+
+        return userTeamApplyLogService.teamDealWithApplication(leaderId, param);
     }
 
     /**

@@ -317,7 +317,7 @@
 								}
 							]
 						},
-						"description": "所有参数都缺一不可,也可以是表单形式提交"
+						"description": "所有参数都缺一不可,也可以是表单形式提交(推荐)"
 					},
 					"response": [
 						{
@@ -561,36 +561,14 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"type": "text"
-							},
-							{
 								"key": "UT-Token",
 								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6Iua4uOWuoiIsImlhdCI6MTU4MzkwOTg4NSwiZXhwIjoxNjE1NDQ1ODg1fQ.oY8patR4hX-vH_pacCFOOJl6-4IbYQc-T5JDJT5XJTI",
 								"type": "text"
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "tagIds",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "tagIds",
-									"value": "2",
-									"type": "text"
-								},
-								{
-									"key": "tagIds",
-									"value": "3",
-									"type": "text"
-								}
-							],
+							"mode": "raw",
+							"raw": "[1,2,3]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -614,41 +592,19 @@
 					},
 					"response": [
 						{
-							"name": "用户设置自己的标签（成功案例）",
+							"name": "设置标签成功",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
 									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/x-www-form-urlencoded",
-										"type": "text"
-									},
-									{
 										"key": "UT-Token",
-										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6Iua4uOWuoiIsImlhdCI6MTU4MzkwOTg4NSwiZXhwIjoxNjE1NDQ1ODg1fQ.oY8patR4hX-vH_pacCFOOJl6-4IbYQc-T5JDJT5XJTI",
 										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "tagIds",
-											"value": "1",
-											"type": "text"
-										},
-										{
-											"key": "tagIds",
-											"value": "2",
-											"type": "text"
-										},
-										{
-											"key": "tagIds",
-											"value": "3",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "[1,2,3]",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -674,10 +630,6 @@
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
-									"key": "Set-Cookie",
-									"value": "JSESSIONID=189A8C4910CF1EA33392B5F550D7928E; Path=/ut; HttpOnly"
-								},
-								{
 									"key": "Content-Type",
 									"value": "application/json"
 								},
@@ -687,7 +639,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Wed, 11 Mar 2020 12:43:56 GMT"
+									"value": "Wed, 18 Mar 2020 09:49:44 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -700,86 +652,6 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"createTime\": \"2020-03-11 13:04:03\",\n            \"updateTime\": \"2020-02-25 13:45:33\",\n            \"deleted\": 0,\n            \"id\": 1,\n            \"parentId\": 0,\n            \"name\": \"技术\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 13:04:34\",\n            \"updateTime\": \"2020-02-25 13:45:43\",\n            \"deleted\": 0,\n            \"id\": 2,\n            \"parentId\": 1,\n            \"name\": \"Java\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 13:04:53\",\n            \"updateTime\": \"2020-02-25 13:45:50\",\n            \"deleted\": 0,\n            \"id\": 3,\n            \"parentId\": 1,\n            \"name\": \"PHP\",\n            \"level\": 1\n        }\n    ]\n}"
-						},
-						{
-							"name": "用户设置自己的标签（当传入的tagIds不存在时）",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "UT-Token",
-										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6Iua4uOWuoiIsImlhdCI6MTU4MzkwOTg4NSwiZXhwIjoxNjE1NDQ1ODg1fQ.oY8patR4hX-vH_pacCFOOJl6-4IbYQc-T5JDJT5XJTI",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "tagIds",
-											"value": "1",
-											"type": "text"
-										},
-										{
-											"key": "tagIds",
-											"value": "2",
-											"type": "text"
-										},
-										{
-											"key": "tagIds",
-											"value": "999",
-											"type": "text"
-										}
-									],
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/ut/user/saveUserTags",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"user",
-										"saveUserTags"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 11 Mar 2020 07:30:02 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "close"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 400,\n    \"message\": \"传入tagIds有误\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						}
 					]
 				},
@@ -3833,34 +3705,16 @@
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "tagIds",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "tagIds",
-									"value": "2",
-									"type": "text"
-								},
-								{
-									"key": "tagIds",
-									"value": "3",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "teamsId",
-									"value": "1",
-									"description": "团队id",
-									"type": "text"
+							"mode": "raw",
+							"raw": "[1,2]",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/ut/teams/saveTeamsTags",
+							"raw": "http://localhost:8080/ut/teams/saveTeamsTags?teamsId=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3870,13 +3724,20 @@
 								"ut",
 								"teams",
 								"saveTeamsTags"
+							],
+							"query": [
+								{
+									"key": "teamsId",
+									"value": "1",
+									"description": "队伍id"
+								}
 							]
 						},
 						"description": "只有通过认证+队长身份才能设置团队标签，删除则是不传任何tagIds"
 					},
 					"response": [
 						{
-							"name": "更新成功案例",
+							"name": "设置成功案例",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -3888,34 +3749,16 @@
 									}
 								],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "tagIds",
-											"value": "1",
-											"type": "text"
-										},
-										{
-											"key": "tagIds",
-											"value": "2",
-											"type": "text"
-										},
-										{
-											"key": "tagIds",
-											"value": "3",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "teamsId",
-											"value": "1",
-											"description": "团队id",
-											"type": "text"
+									"mode": "raw",
+									"raw": "[1,2]",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/ut/teams/saveTeamsTags",
+									"raw": "http://localhost:8080/ut/teams/saveTeamsTags?teamsId=1",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -3925,6 +3768,13 @@
 										"ut",
 										"teams",
 										"saveTeamsTags"
+									],
+									"query": [
+										{
+											"key": "teamsId",
+											"value": "1",
+											"description": "队伍id"
+										}
 									]
 								}
 							},
@@ -3942,7 +3792,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 15 Mar 2020 05:54:02 GMT"
+									"value": "Wed, 18 Mar 2020 09:46:54 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -4530,39 +4380,16 @@
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "tagIds",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "tagIds",
-									"value": "2",
-									"type": "text"
-								},
-								{
-									"key": "tagIds",
-									"value": "3",
-									"type": "text"
-								},
-								{
-									"key": "TeamId",
-									"value": "1",
-									"description": "团队id，用于验证是否是队长",
-									"type": "text"
-								},
-								{
-									"key": "teamRecruitmentId",
-									"value": "1",
-									"description": "职位id",
-									"type": "text"
+							"mode": "raw",
+							"raw": "[1,2,3]\n",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitmentsTags",
+							"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitmentsTags?TeamId=1&teamRecruitmentId=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4572,6 +4399,16 @@
 								"ut",
 								"teams",
 								"saveTeamsRecruitmentsTags"
+							],
+							"query": [
+								{
+									"key": "TeamId",
+									"value": "1"
+								},
+								{
+									"key": "teamRecruitmentId",
+									"value": "1"
+								}
 							]
 						},
 						"description": "只有通过认证+队长身份才能设置团队标签，删除则是不传任何tagIds"
@@ -4590,39 +4427,16 @@
 									}
 								],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "tagIds",
-											"value": "1",
-											"type": "text"
-										},
-										{
-											"key": "tagIds",
-											"value": "2",
-											"type": "text"
-										},
-										{
-											"key": "tagIds",
-											"value": "3",
-											"type": "text"
-										},
-										{
-											"key": "TeamId",
-											"value": "1",
-											"description": "团队id，用于验证是否是队长",
-											"type": "text"
-										},
-										{
-											"key": "teamRecruitmentId",
-											"value": "1",
-											"description": "职位id",
-											"type": "text"
+									"mode": "raw",
+									"raw": "[1,2,3]\n",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitmentsTags",
+									"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitmentsTags?TeamId=1&teamRecruitmentId=1",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -4632,6 +4446,21 @@
 										"ut",
 										"teams",
 										"saveTeamsRecruitmentsTags"
+									],
+									"query": [
+										{
+											"key": "TeamId",
+											"value": "1"
+										},
+										{
+											"key": "teamRecruitmentId",
+											"value": "1"
+										},
+										{
+											"key": "tagIds",
+											"value": "1,2,3",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -4649,7 +4478,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 15 Mar 2020 10:21:06 GMT"
+									"value": "Wed, 18 Mar 2020 09:41:39 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -5326,7 +5155,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 3,\n        \"rows\": [\n            {\n                \"id\": 3,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 1,\n                \"teamName\": \"UT小分队2\",\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 5,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 2,\n                \"teamName\": \"adawa\",\n                \"recruitmentId\": 9,\n                \"recruitmentName\": \"php后端开发4批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 7,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 4,\n                \"teamName\": \"rjfdber\",\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 3,\n        \"rows\": [\n            {\n                \"id\": 3,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 1,\n                \"teamName\": \"UT小分队2\",\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 5,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 2,\n                \"teamName\": \"adawa\",\n                \"recruitmentId\": 9,\n                \"recruitmentName\": \"php后端开发4批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 7,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 4,\n                \"teamName\": \"rjfdber\",\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            }\n        ]\n    }\n}"
 						},
 						{
 							"name": "查看已经同意的申请",
@@ -5395,7 +5224,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 6,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 3,\n                \"teamName\": \"uilul\",\n                \"recruitmentId\": 11,\n                \"recruitmentName\": \"go后端开发1批\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": null\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 6,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 3,\n                \"teamName\": \"uilul\",\n                \"recruitmentId\": 11,\n                \"recruitmentName\": \"go后端开发1批\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            }\n        ]\n    }\n}"
 						},
 						{
 							"name": "查看全部",
@@ -5465,7 +5294,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 4,\n        \"rows\": [\n            {\n                \"id\": 3,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 1,\n                \"teamName\": \"UT小分队2\",\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 6,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 3,\n                \"teamName\": \"uilul\",\n                \"recruitmentId\": 11,\n                \"recruitmentName\": \"go后端开发1批\",\n                \"status\": \"拒绝\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 5,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 2,\n                \"teamName\": \"adawa\",\n                \"recruitmentId\": 9,\n                \"recruitmentName\": \"php后端开发4批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 7,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 4,\n                \"teamName\": \"rjfdber\",\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 4,\n        \"rows\": [\n            {\n                \"id\": 3,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 1,\n                \"teamName\": \"UT小分队2\",\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 6,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 3,\n                \"teamName\": \"uilul\",\n                \"recruitmentId\": 11,\n                \"recruitmentName\": \"go后端开发1批\",\n                \"status\": \"拒绝\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 5,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 2,\n                \"teamName\": \"adawa\",\n                \"recruitmentId\": 9,\n                \"recruitmentName\": \"php后端开发4批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 7,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 4,\n                \"teamName\": \"rjfdber\",\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            }\n        ]\n    }\n}"
 						},
 						{
 							"name": "查看被拒绝的申请",
@@ -5534,7 +5363,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 6,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 3,\n                \"teamName\": \"uilul\",\n                \"recruitmentId\": 11,\n                \"recruitmentName\": \"go后端开发1批\",\n                \"status\": \"拒绝\",\n                \"reason\": \"\",\n                \"createTime\": null\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 6,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 3,\n                \"teamName\": \"uilul\",\n                \"recruitmentId\": 11,\n                \"recruitmentName\": \"go后端开发1批\",\n                \"status\": \"拒绝\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            }\n        ]\n    }\n}"
 						}
 					]
 				},
@@ -5645,7 +5474,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 17,\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 6,\n                \"recruitmentName\": \"php后端开发1批\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": null\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 17,\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 6,\n                \"recruitmentName\": \"php后端开发1批\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            }\n        ]\n    }\n}"
 						},
 						{
 							"name": "查看所有",
@@ -5714,7 +5543,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 13,\n        \"rows\": [\n            {\n                \"id\": 4,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 18,\n                \"uid\": 23,\n                \"nickname\": \"UT_8B1266\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"拒绝\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 17,\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 6,\n                \"recruitmentName\": \"php后端开发1批\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 22,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 23,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 10,\n                \"uid\": 23,\n                \"nickname\": \"UT_8B1266\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 9,\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 19,\n                \"uid\": 24,\n                \"nickname\": \"UT_8B1265\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 8,\n                \"recruitmentName\": \"php后端开发3批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 21,\n                \"uid\": 26,\n                \"nickname\": \"UT_8B1263\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 7,\n                \"recruitmentName\": \"php后端开发2批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 11,\n                \"uid\": 24,\n                \"nickname\": \"UT_8B1265\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 8,\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 12,\n                \"uid\": 25,\n                \"nickname\": \"UT_8B1264\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 20,\n                \"uid\": 25,\n                \"nickname\": \"UT_8B1264\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 13,\n        \"rows\": [\n            {\n                \"id\": 4,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 18,\n                \"uid\": 23,\n                \"nickname\": \"UT_8B1266\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"拒绝\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 17,\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 6,\n                \"recruitmentName\": \"php后端开发1批\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 22,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 23,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 10,\n                \"uid\": 23,\n                \"nickname\": \"UT_8B1266\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 9,\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 19,\n                \"uid\": 24,\n                \"nickname\": \"UT_8B1265\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 8,\n                \"recruitmentName\": \"php后端开发3批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 21,\n                \"uid\": 26,\n                \"nickname\": \"UT_8B1263\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 7,\n                \"recruitmentName\": \"php后端开发2批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 11,\n                \"uid\": 24,\n                \"nickname\": \"UT_8B1265\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 8,\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 12,\n                \"uid\": 25,\n                \"nickname\": \"UT_8B1264\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 20,\n                \"uid\": 25,\n                \"nickname\": \"UT_8B1264\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            }\n        ]\n    }\n}"
 						},
 						{
 							"name": "成功返回案例（没有历史邀请记录时）",
@@ -5840,7 +5669,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 13,\n        \"rows\": [\n            {\n                \"id\": 4,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 22,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 23,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 19,\n                \"uid\": 24,\n                \"nickname\": \"UT_8B1265\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 8,\n                \"recruitmentName\": \"php后端开发3批\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 21,\n                \"uid\": 26,\n                \"nickname\": \"UT_8B1263\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 7,\n                \"recruitmentName\": \"php后端开发2批\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 17,\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 6,\n                \"recruitmentName\": \"php后端开发1批\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 11,\n                \"uid\": 24,\n                \"nickname\": \"UT_8B1265\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 9,\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 8,\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 10,\n                \"uid\": 23,\n                \"nickname\": \"UT_8B1266\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 12,\n                \"uid\": 25,\n                \"nickname\": \"UT_8B1264\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 18,\n                \"uid\": 23,\n                \"nickname\": \"UT_8B1266\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 20,\n                \"uid\": 25,\n                \"nickname\": \"UT_8B1264\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 13,\n        \"rows\": [\n            {\n                \"id\": 4,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 22,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 23,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 19,\n                \"uid\": 24,\n                \"nickname\": \"UT_8B1265\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 8,\n                \"recruitmentName\": \"php后端开发3批\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 21,\n                \"uid\": 26,\n                \"nickname\": \"UT_8B1263\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 7,\n                \"recruitmentName\": \"php后端开发2批\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 17,\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 6,\n                \"recruitmentName\": \"php后端开发1批\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 11,\n                \"uid\": 24,\n                \"nickname\": \"UT_8B1265\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 9,\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 8,\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 10,\n                \"uid\": 23,\n                \"nickname\": \"UT_8B1266\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 12,\n                \"uid\": 25,\n                \"nickname\": \"UT_8B1264\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 18,\n                \"uid\": 23,\n                \"nickname\": \"UT_8B1266\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 20,\n                \"uid\": 25,\n                \"nickname\": \"UT_8B1264\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            }\n        ]\n    }\n}"
 						}
 					]
 				},
@@ -5856,7 +5685,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/ut/teams/listTeamApplyMsg?pageNum=1&pageSize=10&status=1",
+							"raw": "http://localhost:8080/ut/teams/listTeamApplyMsg?pageNum=1&pageSize=10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -5879,7 +5708,8 @@
 								{
 									"key": "status",
 									"value": "1",
-									"description": "-1-拒绝    0-对方正在处理    1-同意了   不传则表示三种都查出来"
+									"description": "-1-拒绝    0-对方正在处理    1-同意了   不传则表示三种都查出来",
+									"disabled": true
 								}
 							]
 						},
@@ -6020,7 +5850,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 8,\n        \"rows\": [\n            {\n                \"id\": 15,\n                \"uid\": 29,\n                \"nickname\": \"UT_8B1260\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 5,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 9,\n                \"recruitmentName\": \"php后端开发4批\",\n                \"status\": \"拒绝\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 3,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 6,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 11,\n                \"recruitmentName\": \"go后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 7,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 13,\n                \"uid\": 29,\n                \"nickname\": \"UT_8B1260\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 11,\n                \"recruitmentName\": \"go后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 16,\n                \"uid\": 29,\n                \"nickname\": \"UT_8B1260\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 14,\n                \"uid\": 29,\n                \"nickname\": \"UT_8B1260\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 8,\n        \"rows\": [\n            {\n                \"id\": 15,\n                \"uid\": 29,\n                \"nickname\": \"UT_8B1260\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 5,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 9,\n                \"recruitmentName\": \"php后端开发4批\",\n                \"status\": \"拒绝\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 3,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 6,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 11,\n                \"recruitmentName\": \"go后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 7,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 13,\n                \"uid\": 29,\n                \"nickname\": \"UT_8B1260\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 11,\n                \"recruitmentName\": \"go后端开发1批\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 16,\n                \"uid\": 29,\n                \"nickname\": \"UT_8B1260\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 14,\n                \"uid\": 29,\n                \"nickname\": \"UT_8B1260\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            }\n        ]\n    }\n}"
 						},
 						{
 							"name": "成功返回案例（有申请）",
@@ -6151,7 +5981,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 3,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": null\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 3,\n                \"uid\": 30,\n                \"nickname\": \"UT_8B1259\",\n                \"teamId\": null,\n                \"teamName\": null,\n                \"recruitmentId\": 1,\n                \"recruitmentName\": \"Java后端开发1批\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            }\n        ]\n    }\n}"
 						}
 					]
 				},
@@ -6167,7 +5997,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/ut/teams/listUserInviteMsg?pageNum=1&pageSize=10&status=1",
+							"raw": "http://localhost:8080/ut/teams/listUserInviteMsg?pageNum=1&pageSize=10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -6190,7 +6020,8 @@
 								{
 									"key": "status",
 									"value": "1",
-									"description": "-1-拒绝    0-对方正在处理    1-同意了   不传则表示三种都查出来"
+									"description": "-1-拒绝    0-对方正在处理    1-同意了   不传则表示三种都查出来",
+									"disabled": true
 								}
 							]
 						}
@@ -6263,7 +6094,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 3,\n        \"rows\": [\n            {\n                \"id\": 4,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 1,\n                \"teamName\": \"UT小分队2\",\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 23,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 3,\n                \"teamName\": \"uilul\",\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"拒绝\",\n                \"reason\": \"\",\n                \"createTime\": null\n            },\n            {\n                \"id\": 22,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 2,\n                \"teamName\": \"adawa\",\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": null\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 3,\n        \"rows\": [\n            {\n                \"id\": 4,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 1,\n                \"teamName\": \"UT小分队2\",\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"处理中\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 23,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 3,\n                \"teamName\": \"uilul\",\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"拒绝\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            },\n            {\n                \"id\": 22,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 2,\n                \"teamName\": \"adawa\",\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            }\n        ]\n    }\n}"
 						},
 						{
 							"name": "查看已同意的",
@@ -6331,7 +6162,396 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 22,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 2,\n                \"teamName\": \"adawa\",\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": null\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 22,\n                \"uid\": 30,\n                \"nickname\": null,\n                \"teamId\": 2,\n                \"teamName\": \"adawa\",\n                \"recruitmentId\": 0,\n                \"recruitmentName\": \"加入团队(不选择职位)\",\n                \"status\": \"同意\",\n                \"reason\": \"\",\n                \"createTime\": \"2020-03-15 08:07:43\",\n                \"updateTime\": \"2020-03-15 08:07:43\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "用户处理团队发的邀请",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjMwLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MzU2OTcxLCJleHAiOjE2MTU4OTI5NzF9.XAFWx6HcX4eyRdvjhNXO92PdJzuQgh5c5pNYL9B7iro",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ids\": [24, 25],\r\n  \"status\": -1, \r\n  \"reason\": \"太忙了\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/teams/userDealWithInvitation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"teams",
+								"userDealWithInvitation"
+							]
+						},
+						"description": "status参数说明：1-同意  -1-拒绝   ，传其它参数都会报错"
+					},
+					"response": [
+						{
+							"name": "用户同意邀请",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjMwLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MzU2OTcxLCJleHAiOjE2MTU4OTI5NzF9.XAFWx6HcX4eyRdvjhNXO92PdJzuQgh5c5pNYL9B7iro",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [24, 25],\r\n  \"status\": 1,\r\n  \"reason\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/userDealWithInvitation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"userDealWithInvitation"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=A421D8AEBC4279903CA6FACA81C2DDDA; Path=/ut; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Mar 2020 09:14:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"处理完成，处理结果：同意\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						},
+						{
+							"name": "拒绝邀请",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjMwLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MzU2OTcxLCJleHAiOjE2MTU4OTI5NzF9.XAFWx6HcX4eyRdvjhNXO92PdJzuQgh5c5pNYL9B7iro",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [24, 25],\r\n  \"status\": -1,\r\n  \"reason\": \"太忙了\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/userDealWithInvitation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"userDealWithInvitation"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Mar 2020 09:16:29 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"处理完成，处理结果：拒绝\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "队长处理用户的如归申请",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ids\": [\r\n    26,27\r\n  ],\r\n  \"status\": -1,\r\n  \"reason\": \"已经满人了\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/teams/teamDealWithApplication",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"teams",
+								"teamDealWithApplication"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "同意申请",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [\r\n    26,27\r\n  ],\r\n  \"status\": 1,\r\n  \"reason\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/teamDealWithApplication",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"teamDealWithApplication"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Mar 2020 12:00:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"处理完成，处理结果：同意\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						},
+						{
+							"name": "拒绝申请",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [\r\n    26,27\r\n  ],\r\n  \"status\": -1,\r\n  \"reason\": \"已经满人了\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/teamDealWithApplication",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"teamDealWithApplication"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Mar 2020 12:03:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"处理完成，处理结果：拒绝\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						},
+						{
+							"name": "非法操作",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjMwLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MzU2OTcxLCJleHAiOjE2MTU4OTI5NzF9.XAFWx6HcX4eyRdvjhNXO92PdJzuQgh5c5pNYL9B7iro",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [\r\n    26,27\r\n  ],\r\n  \"status\": -1,\r\n  \"reason\": \"已经满人了\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/teamDealWithApplication",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"teamDealWithApplication"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Mar 2020 12:05:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"message\": \"对不起，你没有操作权限！\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						}
 					]
 				}

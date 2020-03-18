@@ -1,5 +1,7 @@
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import run.ut.app.model.domain.User;
+import run.ut.app.model.param.DealInvitationOrApplyParam;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,12 +23,12 @@ public class JWTTest {
 
     @Test
     public void test1(){
-        User user = new User();
-//                .setUid(21L)
-//                .set
-//        Map<String, Object> userInfo = new HashMap<>();
-//        userInfo.put("uid", user.getUid());
-//        userInfo.put("openid", user.getOpenid());
-//        userInfo.put("roles", user.getRoles().getName());
+        Long[] arr = new Long[]{1L, 2L, 3L};
+        String jsonString = JSON.toJSONString(arr);
+        System.out.println(jsonString);
+
+        DealInvitationOrApplyParam dealInvitationOrApplyParam = new DealInvitationOrApplyParam();
+        dealInvitationOrApplyParam.setIds(arr);
+        System.out.println(dealInvitationOrApplyParam);
     }
 }

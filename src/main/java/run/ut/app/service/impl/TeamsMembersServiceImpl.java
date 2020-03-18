@@ -5,6 +5,7 @@ import run.ut.app.model.domain.TeamsMembers;
 import run.ut.app.mapper.TeamsMembersMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import run.ut.app.model.enums.TeamsMemberEnum;
 import run.ut.app.service.TeamsMembersService;
 
 import java.util.List;
@@ -23,5 +24,18 @@ public class TeamsMembersServiceImpl extends ServiceImpl<TeamsMembersMapper, Tea
     @Override
     public List<TeamsMembers> listByTeamsId(Long teamsId) {
         return list(new QueryWrapper<TeamsMembers>().eq("team_id", teamsId));
+    }
+
+    @Override
+    public Integer countByUid(Long uid, Long teamId){
+        return count(new QueryWrapper<TeamsMembers>().eq("uid", uid).eq("team_id", teamId));
+    }
+
+    @Override
+    public Integer countByLeaderId(Long leaderId, Long teamId){
+        return count(new QueryWrapper<TeamsMembers>()
+                .eq("uid", leaderId)
+                .eq("is_leader", TeamsMemberEnum.LEADER.getType())
+                .eq("team_id", teamId));
     }
 }

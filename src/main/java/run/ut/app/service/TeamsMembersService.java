@@ -19,4 +19,9 @@ public interface TeamsMembersService extends IService<TeamsMembers> {
     @NonNull
     List<TeamsMembers> listByTeamsId(@NonNull Long teamsId);
 
+    @NonNull
+    Integer countByUid(@NonNull Long uid, @NonNull Long teamId);
+
+    @NonNull
+    Integer countByLeaderId(@NonNull Long leaderId, @NonNull Long teamId);
 }
