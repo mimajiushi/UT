@@ -1,5 +1,6 @@
 package run.ut.app.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
+import run.ut.app.exception.WeChatException;
 import run.ut.app.model.domain.Tags;
 import run.ut.app.model.domain.User;
 import run.ut.app.mapper.UserMapper;
@@ -15,12 +17,20 @@ import org.springframework.stereotype.Service;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.domain.UserTags;
 import run.ut.app.model.dto.TagsDTO;
+import run.ut.app.model.dto.UserDTO;
+import run.ut.app.model.enums.SexEnum;
 import run.ut.app.model.enums.UserInfoStatusEnum;
+import run.ut.app.model.enums.UserRolesEnum;
+import run.ut.app.model.param.WeChatLoginParam;
+import run.ut.app.model.support.WeChatResponse;
+import run.ut.app.security.token.AuthToken;
+import run.ut.app.security.util.JwtOperator;
 import run.ut.app.service.TagsService;
 import run.ut.app.service.UserInfoService;
 import run.ut.app.service.UserService;
 import run.ut.app.service.UserTagsService;
 
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -42,6 +52,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private final TagsService tagsService;
     private final UserTagsService userTagsService;
     private final UserInfoService userInfoService;
+    private final JwtOperator jwtOperator;
 
 
     @Override
@@ -94,6 +105,37 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return tags.stream().map(e -> {
             return (TagsDTO)new TagsDTO().convertFrom(e);
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public UserDTO wechatLogin(WeChatLoginParam weChatLoginParam, WeChatResponse weChatResponse) {
+        if (null != weChatResponse.getErrcode()){
+            throw new WeChatException(weChatResponse.getErrmsg());
+        }
+        String avatar = weChatLoginParam.getAvatarUrl();
+        String nickname = weChatLoginParam.getNickName();
+        String openid = weChatResponse.getOpenid();
+        User user = getUserByOpenId(openid);
+        if (ObjectUtils.isEmpty(user)){
+            // register and login
+            user = new User().setRoles(UserRolesEnum.ROLE_TOURIST.getType())
+                    .setOpenid(openid)
+                    .setAvatar(avatar)
+                    .setNickname(nickname)
+                    .setSex(SexEnum.UNKNOW);
+            save(user);
+            AuthToken authToken = jwtOperator.buildAuthToken(user);
+            return new UserDTO().convertFrom(user).setToken(authToken);
+        }
+
+        // login
+        AuthToken authToken = jwtOperator.buildAuthToken(user);
+        return new UserDTO().convertFrom(user).setToken(authToken);
+    }
+
+    @Override
+    public User getUserByOpenId(String openId){
+        return getOne(new QueryWrapper<User>().eq("openid", openId));
     }
 
 }

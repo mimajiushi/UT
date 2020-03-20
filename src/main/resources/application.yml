@@ -18,6 +18,29 @@ spring:
       max-request-size: 10MB
   ##########################################################
   ##
+  ## http连接池配置
+  ##
+  ##########################################################
+  http-client:
+    pool:
+      #连接池的最大连接数，0代表不限；如果取0，需要考虑连接泄露导致系统崩溃的后果
+      max-total-connect: 1000
+      #每个路由的最大连接数,如果只调用一个地址,可以将其设置为最大连接数
+      max-connect-per-route: 200
+      # 指客户端和服务器建立连接的超时时间,ms , 最大约21秒,因为内部tcp在进行三次握手建立连接时,默认tcp超时时间是20秒
+      connect-timeout: 3000
+      # 指客户端从服务器读取数据包的间隔超时时间,不是总读取时间,也就是socket timeout,ms
+      read-timeout: 5000
+      # 从连接池获取连接的timeout,不宜过大,ms
+      connection-request-timout: 200
+      # 重试次数
+      retry-times: 3
+      charset: UTF-8
+      # 长连接保持时间 单位s,不宜过长
+      keep-alive-time: 10
+
+  ##########################################################
+  ##
   ## mysql 数据源配置
   ##
   ##########################################################
@@ -94,7 +117,13 @@ third-api-config:
     # 短信有效分钟
     valid-min: 5
 
-  # 支付宝支付
+wechat:
+  mp-app-id: wx0520203ba32fb247
+  mp-app-secret: a211d5b68dc57636ccf1c9dce638e9e3
+  authorize-url: https://api.weixin.qq.com/sns/jscode2session
+  grant-type: authorization_code
+
+# 支付宝支付
 alipay:
   # 商户UID
   uid: 2088102179254465
@@ -123,6 +152,7 @@ logging:
     max-history: 20
   level:
     run.ut.app.core: debug
+    org.apache.http: debug
 #    root: debug
 #    org.springframework.web.client.RestTemplate: debug
 #    com.alibaba.cloud.nacos.client.NacosPropertySourceBuilder: debug

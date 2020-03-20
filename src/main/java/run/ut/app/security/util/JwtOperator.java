@@ -5,13 +5,17 @@ import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
+import run.ut.app.model.domain.User;
+import run.ut.app.security.token.AuthToken;
 
 import javax.crypto.SecretKey;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -102,6 +106,22 @@ public class JwtOperator {
      */
     public Boolean validateToken(String token) {
         return !isTokenExpired(token);
+    }
+
+    /**
+     * 构建token
+     * @param user 用户信息
+     * @return accessToken and expirationTime
+     */
+    public AuthToken buildAuthToken(@NonNull User user){
+        Map<String, Object> userInfo = new HashMap<>();
+        userInfo.put("uid", user.getUid());
+        userInfo.put("openid", user.getOpenid());
+        userInfo.put("roles", user.getRoles());
+
+        return AuthToken.builder()
+                .accessToken(this.generateToken(userInfo))
+                .expirationTime(this.getExpirationTime().getTime()).build();
     }
 
 //    public static void main(String[] args) {

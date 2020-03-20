@@ -1,9 +1,12 @@
 package run.ut.app.controller;
 
 import org.apache.commons.lang3.StringUtils;
+
+import org.apache.http.client.utils.URIBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
-import run.ut.app.api.UserControllerApi;
+import org.springframework.web.client.RestTemplate;
 import cn.hutool.core.lang.Validator;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
+import run.ut.app.config.wechat.WechatAccountConfig;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.FileOperationException;
+import run.ut.app.exception.WeChatException;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserDTO;
@@ -24,7 +29,9 @@ import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.UserExperiencesParam;
 import run.ut.app.model.param.UserInfoParam;
 import run.ut.app.model.param.UserParam;
+import run.ut.app.model.param.WeChatLoginParam;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.support.WeChatResponse;
 import run.ut.app.security.CheckLogin;
 import run.ut.app.security.token.AuthToken;
 import run.ut.app.security.util.JwtOperator;
@@ -35,9 +42,12 @@ import run.ut.app.utils.RandomUtils;
 import run.ut.app.utils.UtUtils;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import run.ut.app.api.UserControllerApi;
 
 @RestController
 @Slf4j
@@ -50,6 +60,8 @@ public class UserController extends BaseController implements UserControllerApi 
     private final JwtOperator jwtOperator;
     private final UserInfoService userInfoService;
     private final UserExperiencesService userExperiencesService;
+    private final RestTemplate restTemplate;
+    private final WechatAccountConfig wechatAccountConfig;
 
     @Override
     @PostMapping("webPageLogin")
@@ -68,7 +80,7 @@ public class UserController extends BaseController implements UserControllerApi 
             smsService.checkCode(userParam.getPhoneNumber(), userParam.getSmsCode());
             user = userService.getOne(new QueryWrapper<User>().eq("phone_number", userParam.getPhoneNumber()));
             UserDTO userDTO = new UserDTO().convertFrom(user);
-            userDTO.setToken(buildAuthToken(user));
+            userDTO.setToken(jwtOperator.buildAuthToken(user));
             return userDTO;
         }else {
             // register and login
@@ -81,9 +93,32 @@ public class UserController extends BaseController implements UserControllerApi 
             userService.save(user);
 
             UserDTO userDTO = new UserDTO().convertFrom(user);
-            userDTO.setToken(buildAuthToken(user));
+            userDTO.setToken(jwtOperator.buildAuthToken(user));
             return userDTO;
         }
+    }
+
+    @Override
+    @PostMapping("wechatLogin")
+    public UserDTO wechatLogin(@RequestBody @Valid WeChatLoginParam weChatLoginParam) throws Exception {
+
+        Map<String, String> params = new HashMap<>();
+        params.put("appid", wechatAccountConfig.getMpAppId());
+        params.put("secret", wechatAccountConfig.getMpAppSecret());
+        params.put("js_code", weChatLoginParam.getCode());
+        params.put("grant_type", wechatAccountConfig.getGrantType());
+        URIBuilder builder = new URIBuilder(wechatAccountConfig.getAuthorizeUrl());
+        for (String key : params.keySet()) {
+            builder.addParameter(key, params.get(key));
+        }
+        URI uri = builder.build();
+        ResponseEntity<WeChatResponse> res = restTemplate.getForEntity(uri, WeChatResponse.class);
+        int statusCodeValue = res.getStatusCodeValue();
+        if (200 != statusCodeValue){
+            throw new WeChatException("微信授权接口请求错误！请联系管理员！");
+        }
+        WeChatResponse weChatResponse = res.getBody();
+        return userService.wechatLogin(weChatLoginParam, weChatResponse);
     }
 
     @Override
@@ -141,16 +176,5 @@ public class UserController extends BaseController implements UserControllerApi 
     public BaseResponse<String> deleteUserExperiences(String id) {
         long uid = getUid();
         return userExperiencesService.deleteUserExperiences(uid, id);
-    }
-
-    private AuthToken buildAuthToken(@NonNull User user){
-        Map<String, Object> userInfo = new HashMap<>();
-        userInfo.put("uid", user.getUid());
-        userInfo.put("openid", user.getOpenid());
-        userInfo.put("roles", user.getRoles());
-
-        return AuthToken.builder()
-                .accessToken(jwtOperator.generateToken(userInfo))
-                .expirationTime(jwtOperator.getExpirationTime().getTime()).build();
     }
 }

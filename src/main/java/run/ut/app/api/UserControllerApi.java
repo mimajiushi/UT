@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.http.client.HttpClient;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,9 +17,11 @@ import run.ut.app.model.dto.UserInfoDTO;
 import run.ut.app.model.param.UserExperiencesParam;
 import run.ut.app.model.param.UserInfoParam;
 import run.ut.app.model.param.UserParam;
+import run.ut.app.model.param.WeChatLoginParam;
 import run.ut.app.model.support.BaseResponse;
 
 import javax.validation.Valid;
+import java.net.URISyntaxException;
 import java.util.List;
 
 
@@ -27,6 +30,9 @@ public interface UserControllerApi {
 
     @ApiOperation(value = "用户登录（网页端）", notes = "用户首次登录即可自动注册，无需手动注册")
     public UserDTO webPageLogin(UserParam userParam);
+
+    @ApiOperation(value = "用户登录（微信小程序）", notes = "用户首次登录即可自动注册，无需手动注册")
+    public UserDTO wechatLogin(WeChatLoginParam weChatLoginParam) throws Exception;
 
     @ApiOperation("发送短信验证码接口")
     public BaseResponse<String> sendSms(String phoneNumber);
@@ -44,6 +50,7 @@ public interface UserControllerApi {
 
     @ApiOperation(value = "用户删除经历", notes = "该接口需要登录（Token）")
     public BaseResponse<String> deleteUserExperiences(String id);
+
 
 
 }

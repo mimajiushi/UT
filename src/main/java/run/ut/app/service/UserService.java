@@ -5,6 +5,9 @@ import org.springframework.lang.Nullable;
 import run.ut.app.model.domain.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import run.ut.app.model.dto.TagsDTO;
+import run.ut.app.model.dto.UserDTO;
+import run.ut.app.model.param.WeChatLoginParam;
+import run.ut.app.model.support.WeChatResponse;
 
 import java.util.List;
 
@@ -20,4 +23,13 @@ public interface UserService extends IService<User> {
 
     @NonNull
     List<TagsDTO> saveUserTags(@NonNull Long uid, @Nullable String[] tagIds) throws Exception;
+
+    /**
+     * If the user is not registered, it will be automatically registered
+     */
+    @NonNull
+    UserDTO wechatLogin(@NonNull WeChatLoginParam weChatLoginParam, @NonNull WeChatResponse weChatResponse);
+
+    @NonNull
+    User getUserByOpenId(@NonNull String openId);
 }
