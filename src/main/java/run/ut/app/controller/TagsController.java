@@ -13,6 +13,7 @@ import run.ut.app.service.TagsService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Manager tags controller, just allow admin
@@ -33,6 +34,12 @@ public class TagsController implements TagsControllerApi {
     @GetMapping("listTagsByParentId/{parentId}")
     public List<TagsDTO> listTagsByParentId(@PathVariable Integer parentId) {
         return tagsService.listTagsByParentId(parentId);
+    }
+
+    @Override
+    @GetMapping("listAllTags")
+    public List<TagsDTO> listAllTags() {
+        return tagsService.list().stream().map(e -> (TagsDTO) new TagsDTO().convertFrom(e)).collect(Collectors.toList());
     }
 
 }

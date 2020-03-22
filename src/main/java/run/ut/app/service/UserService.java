@@ -8,6 +8,7 @@ import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.param.WeChatLoginParam;
 import run.ut.app.model.support.WeChatResponse;
+import run.ut.app.model.vo.StudentVO;
 
 import java.util.List;
 
@@ -23,6 +24,9 @@ public interface UserService extends IService<User> {
 
     @NonNull
     List<TagsDTO> saveUserTags(@NonNull Long uid, @Nullable String[] tagIds) throws Exception;
+
+    @NonNull
+    StudentVO showSelfPage(@NonNull Long uid);
 
     /**
      * If the user is not registered, it will be automatically registered

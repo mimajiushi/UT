@@ -14,9 +14,9 @@ import java.util.Arrays;
  */
 @Getter
 public enum SexEnum implements IEnum<Integer> {
-    UNKNOW(-1 , "保密"),
+    UNKNOW(0 , "保密"),
     MALE(1, "男"),
-    FEMALE(0, "女");
+    FEMALE(2, "女");
 
     private int type;
 
@@ -34,7 +34,10 @@ public enum SexEnum implements IEnum<Integer> {
     }
 
 
-    public static SexEnum getByType(int type) {
+    public static SexEnum getByType(Integer type) {
+        if (null == type){
+            return null;
+        }
         return Arrays.stream(values()).filter(e -> e.getType() == type).findFirst().orElse(null);
     }
 

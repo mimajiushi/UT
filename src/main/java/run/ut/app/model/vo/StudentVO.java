@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.enums.DegreeEnum;
+import run.ut.app.model.enums.SexEnum;
 
 import java.util.List;
 
@@ -33,6 +34,18 @@ public class StudentVO {
 
     @ApiModelProperty("头像")
     private String avatar;
+
+    @ApiModelProperty("性别")
+    private SexEnum sex;
+
+    @ApiModelProperty(value = "角色id", notes = "需要通过与运算解析")
+    private Integer roles;
+
+    @ApiModelProperty(value = "用户绑定的手机号码", notes = "只有用户查看自己主页才会显示")
+    private String phoneNumber;
+
+    @ApiModelProperty(value = "用户绑定的邮箱")
+    private String email;
 
     @ApiModelProperty("学历，如：大专/本科/博士及以上")
     private DegreeEnum degree;
@@ -65,6 +78,7 @@ public class StudentVO {
     @ApiModelProperty(value = "证件照反面")
     private String credentialsPhotoReverse;
 
-
+    @ApiModelProperty(value = "有无认证信息")
+    private boolean hasAuthInfo;
 
 }

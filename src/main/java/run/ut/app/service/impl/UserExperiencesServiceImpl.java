@@ -53,7 +53,7 @@ public class UserExperiencesServiceImpl extends ServiceImpl<UserExperiencesMappe
 
     @Override
     public List<UserExperiences> getUserExperiencesByUid(Long uid) {
-        return list(new QueryWrapper<UserExperiences>().eq("uid", uid));
+        return list(new QueryWrapper<UserExperiences>().eq("uid", uid).orderByDesc("create_time"));
     }
 
 }

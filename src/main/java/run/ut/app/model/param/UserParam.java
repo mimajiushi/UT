@@ -46,7 +46,7 @@ public class UserParam implements InputConverter<User> {
     @Size(max = 127, message = "电子邮件的字符长度不能超过 {max}")
     private String email;
 
-    @Size(max = 50, message = "用户描述的字符长度不能超过 {max}")
+    @Size(max = 2000, message = "用户描述的字符长度不能超过 {max}")
     private String description;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

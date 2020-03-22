@@ -14,11 +14,9 @@ import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.dto.UserInfoDTO;
-import run.ut.app.model.param.UserExperiencesParam;
-import run.ut.app.model.param.UserInfoParam;
-import run.ut.app.model.param.UserParam;
-import run.ut.app.model.param.WeChatLoginParam;
+import run.ut.app.model.param.*;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.vo.StudentVO;
 
 import javax.validation.Valid;
 import java.net.URISyntaxException;
@@ -37,6 +35,9 @@ public interface UserControllerApi {
     @ApiOperation("发送短信验证码接口")
     public BaseResponse<String> sendSms(String phoneNumber);
 
+    @ApiOperation(value = "用户查看个人主页", notes = "需要登录Token")
+    public StudentVO showSelfPage();
+
     @ApiOperation(value = "认证申请", notes = "role字段说明：1-学生认证  2-导师认证  4-赛事主办方认证")
     public BaseResponse<UserInfoDTO> applyForCertification(UserInfoParam userInfoParam,
                                                            @RequestPart("file_front") @ApiParam( name = "file_front", value = "证件照正面") MultipartFile credentialsPhotoFront,
@@ -51,6 +52,7 @@ public interface UserControllerApi {
     @ApiOperation(value = "用户删除经历", notes = "该接口需要登录（Token）")
     public BaseResponse<String> deleteUserExperiences(String id);
 
-
+    @ApiModelProperty(value = "用户修改昵称/描述，非认证信息", notes = "该接口需要登录（Token）")
+    public BaseResponse<String> updateUserSimpleInfo(UserSimpleParam userSimpleParam);
 
 }

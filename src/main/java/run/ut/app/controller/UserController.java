@@ -1,5 +1,6 @@
 package run.ut.app.controller;
 
+import cn.hutool.core.text.escape.Html4Escape;
 import org.apache.commons.lang3.StringUtils;
 
 import org.apache.http.client.utils.URIBuilder;
@@ -26,12 +27,10 @@ import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.dto.UserInfoDTO;
 import run.ut.app.model.enums.SexEnum;
 import run.ut.app.model.enums.UserRolesEnum;
-import run.ut.app.model.param.UserExperiencesParam;
-import run.ut.app.model.param.UserInfoParam;
-import run.ut.app.model.param.UserParam;
-import run.ut.app.model.param.WeChatLoginParam;
+import run.ut.app.model.param.*;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.WeChatResponse;
+import run.ut.app.model.vo.StudentVO;
 import run.ut.app.security.CheckLogin;
 import run.ut.app.security.token.AuthToken;
 import run.ut.app.security.util.JwtOperator;
@@ -133,6 +132,14 @@ public class UserController extends BaseController implements UserControllerApi 
     }
 
     @Override
+    @GetMapping("showSelfPage")
+    @CheckLogin
+    public StudentVO showSelfPage() {
+        Long uid = getUid();
+        return userService.showSelfPage(uid);
+    }
+
+    @Override
     @PostMapping("applyForCertification")
     @CheckLogin
     public BaseResponse<UserInfoDTO> applyForCertification(UserInfoParam userInfoParam,
@@ -164,7 +171,7 @@ public class UserController extends BaseController implements UserControllerApi 
     @Override
     @PostMapping("saveUserExperiences")
     @CheckLogin
-    public UserExperiencesDTO saveUserExperiences(@Valid UserExperiencesParam userExperiencesParam) {
+    public UserExperiencesDTO saveUserExperiences(@Valid @RequestBody UserExperiencesParam userExperiencesParam) {
         long uid = getUid();
         userExperiencesParam.setUid(uid);
         return userExperiencesService.saveUserExperiences(userExperiencesParam);
@@ -176,5 +183,15 @@ public class UserController extends BaseController implements UserControllerApi 
     public BaseResponse<String> deleteUserExperiences(String id) {
         long uid = getUid();
         return userExperiencesService.deleteUserExperiences(uid, id);
+    }
+
+    @Override
+    @PostMapping("updateUserSimpleInfo")
+    @CheckLogin
+    public BaseResponse<String> updateUserSimpleInfo(@Valid @RequestBody UserSimpleParam userSimpleParam) {
+        userSimpleParam.setUid(getUid());
+        userService.updateById(userSimpleParam.convertTo()
+                .setSex(SexEnum.getByType(userSimpleParam.getSex())));
+        return BaseResponse.ok("更新成功");
     }
 }

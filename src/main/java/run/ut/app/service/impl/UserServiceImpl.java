@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
+import run.ut.app.exception.NotFoundException;
 import run.ut.app.exception.WeChatException;
 import run.ut.app.model.domain.Tags;
 import run.ut.app.model.domain.User;
@@ -18,17 +19,16 @@ import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.domain.UserTags;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserDTO;
+import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.enums.SexEnum;
 import run.ut.app.model.enums.UserInfoStatusEnum;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.WeChatLoginParam;
 import run.ut.app.model.support.WeChatResponse;
+import run.ut.app.model.vo.StudentVO;
 import run.ut.app.security.token.AuthToken;
 import run.ut.app.security.util.JwtOperator;
-import run.ut.app.service.TagsService;
-import run.ut.app.service.UserInfoService;
-import run.ut.app.service.UserService;
-import run.ut.app.service.UserTagsService;
+import run.ut.app.service.*;
 
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
@@ -53,6 +53,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private final UserTagsService userTagsService;
     private final UserInfoService userInfoService;
     private final JwtOperator jwtOperator;
+    private final UserExperiencesService userExperiencesService;
+    private final DataSchoolService dataSchoolService;
 
 
     @Override
@@ -105,6 +107,45 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return tags.stream().map(e -> {
             return (TagsDTO)new TagsDTO().convertFrom(e);
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public StudentVO showSelfPage(Long uid) {
+        User user = getById(uid);
+        if (ObjectUtils.isEmpty(user)){
+            throw new NotFoundException("该id的用户不存在！");
+        }
+        UserInfo userInfo = userInfoService.getOneActivatedByUid(uid);
+        List<TagsDTO> tagsDTOList = userTagsService.listByUid(uid)
+                .stream().map(e -> (TagsDTO) new TagsDTO().convertFrom(e)).collect(Collectors.toList());
+        List<UserExperiencesDTO> userExperiencesDTOList = userExperiencesService.getUserExperiencesByUid(uid)
+                .stream().map(e -> (UserExperiencesDTO) new UserExperiencesDTO().convertFrom(e)).collect(Collectors.toList());
+
+        boolean hasAuthInfo = !ObjectUtils.isEmpty(userInfo);
+
+        StudentVO studentVO = new StudentVO()
+                .setTags(tagsDTOList)
+                .setExperiences(userExperiencesDTOList)
+                .setAvatar(user.getAvatar())
+                .setDescription(user.getDescription())
+                .setUid(user.getUid())
+                .setNickname(user.getNickname())
+                .setPhoneNumber(user.getPhoneNumber())
+                .setEmail(user.getEmail())
+                .setSex(user.getSex())
+                .setHasAuthInfo(hasAuthInfo)
+                .setRoles(user.getRoles());
+        if (hasAuthInfo){
+            String schoolName = dataSchoolService.getById(userInfo.getSchoolId()).getName();
+            studentVO.setDegree(userInfo.getDegreeId())
+                    .setGrade(userInfo.getGrade())
+                    .setSubject(userInfo.getSubject())
+                    .setCredentialsPhotoFront(userInfo.getCredentialsPhotoFront())
+                    .setCredentialsPhotoReverse(userInfo.getCredentialsPhotoReverse())
+                    .setRealName(userInfo.getRealName())
+                    .setSchool(schoolName);
+        }
+        return studentVO;
     }
 
     @Override
