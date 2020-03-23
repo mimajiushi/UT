@@ -656,7 +656,7 @@
 					]
 				},
 				{
-					"name": "添加/更新个人经历",
+					"name": "增加/更新个人经历",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -667,51 +667,13 @@
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "id",
-									"value": "11",
-									"description": "更新时必传",
-									"type": "text"
-								},
-								{
-									"key": "name",
-									"value": "智慧食堂4",
-									"type": "text"
-								},
-								{
-									"key": "awards",
-									"value": "吹牛一等奖",
-									"type": "text"
-								},
-								{
-									"key": "role",
-									"value": "后端开发",
-									"type": "text"
-								},
-								{
-									"key": "projectUrl",
-									"value": "https://wenjie.store",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "项目描述xxxxx",
-									"description": "不可超过1200字",
-									"type": "text"
-								},
-								{
-									"key": "startTime",
-									"value": "2017-09-10",
-									"type": "text"
-								},
-								{
-									"key": "endTime",
-									"value": "2018-09-10",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{\r\n  \"id\":20,\r\n  \"uid\": 1,\r\n  \"name\": \"智慧食堂4\",\r\n  \"awards\": \"吹牛一等奖\",\r\n  \"role\": \"后端开发\",\r\n  \"projectUrl\": \"https://wenjie.store\",\r\n  \"description\": \"项目描述xxxxx\",\r\n  \"startTime\": \"2019年10月\",\r\n  \"endTime\": \"2020年8月\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8080/ut/user/saveUserExperiences",
@@ -740,51 +702,13 @@
 									}
 								],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "id",
-											"value": "",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "name",
-											"value": "智慧食堂3",
-											"type": "text"
-										},
-										{
-											"key": "awards",
-											"value": "吹牛七等奖",
-											"type": "text"
-										},
-										{
-											"key": "role",
-											"value": "后端开发",
-											"type": "text"
-										},
-										{
-											"key": "projectUrl",
-											"value": "https://wenjie.store",
-											"type": "text"
-										},
-										{
-											"key": "description",
-											"value": "项目描述",
-											"description": "不可超过1200字",
-											"type": "text"
-										},
-										{
-											"key": "startTime",
-											"value": "2017",
-											"type": "text"
-										},
-										{
-											"key": "endTime",
-											"value": "2018",
-											"type": "text"
+									"mode": "raw",
+									"raw": "{\r\n  \"uid\": 1,\r\n  \"name\": \"智慧食堂4\",\r\n  \"awards\": \"吹牛一等奖\",\r\n  \"role\": \"后端开发\",\r\n  \"projectUrl\": \"https://wenjie.store\",\r\n  \"description\": \"项目描述xxxxx\",\r\n  \"startTime\": \"2019年10月\",\r\n  \"endTime\": \"2020年8月\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
 									"raw": "http://localhost:8080/ut/user/saveUserExperiences",
@@ -814,7 +738,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 12 Mar 2020 07:18:05 GMT"
+									"value": "Sun, 22 Mar 2020 09:39:03 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -826,7 +750,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-12 15:18:05\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 11,\n        \"uid\": 21,\n        \"name\": \"智慧食堂3\",\n        \"awards\": \"吹牛七等奖\",\n        \"role\": \"后端开发\",\n        \"projectUrl\": \"https://wenjie.store\",\n        \"description\": \"项目描述\",\n        \"startTime\": \"2017\",\n        \"endTime\": \"2018\"\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-22 17:39:03\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 20,\n        \"uid\": 21,\n        \"name\": \"智慧食堂4\",\n        \"awards\": \"吹牛一等奖\",\n        \"role\": \"后端开发\",\n        \"projectUrl\": \"https://wenjie.store\",\n        \"description\": \"项目描述xxxxx\",\n        \"startTime\": \"2019年10月\",\n        \"endTime\": \"2020年8月\"\n    }\n}"
 						},
 						{
 							"name": "更新个人经历",
@@ -840,50 +764,13 @@
 									}
 								],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "id",
-											"value": "11",
-											"type": "text"
-										},
-										{
-											"key": "name",
-											"value": "智慧食堂4",
-											"type": "text"
-										},
-										{
-											"key": "awards",
-											"value": "吹牛一等奖",
-											"type": "text"
-										},
-										{
-											"key": "role",
-											"value": "后端开发",
-											"type": "text"
-										},
-										{
-											"key": "projectUrl",
-											"value": "https://wenjie.store",
-											"type": "text"
-										},
-										{
-											"key": "description",
-											"value": "项目描述xxxxx",
-											"description": "不可超过1200字",
-											"type": "text"
-										},
-										{
-											"key": "startTime",
-											"value": "2017-09-10",
-											"type": "text"
-										},
-										{
-											"key": "endTime",
-											"value": "2018-09-10",
-											"type": "text"
+									"mode": "raw",
+									"raw": "{\r\n  \"id\":20,\r\n  \"uid\": 1,\r\n  \"name\": \"智慧食堂4\",\r\n  \"awards\": \"吹牛一等奖\",\r\n  \"role\": \"后端开发\",\r\n  \"projectUrl\": \"https://wenjie.store\",\r\n  \"description\": \"项目描述xxxxx\",\r\n  \"startTime\": \"2019年10月\",\r\n  \"endTime\": \"2020年8月\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
 									"raw": "http://localhost:8080/ut/user/saveUserExperiences",
@@ -913,7 +800,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 12 Mar 2020 07:19:43 GMT"
+									"value": "Sun, 22 Mar 2020 09:40:04 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -925,7 +812,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": null,\n        \"updateTime\": \"2020-03-12 15:19:43\",\n        \"deleted\": 0,\n        \"id\": 11,\n        \"uid\": 21,\n        \"name\": \"智慧食堂4\",\n        \"awards\": \"吹牛一等奖\",\n        \"role\": \"后端开发\",\n        \"projectUrl\": \"https://wenjie.store\",\n        \"description\": \"项目描述xxxxx\",\n        \"startTime\": \"2017-09-10\",\n        \"endTime\": \"2018-09-10\"\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": null,\n        \"updateTime\": \"2020-03-22 17:40:04\",\n        \"deleted\": 0,\n        \"id\": 20,\n        \"uid\": 21,\n        \"name\": \"智慧食堂4\",\n        \"awards\": \"吹牛一等奖\",\n        \"role\": \"后端开发\",\n        \"projectUrl\": \"https://wenjie.store\",\n        \"description\": \"项目描述xxxxx\",\n        \"startTime\": \"2019年10月\",\n        \"endTime\": \"2020年8月\"\n    }\n}"
 						}
 					]
 				},
@@ -3683,6 +3570,178 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 2,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发2批\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\",\n                \"teamVO\": null,\n                \"teamName\": \"UT小分队2\",\n                \"createTime\": \"2020-03-15 16:43:14\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "获取所有标签",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ut/tags/listAllTags",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"tags",
+								"listAllTags"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取所有标签",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/tags/listAllTags",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"tags",
+										"listAllTags"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Mar 2020 11:45:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"createTime\": \"2020-03-11 13:04:03\",\n            \"updateTime\": \"2020-02-25 13:45:33\",\n            \"deleted\": 0,\n            \"id\": 1,\n            \"parentId\": 0,\n            \"name\": \"技术\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 13:04:34\",\n            \"updateTime\": \"2020-02-25 13:45:43\",\n            \"deleted\": 0,\n            \"id\": 2,\n            \"parentId\": 1,\n            \"name\": \"Java\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 13:04:53\",\n            \"updateTime\": \"2020-02-25 13:45:50\",\n            \"deleted\": 0,\n            \"id\": 3,\n            \"parentId\": 1,\n            \"name\": \"PHP\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 13:05:16\",\n            \"updateTime\": \"2020-02-25 13:45:56\",\n            \"deleted\": 0,\n            \"id\": 4,\n            \"parentId\": 1,\n            \"name\": \"web前端\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 13:05:40\",\n            \"updateTime\": \"2020-02-25 13:46:02\",\n            \"deleted\": 0,\n            \"id\": 5,\n            \"parentId\": 1,\n            \"name\": \"算法工程师\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 13:06:13\",\n            \"updateTime\": \"2020-02-25 13:46:25\",\n            \"deleted\": 0,\n            \"id\": 6,\n            \"parentId\": 0,\n            \"name\": \"金融\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 13:06:43\",\n            \"updateTime\": \"2020-02-25 08:14:18\",\n            \"deleted\": 0,\n            \"id\": 7,\n            \"parentId\": 6,\n            \"name\": \"理财\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 13:07:17\",\n            \"updateTime\": \"2020-02-25 08:14:50\",\n            \"deleted\": 0,\n            \"id\": 8,\n            \"parentId\": 6,\n            \"name\": \"炒股\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:29:41\",\n            \"updateTime\": \"2020-02-25 13:46:43\",\n            \"deleted\": 0,\n            \"id\": 13,\n            \"parentId\": 0,\n            \"name\": \"产品\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 20:30:04\",\n            \"updateTime\": \"2020-02-25 13:47:08\",\n            \"deleted\": 0,\n            \"id\": 14,\n            \"parentId\": 13,\n            \"name\": \"产品经理\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:30:22\",\n            \"updateTime\": \"2020-02-25 13:47:27\",\n            \"deleted\": 0,\n            \"id\": 15,\n            \"parentId\": 13,\n            \"name\": \"产品总监\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:30:38\",\n            \"updateTime\": \"2020-02-25 13:47:45\",\n            \"deleted\": 0,\n            \"id\": 16,\n            \"parentId\": 13,\n            \"name\": \"数据产品经理\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:30:54\",\n            \"updateTime\": \"2020-02-25 13:49:29\",\n            \"deleted\": 0,\n            \"id\": 17,\n            \"parentId\": 0,\n            \"name\": \"设计\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 20:31:08\",\n            \"updateTime\": \"2020-02-25 13:51:14\",\n            \"deleted\": 0,\n            \"id\": 18,\n            \"parentId\": 17,\n            \"name\": \"UI设计师\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:31:23\",\n            \"updateTime\": \"2020-02-25 13:51:12\",\n            \"deleted\": 0,\n            \"id\": 19,\n            \"parentId\": 17,\n            \"name\": \"平面设计师\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:31:44\",\n            \"updateTime\": \"2020-02-25 13:51:09\",\n            \"deleted\": 0,\n            \"id\": 20,\n            \"parentId\": 17,\n            \"name\": \"交互设计师\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:32:00\",\n            \"updateTime\": \"2020-02-25 13:49:27\",\n            \"deleted\": 0,\n            \"id\": 21,\n            \"parentId\": 0,\n            \"name\": \"运营\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 20:32:41\",\n            \"updateTime\": \"2020-02-25 13:49:58\",\n            \"deleted\": 0,\n            \"id\": 22,\n            \"parentId\": 21,\n            \"name\": \"新媒体运营\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:33:06\",\n            \"updateTime\": \"2020-02-25 13:50:25\",\n            \"deleted\": 0,\n            \"id\": 23,\n            \"parentId\": 21,\n            \"name\": \"产品运营\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:33:26\",\n            \"updateTime\": \"2020-02-25 13:50:47\",\n            \"deleted\": 0,\n            \"id\": 24,\n            \"parentId\": 21,\n            \"name\": \"网络推广\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:33:55\",\n            \"updateTime\": \"2020-02-25 13:51:20\",\n            \"deleted\": 0,\n            \"id\": 25,\n            \"parentId\": 0,\n            \"name\": \"市场\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 20:34:16\",\n            \"updateTime\": \"2020-02-25 13:51:44\",\n            \"deleted\": 0,\n            \"id\": 26,\n            \"parentId\": 25,\n            \"name\": \"市场营销\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:34:37\",\n            \"updateTime\": \"2020-02-25 13:52:04\",\n            \"deleted\": 0,\n            \"id\": 27,\n            \"parentId\": 25,\n            \"name\": \"市场推广\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:34:57\",\n            \"updateTime\": \"2020-02-25 13:52:27\",\n            \"deleted\": 0,\n            \"id\": 28,\n            \"parentId\": 25,\n            \"name\": \"品牌公关\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:35:14\",\n            \"updateTime\": \"2020-02-25 13:52:47\",\n            \"deleted\": 0,\n            \"id\": 29,\n            \"parentId\": 25,\n            \"name\": \"策划经理\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:35:34\",\n            \"updateTime\": \"2020-02-25 13:53:09\",\n            \"deleted\": 0,\n            \"id\": 30,\n            \"parentId\": 0,\n            \"name\": \"人事\",\n            \"level\": 0\n        },\n        {\n            \"createTime\": \"2020-03-11 20:35:51\",\n            \"updateTime\": \"2020-02-25 13:53:26\",\n            \"deleted\": 0,\n            \"id\": 31,\n            \"parentId\": 30,\n            \"name\": \"人事HR\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:36:08\",\n            \"updateTime\": \"2020-02-25 13:53:48\",\n            \"deleted\": 0,\n            \"id\": 32,\n            \"parentId\": 30,\n            \"name\": \"行政\",\n            \"level\": 1\n        },\n        {\n            \"createTime\": \"2020-03-11 20:36:31\",\n            \"updateTime\": \"2020-02-25 13:54:11\",\n            \"deleted\": 0,\n            \"id\": 33,\n            \"parentId\": 30,\n            \"name\": \"绩效考核\",\n            \"level\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "修改昵称、性别、描述",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nickname\": \"chenwenjie2\",\r\n  \"description\": \"我是一个xxxxxxx \\r\\n xxxxxxxxx\",\r\n  \"sex\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/user/updateUserSimpleInfo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"user",
+								"updateUserSimpleInfo"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "修改昵称、性别、描述",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nickname\": \"chenwenjie2\",\r\n  \"description\": \"我是一个xxxxxxx \\r\\n xxxxxxxxx\",\r\n  \"sex\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/user/updateUserSimpleInfo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"updateUserSimpleInfo"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=3F8B7DC8D0B533208107D2AF89ED859E; Path=/ut; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Mar 2020 11:51:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"更新成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						}
 					]
 				}

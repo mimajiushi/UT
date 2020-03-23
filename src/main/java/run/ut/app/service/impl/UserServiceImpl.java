@@ -6,10 +6,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.exception.WeChatException;
+import run.ut.app.handler.FileHandler;
+import run.ut.app.handler.FileHandlers;
 import run.ut.app.model.domain.Tags;
 import run.ut.app.model.domain.User;
 import run.ut.app.mapper.UserMapper;
@@ -24,6 +27,8 @@ import run.ut.app.model.enums.SexEnum;
 import run.ut.app.model.enums.UserInfoStatusEnum;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.WeChatLoginParam;
+import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.support.UploadResult;
 import run.ut.app.model.support.WeChatResponse;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.security.token.AuthToken;
@@ -55,6 +60,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private final JwtOperator jwtOperator;
     private final UserExperiencesService userExperiencesService;
     private final DataSchoolService dataSchoolService;
+    private final FileHandlers fileHandlers;
 
 
     @Override
@@ -177,6 +183,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User getUserByOpenId(String openId){
         return getOne(new QueryWrapper<User>().eq("openid", openId));
+    }
+
+    @Override
+    public BaseResponse<String> updateUserAvatar(Long uid, MultipartFile avatar) {
+        UploadResult upload = fileHandlers.upload(avatar);
+        User user = getById(uid);
+        user.setAvatar(upload.getFilePath());
+        updateById(user);
+        return BaseResponse.ok("更换头像成功");
     }
 
 }

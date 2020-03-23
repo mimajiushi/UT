@@ -162,8 +162,10 @@ public class UserController extends BaseController implements UserControllerApi 
     @PostMapping("saveUserTags")
     @CheckLogin
     public List<TagsDTO> saveUserTags(@RequestBody String[] tagIds) throws Exception {
-
         long uid = Long.parseLong(request.getAttribute("uid")+"");
+        if (tagIds.length > 3){
+            throw new BadRequestException("标签数量不能 > 3 个！");
+        }
 
         return userService.saveUserTags(uid, tagIds);
     }
@@ -193,5 +195,15 @@ public class UserController extends BaseController implements UserControllerApi 
         userService.updateById(userSimpleParam.convertTo()
                 .setSex(SexEnum.getByType(userSimpleParam.getSex())));
         return BaseResponse.ok("更新成功");
+    }
+
+    @Override
+    @CheckLogin
+    @PostMapping("updateUserAvatar")
+    public BaseResponse<String> updateUserAvatar(@RequestPart("avatar") MultipartFile avatar) {
+        if (!ImageUtils.isImage(avatar)){
+            throw new FileOperationException("只接受图片格式文件！");
+        }
+        return userService.updateUserAvatar(getUid(), avatar);
     }
 }

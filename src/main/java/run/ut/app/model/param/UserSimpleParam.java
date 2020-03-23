@@ -1,6 +1,5 @@
 package run.ut.app.model.param;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -9,7 +8,6 @@ import run.ut.app.model.domain.User;
 import run.ut.app.model.dto.base.InputConverter;
 
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -21,7 +19,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @ToString
-@ApiModel(description="可被用户任意修改的基本信息参数")
+@ApiModel(description="可修改参数: 昵称、描述、性别",value = "可被用户任意修改的基本信息参数")
 public class UserSimpleParam implements InputConverter<User> {
 
     @ApiModelProperty(value = "用户uid，前端不需要传，由后端解析token填充")

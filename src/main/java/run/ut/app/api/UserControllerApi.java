@@ -55,4 +55,7 @@ public interface UserControllerApi {
     @ApiModelProperty(value = "用户修改昵称/描述，非认证信息", notes = "该接口需要登录（Token）")
     public BaseResponse<String> updateUserSimpleInfo(UserSimpleParam userSimpleParam);
 
+    @ApiModelProperty(value = "用户更改头像", notes = "该接口需要登录")
+    public BaseResponse<String> updateUserAvatar(@RequestPart("avatar") MultipartFile avatar);
+
 }
