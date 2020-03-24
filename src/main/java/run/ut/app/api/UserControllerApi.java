@@ -39,9 +39,7 @@ public interface UserControllerApi {
     public StudentVO showSelfPage();
 
     @ApiOperation(value = "认证申请", notes = "role字段说明：1-学生认证  2-导师认证  4-赛事主办方认证")
-    public BaseResponse<UserInfoDTO> applyForCertification(UserInfoParam userInfoParam,
-                                                           @RequestPart("file_front") @ApiParam( name = "file_front", value = "证件照正面") MultipartFile credentialsPhotoFront,
-                                                           @RequestPart("file_reverse") @ApiParam(name = "file_reverse", value = "证件照反面") MultipartFile credentialsPhotoReverse) throws Exception;
+    public BaseResponse<UserInfoDTO> applyForCertification(UserInfoParam userInfoParam) throws Exception;
 
     @ApiOperation(value = "用户设置自己标签", notes = "传入标签id，该接口需要登录（Token）且用户通过认证")
     public List<TagsDTO> saveUserTags(String[] tagIds) throws Exception;

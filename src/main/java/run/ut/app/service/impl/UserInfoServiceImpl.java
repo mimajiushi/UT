@@ -20,6 +20,7 @@ import run.ut.app.model.enums.DegreeEnum;
 import run.ut.app.model.enums.UserInfoStatusEnum;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.UserInfoParam;
+import run.ut.app.model.support.BASE64DecodedMultipartFile;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.support.UploadResult;
@@ -50,19 +51,21 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
     @Override
     @Transactional
-    public BaseResponse<UserInfoDTO> applyForCertification(UserInfoParam userInfoParam,
-                                                           MultipartFile credentialsPhotoFront,
-                                                           MultipartFile credentialsPhotoReverse) {
+    public BaseResponse<UserInfoDTO> applyForCertification(UserInfoParam userInfoParam) {
 
-        int count = count(new QueryWrapper<UserInfo>().eq("status", UserInfoStatusEnum.WAITING.getType()));
+        int count = count(new QueryWrapper<UserInfo>()
+                .eq("status", UserInfoStatusEnum.WAITING.getType()).eq("uid", userInfoParam.getUid()));
         if (count > 0) {
-            throw new AlreadyExistsException("还耐心等待审核完成后再申请！");
+            throw new AlreadyExistsException("当前还有申请未处理，请耐心等待审核完成后再申请！");
         }
 
         User user = userMapper.selectById(userInfoParam.getUid());
         if ((user.getRoles() & userInfoParam.getRole()) == userInfoParam.getRole()) {
-            throw new AlreadyExistsException("角色重复申请！");
+            throw new AlreadyExistsException("申请的角色重复了！");
         }
+
+        MultipartFile credentialsPhotoFront = BASE64DecodedMultipartFile.base64ToMultipart(userInfoParam.getCredentialsPhotoFront());
+        MultipartFile credentialsPhotoReverse = BASE64DecodedMultipartFile.base64ToMultipart(userInfoParam.getCredentialsPhotoReverse());
 
         UserInfo userInfo = userInfoParam.convertTo();
         UploadResult upload1 = fileHandlers.upload(credentialsPhotoFront);

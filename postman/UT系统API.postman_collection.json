@@ -226,22 +226,22 @@
 					]
 				},
 				{
-					"name": "申请角色认证",
+					"name": "申请角色认证（已过期）",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
 								"type": "text",
+								"value": "application/x-www-form-urlencoded",
 								"disabled": true
 							},
 							{
-								"key": "UT-Token",
-								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIzLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MTA0NTkwLCJleHAiOjE2MTU2NDA1OTB9.MCLu4EEaIrQDlVbIQzzbD5ndBd9r-YN5MA7niloZdIc",
 								"description": "测试token，有效期10年",
-								"type": "text"
+								"key": "UT-Token",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIzLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MTA0NTkwLCJleHAiOjE2MTU2NDA1OTB9.MCLu4EEaIrQDlVbIQzzbD5ndBd9r-YN5MA7niloZdIc"
 							}
 						],
 						"body": {
@@ -317,7 +317,7 @@
 								}
 							]
 						},
-						"description": "所有参数都缺一不可,也可以是表单形式提交(推荐)"
+						"description": "因为小程序的特殊性，无法一次性上传多图，所以接口改成了以base64的方式上传图片，该接口已经过期。"
 					},
 					"response": [
 						{

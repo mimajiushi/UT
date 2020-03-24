@@ -24,9 +24,7 @@ import java.util.List;
 public interface UserInfoService extends IService<UserInfo> {
 
     @NonNull
-    BaseResponse<UserInfoDTO> applyForCertification(@NonNull UserInfoParam userInfoParam,
-                                                    @NonNull MultipartFile credentialsPhotoFront,
-                                                    @NonNull MultipartFile credentialsPhotoReverse);
+    BaseResponse<UserInfoDTO> applyForCertification(@NonNull UserInfoParam userInfoParam);
 
     @NonNull
     UserInfo getOneActivatedByUid(@NonNull Long uid);

@@ -1,10 +1,11 @@
 package run.ut.app.controller;
 
-import cn.hutool.core.text.escape.Html4Escape;
-import org.apache.commons.lang3.StringUtils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.unit.DataSize;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +14,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.config.wechat.WechatAccountConfig;
@@ -28,11 +28,11 @@ import run.ut.app.model.dto.UserInfoDTO;
 import run.ut.app.model.enums.SexEnum;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.*;
+import run.ut.app.model.support.BASE64DecodedMultipartFile;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.WeChatResponse;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.security.CheckLogin;
-import run.ut.app.security.token.AuthToken;
 import run.ut.app.security.util.JwtOperator;
 import run.ut.app.service.*;
 import run.ut.app.utils.ImageUtils;
@@ -61,6 +61,9 @@ public class UserController extends BaseController implements UserControllerApi 
     private final UserExperiencesService userExperiencesService;
     private final RestTemplate restTemplate;
     private final WechatAccountConfig wechatAccountConfig;
+
+    @Value("${spring.servlet.multipart.max-file-size}")
+    private DataSize dataSize;
 
     @Override
     @PostMapping("webPageLogin")
@@ -142,20 +145,17 @@ public class UserController extends BaseController implements UserControllerApi 
     @Override
     @PostMapping("applyForCertification")
     @CheckLogin
-    public BaseResponse<UserInfoDTO> applyForCertification(UserInfoParam userInfoParam,
-                                                           @RequestPart("file_front") MultipartFile credentialsPhotoFront,
-                                                           @RequestPart("file_reverse") MultipartFile credentialsPhotoReverse) throws Exception {
+    public BaseResponse<UserInfoDTO> applyForCertification(@Valid @RequestBody UserInfoParam userInfoParam) throws Exception {
         userInfoParam.setUid(getUid());
-        String missParam = ObjectUtils.allfieldIsNotNUll(userInfoParam);
-        boolean isImage = ImageUtils.isImage(credentialsPhotoFront, credentialsPhotoReverse);
-        if (!isImage){
-            throw new FileOperationException("只接受图片格式文件！");
-        }
-        if (!StringUtils.isBlank(missParam)){
-            throw new MissingServletRequestParameterException(missParam, null);
+        long size1 = userInfoParam.getCredentialsPhotoFront().length()*2;
+        long size2 = userInfoParam.getCredentialsPhotoReverse().length()*2;
+        long maxSize = dataSize.toBytes();
+        System.out.println(maxSize);
+        if (size1 > maxSize || size2 > maxSize){
+            throw new BadRequestException("文件大小不可超过10Mb");
         }
 
-        return userInfoService.applyForCertification(userInfoParam, credentialsPhotoFront, credentialsPhotoReverse);
+        return userInfoService.applyForCertification(userInfoParam);
     }
 
     @Override
