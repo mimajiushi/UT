@@ -41,4 +41,7 @@ public interface UserTeamApplyLogService extends IService<UserTeamApplyLog> {
 
     @NonNull
     BaseResponse<String> teamDealWithApplication(@NonNull Long leaderId, @NonNull DealInvitationOrApplyParam param);
+
+    @NonNull
+    List<String> getCountThatWaitingStatus(@NonNull Long uid, @NonNull List<Long> teamIds);
 }

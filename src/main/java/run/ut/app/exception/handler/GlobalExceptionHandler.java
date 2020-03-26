@@ -71,9 +71,9 @@ public class GlobalExceptionHandler {
     public BaseResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         BaseResponse<Map<String, String>> baseResponse = handleBaseException(e);
         baseResponse.setStatus(HttpStatus.BAD_REQUEST.value());
-        baseResponse.setMessage("字段验证错误，请完善后重试！");
         Map<String, String> errMap = ValidationUtils.mapWithFieldError(e.getBindingResult().getFieldErrors());
         baseResponse.setData(errMap);
+        baseResponse.setMessage(e.getBindingResult().getFieldErrors().get(0).getDefaultMessage());
         return baseResponse;
     }
 

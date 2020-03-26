@@ -87,7 +87,7 @@ public class UserTeamApplyLogServiceImpl extends ServiceImpl<UserTeamApplyLogMap
     @Transactional
     public BaseResponse<String> userDealWithInvitation(Long uid, DealInvitationOrApplyParam param) {
         Long[] ids = param.getIds();
-        String reason = param.getReason();
+        String message = param.getMessage();
         Integer status = param.getStatus();
         ApplyStatusEnum statusEnum = ApplyStatusEnum.getByType(status);
         // check ids
@@ -106,7 +106,7 @@ public class UserTeamApplyLogServiceImpl extends ServiceImpl<UserTeamApplyLogMap
             UserTeamApplyLog userTeamApplyLog = userTeamApplyLogs.get(i);
             Long teamId = userTeamApplyLog.getTeamId();
             Integer count = teamsMembersService.countByUid(uid, teamId);
-            checkAndSetMember(reason, statusEnum, teamsMembers, userTeamApplyLog, count);
+            checkAndSetMember(message, statusEnum, teamsMembers, userTeamApplyLog, count);
         }
 
         // save
@@ -119,7 +119,7 @@ public class UserTeamApplyLogServiceImpl extends ServiceImpl<UserTeamApplyLogMap
     @Transactional
     public BaseResponse<String> teamDealWithApplication(Long leaderId, DealInvitationOrApplyParam param) {
         Long[] ids = param.getIds();
-        String reason = param.getReason();
+        String message = param.getMessage();
         Integer status = param.getStatus();
         ApplyStatusEnum statusEnum = ApplyStatusEnum.getByType(status);
 
@@ -149,7 +149,7 @@ public class UserTeamApplyLogServiceImpl extends ServiceImpl<UserTeamApplyLogMap
             Long teamId = userTeamApplyLog.getTeamId();
             Long uid = userTeamApplyLog.getUid();
             Integer count = teamsMembersService.countByUid(uid, teamId);
-            checkAndSetMember(reason, statusEnum, teamsMembers, userTeamApplyLog, count);
+            checkAndSetMember(message, statusEnum, teamsMembers, userTeamApplyLog, count);
         }
 
         // save
@@ -158,16 +158,47 @@ public class UserTeamApplyLogServiceImpl extends ServiceImpl<UserTeamApplyLogMap
         return BaseResponse.ok("处理完成，处理结果：" + statusEnum.getName());
     }
 
-    private void checkAndSetMember(String reason, ApplyStatusEnum statusEnum, List<TeamsMembers> teamsMembers, UserTeamApplyLog userTeamApplyLog, Integer count) {
+    @Override
+    public List<String> getCountThatWaitingStatus(Long uid, List<Long> teamIds) {
+        List<String> countList = new ArrayList<>();
+        // user -> apply -> team
+        Integer count1 = this.baseMapper.selectCount(new QueryWrapper<UserTeamApplyLog>()
+                .eq("uid", uid)
+                .eq("mode", ApplyModeEnum.USER_TO_TEAM.getType())
+                .eq("status", ApplyStatusEnum.WAITING.getType()));
+        // team -> applied -> user
+        Integer count2 = teamIds.size()>0?
+                this.baseMapper.selectCount(new QueryWrapper<UserTeamApplyLog>()
+                .eq("mode", ApplyModeEnum.USER_TO_TEAM.getType())
+                .eq("status", ApplyStatusEnum.WAITING.getType())
+                .in("team_id", teamIds))
+                :0;
+        // team -> invite -> user
+        Integer count3 = teamIds.size()>0?
+                this.baseMapper.selectCount(new QueryWrapper<UserTeamApplyLog>()
+                        .eq("mode", ApplyModeEnum.TEAM_TO_USER.getType())
+                        .eq("status", ApplyStatusEnum.WAITING.getType())
+                        .in("team_id", teamIds))
+                :0;
+        // user -> invited -> team
+        Integer count4 = this.baseMapper.selectCount(new QueryWrapper<UserTeamApplyLog>()
+                .eq("uid", uid)
+                .eq("mode", ApplyModeEnum.TEAM_TO_USER.getType())
+                .eq("status", ApplyStatusEnum.WAITING.getType()));
+        countList.add(count1.toString());
+        countList.add(count2.toString());
+        countList.add(count3.toString());
+        countList.add(count4.toString());
+        return countList;
+    }
+
+    private void checkAndSetMember(String message, ApplyStatusEnum statusEnum, List<TeamsMembers> teamsMembers, UserTeamApplyLog userTeamApplyLog, Integer count) {
         if (count > 0 && statusEnum == ApplyStatusEnum.PASS){
-            throw new AlreadyExistsException("接受的邀请中有已加入的团队！");
-        }else if (statusEnum == ApplyStatusEnum.FAIL){
-            userTeamApplyLog.setReason(reason)
-                    .setStatus(ApplyStatusEnum.FAIL)
-                    .setUpdateTime(null);
+            throw new AlreadyExistsException("同意的申请/邀请中有已加入的团队！");
         }else {
-            // when == ApplyStatusEnum.PASS or count = 0
-            userTeamApplyLog.setStatus(ApplyStatusEnum.PASS).setUpdateTime(null);
+            userTeamApplyLog.setStatus(statusEnum)
+                    .setMessage(message)
+                    .setUpdateTime(null);
             TeamsMembers teamsMember = new TeamsMembers().setTeamId(userTeamApplyLog.getTeamId()).
                     setUid(userTeamApplyLog.getUid()).
                     setIsLeader(TeamsMemberEnum.NORMAL);

@@ -23,12 +23,12 @@ public class JWTTest {
 
     @Test
     public void test1(){
-        Long[] arr = new Long[]{1L, 2L, 3L};
-        String jsonString = JSON.toJSONString(arr);
-        System.out.println(jsonString);
-
-        DealInvitationOrApplyParam dealInvitationOrApplyParam = new DealInvitationOrApplyParam();
-        dealInvitationOrApplyParam.setIds(arr);
-        System.out.println(dealInvitationOrApplyParam);
+//        Long[] arr = new Long[]{1L, 2L, 3L};
+//        String jsonString = JSON.toJSONString(arr);
+//        System.out.println(jsonString);
+//
+//        DealInvitationOrApplyParam dealInvitationOrApplyParam = new DealInvitationOrApplyParam();
+//        dealInvitationOrApplyParam.setIds(arr);
+//        System.out.println(dealInvitationOrApplyParam);
     }
 }

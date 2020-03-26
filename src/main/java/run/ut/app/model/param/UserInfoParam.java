@@ -67,9 +67,10 @@ public class UserInfoParam extends BaseParam implements InputConverter<UserInfo>
     private Integer status;
 
     @ApiModelProperty(value = "正面照base64编码")
-    @NotBlank()
+    @NotBlank(message = "正面照不能为空")
     private String credentialsPhotoFront;
 
     @ApiModelProperty(value = "反面照base64编码")
+    @NotBlank(message = "反面照不能为空")
     private String credentialsPhotoReverse;
 }

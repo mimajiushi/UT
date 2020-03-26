@@ -7,6 +7,7 @@ import lombok.Data;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Data
 @ApiModel(value = "处理邀请/申请的请求参数")
@@ -21,6 +22,7 @@ public class DealInvitationOrApplyParam {
     @Max(value = 1)
     private Integer status;
 
-    @ApiModelProperty(value = "拒绝的理由")
-    private String reason;
+    @ApiModelProperty(value = "留言")
+    @Size(max = 20, message = "留言不可超过{max}字")
+    private String message;
 }

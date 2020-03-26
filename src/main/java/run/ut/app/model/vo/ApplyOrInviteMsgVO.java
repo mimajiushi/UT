@@ -34,6 +34,12 @@ public class ApplyOrInviteMsgVO {
     @ApiModelProperty(value = "申请/邀请用户的昵称")
     private String nickname;
 
+    @ApiModelProperty(value = "用户头像")
+    private String avatar;
+
+    @ApiModelProperty(value = "团队logo")
+    private String logo;
+
     @ApiModelProperty(value = "申请/邀请的团队id", notes = "若需要查看团队的详细信息，也可以通过此id请求对应的接口")
     private Long teamId;
 
@@ -49,8 +55,8 @@ public class ApplyOrInviteMsgVO {
     @ApiModelProperty(value = "当前处理状态")
     private ApplyStatusEnum status;
 
-    @ApiModelProperty(value = "如果这条申请/邀请被拒绝了，可能带有拒绝原因")
-    private String reason;
+    @ApiModelProperty(value = "留言")
+    private String message;
 
     @ApiModelProperty(value = "申请/邀请时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

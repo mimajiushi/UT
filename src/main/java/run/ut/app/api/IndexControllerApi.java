@@ -6,12 +6,9 @@ import run.ut.app.model.param.SearchRecruitmentParam;
 import run.ut.app.model.param.SearchStudentParam;
 import run.ut.app.model.param.SearchTeamParam;
 import run.ut.app.model.support.CommentPage;
-import run.ut.app.model.vo.ApplyOrInviteMsgVO;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.model.vo.TeamVO;
 import run.ut.app.model.vo.TeamsRecruitmentsVO;
-
-import java.util.List;
 
 
 @Api(value="用于返回首页等主页数据",tags = "主页数据核心API")

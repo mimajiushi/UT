@@ -7,6 +7,8 @@ import java.io.*;
 
 /**
  * base64转MultipartFile
+ *
+ * @author wenjie
  */
 public class BASE64DecodedMultipartFile implements MultipartFile {
 

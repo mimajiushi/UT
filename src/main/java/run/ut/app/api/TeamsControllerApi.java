@@ -44,7 +44,7 @@ public interface TeamsControllerApi {
     @ApiOperation(value = "获取用户历史申请的列表", notes = "需要用户登录（Token）")
     public CommentPage<ApplyOrInviteMsgVO> listUserApplyMsg(Integer pageNum, Integer pageSize, Integer status);
 
-    @ApiOperation(value = "获取用户收到的列表", notes = "需要用户登录（Token）")
+    @ApiOperation(value = "获取用户收到的邀请列表", notes = "需要用户登录（Token）")
     public CommentPage<ApplyOrInviteMsgVO> listUserInviteMsg(Integer pageNum, Integer pageSize, Integer status);
 
     @ApiOperation(value = "获取团队收到的申请列表", notes = "需要用户登录（Token）,必须是队长身份")
@@ -52,6 +52,9 @@ public interface TeamsControllerApi {
 
     @ApiOperation(value = "获取团队历史邀请列表", notes = "需要用户登录（Token）, 必须是队长身份")
     public CommentPage<ApplyOrInviteMsgVO> listTeamInviteMsg(Integer pageNum, Integer pageSize, Integer status);
+
+    @ApiOperation(value = "获取各申请/邀请中处于待处理状态的数量", notes = "需要用户登录（Token）")
+    public List<String> getCountThatWaitingStatus();
 
     @ApiOperation(value = "用户处理团队发送给自己的邀请", notes = "需要用户登录（Token）")
     public BaseResponse<String> userDealWithInvitation(DealInvitationOrApplyParam param);

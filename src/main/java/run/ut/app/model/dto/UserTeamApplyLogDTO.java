@@ -41,7 +41,7 @@ public class UserTeamApplyLogDTO extends BaseDTO implements OutputConverter<User
     @ApiModelProperty(value = "0-待处理 1-申请通过 -1-申请被拒绝")
     private ApplyStatusEnum status;
 
-    @ApiModelProperty(value = "拒绝的原因")
-    private String reason;
+    @ApiModelProperty(value = "留言")
+    private String message;
 
 }

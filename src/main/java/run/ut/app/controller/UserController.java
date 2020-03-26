@@ -147,11 +147,14 @@ public class UserController extends BaseController implements UserControllerApi 
     @CheckLogin
     public BaseResponse<UserInfoDTO> applyForCertification(@Valid @RequestBody UserInfoParam userInfoParam) throws Exception {
         userInfoParam.setUid(getUid());
-        long size1 = userInfoParam.getCredentialsPhotoFront().length()*2;
-        long size2 = userInfoParam.getCredentialsPhotoReverse().length()*2;
-        long maxSize = dataSize.toBytes();
-        System.out.println(maxSize);
-        if (size1 > maxSize || size2 > maxSize){
+        long size1 = userInfoParam.getCredentialsPhotoFront().length();
+        long size2 = userInfoParam.getCredentialsPhotoReverse().length();
+        long realSize1 = size1 - (size1/8) * 2;
+        long realSize2 = size2 - (size2/8) * 2;
+        long maxFileSize = dataSize.toBytes();
+        System.out.println(realSize1 + " " + realSize2);
+        System.out.println(maxFileSize);
+        if (size1 > maxFileSize || size2 > maxFileSize){
             throw new BadRequestException("文件大小不可超过10Mb");
         }
 

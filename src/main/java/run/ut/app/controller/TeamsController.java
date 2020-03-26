@@ -179,6 +179,15 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     }
 
     @Override
+    @CheckLogin
+    @GetMapping("getCountThatWaitingStatus")
+    public List<String> getCountThatWaitingStatus() {
+        Long uid = getUid();
+        List<Long> teamIds = teamsService.getTeamIdsByLeaderId(uid);
+        return userTeamApplyLogService.getCountThatWaitingStatus(uid, teamIds);
+    }
+
+    @Override
     @PostMapping("userDealWithInvitation")
     @CheckLogin
     public BaseResponse<String> userDealWithInvitation(@Valid @RequestBody DealInvitationOrApplyParam param) {

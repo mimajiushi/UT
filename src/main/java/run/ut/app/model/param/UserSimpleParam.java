@@ -25,10 +25,10 @@ public class UserSimpleParam implements InputConverter<User> {
     @ApiModelProperty(value = "用户uid，前端不需要传，由后端解析token填充")
     private Long uid;
 
-    @Size(max = 50, message = "用户昵称的字符长度不能超过 {max}")
+    @Size(max = 10, message = "用户昵称的字符长度不能超过 {max} 字")
     private String nickname;
 
-    @Size(max = 2000, message = "用户描述的字符长度不能超过 {max}")
+    @Size(max = 2000, message = "用户描述的字符长度不能超过 {max} 字")
     private String description;
 
     private Integer sex;
