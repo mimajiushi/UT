@@ -2889,7 +2889,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/ut/index/student/21",
+							"raw": "http://localhost:8080/ut/index/user/21",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2898,7 +2898,7 @@
 							"path": [
 								"ut",
 								"index",
-								"student",
+								"user",
 								"21"
 							]
 						},
@@ -2977,12 +2977,12 @@
 					},
 					"response": [
 						{
-							"name": "获取队伍id为1的队伍信息",
+							"name": "查看id为2的队伍信息",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ut/index/team/1",
+									"raw": "http://localhost:8080/ut/index/team/2",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -2992,7 +2992,7 @@
 										"ut",
 										"index",
 										"team",
-										"1"
+										"2"
 									]
 								}
 							},
@@ -3010,7 +3010,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 15 Mar 2020 15:11:01 GMT"
+									"value": "Fri, 27 Mar 2020 13:54:57 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -3022,7 +3022,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"UT小分队2\",\n        \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n        \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n        \"tags\": [\n            {\n                \"createTime\": \"2020-03-11 13:04:03\",\n                \"updateTime\": \"2020-02-25 13:45:33\",\n                \"deleted\": 0,\n                \"id\": 1,\n                \"parentId\": 0,\n                \"name\": \"技术\",\n                \"level\": 0\n            },\n            {\n                \"createTime\": \"2020-03-11 13:04:34\",\n                \"updateTime\": \"2020-02-25 13:45:43\",\n                \"deleted\": 0,\n                \"id\": 2,\n                \"parentId\": 1,\n                \"name\": \"Java\",\n                \"level\": 1\n            }\n        ],\n        \"tagIds\": \"1,2\",\n        \"status\": \"招募中\",\n        \"recruitments\": [\n            {\n                \"createTime\": \"2020-03-15 16:42:27\",\n                \"updateTime\": \"2020-03-15 18:21:06\",\n                \"deleted\": 0,\n                \"id\": 1,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发1批\",\n                \"tagIds\": \"1,2,3\",\n                \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 16:43:14\",\n                \"updateTime\": \"2020-03-15 17:08:25\",\n                \"deleted\": 0,\n                \"id\": 2,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发2批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:29\",\n                \"updateTime\": \"2020-03-14 06:29:02\",\n                \"deleted\": 0,\n                \"id\": 3,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发3批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:32\",\n                \"updateTime\": \"2020-03-14 06:29:05\",\n                \"deleted\": 0,\n                \"id\": 4,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发4批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:36\",\n                \"updateTime\": \"2020-03-14 06:29:09\",\n                \"deleted\": 0,\n                \"id\": 5,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发5批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n            }\n        ],\n        \"members\": [\n            {\n                \"id\": 1,\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"队长\"\n            },\n            {\n                \"id\": 23,\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            },\n            {\n                \"id\": 24,\n                \"uid\": 23,\n                \"nickname\": \"UT_8B1266\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            },\n            {\n                \"id\": 25,\n                \"uid\": 24,\n                \"nickname\": \"UT_8B1265\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            },\n            {\n                \"id\": 26,\n                \"uid\": 25,\n                \"nickname\": \"UT_8B1264\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            }\n        ],\n        \"createTime\": \"2020-03-14 21:16:50\"\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"adawa\",\n        \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n        \"description\": \"awdawd\",\n        \"tags\": [\n            {\n                \"createTime\": \"2020-03-11 13:04:34\",\n                \"updateTime\": \"2020-02-25 13:45:43\",\n                \"deleted\": 0,\n                \"id\": 2,\n                \"parentId\": 1,\n                \"name\": \"Java\",\n                \"level\": 1\n            },\n            {\n                \"createTime\": \"2020-03-11 13:04:53\",\n                \"updateTime\": \"2020-02-25 13:45:50\",\n                \"deleted\": 0,\n                \"id\": 3,\n                \"parentId\": 1,\n                \"name\": \"PHP\",\n                \"level\": 1\n            }\n        ],\n        \"tagIds\": \"2,3\",\n        \"status\": \"招募中\",\n        \"recruitments\": [\n            {\n                \"createTime\": \"2020-03-15 16:42:27\",\n                \"updateTime\": \"2020-03-15 18:21:06\",\n                \"deleted\": 0,\n                \"id\": 6,\n                \"teamId\": 2,\n                \"name\": \"php后端开发1批\",\n                \"tagIds\": \"1,2,3\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 16:43:14\",\n                \"updateTime\": \"2020-03-15 17:08:25\",\n                \"deleted\": 0,\n                \"id\": 7,\n                \"teamId\": 2,\n                \"name\": \"php后端开发2批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:29\",\n                \"updateTime\": \"2020-03-14 06:29:02\",\n                \"deleted\": 0,\n                \"id\": 8,\n                \"teamId\": 2,\n                \"name\": \"php后端开发3批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:32\",\n                \"updateTime\": \"2020-03-14 06:29:05\",\n                \"deleted\": 0,\n                \"id\": 9,\n                \"teamId\": 2,\n                \"name\": \"php后端开发4批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:36\",\n                \"updateTime\": \"2020-03-14 06:29:09\",\n                \"deleted\": 0,\n                \"id\": 10,\n                \"teamId\": 2,\n                \"name\": \"php后端开发5批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            }\n        ],\n        \"members\": [\n            {\n                \"id\": 4,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"role\": \"队长\"\n            },\n            {\n                \"id\": 31,\n                \"uid\": 29,\n                \"nickname\": \"UT_8B1260\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            },\n            {\n                \"id\": 32,\n                \"uid\": 28,\n                \"nickname\": \"UT_8B1261\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            },\n            {\n                \"id\": 33,\n                \"uid\": 27,\n                \"nickname\": \"UT_8B1262\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            },\n            {\n                \"id\": 35,\n                \"uid\": 25,\n                \"nickname\": \"UT_8B1264\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            }\n        ],\n        \"createTime\": \"2020-03-14\"\n    }\n}"
 						}
 					]
 				},
@@ -3365,7 +3365,7 @@
 					},
 					"response": [
 						{
-							"name": "获取id为1的职位信息",
+							"name": "查看id为1的职位信息",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
@@ -3398,7 +3398,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 17 Mar 2020 05:58:56 GMT"
+									"value": "Fri, 27 Mar 2020 14:14:44 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -3410,7 +3410,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"id\": 1,\n        \"teamId\": 1,\n        \"name\": \"Java后端开发1批\",\n        \"tagIds\": \"1,2,3\",\n        \"tags\": [\n            {\n                \"createTime\": \"2020-03-11 13:04:03\",\n                \"updateTime\": \"2020-02-25 13:45:33\",\n                \"deleted\": 0,\n                \"id\": 1,\n                \"parentId\": 0,\n                \"name\": \"技术\",\n                \"level\": 0\n            },\n            {\n                \"createTime\": \"2020-03-11 13:04:34\",\n                \"updateTime\": \"2020-02-25 13:45:43\",\n                \"deleted\": 0,\n                \"id\": 2,\n                \"parentId\": 1,\n                \"name\": \"Java\",\n                \"level\": 1\n            },\n            {\n                \"createTime\": \"2020-03-11 13:04:53\",\n                \"updateTime\": \"2020-02-25 13:45:50\",\n                \"deleted\": 0,\n                \"id\": 3,\n                \"parentId\": 1,\n                \"name\": \"PHP\",\n                \"level\": 1\n            }\n        ],\n        \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\",\n        \"teamVO\": {\n            \"id\": 1,\n            \"name\": \"UT小分队2\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n            \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n            \"tags\": null,\n            \"tagIds\": \"1,2\",\n            \"status\": \"招募中\",\n            \"recruitments\": null,\n            \"members\": null,\n            \"createTime\": \"2020-03-14 21:16:50\"\n        },\n        \"createTime\": \"2020-03-15 16:42:27\"\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"id\": 1,\n        \"teamId\": 1,\n        \"name\": \"Java后端开发1批\",\n        \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\",\n        \"teamVO\": {\n            \"id\": 1,\n            \"name\": \"UT小分队2\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n            \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n            \"tags\": null,\n            \"tagIds\": \"1,2\",\n            \"status\": \"招募中\",\n            \"recruitments\": null,\n            \"members\": null,\n            \"createTime\": \"2020-03-17\"\n        },\n        \"teamName\": null,\n        \"createTime\": \"2020-03-15 16:42:27\"\n    }\n}"
 						}
 					]
 				},

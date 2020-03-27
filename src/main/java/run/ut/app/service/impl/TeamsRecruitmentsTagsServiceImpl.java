@@ -27,6 +27,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@Deprecated
 public class TeamsRecruitmentsTagsServiceImpl extends ServiceImpl<TeamsRecruitmentsTagsMapper, TeamsRecruitmentsTags> implements TeamsRecruitmentsTagsService {
 
     private final TagsMapper tagsMapper;

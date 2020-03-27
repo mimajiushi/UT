@@ -103,26 +103,29 @@ public class IndexServiceImpl implements IndexService {
         long total = teamsRecruitmentsVOIPage.getTotal();
 
         List<TeamsRecruitmentsVO> records = teamsRecruitmentsVOIPage.getRecords();
-        for (int i = 0; i < records.size(); i++){
-            TeamsRecruitmentsVO teamsRecruitmentsVO = records.get(i);
-            String tagIds = teamsRecruitmentsVO.getTagIds();
-            if (!StringUtils.isBlank(tagIds)){
-                List<TagsDTO> tagsDTOList = tagsService.listByIds(Arrays.asList(tagIds.split(","))).stream().map(e -> {
-                    return (TagsDTO) new TagsDTO().convertFrom(e);
-                }).collect(Collectors.toList());
-                teamsRecruitmentsVO.setTags(tagsDTOList);
-            }
-        }
+//        for (int i = 0; i < records.size(); i++){
+//            TeamsRecruitmentsVO teamsRecruitmentsVO = records.get(i);
+//            String tagIds = teamsRecruitmentsVO.getTagIds();
+//            if (!StringUtils.isBlank(tagIds)){
+//                List<TagsDTO> tagsDTOList = tagsService.listByIds(Arrays.asList(tagIds.split(","))).stream().map(e -> {
+//                    return (TagsDTO) new TagsDTO().convertFrom(e);
+//                }).collect(Collectors.toList());
+//                teamsRecruitmentsVO.setTags(tagsDTOList);
+//            }
+//        }
         return new CommentPage<>(total, records);
     }
 
     @Override
-    public StudentVO showStudentPage(Long uid) {
+    public StudentVO showUserPageInfo(Long uid) {
         User user = userMapper.selectById(uid);
         if (ObjectUtils.isEmpty(user)){
             throw new NotFoundException("该id的用户不存在！");
         }
         UserInfo userInfo = userInfoService.getOneActivatedByUid(uid);
+        if (ObjectUtils.isEmpty(userInfo)){
+            throw new NotFoundException("该用户没有认证信息，uid: " + uid);
+        }
         List<TagsDTO> tagsDTOList = userTagsService.listByUid(uid)
                 .stream().map(e -> (TagsDTO) new TagsDTO().convertFrom(e)).collect(Collectors.toList());
         List<UserExperiencesDTO> userExperiencesDTOList = userExperiencesService.getUserExperiencesByUid(uid)
@@ -142,7 +145,9 @@ public class IndexServiceImpl implements IndexService {
                 .setRealName(userInfo.getRealName())
                 .setDescription(user.getDescription())
                 .setUid(user.getUid())
-                .setNickname(user.getNickname());
+                .setNickname(user.getNickname())
+                .setSex(user.getSex())
+                .setRoles(user.getRoles());
     }
 
     @Override
@@ -182,10 +187,10 @@ public class IndexServiceImpl implements IndexService {
 
         TeamsRecruitmentsVO teamsRecruitmentsVO = new TeamsRecruitmentsVO().convertFrom(recruitment);
 
-        // Get tags
-        List<TagsDTO> tags = teamsRecruitmentsTagsService.listByTeamsRecruitmentsId(recruitmentsId)
-                .stream().map(e -> (TagsDTO) new TagsDTO().convertFrom(e)).collect(Collectors.toList());
-        teamsRecruitmentsVO.setTags(tags);
+//        // Get tags
+//        List<TagsDTO> tags = teamsRecruitmentsTagsService.listByTeamsRecruitmentsId(recruitmentsId)
+//                .stream().map(e -> (TagsDTO) new TagsDTO().convertFrom(e)).collect(Collectors.toList());
+//        teamsRecruitmentsVO.setTags(tags);
 
         // Get info about the team
         Teams teams = teamsMapper.selectById(recruitment.getTeamId());

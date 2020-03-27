@@ -60,9 +60,9 @@ public class IndexController implements IndexControllerApi {
     }
 
     @Override
-    @GetMapping("/student/{uid:\\d+}")
-    public StudentVO showStudentInfo(@PathVariable Long uid) {
-        return indexService.showStudentPage(uid);
+    @GetMapping("/user/{uid:\\d+}")
+    public StudentVO showUserPageInfo(@PathVariable Long uid) {
+        return indexService.showUserPageInfo(uid);
     }
 
     @Override

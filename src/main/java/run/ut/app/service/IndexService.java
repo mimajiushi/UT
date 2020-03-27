@@ -43,7 +43,7 @@ public interface IndexService {
      * @return Student's non-private information
      */
     @NonNull
-    StudentVO showStudentPage(@NonNull Long uid);
+    StudentVO showUserPageInfo(@NonNull Long uid);
 
     @NonNull
     TeamVO showTeamsInfo(@NonNull Long teamsId);

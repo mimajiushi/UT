@@ -15,6 +15,7 @@ import java.util.List;
  * @author wenjie
  * @since 2020-03-15
  */
+@Deprecated
 public interface TeamsRecruitmentsTagsService extends IService<TeamsRecruitmentsTags> {
 
     @NonNull

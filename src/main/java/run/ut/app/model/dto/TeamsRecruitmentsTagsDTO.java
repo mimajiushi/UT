@@ -22,6 +22,7 @@ import run.ut.app.model.domain.BaseEntity;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value="TeamsRecruitmentsTagsDTO 对象", description="")
+@Deprecated
 public class TeamsRecruitmentsTagsDTO extends BaseDTO {
 
     private Long id;

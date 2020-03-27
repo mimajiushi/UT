@@ -59,7 +59,7 @@ public class TeamVO implements OutputConverter<TeamVO, Teams> {
     @ApiModelProperty("团队成员简要信息")
     private List<TeamMemberVO> members;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private LocalDateTime createTime;
 
 

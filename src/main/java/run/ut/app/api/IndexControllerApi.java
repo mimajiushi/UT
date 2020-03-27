@@ -23,8 +23,8 @@ public interface IndexControllerApi {
     @ApiOperation(value = "获取职位列表")
     public CommentPage<TeamsRecruitmentsVO> listRecruitmentByParam(SearchRecruitmentParam searchRecruitmentParam, Integer pageNum, Integer pageSize);
 
-    @ApiOperation(value = "学生展示给别人看的主页", notes = "非自己看自己的个人主页，不包含手机号等敏感信息")
-    public StudentVO showStudentInfo(Long uid);
+    @ApiOperation(value = "用户展示给别人看的主页", notes = "非自己看自己的个人主页，不包含手机号等敏感信息")
+    public StudentVO showUserPageInfo(Long uid);
 
     @ApiOperation(value = "团队展示给别人看的主页", notes = "包含成员信息、团队经历、团队标签等")
     public TeamVO showTeamsInfo(Long teamsId);

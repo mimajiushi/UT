@@ -25,6 +25,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value="TeamsRecruitmentsTags 对象", description="")
+@Deprecated
 public class TeamsRecruitmentsTags extends BaseEntity {
 
     @TableId(value = "id", type = IdType.AUTO)

@@ -39,10 +39,10 @@ public class TeamsRecruitmentsVO implements OutputConverter<TeamsRecruitmentsVO,
     @ApiModelProperty(value = "招聘岗位名称")
     private String name;
 
-    private String tagIds;
-
-    @ApiModelProperty(value = "招聘岗位的标签")
-    private List<TagsDTO> tags;
+//    private String tagIds;
+//
+//    @ApiModelProperty(value = "招聘岗位的标签")
+//    private List<TagsDTO> tags;
 
     @ApiModelProperty(value = "岗位要求、描述")
     private String description;
