@@ -106,7 +106,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @Override
     @PostMapping("userApplyToTeam")
     @CheckLogin
-    public BaseResponse<String> userApplyToTeam(TeamApplyOrInviteParam teamApplyParam) {
+    public BaseResponse<String> userApplyToTeam(@RequestBody @Valid TeamApplyOrInviteParam teamApplyParam) {
         Long uid = getUid();
         checkUser(uid);
         teamApplyParam.setUid(uid);
@@ -116,7 +116,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @Override
     @PostMapping("teamInvitesUser")
     @CheckLogin
-    public BaseResponse<String> teamInvitesUser(TeamApplyOrInviteParam teamInviteParam) {
+    public BaseResponse<String> teamInvitesUser(@RequestBody @Valid TeamApplyOrInviteParam teamInviteParam) {
         Long leaderId = getUid();
         teamsService.getAndCheckTeamByLeaderIdAndTeamId(leaderId, teamInviteParam.getTeamId());
         UserInfo userInfo = userInfoService.getOneActivatedByUid(teamInviteParam.getUid());

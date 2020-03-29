@@ -324,4 +324,13 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         }
         return teamIds;
     }
+
+    @Override
+    public List<TeamsDTO> listTeamsByLeaderId(Long leaderId) {
+        List<Long> teamIdsByLeaderId = getTeamIdsByLeaderId(leaderId);
+        if (ObjectUtils.isEmpty(teamIdsByLeaderId) || teamIdsByLeaderId.size() == 0){
+            return new ArrayList<>();
+        }
+        return listByIds(teamIdsByLeaderId).stream().map(e -> (TeamsDTO)new TeamsDTO().convertFrom(e)).collect(Collectors.toList());
+    }
 }

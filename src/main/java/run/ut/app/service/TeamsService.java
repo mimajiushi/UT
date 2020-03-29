@@ -51,5 +51,9 @@ public interface TeamsService extends IService<Teams> {
     @NonNull
     Teams getAndCheckTeamByLeaderIdAndTeamId(@NonNull Long leaderId, @NonNull Long TeamsId);
 
-    List<Long> getTeamIdsByLeaderId(Long leaderId);
+    @NonNull
+    List<Long> getTeamIdsByLeaderId(@NonNull Long leaderId);
+
+    @NonNull
+    List<TeamsDTO> listTeamsByLeaderId(@NonNull Long leaderId);
 }

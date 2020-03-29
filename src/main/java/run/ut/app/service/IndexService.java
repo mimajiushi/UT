@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.PathVariable;
+import run.ut.app.model.domain.TeamsRecruitments;
+import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.param.SearchRecruitmentParam;
 import run.ut.app.model.param.SearchStudentParam;
 import run.ut.app.model.param.SearchTeamParam;
@@ -11,6 +13,9 @@ import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.model.vo.TeamVO;
 import run.ut.app.model.vo.TeamsRecruitmentsVO;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 /**
  * @author wenjie
@@ -50,5 +55,8 @@ public interface IndexService {
 
     @NonNull
     TeamsRecruitmentsVO showRecruitmentsInfo(@NonNull Long recruitmentsId);
+
+    @NonNull
+    List<TeamsRecruitmentsDTO> listRecruitmentsByTeamId(@Nonnull Long teamId);
 
 }

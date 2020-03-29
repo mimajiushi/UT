@@ -36,7 +36,7 @@ public class TeamApplyOrInviteParam implements InputConverter<UserTeamApplyLog> 
     private Long uid;
 
     @ApiModelProperty(value = "团队id")
-    @NotNull
+    @NotNull(message = "队伍id不能为空")
     private Long teamId;
 
     @ApiModelProperty(value = "申请的职位id", notes = "0-直接申请/邀请加入团队，> 0则是申请/邀请对应职位")

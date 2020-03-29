@@ -19,8 +19,10 @@ public class SearchRecruitmentParam {
     @Size(max = 10, message = "查询名不能大于{max}字")
     private String name;
 
-//    @ApiModelProperty(value = "标签id")
-//    private Long tagId;
+    @ApiModelProperty(value = "标签id")
+    @Deprecated
+    private Long tagId;
+
 
     @ApiModelProperty(value = "0-团队处于不招人状态 1-团队处于招人状态。",
             notes = "默认为1，前端不需要传，默认只展示招人状态的团队的岗位")

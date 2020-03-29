@@ -1,5 +1,6 @@
 package run.ut.app.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,7 @@ import run.ut.app.model.vo.TeamVO;
 import run.ut.app.model.vo.TeamsRecruitmentsVO;
 import run.ut.app.service.*;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -197,6 +199,13 @@ public class IndexServiceImpl implements IndexService {
         teamsRecruitmentsVO.setTeamVO(new TeamVO().convertFrom(teams));
 
         return teamsRecruitmentsVO;
+    }
+
+    @Override
+    public List<TeamsRecruitmentsDTO> listRecruitmentsByTeamId(@Nonnull Long teamId) {
+        return teamsRecruitmentsMapper.selectList(new QueryWrapper<TeamsRecruitments>()
+                .eq("team_id", teamId)).stream().map(e -> (TeamsRecruitmentsDTO) new TeamsRecruitmentsDTO().convertFrom(e))
+                .collect(Collectors.toList());
     }
 
 }

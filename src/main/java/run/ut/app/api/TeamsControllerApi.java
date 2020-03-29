@@ -56,7 +56,9 @@ public interface TeamsControllerApi {
     @ApiOperation(value = "获取各申请/邀请中处于待处理状态的数量", notes = "需要用户登录（Token）")
     public List<String> getCountThatWaitingStatus();
 
-    @ApiOperation(value = "用户处理团队发送给自己的邀请", notes = "需要用户登录（Token）")
+//    @ApiOperation(value = "获取队长所属队伍")
+
+  @ApiOperation(value = "用户处理团队发送给自己的邀请", notes = "需要用户登录（Token）")
     public BaseResponse<String> userDealWithInvitation(DealInvitationOrApplyParam param);
 
     @ApiOperation(value = "队长处理收到的用户申请（加入团队的申请）", notes = "需要队长登录Token")

@@ -3420,7 +3420,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/ut/index/listRecruitmentByParam?pageNum=1&pageSize=10&name=2",
+							"raw": "http://localhost:8080/ut/index/listRecruitmentByParam?pageNum=1&pageSize=10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3442,7 +3442,8 @@
 								},
 								{
 									"key": "name",
-									"value": "2"
+									"value": "2",
+									"disabled": true
 								}
 							]
 						}
@@ -3742,6 +3743,156 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"更新成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "根据队长id获取所管理队伍",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ut/index/teams/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"index",
+								"teams",
+								"21"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "成功返回示例",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/teams/21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"teams",
+										"21"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=FCC81EBBAB92B920D191D385E7548586; Path=/ut; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 29 Mar 2020 06:18:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"createTime\": \"2020-03-17 21:16:50\",\n            \"updateTime\": \"2020-03-15 00:40:01\",\n            \"deleted\": 0,\n            \"id\": 1,\n            \"name\": \"UT小分队2\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n            \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n            \"tagIds\": \"1,2\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:57\",\n            \"deleted\": 0,\n            \"id\": 2,\n            \"name\": \"adawa\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"2,3\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:26\",\n            \"deleted\": 0,\n            \"id\": 3,\n            \"name\": \"uilul\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:27\",\n            \"deleted\": 0,\n            \"id\": 4,\n            \"name\": \"rjfdber\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:29\",\n            \"deleted\": 0,\n            \"id\": 5,\n            \"name\": \"yyyy\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:31\",\n            \"deleted\": 0,\n            \"id\": 6,\n            \"name\": \"xxxxx\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:32\",\n            \"deleted\": 0,\n            \"id\": 7,\n            \"name\": \"qqqq\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:33\",\n            \"deleted\": 0,\n            \"id\": 8,\n            \"name\": \"uuuu\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:35\",\n            \"deleted\": 0,\n            \"id\": 9,\n            \"name\": \"iii\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:37\",\n            \"deleted\": 0,\n            \"id\": 10,\n            \"name\": \"sss\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:39\",\n            \"deleted\": 0,\n            \"id\": 11,\n            \"name\": \"zzz\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:40\",\n            \"deleted\": 0,\n            \"id\": 12,\n            \"name\": \"xxx\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:41\",\n            \"deleted\": 0,\n            \"id\": 13,\n            \"name\": \"vvvv\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:47\",\n            \"deleted\": 0,\n            \"id\": 18,\n            \"name\": \"uuu\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:48\",\n            \"deleted\": 0,\n            \"id\": 19,\n            \"name\": \"afawf\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-14 21:16:50\",\n            \"updateTime\": \"2020-03-14 03:24:49\",\n            \"deleted\": 0,\n            \"id\": 20,\n            \"name\": \"nnn\",\n            \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n            \"description\": \"awdawd\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-15 12:57:57\",\n            \"updateTime\": \"2020-03-14 01:57:37\",\n            \"deleted\": 0,\n            \"id\": 21,\n            \"name\": \"UT小分队\",\n            \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248275363.jpg\",\n            \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-15 13:01:01\",\n            \"updateTime\": \"2020-03-14 02:00:57\",\n            \"deleted\": 0,\n            \"id\": 22,\n            \"name\": \"UT小分队3\",\n            \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248460308.jpg\",\n            \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        },\n        {\n            \"createTime\": \"2020-03-15 23:07:44\",\n            \"updateTime\": \"2020-03-14 12:58:13\",\n            \"deleted\": 0,\n            \"id\": 23,\n            \"name\": \"UT小分队666\",\n            \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584284862205.jpg\",\n            \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n            \"tagIds\": \"\",\n            \"status\": \"招募中\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "根据队伍id获取职位信息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ut/index/recruitments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"index",
+								"recruitments",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "根据队伍id获取职位信息",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/recruitments/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"recruitments",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=A8866584AE9BFDBD47CCC88B519ACBD7; Path=/ut; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 29 Mar 2020 06:41:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"createTime\": \"2020-03-15 16:42:27\",\n            \"updateTime\": \"2020-03-18 17:35:06\",\n            \"deleted\": 0,\n            \"id\": 1,\n            \"teamId\": 1,\n            \"name\": \"Java后端开发1批\",\n            \"tagIds\": \"1,2,3\",\n            \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n        },\n        {\n            \"createTime\": \"2020-03-15 16:43:14\",\n            \"updateTime\": \"2020-03-15 17:08:25\",\n            \"deleted\": 0,\n            \"id\": 2,\n            \"teamId\": 1,\n            \"name\": \"Java后端开发2批\",\n            \"tagIds\": \"\",\n            \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n        },\n        {\n            \"createTime\": \"2020-03-15 17:08:29\",\n            \"updateTime\": \"2020-03-14 06:29:02\",\n            \"deleted\": 0,\n            \"id\": 3,\n            \"teamId\": 1,\n            \"name\": \"Java后端开发3批\",\n            \"tagIds\": \"\",\n            \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n        },\n        {\n            \"createTime\": \"2020-03-15 17:08:32\",\n            \"updateTime\": \"2020-03-14 06:29:05\",\n            \"deleted\": 0,\n            \"id\": 4,\n            \"teamId\": 1,\n            \"name\": \"Java后端开发4批\",\n            \"tagIds\": \"\",\n            \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n        },\n        {\n            \"createTime\": \"2020-03-15 17:08:36\",\n            \"updateTime\": \"2020-03-14 06:29:09\",\n            \"deleted\": 0,\n            \"id\": 5,\n            \"teamId\": 1,\n            \"name\": \"Java后端开发5批\",\n            \"tagIds\": \"\",\n            \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n        },\n        {\n            \"createTime\": null,\n            \"updateTime\": null,\n            \"deleted\": 0,\n            \"id\": 0,\n            \"teamId\": 1,\n            \"name\": \"加入团队（不选择职位）\",\n            \"tagIds\": null,\n            \"description\": null\n        }\n    ]\n}"
 						}
 					]
 				}
@@ -4565,8 +4716,17 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"teamId\": 1,\r\n  \"recruitmentId\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/ut/teams/userApplyToTeam?teamId=1&recruitmentId=1",
+							"raw": "http://localhost:8080/ut/teams/userApplyToTeam",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4581,12 +4741,14 @@
 								{
 									"key": "teamId",
 									"value": "1",
-									"description": "申请加入的团队id"
+									"description": "申请加入的团队id",
+									"disabled": true
 								},
 								{
 									"key": "recruitmentId",
 									"value": "1",
-									"description": "0-直接申请加入团队 >0申请团队具体职位"
+									"description": "0-直接申请加入团队 >0申请团队具体职位",
+									"disabled": true
 								}
 							]
 						},
@@ -4594,7 +4756,7 @@
 					},
 					"response": [
 						{
-							"name": "申请的职位不存在（失败案例）",
+							"name": "申请成功",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -4605,74 +4767,17 @@
 										"type": "text"
 									}
 								],
-								"url": {
-									"raw": "http://localhost:8080/ut/teams/userApplyToTeam?teamId=1&recruitmentId=9",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"teams",
-										"userApplyToTeam"
-									],
-									"query": [
-										{
-											"key": "teamId",
-											"value": "1",
-											"description": "申请加入的团队id"
-										},
-										{
-											"key": "recruitmentId",
-											"value": "9",
-											"description": "0-直接申请加入团队 >0申请团队具体职位"
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"teamId\": 1,\r\n  \"recruitmentId\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 16 Mar 2020 12:23:18 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 404,\n    \"message\": \"申请的职位不存在！\",\n    \"devMessage\": null,\n    \"data\": null\n}"
-						},
-						{
-							"name": "重复申请（失败案例）",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "UT-Token",
-										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjMwLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MzU2OTcxLCJleHAiOjE2MTU4OTI5NzF9.XAFWx6HcX4eyRdvjhNXO92PdJzuQgh5c5pNYL9B7iro",
-										"description": "不属于任何队伍的用户token",
-										"type": "text"
 									}
-								],
+								},
 								"url": {
-									"raw": "http://localhost:8080/ut/teams/userApplyToTeam?teamId=1&recruitmentId=1",
+									"raw": "http://localhost:8080/ut/teams/userApplyToTeam",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -4687,78 +4792,14 @@
 										{
 											"key": "teamId",
 											"value": "1",
-											"description": "申请加入的团队id"
+											"description": "申请加入的团队id",
+											"disabled": true
 										},
 										{
 											"key": "recruitmentId",
 											"value": "1",
-											"description": "0-直接申请加入团队 >0申请团队具体职位"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Set-Cookie",
-									"value": "JSESSIONID=40C0D180F1A541F05293134C01B23E5A; Path=/ut; HttpOnly"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 16 Mar 2020 11:21:34 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "close"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 400,\n    \"message\": \"你已申请过该团队！不过仍处于审核阶段~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
-						},
-						{
-							"name": "申请成功案例",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "UT-Token",
-										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjMwLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MzU2OTcxLCJleHAiOjE2MTU4OTI5NzF9.XAFWx6HcX4eyRdvjhNXO92PdJzuQgh5c5pNYL9B7iro",
-										"description": "不属于任何队伍的用户token",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "http://localhost:8080/ut/teams/userApplyToTeam?teamId=1&recruitmentId=1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"teams",
-										"userApplyToTeam"
-									],
-									"query": [
-										{
-											"key": "teamId",
-											"value": "1",
-											"description": "申请加入的团队id"
-										},
-										{
-											"key": "recruitmentId",
-											"value": "1",
-											"description": "0-直接申请加入团队 >0申请团队具体职位"
+											"description": "0-直接申请加入团队 >0申请团队具体职位",
+											"disabled": true
 										}
 									]
 								}
@@ -4777,7 +4818,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 16 Mar 2020 11:14:20 GMT"
+									"value": "Sat, 28 Mar 2020 12:14:30 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -4790,68 +4831,6 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"申请成功！请耐心等待审核\",\n    \"devMessage\": null,\n    \"data\": null\n}"
-						},
-						{
-							"name": "已经是团队成员下申请（失败案例）",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "UT-Token",
-										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
-										"description": "不属于任何队伍的用户token",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "http://localhost:8080/ut/teams/userApplyToTeam?teamId=1&recruitmentId=1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"teams",
-										"userApplyToTeam"
-									],
-									"query": [
-										{
-											"key": "teamId",
-											"value": "1",
-											"description": "申请加入的团队id"
-										},
-										{
-											"key": "recruitmentId",
-											"value": "1",
-											"description": "0-直接申请加入团队 >0申请团队具体职位"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 16 Mar 2020 11:31:07 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "close"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 400,\n    \"message\": \"您已经是该团队的成员~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						}
 					]
 				},
@@ -4866,8 +4845,17 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"uid\": 30,\r\n  \"teamId\": 1,\r\n  \"recruitmentId\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/ut/teams/teamInvitesUser?uid=30&teamId=1&recruitmentId=0",
+							"raw": "http://localhost:8080/ut/teams/teamInvitesUser",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4882,17 +4870,20 @@
 								{
 									"key": "uid",
 									"value": "30",
-									"description": "邀请用户的uid"
+									"description": "邀请用户的uid",
+									"disabled": true
 								},
 								{
 									"key": "teamId",
 									"value": "1",
-									"description": "邀请加入哪个团队（一人可能是多个队伍的队长）"
+									"description": "邀请加入哪个团队（一人可能是多个队伍的队长）",
+									"disabled": true
 								},
 								{
 									"key": "recruitmentId",
 									"value": "0",
-									"description": "0-直接申请邀请加入团队，> 0则是邀请对应职位"
+									"description": "0-直接申请邀请加入团队，> 0则是邀请对应职位",
+									"disabled": true
 								}
 							]
 						},
@@ -4900,7 +4891,7 @@
 					},
 					"response": [
 						{
-							"name": "已经邀请过了还重复邀请（失败案例）",
+							"name": "邀请成功",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -4910,74 +4901,17 @@
 										"type": "text"
 									}
 								],
-								"url": {
-									"raw": "http://localhost:8080/ut/teams/teamInvitesUser?uid=30&teamId=1&recruitmentId=0",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"teams",
-										"teamInvitesUser"
-									],
-									"query": [
-										{
-											"key": "uid",
-											"value": "30",
-											"description": "邀请用户的uid"
-										},
-										{
-											"key": "teamId",
-											"value": "1",
-											"description": "邀请加入哪个团队（一人可能是多个队伍的队长）"
-										},
-										{
-											"key": "recruitmentId",
-											"value": "0",
-											"description": "0-直接申请邀请加入团队，> 0则是邀请对应职位"
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"uid\": 30,\r\n  \"teamId\": 1,\r\n  \"recruitmentId\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 16 Mar 2020 12:18:32 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "close"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 400,\n    \"message\": \"你已邀请过该用户！不过对方还在考虑~, 还请耐心等候\",\n    \"devMessage\": null,\n    \"data\": null\n}"
-						},
-						{
-							"name": "邀请成功案例",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "UT-Token",
-										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
-										"type": "text"
 									}
-								],
+								},
 								"url": {
-									"raw": "http://localhost:8080/ut/teams/teamInvitesUser?uid=30&teamId=1&recruitmentId=0",
+									"raw": "http://localhost:8080/ut/teams/teamInvitesUser",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -4992,17 +4926,20 @@
 										{
 											"key": "uid",
 											"value": "30",
-											"description": "邀请用户的uid"
+											"description": "邀请用户的uid",
+											"disabled": true
 										},
 										{
 											"key": "teamId",
 											"value": "1",
-											"description": "邀请加入哪个团队（一人可能是多个队伍的队长）"
+											"description": "邀请加入哪个团队（一人可能是多个队伍的队长）",
+											"disabled": true
 										},
 										{
 											"key": "recruitmentId",
 											"value": "0",
-											"description": "0-直接申请邀请加入团队，> 0则是邀请对应职位"
+											"description": "0-直接申请邀请加入团队，> 0则是邀请对应职位",
+											"disabled": true
 										}
 									]
 								}
@@ -5021,7 +4958,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 16 Mar 2020 12:17:13 GMT"
+									"value": "Sat, 28 Mar 2020 12:17:25 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -5036,7 +4973,7 @@
 							"body": "{\n    \"status\": 200,\n    \"message\": \"邀请成功！请耐心等待回应~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						},
 						{
-							"name": "邀请者已经是团员（失败案例）",
+							"name": "重复邀请",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -5046,8 +4983,17 @@
 										"type": "text"
 									}
 								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"uid\": 30,\r\n  \"teamId\": 1,\r\n  \"recruitmentId\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8080/ut/teams/teamInvitesUser?uid=30&teamId=1&recruitmentId=0",
+									"raw": "http://localhost:8080/ut/teams/teamInvitesUser",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -5062,17 +5008,20 @@
 										{
 											"key": "uid",
 											"value": "30",
-											"description": "邀请用户的uid"
+											"description": "邀请用户的uid",
+											"disabled": true
 										},
 										{
 											"key": "teamId",
 											"value": "1",
-											"description": "邀请加入哪个团队（一人可能是多个队伍的队长）"
+											"description": "邀请加入哪个团队（一人可能是多个队伍的队长）",
+											"disabled": true
 										},
 										{
 											"key": "recruitmentId",
 											"value": "0",
-											"description": "0-直接申请邀请加入团队，> 0则是邀请对应职位"
+											"description": "0-直接申请邀请加入团队，> 0则是邀请对应职位",
+											"disabled": true
 										}
 									]
 								}
@@ -5091,7 +5040,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 16 Mar 2020 12:22:16 GMT"
+									"value": "Sat, 28 Mar 2020 12:17:50 GMT"
 								},
 								{
 									"key": "Connection",
@@ -5099,7 +5048,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 400,\n    \"message\": \"邀请者该团队的成员~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+							"body": "{\n    \"status\": 400,\n    \"message\": \"你已邀请过该用户！不过对方还在考虑~, 还请耐心等候\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						}
 					]
 				},
