@@ -63,10 +63,11 @@
     </select>
 
     <select id="listTeamApplyMsg" resultMap="applyOrInviteMsgVO">
-        select utal.id, utal.uid, utal.`status`, utal.message, utal.recruitment_id, tr.`name` recruitment_name, u.avatar, u.nickname, utal.create_time, utal.update_time
+        select utal.id, utal.uid, utal.`status`, utal.message, utal.recruitment_id,t.`name` team_name, tr.`name` recruitment_name, u.avatar, u.nickname, utal.create_time, utal.update_time
             from user_team_apply_log utal
                 left join teams_recruitments tr on utal.recruitment_id = tr.id
                 inner join `user` u on u.uid = utal.uid
+                inner join teams t on t.id = utal.team_id
         <where>
             1=1
             <if test="status!=null">
@@ -82,10 +83,11 @@
     </select>
 
     <select id="listTeamInviteMsg" resultMap="applyOrInviteMsgVO">
-        select utal.id, utal.uid, utal.`status`, utal.message, utal.recruitment_id, tr.`name` recruitment_name, u.avatar, u.nickname, utal.create_time, utal.update_time
+        select utal.id, utal.uid, utal.`status`, utal.message, utal.recruitment_id, t.`name` team_name, tr.`name` recruitment_name, u.avatar, u.nickname, utal.create_time, utal.update_time
             from user_team_apply_log utal
                 left join teams_recruitments tr on utal.recruitment_id = tr.id
                 inner join `user` u on u.uid = utal.uid
+                inner join teams t on t.id = utal.team_id
         <where>
             1=1
             <if test="status!=null">
