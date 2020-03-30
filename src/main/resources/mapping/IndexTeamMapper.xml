@@ -14,7 +14,7 @@
     </resultMap>
 
     <select id="listTeamByParam" resultMap="teamVO">
-        select te.id, te.`name`, te.logo, te.description, te.tag_ids, te.`status`, te.create_time
+        select te.id, te.`name`, te.logo, left(te.description, 40) description, te.tag_ids, te.`status`, te.create_time
 	    from (teams te, teams_tags tet)
 	    <where>
             1=1

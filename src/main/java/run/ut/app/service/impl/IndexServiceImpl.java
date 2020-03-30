@@ -59,8 +59,7 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public CommentPage<StudentVO> listStudentByParam(SearchStudentParam searchStudentParam, Page page) {
 
-        IPage<StudentVO> studentVOIPage = userMapper.listStudentByParam(page, searchStudentParam.getGrade(), searchStudentParam.getTagId(),
-                searchStudentParam.getSchoolId(), searchStudentParam.getDegreeId(), UserRolesEnum.ROLE_STUDENT.getType());
+        IPage<StudentVO> studentVOIPage = userMapper.listStudentByParam(page, searchStudentParam);
         List<StudentVO> records = studentVOIPage.getRecords();
         for (int i = 0; i < records.size(); i++){
             StudentVO studentVO = records.get(i);

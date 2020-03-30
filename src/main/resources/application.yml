@@ -95,7 +95,7 @@ mybatis-plus:
   typeEnumsPackage: run.ut.app.model.enums
   # SQL 执行log，调试时可打开
   configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     cache-enabled: false
 
 ##########################################################

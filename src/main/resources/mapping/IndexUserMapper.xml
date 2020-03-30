@@ -16,26 +16,29 @@
     </resultMap>
     
     <select id="listStudentByParam" resultMap="resMap">
-        select u.uid uid, nickname, real_name, avatar, description, degree_id, grade, school_id, tag_ids
+        select u.uid uid, nickname, real_name, avatar, left(description, 40) description, degree_id, grade, school_id, tag_ids
         from (`user` u, user_tags ut)
 	      inner join user_info ui on u.uid = ui.uid
 	    <where>
             1=1
-            <if test="grade!=null">
-                and ui.grade = #{grade}
+            <if test="stp.grade!=null">
+                and ui.grade = #{stp.grade}
             </if>
-            <if test="tagId!=null">
-                and ut.uid = u.uid and ut.tag_id = #{tagId}
+            <if test="stp.tagId!=null">
+                and ut.uid = u.uid and ut.tag_id = #{stp.tagId}
             </if>
-            <if test="schoolId!=null">
-                and ui.school_id = #{schoolId}
+            <if test="stp.schoolId!=null">
+                and ui.school_id = #{stp.schoolId}
             </if>
-            <if test="degreeId!=null">
-                and ui.degree_id = #{degreeId}
+            <if test="stp.degreeId!=null">
+                and ui.degree_id = #{stp.degreeId}
+            </if>
+            <if test="stp.name!=null and stp.name!=''">
+                and (instr(u.nickname, #{stp.name}) > 0 or instr(ui.real_name, #{stp.name}) > 0)
             </if>
         </where>
         and u.deleted = 0
-        and ui.role = #{roleId}
+        and ui.role in (1,3,5,7,9,11,13,15)
         and ui.status = 1
         group by u.uid
         order by ui.create_time desc

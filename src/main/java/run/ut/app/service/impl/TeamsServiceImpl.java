@@ -277,7 +277,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         Integer count1 = teamsMembersMapper.selectCount(new QueryWrapper<TeamsMembers>()
                 .eq("uid", uid).eq("team_id", teamId));
         if (count1 > 0){
-            throw new AlreadyExistsException("邀请者该团队的成员~");
+            throw new AlreadyExistsException("邀请者已是该团队的成员~");
         }
 
         Integer count = userTeamApplyLogMapper.selectCount(new QueryWrapper<UserTeamApplyLog>()
