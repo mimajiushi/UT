@@ -6,7 +6,7 @@
 
 项目目前处于开发阶段，由于开发者本人目前还是学生，所以开发进度会比较慢，如果你对本项目有兴趣，欢迎参与贡献 or 提一些需求（issues）。
 
-此项目为Java后台接口，小程序前端移步至 -> https://gitee.com/wenjie2018/UT-WeChat
+此项目为Java后台接口，小程序前端移步至 -> https://gitee.com/wenjie2018/UT-WeChat （仍处于开发阶段）
 
 
 
