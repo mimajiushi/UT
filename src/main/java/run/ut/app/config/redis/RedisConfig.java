@@ -14,7 +14,7 @@ public class RedisConfig {
     /**
      * Expiration time of area in seconds
      */
-    public static final long AREA_TTL = 60*60*24*7;
+    public static final long AREA_TTL = 60 * 60 * 24 * 7;
 
 
     public static final String SMS_LOGIN_PREFIX = "SMS_LOGIN";

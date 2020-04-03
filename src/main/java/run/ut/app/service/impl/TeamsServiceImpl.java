@@ -65,18 +65,18 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
 
     @Override
     @Transactional
-    public TeamsDTO createTeam(TeamsParam teamsParam, Long leaderId, MultipartFile logo){
+    public TeamsDTO createTeam(TeamsParam teamsParam, Long leaderId, MultipartFile logo) {
 
         int count = count(new QueryWrapper<Teams>().eq("name", teamsParam.getName()));
-        if (count > 0){
+        if (count > 0) {
             throw new BadRequestException("团队名已重复！");
         }
 
         // upload logo
         UploadResult uploadResult = null;
         boolean hasLogo = !ObjectUtils.isEmpty(logo);
-        if (hasLogo){
-            if (!ImageUtils.isImage()){
+        if (hasLogo) {
+            if (!ImageUtils.isImage()) {
                 throw new FileOperationException("只接受图片格式文件！");
             }
             uploadResult = fileHandlers.upload(logo);
@@ -87,7 +87,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
                 .setDescription(teamsParam.getDescription())
                 .setName(teamsParam.getName())
                 .setStatus(TeamsStatusEnum.getByType(teamsParam.getStatus()));
-        if (hasLogo){
+        if (hasLogo) {
             team.setLogo(uploadResult.getFilePath());
         }
         save(team);
@@ -107,7 +107,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
 
         Teams team = getAndCheckTeamByLeaderIdAndTeamId(leaderId, teamsId);
 
-        if (null == tagIds || tagIds.length < 1){
+        if (null == tagIds || tagIds.length < 1) {
             teamsTagsService.deleteByTeamsId(teamsId);
             team.setTagIds("").setUpdateTime(null);
             updateById(team);
@@ -117,13 +117,13 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         // Verify whether the tags exist
         List<Tags> tags = tagsService.listByIds(new HashSet<>(Arrays.asList(tagIds)));
 
-        if (tags.size() != tagIds.length){
+        if (tags.size() != tagIds.length) {
             throw new BadRequestException("传入tagIds有误");
         }
 
         // Verify that the newly saved tags are the same as the original ones
         List<Tags> tags2 = teamsTagsService.listByTeamsId(teamsId);
-        if (tags.equals(tags2)){
+        if (tags.equals(tags2)) {
             return tags.stream().map(e -> {
                 return (TagsDTO)new TagsDTO().convertFrom(e);
             }).collect(Collectors.toList());
@@ -153,7 +153,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
 
         TeamsRecruitments recruitment = teamsRecruitmentsMapper.selectById(teamRecruitmentId);
 
-        if (null == tagIds || tagIds.length < 1){
+        if (null == tagIds || tagIds.length < 1) {
             teamsRecruitmentsTagsService.deleteByTeamsRecruitmentsId(teamRecruitmentId);
             recruitment.setTagIds("").setUpdateTime(null);
             teamsRecruitmentsMapper.updateById(recruitment);
@@ -162,13 +162,13 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
 
         // Verify whether the tags exist
         List<Tags> tags = tagsService.listByIds(new HashSet<>(Arrays.asList(tagIds)));
-        if (tags.size() != tagIds.length){
+        if (tags.size() != tagIds.length) {
             throw new BadRequestException("传入tagIds有误");
         }
 
         // Verify that the newly saved tags are the same as the original ones
         List<Tags> tags2 = teamsRecruitmentsTagsService.listByTeamsRecruitmentsId(teamRecruitmentId);
-        if (tags.equals(tags2)){
+        if (tags.equals(tags2)) {
             return tags.stream().map(e -> {
                 return (TagsDTO)new TagsDTO().convertFrom(e);
             }).collect(Collectors.toList());
@@ -209,7 +209,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
                 .eq("uid", leaderId)
                 .eq("is_leader", TeamsMemberEnum.LEADER)
                 .eq("team_id", teamsId));
-        if (ObjectUtils.isEmpty(teamsMembers)){
+        if (ObjectUtils.isEmpty(teamsMembers)) {
             return null;
         }
         return getById(teamsMembers.getTeamId());
@@ -228,7 +228,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         // Verify that the user is already in the team
         Integer count1 = teamsMembersMapper.selectCount(new QueryWrapper<TeamsMembers>()
                 .eq("uid", uid).eq("team_id", teamId));
-        if (count1 > 0){
+        if (count1 > 0) {
             throw new AlreadyExistsException("您已经是该团队的成员~");
         }
 
@@ -236,19 +236,19 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
                 .eq("uid", uid).eq("team_id", teamId)
                 .eq("status", ApplyStatusEnum.WAITING.getType())
                 .eq("mode", ApplyModeEnum.USER_TO_TEAM.getType()));
-        if (count > 0){
+        if (count > 0) {
             throw new AlreadyExistsException("你已申请过该团队！不过仍处于审核阶段~, 还请耐心等候");
         }
 
         Teams teams = this.baseMapper.selectById(teamId);
-        if (ObjectUtils.isEmpty(teams)){
+        if (ObjectUtils.isEmpty(teams)) {
             throw new NotFoundException("申请加入的团队不存在！");
         }
 
-        if (recruitmentId != 0){
+        if (recruitmentId != 0) {
             Integer count2 = teamsRecruitmentsMapper.selectCount(new QueryWrapper<TeamsRecruitments>()
                     .eq("team_id", teamId).eq("id", recruitmentId));
-            if (count2 < 1){
+            if (count2 < 1) {
                 throw new NotFoundException("申请的职位不存在！");
             }
         }
@@ -276,7 +276,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         // Verify that the user is already in the team
         Integer count1 = teamsMembersMapper.selectCount(new QueryWrapper<TeamsMembers>()
                 .eq("uid", uid).eq("team_id", teamId));
-        if (count1 > 0){
+        if (count1 > 0) {
             throw new AlreadyExistsException("邀请者已是该团队的成员~");
         }
 
@@ -284,14 +284,14 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
                 .eq("uid", uid).eq("team_id", teamId)
                 .eq("status", ApplyStatusEnum.WAITING.getType())
                 .eq("mode", ApplyModeEnum.TEAM_TO_USER.getType()));
-        if (count > 0){
+        if (count > 0) {
             throw new AlreadyExistsException("你已邀请过该用户！不过对方还在考虑~, 还请耐心等候");
         }
 
-        if (recruitmentId != 0){
+        if (recruitmentId != 0) {
             Integer count2 = teamsRecruitmentsMapper.selectCount(new QueryWrapper<TeamsRecruitments>()
                     .eq("team_id", teamId).eq("id", recruitmentId));
-            if (count2 < 1){
+            if (count2 < 1) {
                 throw new NotFoundException("邀请的职位不存在！");
             }
         }
@@ -304,16 +304,16 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
     }
 
     @Override
-    public Teams getAndCheckTeamByLeaderIdAndTeamId(Long leaderId, Long teamsId){
+    public Teams getAndCheckTeamByLeaderIdAndTeamId(Long leaderId, Long teamsId) {
         Teams team = getTeamByLeaderIdAndTeamId(leaderId, teamsId);
-        if (ObjectUtils.isEmpty(team)){
+        if (ObjectUtils.isEmpty(team)) {
             throw new NotFoundException("团队不存在！");
         }
         return team;
     }
 
     @Override
-    public List<Long> getTeamIdsByLeaderId(Long leaderId){
+    public List<Long> getTeamIdsByLeaderId(Long leaderId) {
         List<TeamsMembers> teamsMembers = teamsMembersMapper.selectList(new QueryWrapper<TeamsMembers>()
                 .select("team_id")
                 .eq("uid", leaderId)
@@ -328,7 +328,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
     @Override
     public List<TeamsDTO> listTeamsByLeaderId(Long leaderId) {
         List<Long> teamIdsByLeaderId = getTeamIdsByLeaderId(leaderId);
-        if (ObjectUtils.isEmpty(teamIdsByLeaderId) || teamIdsByLeaderId.size() == 0){
+        if (ObjectUtils.isEmpty(teamIdsByLeaderId) || teamIdsByLeaderId.size() == 0) {
             return new ArrayList<>();
         }
         return listByIds(teamIdsByLeaderId).stream().map(e -> (TeamsDTO)new TeamsDTO().convertFrom(e)).collect(Collectors.toList());

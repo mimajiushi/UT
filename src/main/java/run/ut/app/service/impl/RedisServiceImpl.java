@@ -29,12 +29,12 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public long setList(String key, List list){
+    public long setList(String key, List list) {
         Assert.hasText(key, "redis key must not be blank");
         Assert.notEmpty(list, "redis list must not be empty");
 
         Long count = redisTemplate.opsForList().rightPushAll(key, list);
-        if (null == count){
+        if (null == count) {
             count = 0L;
         }
         return count;
@@ -53,7 +53,7 @@ public class RedisServiceImpl implements RedisService {
 
         stringRedisTemplate.boundValueOps(key).set(value,ttl, TimeUnit.SECONDS);
         Long expire = stringRedisTemplate.getExpire(key, TimeUnit.SECONDS);
-        if (null == expire){
+        if (null == expire) {
             expire = 0L;
         }
         return expire > 0;
@@ -63,7 +63,7 @@ public class RedisServiceImpl implements RedisService {
     public boolean expire(String key, long expire) {
         Assert.hasText(key, "redis key must not be blank");
         Boolean res = stringRedisTemplate.expire(key, expire, TimeUnit.SECONDS);
-        if (null == res){
+        if (null == res) {
             res = false;
         }
         return res;
@@ -73,7 +73,7 @@ public class RedisServiceImpl implements RedisService {
     public boolean remove(String key) {
         Assert.hasText(key, "redis key must not be blank");
         Boolean deleted = stringRedisTemplate.delete(key);
-        if (null == deleted){
+        if (null == deleted) {
             deleted = false;
         }
         return deleted;

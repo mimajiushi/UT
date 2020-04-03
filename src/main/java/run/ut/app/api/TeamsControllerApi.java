@@ -17,7 +17,7 @@ import run.ut.app.model.vo.ApplyOrInviteMsgVO;
 
 import java.util.List;
 
-@Api(value="队伍操作API",tags = "队伍操作API")
+@Api(value = "队伍操作API",tags = "队伍操作API")
 public interface TeamsControllerApi {
 
     @ApiOperation(value = "用户创建队伍", notes = "需要登录（Token）验证，且创建者至少通过学生级别或以上认证，创建完之后创建者默认会成为队长")
@@ -33,7 +33,7 @@ public interface TeamsControllerApi {
     public BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(TeamsRecruitmentsParam teamsRecruitmentsParam);
 
     @ApiOperation(value = "设置招聘职位的标签", notes = "需要登录（Token）验证，只有队长才能设置")
-    public List<TagsDTO> saveTeamsRecruitmentsTags(String[] tagIds, Long TeamId, Long teamRecruitmentId);
+    public List<TagsDTO> saveTeamsRecruitmentsTags(String[] tagIds, Long teamId, Long teamRecruitmentId);
 
     @ApiOperation(value = "用户申请加入团队", notes = "需要登录（Token）验证，且必须通过认证")
     public BaseResponse<String> userApplyToTeam(TeamApplyOrInviteParam teamApplyParam);
@@ -58,7 +58,7 @@ public interface TeamsControllerApi {
 
 //    @ApiOperation(value = "获取队长所属队伍")
 
-  @ApiOperation(value = "用户处理团队发送给自己的邀请", notes = "需要用户登录（Token）")
+    @ApiOperation(value = "用户处理团队发送给自己的邀请", notes = "需要用户登录（Token）")
     public BaseResponse<String> userDealWithInvitation(DealInvitationOrApplyParam param);
 
     @ApiOperation(value = "队长处理收到的用户申请（加入团队的申请）", notes = "需要队长登录Token")

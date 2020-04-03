@@ -38,7 +38,7 @@ public class TeamsRecruitmentsServiceImpl extends ServiceImpl<TeamsRecruitmentsM
 
         // update
         Long teamsRecruitmentsId = teamsRecruitments.getId();
-        if (null != teamsRecruitmentsId){
+        if (null != teamsRecruitmentsId) {
             TeamsRecruitments teamsRecruitments2 = getById(teamsRecruitmentsId);
             BeanUtils.updateProperties(teamsRecruitments, teamsRecruitments2);
             teamsRecruitments2.setUpdateTime(null);

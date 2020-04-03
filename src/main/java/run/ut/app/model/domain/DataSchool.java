@@ -19,7 +19,7 @@ import java.io.Serializable;
 @Data
 @Accessors(chain = true)
 @Builder
-@ApiModel(value="DataSchool对象", description="高校数据表")
+@ApiModel(value = "DataSchool对象", description = "高校数据表")
 public class DataSchool implements Serializable {
 
     private Integer id;

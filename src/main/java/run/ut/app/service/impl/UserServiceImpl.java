@@ -1,9 +1,11 @@
 package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,13 +13,10 @@ import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.exception.WeChatException;
-import run.ut.app.handler.FileHandler;
 import run.ut.app.handler.FileHandlers;
+import run.ut.app.mapper.UserMapper;
 import run.ut.app.model.domain.Tags;
 import run.ut.app.model.domain.User;
-import run.ut.app.mapper.UserMapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.domain.UserTags;
 import run.ut.app.model.dto.TagsDTO;
@@ -35,7 +34,6 @@ import run.ut.app.security.token.AuthToken;
 import run.ut.app.security.util.JwtOperator;
 import run.ut.app.service.*;
 
-import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -69,7 +67,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         UserInfo userInfo = userInfoService.getOneActivatedByUid(uid);
 
-        if (null == tagIds || tagIds.length < 1){
+        if (null == tagIds || tagIds.length < 1) {
             userTagsService.deleteByUid(uid);
             userInfo.setTagIds("").setUpdateTime(null);
             userInfoService.updateById(userInfo);
@@ -77,20 +75,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
 
 
-        if (ObjectUtils.isEmpty(userInfo) || (userInfo.getStatus() != UserInfoStatusEnum.PASS)){
+        if (ObjectUtils.isEmpty(userInfo) || (userInfo.getStatus() != UserInfoStatusEnum.PASS)) {
             throw new AuthenticationException("只有经过认证的用户才能设置标签！");
         }
 
         // Verify whether the tags exist
         List<Tags> tags = tagsService.listByIds(new HashSet<>(Arrays.asList(tagIds)));
 
-        if (tags.size() != tagIds.length){
+        if (tags.size() != tagIds.length) {
             throw new BadRequestException("传入tagIds有误");
         }
 
         // Verify that the newly saved tags are the same as the original ones
         List<Tags> tags1 = userTagsService.listByUid(uid);
-        if (tags.equals(tags1)){
+        if (tags.equals(tags1)) {
             return tags.stream().map(e -> {
                 return (TagsDTO)new TagsDTO().convertFrom(e);
             }).collect(Collectors.toList());
@@ -118,7 +116,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public StudentVO showSelfPage(Long uid) {
         User user = getById(uid);
-        if (ObjectUtils.isEmpty(user)){
+        if (ObjectUtils.isEmpty(user)) {
             throw new NotFoundException("该id的用户不存在！");
         }
         UserInfo userInfo = userInfoService.getOneActivatedByUid(uid);
@@ -141,7 +139,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 .setSex(user.getSex())
                 .setHasAuthInfo(hasAuthInfo)
                 .setRoles(user.getRoles());
-        if (hasAuthInfo){
+        if (hasAuthInfo) {
             String schoolName = dataSchoolService.getById(userInfo.getSchoolId()).getName();
             studentVO.setDegree(userInfo.getDegreeId())
                     .setGrade(userInfo.getGrade())
@@ -156,14 +154,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public UserDTO wechatLogin(WeChatLoginParam weChatLoginParam, WeChatResponse weChatResponse) {
-        if (null != weChatResponse.getErrcode()){
+        if (null != weChatResponse.getErrcode()) {
             throw new WeChatException(weChatResponse.getErrmsg());
         }
         String avatar = weChatLoginParam.getAvatarUrl();
         String nickname = weChatLoginParam.getNickName();
         String openid = weChatResponse.getOpenid();
         User user = getUserByOpenId(openid);
-        if (ObjectUtils.isEmpty(user)){
+        if (ObjectUtils.isEmpty(user)) {
             // register and login
             user = new User().setRoles(UserRolesEnum.ROLE_TOURIST.getType())
                     .setOpenid(openid)
@@ -181,7 +179,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public User getUserByOpenId(String openId){
+    public User getUserByOpenId(String openId) {
         return getOne(new QueryWrapper<User>().eq("openid", openId));
     }
 

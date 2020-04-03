@@ -37,9 +37,9 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public BaseResponse handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
         BaseResponse<?> baseResponse = handleBaseException(e);
-        if (StringUtils.isBlank(e.getParameterType())){
+        if (StringUtils.isBlank(e.getParameterType())) {
             baseResponse.setMessage(String.format("请求字段缺失，名称为 %s", e.getParameterName()));
-        }else {
+        } else {
             baseResponse.setMessage(String.format("请求字段缺失, 类型为 %s，名称为 %s", e.getParameterType(), e.getParameterName()));
         }
         baseResponse.setStatus(HttpStatus.BAD_REQUEST.value());

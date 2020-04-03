@@ -20,7 +20,7 @@ import lombok.experimental.Accessors;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="Tags", description="")
+@ApiModel(value = "Tags", description = "")
 public class Tags extends BaseEntity {
 
     @TableId(value = "id", type = IdType.AUTO)

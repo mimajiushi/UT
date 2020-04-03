@@ -1,11 +1,7 @@
 package run.ut.app.model.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import io.swagger.annotations.ApiModel;
 import lombok.*;
 import lombok.experimental.Accessors;
-import run.ut.app.model.domain.BaseEntity;
 
 /**
  * <p>
@@ -21,7 +17,6 @@ import run.ut.app.model.domain.BaseEntity;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="TeamsRecruitmentsTagsDTO 对象", description="")
 @Deprecated
 public class TeamsRecruitmentsTagsDTO extends BaseDTO {
 

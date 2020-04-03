@@ -33,7 +33,7 @@
         <!--Checks for over-complicated boolean expressions. Currently finds code like if (topic == true), topic || true, !false, etc.-->
         <module name="SimplifyBooleanExpression"/>
         <module name="OneStatementPerLine"/>
-        <module name="UnnecessaryParentheses"/>
+        <!--<module name="UnnecessaryParentheses"/>-->
         <!--Checks for over-complicated boolean return statements. For example the following code-->
         <module name="SimplifyBooleanReturn"/>
 
@@ -51,7 +51,7 @@
         <!--Validates identifiers for local, final variables, including catch parameters-->
         <module name="LocalFinalVariableName"/>
         <!--Validates identifiers for non-static fields-->
-        <module name="MemberName"/>
+        <!--<module name="MemberName"/>-->
         <!--Validates identifiers for class type parameters-->
         <module name="ClassTypeParameterName">
             <property name="format" value="(^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$)"/>
@@ -63,10 +63,10 @@
         <module name="PackageName">
             <property name="format" value="^run\.ut(\.[a-zA-Z][a-zA-Z0-9]*)+$"/>
         </module>
-        <module name="ParameterName"/>
-        <module name="StaticVariableName">
-            <property name="format" value="(^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$)"/>
-        </module>
+        <!--&lt;!&ndash;<module name="ParameterName"/>&ndash;&gt;-->
+        <!--<module name="StaticVariableName">-->
+            <!--<property name="format" value="(^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$)"/>-->
+        <!--</module>-->
         <module name="TypeName">
             <property name="format" value="(^[A-Z][a-zA-Z0-9]*$)|(^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$)"/>
         </module>
@@ -79,7 +79,7 @@
             <property name="allowEmptyConstructors" value="true"/>
             <property name="allowEmptyMethods" value="true"/>
         </module>
-        <module name="Indentation"/>
+        <!--<module name="Indentation"/>-->
         <module name="MethodParamPad"/>
         <module name="ParenPad"/>
         <module name="TypecastParenPad"/>

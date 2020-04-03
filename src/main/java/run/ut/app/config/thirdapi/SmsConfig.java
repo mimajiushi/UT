@@ -1,8 +1,6 @@
 package run.ut.app.config.thirdapi;
 
-import com.github.qcloudsms.SmsSingleSender;
 import lombok.Data;
-import org.springframework.context.annotation.Bean;
 
 /**
  * Tencent SMS configuration
@@ -11,7 +9,7 @@ import org.springframework.context.annotation.Bean;
  */
 
 @Data
-public class SmsConfig{
+public class SmsConfig {
     private Integer appId;
     private String appKey;
     private Integer templateId;

@@ -27,12 +27,12 @@ public class TeamsMembersServiceImpl extends ServiceImpl<TeamsMembersMapper, Tea
     }
 
     @Override
-    public Integer countByUid(Long uid, Long teamId){
+    public Integer countByUid(Long uid, Long teamId) {
         return count(new QueryWrapper<TeamsMembers>().eq("uid", uid).eq("team_id", teamId));
     }
 
     @Override
-    public Integer countByLeaderId(Long leaderId, Long teamId){
+    public Integer countByLeaderId(Long leaderId, Long teamId) {
         return count(new QueryWrapper<TeamsMembers>()
                 .eq("uid", leaderId)
                 .eq("is_leader", TeamsMemberEnum.LEADER.getType())

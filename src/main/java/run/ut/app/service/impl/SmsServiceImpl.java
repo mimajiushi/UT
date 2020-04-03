@@ -37,10 +37,10 @@ public class SmsServiceImpl implements SmsService {
         try {
             SmsSingleSenderResult result = smsSingleSender
                     .sendWithParam("86", tel, smsConfig.getTemplateId(), params, smsConfig.getSign(), "", "");
-            if (result.result == 0){
-                String key = RedisConfig.SMS_LOGIN_PREFIX+":"+tel;
+            if (result.result == 0) {
+                String key = RedisConfig.SMS_LOGIN_PREFIX + ":" + tel;
                 redisService.setKeyValTTL(key, code, RedisConfig.SMS_TIME_OUT);
-            }else{
+            } else {
                 // todo 还有其它返回码需要处理
                 throw new SmsSendException("短信发送失败！");
             }
@@ -53,12 +53,12 @@ public class SmsServiceImpl implements SmsService {
 
     @Override
     public void checkCode(String tel, String code) {
-        String key = RedisConfig.SMS_LOGIN_PREFIX+":"+tel;
+        String key = RedisConfig.SMS_LOGIN_PREFIX + ":" + tel;
         String res = redisService.get(key);
-        if (StringUtils.isEmpty(res)){
+        if (StringUtils.isEmpty(res)) {
             throw new SmsCodeErrorException("验证码已过期！");
         }
-        if (!res.equals(code)){
+        if (!res.equals(code)) {
             throw new SmsCodeErrorException("验证码错误！");
         }
     }

@@ -6,7 +6,6 @@ import lombok.experimental.Accessors;
 import run.ut.app.model.domain.Tags;
 import run.ut.app.model.dto.BaseDTO;
 import run.ut.app.model.dto.base.InputConverter;
-import run.ut.app.model.dto.base.OutputConverter;
 
 import javax.validation.constraints.NotBlank;
 
@@ -24,7 +23,7 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="TagsParam", description="")
+@ApiModel(value = "TagsParam", description = "")
 public class TagsParam extends BaseDTO implements InputConverter<Tags> {
 
     private Integer id;

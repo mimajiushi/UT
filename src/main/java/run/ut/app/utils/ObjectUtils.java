@@ -8,17 +8,17 @@ import java.lang.reflect.Field;
  * @author wenjie
  */
 public class ObjectUtils {
-    public static String allfieldIsNotNUll(Object o){
-        try{
-            for(Field field:o.getClass().getDeclaredFields()){
+    public static String allfieldIsNotNUll(Object o) {
+        try {
+            for (Field field:o.getClass().getDeclaredFields()) {
                 field.setAccessible(true);
                 Object object = field.get(o);
-                if(ObjectUtil.isEmpty(object)){
+                if (ObjectUtil.isEmpty(object)) {
                     return field.getName();
                 }
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;

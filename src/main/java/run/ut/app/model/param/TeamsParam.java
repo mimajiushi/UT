@@ -2,16 +2,14 @@ package run.ut.app.model.param;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import org.springframework.web.multipart.MultipartFile;
-import run.ut.app.model.domain.Teams;
-import run.ut.app.model.dto.BaseDTO;
-import run.ut.app.model.dto.base.OutputConverter;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -28,7 +26,7 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="TeamsParam 对象", description="")
+@ApiModel(value = "TeamsParam 对象", description = "")
 public class TeamsParam implements Serializable {
 
     @ApiModelProperty("团队id，更新时传入")

@@ -11,13 +11,9 @@ import lombok.experimental.Accessors;
 import run.ut.app.model.domain.Teams;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsRecruitmentsDTO;
-import run.ut.app.model.dto.UserExperiencesDTO;
-import run.ut.app.model.dto.base.InputConverter;
 import run.ut.app.model.dto.base.OutputConverter;
-import run.ut.app.model.enums.DegreeEnum;
 import run.ut.app.model.enums.TeamsStatusEnum;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,7 +26,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="TeamVO 对象", description="")
+@ApiModel(value = "TeamVO 对象", description = "")
 public class TeamVO implements OutputConverter<TeamVO, Teams> {
 
     @ApiModelProperty("团队id")

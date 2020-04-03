@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
  */
 
 @Data
-@ApiModel(description="查询团队list的参数")
+@ApiModel(description = "查询团队list的参数")
 public class SearchTeamParam {
 
     @ApiModelProperty("团队名")

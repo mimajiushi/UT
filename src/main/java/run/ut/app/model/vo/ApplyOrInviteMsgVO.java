@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="ApplyOrInviteMsgVO 对象", description="用户收到的邀请信息 or 团队收到的申请信息")
+@ApiModel(value = "ApplyOrInviteMsgVO 对象", description = "用户收到的邀请信息 or 团队收到的申请信息")
 public class ApplyOrInviteMsgVO {
 
     @ApiModelProperty(value = "申请/邀请的id")

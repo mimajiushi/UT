@@ -36,7 +36,7 @@ public interface TeamsService extends IService<Teams> {
     BaseResponse<String> updateTeamsLogo(@NonNull MultipartFile logo, @NonNull Long leaderId, @NonNull Long teamsId);
 
     @NonNull
-    Teams getTeamByLeaderIdAndTeamId(@NonNull Long leaderId, @NonNull Long TeamsId);
+    Teams getTeamByLeaderIdAndTeamId(@NonNull Long leaderId, @NonNull Long teamsId);
 
     @NonNull
     BaseResponse<String> userApplyToTeam(@NonNull TeamApplyOrInviteParam teamApplyParam);
@@ -49,7 +49,7 @@ public interface TeamsService extends IService<Teams> {
      * @param leaderId leader's uid
      */
     @NonNull
-    Teams getAndCheckTeamByLeaderIdAndTeamId(@NonNull Long leaderId, @NonNull Long TeamsId);
+    Teams getAndCheckTeamByLeaderIdAndTeamId(@NonNull Long leaderId, @NonNull Long teamsId);
 
     @NonNull
     List<Long> getTeamIdsByLeaderId(@NonNull Long leaderId);

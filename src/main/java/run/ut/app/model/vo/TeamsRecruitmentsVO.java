@@ -3,12 +3,13 @@ package run.ut.app.model.vo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import run.ut.app.model.domain.TeamsRecruitments;
-import run.ut.app.model.dto.BaseDTO;
 import run.ut.app.model.dto.TagsDTO;
-import run.ut.app.model.dto.base.InputConverter;
 import run.ut.app.model.dto.base.OutputConverter;
 
 import java.time.LocalDateTime;
@@ -27,7 +28,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="TeamsRecruitmentsVO 对象", description="")
+@ApiModel(value = "TeamsRecruitmentsVO 对象", description = "")
 public class TeamsRecruitmentsVO implements OutputConverter<TeamsRecruitmentsVO, TeamsRecruitments> {
 
     @ApiModelProperty("职位id")
@@ -54,7 +55,7 @@ public class TeamsRecruitmentsVO implements OutputConverter<TeamsRecruitmentsVO,
     @Deprecated
     private TeamVO teamVO;
 
-    @ApiModelProperty(value = "队伍名" ,notes = "首页显示职位list时就会填充这个参数")
+    @ApiModelProperty(value = "队伍名", notes = "首页显示职位list时就会填充这个参数")
     private String teamName;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

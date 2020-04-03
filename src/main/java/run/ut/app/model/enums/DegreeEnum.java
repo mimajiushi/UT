@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 @Getter
 public enum DegreeEnum implements IEnum<Integer> {
-    JUNIOR_COLLEGE(1 , "大专"),
+    JUNIOR_COLLEGE(1, "大专"),
     REGULAR_COLLEGE(2, "本科"),
     DOCTOR_OR_ABOVE(3, "博士及以上");
 

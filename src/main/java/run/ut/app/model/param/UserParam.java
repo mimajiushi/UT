@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @ToString
-@ApiModel(description="用户注册 or 登录参数")
+@ApiModel(description = "用户注册 or 登录参数")
 public class UserParam implements InputConverter<User> {
 
     @ApiModelProperty(value = "微信openid")

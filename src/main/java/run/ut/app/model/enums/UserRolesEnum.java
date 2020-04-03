@@ -19,8 +19,7 @@ public enum UserRolesEnum implements IEnum<Integer> {
     ROLE_TOURIST(0, "ROLE_TOURIST", "游客"),
     ROLE_STUDENT(1, "ROLE_STUDENT", "学生"),
     ROLE_TUTOR(2, "ROLE_TUTOR", "导师"),
-    ROLE_SPONSOR(4, "ROLE_SPONSOR", "活动主办方")
-    ;
+    ROLE_SPONSOR(4, "ROLE_SPONSOR", "活动主办方");
 
     private int type;
 

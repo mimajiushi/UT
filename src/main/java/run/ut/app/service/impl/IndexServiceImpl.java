@@ -15,13 +15,14 @@ import run.ut.app.mapper.TeamsMapper;
 import run.ut.app.mapper.TeamsMembersMapper;
 import run.ut.app.mapper.TeamsRecruitmentsMapper;
 import run.ut.app.mapper.UserMapper;
-import run.ut.app.model.domain.*;
+import run.ut.app.model.domain.Teams;
+import run.ut.app.model.domain.TeamsRecruitments;
+import run.ut.app.model.domain.User;
+import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.TagsDTO;
-import run.ut.app.model.dto.TeamsDTO;
 import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.enums.TeamsStatusEnum;
-import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.SearchRecruitmentParam;
 import run.ut.app.model.param.SearchStudentParam;
 import run.ut.app.model.param.SearchTeamParam;
@@ -33,7 +34,6 @@ import run.ut.app.model.vo.TeamsRecruitmentsVO;
 import run.ut.app.service.*;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,11 +61,11 @@ public class IndexServiceImpl implements IndexService {
 
         IPage<StudentVO> studentVOIPage = userMapper.listStudentByParam(page, searchStudentParam);
         List<StudentVO> records = studentVOIPage.getRecords();
-        for (int i = 0; i < records.size(); i++){
+        for (int i = 0; i < records.size(); i++) {
             StudentVO studentVO = records.get(i);
             studentVO.setSchool(dataSchoolService.getById(studentVO.getSchoolId()).getName());
             String tagIds = studentVO.getTagIds();
-            if (!StringUtils.isBlank(tagIds)){
+            if (!StringUtils.isBlank(tagIds)) {
                 List<TagsDTO> tagsDTOList = tagsService.listByIds(Arrays.asList(tagIds.split(","))).stream().map(e -> {
                     return (TagsDTO) new TagsDTO().convertFrom(e);
                 }).collect(Collectors.toList());
@@ -80,15 +80,15 @@ public class IndexServiceImpl implements IndexService {
 
     @Override
     public CommentPage<TeamVO> listTeamByParam(SearchTeamParam searchTeamParam, Page page) {
-        if (StringUtils.isAllBlank(searchTeamParam.getName(), searchTeamParam.getTagId()+"")){
+        if (StringUtils.isAllBlank(searchTeamParam.getName(), searchTeamParam.getTagId() + "")) {
             searchTeamParam.setStatus(TeamsStatusEnum.PUBLIC.getType());
         }
         IPage<TeamVO> teamsPage = teamsMapper.listTeamByParam(page, searchTeamParam);
         List<TeamVO> teamVOList = teamsPage.getRecords();
-        for (int i = 0; i < teamVOList.size(); i++){
+        for (int i = 0; i < teamVOList.size(); i++) {
             TeamVO teamVO = teamVOList.get(i);
             String tagIds = teamVO.getTagIds();
-            if (!StringUtils.isBlank(tagIds)){
+            if (!StringUtils.isBlank(tagIds)) {
                 List<TagsDTO> tagsDTOList = tagsService.listByIds(Arrays.asList(tagIds.split(","))).stream().map(e -> {
                     return (TagsDTO) new TagsDTO().convertFrom(e);
                 }).collect(Collectors.toList());
@@ -120,11 +120,11 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public StudentVO showUserPageInfo(Long uid) {
         User user = userMapper.selectById(uid);
-        if (ObjectUtils.isEmpty(user)){
+        if (ObjectUtils.isEmpty(user)) {
             throw new NotFoundException("该id的用户不存在！");
         }
         UserInfo userInfo = userInfoService.getOneActivatedByUid(uid);
-        if (ObjectUtils.isEmpty(userInfo)){
+        if (ObjectUtils.isEmpty(userInfo)) {
             throw new NotFoundException("该用户没有认证信息，uid: " + uid);
         }
         List<TagsDTO> tagsDTOList = userTagsService.listByUid(uid)
@@ -157,7 +157,7 @@ public class IndexServiceImpl implements IndexService {
 
         // Basic info of the team
         Teams team = teamsMapper.selectById(teamsId);
-        if (ObjectUtils.isEmpty(team)){
+        if (ObjectUtils.isEmpty(team)) {
             throw new NotFoundException("该id的团队不存在！");
         }
         BeanUtils.copyProperties(team, teamVO);
@@ -182,7 +182,7 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public TeamsRecruitmentsVO showRecruitmentsInfo(Long recruitmentsId) {
         TeamsRecruitments recruitment = teamsRecruitmentsService.getById(recruitmentsId);
-        if (ObjectUtils.isEmpty(recruitment)){
+        if (ObjectUtils.isEmpty(recruitment)) {
             throw new NotFoundException("该id的职位不存在！");
         }
 

@@ -139,7 +139,7 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
         // Get options from cache
         String resJson = redisService.get(OPTIONS_KEY);
 
-        if (StringUtils.isBlank(resJson)){
+        if (StringUtils.isBlank(resJson)) {
             List<Options> options = list();
 
             Set<String> keys = ServiceUtils.fetchProperty(options, Options::getOptionKey);

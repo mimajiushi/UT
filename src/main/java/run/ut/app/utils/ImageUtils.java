@@ -30,11 +30,11 @@ public class ImageUtils {
         }
     }
 
-    public static boolean isImage(MultipartFile... file){
+    public static boolean isImage(MultipartFile... file) {
         for (MultipartFile multipartFile : file) {
             String mimetype = multipartFile.getContentType();
             String type = mimetype.split("/")[0];
-            if (!type.equals("image")){
+            if (!type.equals("image")) {
                 return false;
             }
         }

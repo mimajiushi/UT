@@ -1,21 +1,20 @@
 package run.ut.app.controller;
 
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.http.client.utils.URIBuilder;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.unit.DataSize;
-import org.springframework.web.bind.MissingServletRequestParameterException;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import cn.hutool.core.lang.Validator;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
+import org.springframework.util.unit.DataSize;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import run.ut.app.api.UserControllerApi;
 import run.ut.app.config.wechat.WechatAccountConfig;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.FileOperationException;
@@ -28,15 +27,16 @@ import run.ut.app.model.dto.UserInfoDTO;
 import run.ut.app.model.enums.SexEnum;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.*;
-import run.ut.app.model.support.BASE64DecodedMultipartFile;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.WeChatResponse;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.security.CheckLogin;
 import run.ut.app.security.util.JwtOperator;
-import run.ut.app.service.*;
+import run.ut.app.service.SmsService;
+import run.ut.app.service.UserExperiencesService;
+import run.ut.app.service.UserInfoService;
+import run.ut.app.service.UserService;
 import run.ut.app.utils.ImageUtils;
-import run.ut.app.utils.ObjectUtils;
 import run.ut.app.utils.RandomUtils;
 import run.ut.app.utils.UtUtils;
 
@@ -45,8 +45,6 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import run.ut.app.api.UserControllerApi;
 
 @RestController
 @Slf4j
@@ -74,17 +72,17 @@ public class UserController extends BaseController implements UserControllerApi 
         User user = userParam.convertTo();
         // check phone number
         int count = userService.count(new QueryWrapper<User>().eq("phone_number", userParam.getPhoneNumber()));
-        if (!Validator.isMobile(userParam.getPhoneNumber() + "")){
+        if (!Validator.isMobile(userParam.getPhoneNumber() + "")) {
             throw new BadRequestException("非法手机号！");
         }
-        if (count > 0){
+        if (count > 0) {
             // login
             smsService.checkCode(userParam.getPhoneNumber(), userParam.getSmsCode());
             user = userService.getOne(new QueryWrapper<User>().eq("phone_number", userParam.getPhoneNumber()));
             UserDTO userDTO = new UserDTO().convertFrom(user);
             userDTO.setToken(jwtOperator.buildAuthToken(user));
             return userDTO;
-        }else {
+        } else {
             // register and login
             smsService.checkCode(userParam.getPhoneNumber(), userParam.getSmsCode());
 
@@ -116,7 +114,7 @@ public class UserController extends BaseController implements UserControllerApi 
         URI uri = builder.build();
         ResponseEntity<WeChatResponse> res = restTemplate.getForEntity(uri, WeChatResponse.class);
         int statusCodeValue = res.getStatusCodeValue();
-        if (200 != statusCodeValue){
+        if (200 != statusCodeValue) {
             throw new WeChatException("微信授权接口请求错误！请联系管理员！");
         }
         WeChatResponse weChatResponse = res.getBody();
@@ -127,7 +125,7 @@ public class UserController extends BaseController implements UserControllerApi 
     @PostMapping("sendSms")
     public BaseResponse<String> sendSms(String phoneNumber) {
         Assert.notNull(phoneNumber, "Phone number must not be null");
-        if (!Validator.isMobile(phoneNumber + "")){
+        if (!Validator.isMobile(phoneNumber + "")) {
             throw new BadRequestException("非法手机号！");
         }
         smsService.sendCode(phoneNumber, RandomUtils.number(6));
@@ -149,12 +147,10 @@ public class UserController extends BaseController implements UserControllerApi 
         userInfoParam.setUid(getUid());
         long size1 = userInfoParam.getCredentialsPhotoFront().length();
         long size2 = userInfoParam.getCredentialsPhotoReverse().length();
-        long realSize1 = size1 - (size1/8) * 2;
-        long realSize2 = size2 - (size2/8) * 2;
+        long realSize1 = size1 - (size1 / 8) * 2;
+        long realSize2 = size2 - (size2 / 8) * 2;
         long maxFileSize = dataSize.toBytes();
-        System.out.println(realSize1 + " " + realSize2);
-        System.out.println(maxFileSize);
-        if (size1 > maxFileSize || size2 > maxFileSize){
+        if (size1 > maxFileSize || size2 > maxFileSize) {
             throw new BadRequestException("文件大小不可超过10Mb");
         }
 
@@ -165,8 +161,8 @@ public class UserController extends BaseController implements UserControllerApi 
     @PostMapping("saveUserTags")
     @CheckLogin
     public List<TagsDTO> saveUserTags(@RequestBody String[] tagIds) throws Exception {
-        long uid = Long.parseLong(request.getAttribute("uid")+"");
-        if (tagIds.length > 3){
+        long uid = Long.parseLong(request.getAttribute("uid") + "");
+        if (tagIds.length > 3) {
             throw new BadRequestException("标签数量不能 > 3 个！");
         }
 
@@ -204,7 +200,7 @@ public class UserController extends BaseController implements UserControllerApi 
     @CheckLogin
     @PostMapping("updateUserAvatar")
     public BaseResponse<String> updateUserAvatar(@RequestPart("avatar") MultipartFile avatar) {
-        if (!ImageUtils.isImage(avatar)){
+        if (!ImageUtils.isImage(avatar)) {
             throw new FileOperationException("只接受图片格式文件！");
         }
         return userService.updateUserAvatar(getUid(), avatar);

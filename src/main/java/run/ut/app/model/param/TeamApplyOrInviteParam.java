@@ -2,14 +2,14 @@ package run.ut.app.model.param;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import run.ut.app.model.domain.UserTeamApplyLog;
-import run.ut.app.model.dto.BaseDTO;
 import run.ut.app.model.dto.base.InputConverter;
-import run.ut.app.model.dto.base.OutputConverter;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="UserTeamApplyLogDTO 对象", description="")
+@ApiModel(value = "UserTeamApplyLogDTO 对象", description = "")
 public class TeamApplyOrInviteParam implements InputConverter<UserTeamApplyLog> {
 
     @ApiModelProperty(value = "可能会在某些更新情景下使用")

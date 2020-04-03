@@ -2,9 +2,6 @@ package run.ut.app.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
-import org.springframework.web.bind.annotation.PathVariable;
-import run.ut.app.model.domain.TeamsRecruitments;
 import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.param.SearchRecruitmentParam;
 import run.ut.app.model.param.SearchStudentParam;

@@ -1,12 +1,8 @@
 package run.ut.app.model.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
-import run.ut.app.model.domain.BaseEntity;
 import run.ut.app.model.domain.TeamsRecruitments;
 import run.ut.app.model.dto.base.OutputConverter;
 
@@ -24,7 +20,6 @@ import run.ut.app.model.dto.base.OutputConverter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="TeamsRecruitmentsDTO 对象", description="")
 public class TeamsRecruitmentsDTO extends BaseDTO implements OutputConverter<TeamsRecruitmentsDTO, TeamsRecruitments> {
 
     private Long id;

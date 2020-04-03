@@ -36,7 +36,7 @@ public class UserTagsServiceImpl extends ServiceImpl<UserTagsMapper, UserTags> i
             tagIds.add(userTag.getTagId());
         }
 
-        if (tagIds.size() == 0){
+        if (tagIds.size() == 0) {
             return new ArrayList<>();
         }
         return tagsMapper.selectBatchIds(tagIds);

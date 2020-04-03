@@ -33,26 +33,26 @@ public class TagsServiceImpl extends ServiceImpl<TagsMapper, Tags> implements Ta
     public BaseResponse<TagsDTO> saveTag(TagsParam tagsParam) {
         Tags tags = tagsParam.convertTo();
         // update if id != null
-        if (tags.getId() != null){
+        if (tags.getId() != null) {
             Tags oldTag = getById(tags.getId());
-            if (ObjectUtils.isEmpty(oldTag)){
-                throw new NotFoundException("未找到指定标签，更新标签失败！tag_id="+tags.getId()+" tag_name" + tags.getName());
+            if (ObjectUtils.isEmpty(oldTag)) {
+                throw new NotFoundException("未找到指定标签，更新标签失败！tag_id=" + tags.getId() + " tag_name= " + tags.getName());
             }
             oldTag.setName(tags.getName())
                     .setParentId(tags.getParentId())
                     .setUpdateTime(null);
-            if (null != tags.getParentId() || tags.getParentId() > 0){
-                oldTag.setLevel(getById(tags.getParentId()).getLevel()+1);
-            }else {
+            if (null != tags.getParentId() || tags.getParentId() > 0) {
+                oldTag.setLevel(getById(tags.getParentId()).getLevel() + 1);
+            } else {
                 oldTag.setLevel(0);
             }
             tags = oldTag;
         }
 
         // insert if id == null
-        if (null != tags.getParentId() && tags.getParentId() > 0){
-            tags.setLevel(getById(tags.getParentId()).getLevel()+1);
-        }else {
+        if (null != tags.getParentId() && tags.getParentId() > 0) {
+            tags.setLevel(getById(tags.getParentId()).getLevel() + 1);
+        } else {
             tags.setLevel(0);
         }
         saveOrUpdate(tags);
@@ -62,8 +62,6 @@ public class TagsServiceImpl extends ServiceImpl<TagsMapper, Tags> implements Ta
     @Override
     public List<TagsDTO> listTagsByParentId(@NonNull Integer parentId) {
         return list(new QueryWrapper<Tags>().eq("parent_id", parentId))
-                .stream().map(e -> {
-                    return (TagsDTO)new TagsDTO().convertFrom(e);
-        }).collect(Collectors.toList());
+                .stream().map(e -> (TagsDTO)new TagsDTO().convertFrom(e)).collect(Collectors.toList());
     }
 }

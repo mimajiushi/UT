@@ -3,8 +3,6 @@ package run.ut.app.model.enums;
 import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
-import lombok.ToString;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 
@@ -15,7 +13,7 @@ import java.util.Arrays;
  */
 @Getter
 public enum UserInfoStatusEnum implements IEnum<Integer> {
-    PASS(1 , "审核通过"),
+    PASS(1, "审核通过"),
     WAITING(0, "审核中"),
     FAIL(-1, "审核不通过");
 

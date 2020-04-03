@@ -21,7 +21,7 @@ public class CommentPage<T> {
 
     private List<T> rows;
 
-    public static <T> CommentPage<T> emptyPage(){
+    public static <T> CommentPage<T> emptyPage() {
         return new CommentPage<>(0, new ArrayList<>());
     }
 }

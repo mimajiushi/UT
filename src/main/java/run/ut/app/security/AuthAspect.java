@@ -17,7 +17,6 @@ import run.ut.app.security.util.JwtOperator;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
-import java.util.Objects;
 
 /**
  * 处理认证注解
@@ -91,7 +90,7 @@ public class AuthAspect {
             String[] values = annotation.roles();
             for (String value : values) {
                 int role = UserRolesEnum.getByName(value).getType();
-                if ((role & roles) != role){
+                if ((role & roles) != role) {
                     throw new AuthenticationException("用户没有相关权限！");
                 }
             }

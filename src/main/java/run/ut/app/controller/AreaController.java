@@ -60,7 +60,7 @@ public class AreaController implements AreaControllerApi {
      * test api
      */
     @GetMapping("/hello")
-    public String hello(){
+    public String hello() {
         return "hello";
     }
 }

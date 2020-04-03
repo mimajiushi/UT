@@ -1,6 +1,5 @@
 package run.ut.app.model.dto;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -23,7 +22,6 @@ import run.ut.app.model.enums.ApplyStatusEnum;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="UserTeamApplyLogDTO 对象", description="")
 public class UserTeamApplyLogDTO extends BaseDTO implements OutputConverter<UserTeamApplyLogDTO, UserTeamApplyLog> {
 
     private Long id;

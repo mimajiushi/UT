@@ -3,7 +3,6 @@ package run.ut.app.model.enums;
 import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
-import lombok.ToString;
 
 import java.util.Arrays;
 
@@ -14,7 +13,7 @@ import java.util.Arrays;
  */
 @Getter
 public enum SexEnum implements IEnum<Integer> {
-    UNKNOW(0 , "保密"),
+    UNKNOW(0, "保密"),
     MALE(1, "男"),
     FEMALE(2, "女");
 
@@ -35,7 +34,7 @@ public enum SexEnum implements IEnum<Integer> {
 
 
     public static SexEnum getByType(Integer type) {
-        if (null == type){
+        if (null == type) {
             return null;
         }
         return Arrays.stream(values()).filter(e -> e.getType() == type).findFirst().orElse(null);

@@ -1,17 +1,9 @@
 package run.ut.app.model.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
 import lombok.*;
 import lombok.experimental.Accessors;
-import run.ut.app.model.domain.BaseEntity;
 import run.ut.app.model.domain.UserExperiences;
 import run.ut.app.model.dto.base.OutputConverter;
-
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -27,7 +19,6 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="UserExperiencesDTO对象", description="")
 public class UserExperiencesDTO extends BaseDTO implements OutputConverter<UserExperiencesDTO, UserExperiences> {
 
     private Long id;

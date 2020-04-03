@@ -2,12 +2,13 @@ package run.ut.app.model.param;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import run.ut.app.model.domain.TeamsRecruitments;
-import run.ut.app.model.dto.BaseDTO;
 import run.ut.app.model.dto.base.InputConverter;
-import run.ut.app.model.dto.base.OutputConverter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -24,7 +25,7 @@ import javax.validation.constraints.Size;
 @Accessors(chain = true)
 @NoArgsConstructor@Builder
 @AllArgsConstructor
-@ApiModel(value="TeamsRecruitmentsParam 对象", description="")
+@ApiModel(value = "TeamsRecruitmentsParam 对象", description = "")
 public class TeamsRecruitmentsParam implements InputConverter<TeamsRecruitments> {
 
     @ApiModelProperty(value = "更新的时候传的岗位唯一id")

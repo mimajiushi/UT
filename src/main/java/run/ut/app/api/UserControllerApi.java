@@ -3,11 +3,6 @@ package run.ut.app.api;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import org.apache.http.client.HttpClient;
-import org.springframework.web.bind.MissingServletRequestParameterException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.model.dto.TagsDTO;
@@ -18,12 +13,10 @@ import run.ut.app.model.param.*;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.vo.StudentVO;
 
-import javax.validation.Valid;
-import java.net.URISyntaxException;
 import java.util.List;
 
 
-@Api(value="用户信息API",tags = "用户操作API", description = "用户登录、注册、完善信息、更改信息等操作")
+@Api(value = "用户信息API",tags = "用户操作API", description = "用户登录、注册、完善信息、更改信息等操作")
 public interface UserControllerApi {
 
     @ApiOperation(value = "用户登录（网页端）", notes = "用户首次登录即可自动注册，无需手动注册")

@@ -147,7 +147,7 @@ public class HttpClientConfig {
      * 配置长连接保持策略
      * @return
      */
-    public ConnectionKeepAliveStrategy connectionKeepAliveStrategy(){
+    public ConnectionKeepAliveStrategy connectionKeepAliveStrategy() {
         return (response, context) -> {
             // Honor 'keep-alive' header
             HeaderElementIterator it = new BasicHeaderElementIterator(
@@ -160,7 +160,7 @@ public class HttpClientConfig {
                 if (value != null && "timeout".equalsIgnoreCase(param)) {
                     try {
                         return Long.parseLong(value) * 1000;
-                    } catch(NumberFormatException ignore) {
+                    } catch (NumberFormatException ignore) {
                         log.error("解析长连接过期时间异常",ignore);
                     }
                 }
@@ -169,8 +169,7 @@ public class HttpClientConfig {
                     HttpClientContext.HTTP_TARGET_HOST);
             //如果请求目标地址,单独配置了长连接保持时间,使用该配置
             Optional<Map.Entry<String, Integer>> any = Optional.ofNullable(httpClientPoolConfig.getKeepAliveTargetHost()).orElseGet(HashMap::new)
-                    .entrySet().stream().filter(
-                            e -> e.getKey().equalsIgnoreCase(target.getHostName())).findAny();
+                    .entrySet().stream().filter(e -> e.getKey().equalsIgnoreCase(target.getHostName())).findAny();
             //否则使用默认长连接保持时间
             return any.map(en -> en.getValue() * 1000L).orElse(httpClientPoolConfig.getKeepAliveTime() * 1000L);
         };

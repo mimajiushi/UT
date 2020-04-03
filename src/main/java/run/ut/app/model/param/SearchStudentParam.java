@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
  */
 
 @Data
-@ApiModel(description="查询学生list的参数")
+@ApiModel(description = "查询学生list的参数")
 public class SearchStudentParam {
 
     private Integer grade;

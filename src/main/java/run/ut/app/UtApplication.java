@@ -17,6 +17,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @MapperScan(basePackages = "run.ut.app.mapper")
 public class UtApplication extends SpringBootServletInitializer {
 
+    @SuppressWarnings("checkstyle:StaticVariableName")
     private static ConfigurableApplicationContext context;
 
     public static void main(String[] args) {

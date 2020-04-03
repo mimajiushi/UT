@@ -3,16 +3,12 @@ package run.ut.app.api.admin;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestParam;
-import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.UserInfoDTO;
-import run.ut.app.model.enums.UserInfoStatusEnum;
 import run.ut.app.model.param.UserInfoParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 
-import java.util.List;
-
-@Api(value="管理员处理用户认证API",tags = "管理员处理用户认证API")
+@Api(value = "管理员处理用户认证API",tags = "管理员处理用户认证API")
 public interface AdminUserInfoControllerAPI {
 
     @ApiOperation(value = "审核用户认证资料", notes = "status: -1 - 审核不通过 1 - 审核通过")

@@ -22,7 +22,7 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="DataArea对象", description="行政区域数据表")
+@ApiModel(value = "DataArea对象", description = "行政区域数据表")
 public class DataArea implements Serializable {
 
     private Integer id;
@@ -43,7 +43,7 @@ public class DataArea implements Serializable {
     private Float latitude;
 
     @ApiModelProperty(value = "等级(1省/直辖市,2地级市,3区县,4镇/街道)")
-    @JSONField(serialzeFeatures= SerializerFeature.WriteEnumUsingToString)
+    @JSONField(serialzeFeatures = SerializerFeature.WriteEnumUsingToString)
     private DataAreaLevelEnum level;
 
     @ApiModelProperty(value = "排序")

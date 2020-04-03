@@ -17,7 +17,7 @@ public class RegisterConfig {
     }
 
     @Bean
-    SmsSingleSender getSmsSingleSender(){
+    SmsSingleSender getSmsSingleSender() {
         SmsConfig smsConfig = thirdApiConfig.getSms();
         return new SmsSingleSender(smsConfig.getAppId(),smsConfig.getAppKey());
     }

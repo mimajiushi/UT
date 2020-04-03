@@ -1,18 +1,16 @@
 package run.ut.app.model.param;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.base.InputConverter;
 import run.ut.app.model.enums.UserInfoStatusEnum;
 
-import javax.annotation.Nullable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -25,9 +23,9 @@ import javax.validation.constraints.NotNull;
  * @since 2020-03-09
  */
 @Data
-  @EqualsAndHashCode(callSuper = false)
-  @Accessors(chain = true)
-@ApiModel(value="UserInfoParam对象", description="")
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@ApiModel(value = "UserInfoParam对象", description = "")
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserInfoParam extends BaseParam implements InputConverter<UserInfo> {

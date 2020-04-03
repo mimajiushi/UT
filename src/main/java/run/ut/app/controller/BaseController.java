@@ -29,7 +29,7 @@ public class BaseController {
 
     }
 
-    protected Long getUid(){
+    protected Long getUid() {
         return Long.parseLong(request.getAttribute("uid") + "");
     }
 }

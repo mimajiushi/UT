@@ -20,7 +20,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="StudentVO对象", description="")
+@ApiModel(value = "StudentVO对象", description = "")
 public class StudentVO {
 
     @ApiModelProperty("uid")

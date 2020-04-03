@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 @Getter
 public enum ApplyStatusEnum implements IEnum<Integer> {
-    PASS(1 , "同意"),
+    PASS(1, "同意"),
     WAITING(0, "处理中"),
     FAIL(-1, "拒绝");
 

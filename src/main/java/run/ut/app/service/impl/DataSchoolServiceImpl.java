@@ -31,11 +31,11 @@ public class DataSchoolServiceImpl extends ServiceImpl<DataSchoolMapper, DataSch
     public List<DataSchool> getListByProvinceId(Integer provinceId) {
         String key = RedisConfig.SCHOOL_DATA_LIST_PREFIX + "::" + provinceId;
         String value = redisService.get(key);
-        if (StringUtils.isEmpty(value)){
+        if (StringUtils.isEmpty(value)) {
             List<DataSchool> dataSchools = dataSchoolMapper.selectList(
                     new QueryWrapper<DataSchool>().eq("province_id", provinceId)
             );
-            if (!ObjectUtils.isEmpty(dataSchools)){
+            if (!ObjectUtils.isEmpty(dataSchools)) {
                 redisService.setKeyValTTL(key, JSON.toJSONString(dataSchools), RedisConfig.AREA_TTL);
                 return dataSchools;
             }
@@ -49,7 +49,7 @@ public class DataSchoolServiceImpl extends ServiceImpl<DataSchoolMapper, DataSch
      * 获取所有学校的行政区id (去重)
      */
     @Override
-    public List<Integer> selectProvincIdDistinct(){
+    public List<Integer> selectProvincIdDistinct() {
         return dataSchoolMapper.selectProvincIdDistinct();
     }
 
@@ -57,9 +57,9 @@ public class DataSchoolServiceImpl extends ServiceImpl<DataSchoolMapper, DataSch
     public DataSchool getById(Integer id) {
         String key = RedisConfig.SCHOOL_DATA_PREFIX + "::" + id;
         String value = redisService.get(key);
-        if (StringUtils.isEmpty(value)){
+        if (StringUtils.isEmpty(value)) {
             DataSchool dataSchool = dataSchoolMapper.selectById(id);
-            if (!ObjectUtils.isEmpty(dataSchool)){
+            if (!ObjectUtils.isEmpty(dataSchool)) {
                 redisService.setKeyValTTL(key, JSON.toJSONString(dataSchool), RedisConfig.AREA_TTL);
                 return dataSchool;
             }

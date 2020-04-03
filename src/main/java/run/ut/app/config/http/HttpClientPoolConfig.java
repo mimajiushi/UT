@@ -20,11 +20,13 @@ public class HttpClientPoolConfig {
     /**
      * 连接池的最大连接数
      */
-    private int maxTotalConnect ;
+    private int maxTotalConnect;
+
     /**
      * 同路由的并发数
      */
-    private int maxConnectPerRoute ;
+    private int maxConnectPerRoute;
+
     /**
      * 客户端和服务器建立连接超时，默认2s
      */

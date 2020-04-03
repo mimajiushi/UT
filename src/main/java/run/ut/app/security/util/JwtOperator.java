@@ -11,9 +11,6 @@ import run.ut.app.model.domain.User;
 import run.ut.app.security.token.AuthToken;
 
 import javax.crypto.SecretKey;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -113,7 +110,7 @@ public class JwtOperator {
      * @param user 用户信息
      * @return accessToken and expirationTime
      */
-    public AuthToken buildAuthToken(@NonNull User user){
+    public AuthToken buildAuthToken(@NonNull User user) {
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put("uid", user.getUid());
         userInfo.put("openid", user.getOpenid());
@@ -124,44 +121,4 @@ public class JwtOperator {
                 .expirationTime(this.getExpirationTime().getTime()).build();
     }
 
-//    public static void main(String[] args) {
-//        // 1. 初始化
-//        JwtOperator jwtOperator = new JwtOperator();
-//        jwtOperator.expirationTimeInSecond = 1209600L;
-//        jwtOperator.secret = "uuuuuuuuuutttttttttt";
-//
-//        // 2.设置用户信息
-//        HashMap<String, Object> objectObjectHashMap = Maps.newHashMap();
-//        objectObjectHashMap.put("id", "1");
-//
-//        // 测试1: 生成token
-//        String token = jwtOperator.generateToken(objectObjectHashMap);
-//        // 会生成类似该字符串的内容: eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJpYXQiOjE1NjU1ODk4MTcsImV4cCI6MTU2Njc5OTQxN30.27_QgdtTg4SUgxidW6ALHFsZPgMtjCQ4ZYTRmZroKCQ
-//        System.out.println(token);
-//
-//        // 将我改成上面生成的token!!!
-//        String someToken = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJpYXQiOjE1NjU1OTQ1NjIsImV4cCI6MTU2NjgwNDE2Mn0.PAvWPcQAZnSlYKNbZr4O1l9aA4LPphuq0OG2QIs7O5E\n";
-//        // 测试2: 如果能token合法且未过期，返回true
-//        Boolean validateToken = jwtOperator.validateToken(someToken);
-//        System.out.println(validateToken);
-//
-//        // 测试3: 获取用户信息
-//        Claims claims = jwtOperator.getClaimsFromToken(someToken);
-//        System.out.println(claims);
-//
-//        // 将我改成你生成的token的第一段（以.为边界）
-//        String encodedHeader = "eyJhbGciOiJIUzI1NiJ9";
-//        // 测试4: 解密Header
-//        byte[] header = Base64.decodeBase64(encodedHeader.getBytes());
-//        System.out.println(new String(header));
-//
-//        // 将我改成你生成的token的第二段（以.为边界）
-//        String encodedPayload = "eyJpZCI6IjEiLCJpYXQiOjE1NjU1ODk1NDEsImV4cCI6MTU2Njc5OTE0MX0";
-//        // 测试5: 解密Payload
-//        byte[] payload = Base64.decodeBase64(encodedPayload.getBytes());
-//        System.out.println(new String(payload));
-//
-//        // 测试6: 这是一个被篡改的token，因此会报异常，说明JWT是安全的
-//        jwtOperator.validateToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEiLCJpYXQiOjE1NjU1ODk3MzIsImV4cCI6MTU2Njc5OTMzMn0.nDv25ex7XuTlmXgNzGX46LqMZItVFyNHQpmL9UQf-aUxxx");
-//    }
 }

@@ -1,14 +1,12 @@
 package run.ut.app.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
 import run.ut.app.model.domain.User;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import run.ut.app.model.param.SearchStudentParam;
 import run.ut.app.model.vo.StudentVO;
-
-import java.util.List;
 
 /**
  * <p>

@@ -16,8 +16,6 @@ import run.ut.app.model.support.CommentPage;
 import run.ut.app.security.CheckAuthorization;
 import run.ut.app.service.UserInfoService;
 
-import java.util.List;
-
 
 @RestController
 @Slf4j

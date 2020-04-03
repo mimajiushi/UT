@@ -16,7 +16,6 @@ import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.model.vo.TeamVO;
 import run.ut.app.model.vo.TeamsRecruitmentsVO;
-import run.ut.app.security.CheckLogin;
 import run.ut.app.service.IndexService;
 import run.ut.app.service.TeamsService;
 import run.ut.app.utils.MysqlEscapeUtils;

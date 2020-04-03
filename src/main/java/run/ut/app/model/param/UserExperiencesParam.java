@@ -7,7 +7,6 @@ import lombok.experimental.Accessors;
 import run.ut.app.model.domain.UserExperiences;
 import run.ut.app.model.dto.BaseDTO;
 import run.ut.app.model.dto.base.InputConverter;
-import run.ut.app.model.dto.base.OutputConverter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -26,7 +25,7 @@ import javax.validation.constraints.Size;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="UserExperiencesParam对象", description="")
+@ApiModel(value = "UserExperiencesParam对象", description = "")
 public class UserExperiencesParam extends BaseDTO implements InputConverter<UserExperiences> {
 
     @ApiModelProperty(value = "此id更新时必须传入")

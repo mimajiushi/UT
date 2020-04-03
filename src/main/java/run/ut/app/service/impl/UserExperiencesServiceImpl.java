@@ -32,7 +32,7 @@ public class UserExperiencesServiceImpl extends ServiceImpl<UserExperiencesMappe
 
         UserExperiences userExperiences = userExperiencesParam.convertTo();
         // Update if the id is not empty
-        if (null != userExperiences.getId()){
+        if (null != userExperiences.getId()) {
             userExperiences.setUpdateTime(null);
             update(userExperiences, new QueryWrapper<UserExperiences>()
                     .eq("id", userExperiences.getId())
@@ -46,9 +46,9 @@ public class UserExperiencesServiceImpl extends ServiceImpl<UserExperiencesMappe
     }
 
     @Override
-    public BaseResponse<String> deleteUserExperiences(Long uid, String id){
+    public BaseResponse<String> deleteUserExperiences(Long uid, String id) {
         boolean removed = remove(new QueryWrapper<UserExperiences>().eq("uid", uid).eq("id", id));
-        return removed?BaseResponse.ok("删除成功"):BaseResponse.ok("删除失败");
+        return removed ? BaseResponse.ok("删除成功") : BaseResponse.ok("删除失败");
     }
 
     @Override

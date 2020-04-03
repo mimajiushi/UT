@@ -17,7 +17,7 @@ import run.ut.app.model.enums.TeamsMemberEnum;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="TeamMemberVO 对象", description="")
+@ApiModel(value = "TeamMemberVO 对象", description = "")
 public class TeamMemberVO {
 
     private Long id;

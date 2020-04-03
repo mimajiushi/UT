@@ -30,12 +30,12 @@ public class DataAreaServiceImpl extends ServiceImpl<DataAreaMapper, DataArea> i
     public List<DataArea> getAreaDataByParentId(Integer parentId) {
         String key = RedisConfig.AREA_PREFIX + "::" + parentId;
         String redisRes = redisService.get(key);
-        if (StringUtils.isEmpty(redisRes)){
+        if (StringUtils.isEmpty(redisRes)) {
             List<DataArea> dataAreas = dataAreaMapper.
                     selectList(
                             new QueryWrapper<DataArea>().select("id", "parent_id", "name")
                                     .eq("parent_id", parentId).orderByAsc("sort"));
-            if (!ObjectUtils.isEmpty(dataAreas)){
+            if (!ObjectUtils.isEmpty(dataAreas)) {
                 String value = JSON.toJSONString(dataAreas);
                 redisService.setKeyValTTL(key, value, RedisConfig.AREA_TTL);
                 return dataAreas;
@@ -54,9 +54,9 @@ public class DataAreaServiceImpl extends ServiceImpl<DataAreaMapper, DataArea> i
     public DataArea getById(Integer id) {
         String key = RedisConfig.AREA_INFO_PREFIX + "::" + id;
         String redisRes = redisService.get(key);
-        if (StringUtils.isEmpty(redisRes)){
+        if (StringUtils.isEmpty(redisRes)) {
             DataArea dataArea = dataAreaMapper.selectById(id);
-            if (!ObjectUtils.isEmpty(dataArea)){
+            if (!ObjectUtils.isEmpty(dataArea)) {
                 String value = JSON.toJSONString(dataArea);
                 redisService.setKeyValTTL(key, value, RedisConfig.AREA_TTL);
                 return dataArea;

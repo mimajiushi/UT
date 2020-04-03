@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 @Getter
 public enum ApplyModeEnum implements IEnum<Integer> {
-    USER_TO_TEAM(1 , "用户申请加入团队"),
+    USER_TO_TEAM(1, "用户申请加入团队"),
     TEAM_TO_USER(2, "团队邀请用户加入");
 
     private int type;

@@ -1,6 +1,5 @@
 package run.ut.app.model.dto;
 
-import io.swagger.annotations.ApiModel;
 import lombok.*;
 import lombok.experimental.Accessors;
 import run.ut.app.model.domain.Tags;
@@ -20,7 +19,6 @@ import run.ut.app.model.dto.base.OutputConverter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="TagsDTO", description="")
 public class TagsDTO extends BaseDTO implements OutputConverter<TagsDTO, Tags> {
 
     private Integer id;

@@ -1,16 +1,15 @@
 package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import run.ut.app.mapper.TagsMapper;
+import run.ut.app.mapper.TeamsTagsMapper;
 import run.ut.app.model.domain.Tags;
 import run.ut.app.model.domain.TeamsTags;
-import run.ut.app.mapper.TeamsTagsMapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
-import run.ut.app.model.domain.UserTags;
 import run.ut.app.service.TeamsTagsService;
 
 import java.util.ArrayList;
@@ -39,14 +38,14 @@ public class TeamsTagsServiceImpl extends ServiceImpl<TeamsTagsMapper, TeamsTags
             tagIds.add(teamsTag.getTagId());
         }
 
-        if (tagIds.size() == 0){
+        if (tagIds.size() == 0) {
             return new ArrayList<>();
         }
         return tagsMapper.selectBatchIds(tagIds);
     }
 
     @Override
-    public void deleteByTeamsId(Long teamsId){
+    public void deleteByTeamsId(Long teamsId) {
         remove(new QueryWrapper<TeamsTags>().eq("team_id", teamsId));
     }
 }

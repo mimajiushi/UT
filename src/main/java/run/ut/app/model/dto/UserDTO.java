@@ -1,17 +1,12 @@
 package run.ut.app.model.dto;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModel;
 import lombok.*;
 import lombok.experimental.Accessors;
-import run.ut.app.model.domain.BaseEntity;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.dto.base.OutputConverter;
 import run.ut.app.model.enums.SexEnum;
-import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.security.token.AuthToken;
 
 import java.time.LocalDateTime;
@@ -30,7 +25,6 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="UserDTO对象", description="")
 public class UserDTO extends BaseDTO implements OutputConverter<UserDTO, User> {
 
     private Integer id;

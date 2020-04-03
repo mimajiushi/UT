@@ -1,19 +1,13 @@
 package run.ut.app.model.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
 import run.ut.app.model.enums.ApplyModeEnum;
 import run.ut.app.model.enums.ApplyStatusEnum;
-
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 /**
  * <p>
@@ -29,8 +23,8 @@ import javax.validation.constraints.Min;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value="UserTeamApplyLog对象", description="")
-public class UserTeamApplyLog extends BaseEntity{
+@ApiModel(value = "UserTeamApplyLog对象", description = "")
+public class UserTeamApplyLog extends BaseEntity {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
