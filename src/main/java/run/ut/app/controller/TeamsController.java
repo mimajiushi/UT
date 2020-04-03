@@ -32,9 +32,6 @@ import run.ut.app.service.UserTeamApplyLogService;
 import run.ut.app.utils.ImageUtils;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -55,7 +52,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     public TeamsDTO createTeam(TeamsParam teamsParam, @RequestPart("logo") MultipartFile logo) {
         long leaderId = getUid();
         checkUser(leaderId);
-        if (ObjectUtils.isEmpty(TeamsStatusEnum.getByType(teamsParam.getStatus()))){
+        if (ObjectUtils.isEmpty(TeamsStatusEnum.getByType(teamsParam.getStatus()))) {
             throw new BadRequestException("团队发布状态参数有误！");
         }
         return teamsService.createTeam(teamsParam, leaderId, logo);
@@ -73,11 +70,11 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @Override
     @PostMapping("updateTeamsLogo")
     @CheckLogin
-    public BaseResponse<String> updateTeamsLogo(@RequestPart("logo") MultipartFile logo, Long teamsId){
+    public BaseResponse<String> updateTeamsLogo(@RequestPart("logo") MultipartFile logo, Long teamsId) {
         Long leaderId = getUid();
         checkUser(leaderId);
 
-        if (!ImageUtils.isImage(logo)){
+        if (!ImageUtils.isImage(logo)) {
             throw new FileOperationException("只接受图片格式文件！");
         }
         return teamsService.updateTeamsLogo(logo, leaderId, teamsId);
@@ -96,10 +93,10 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @Override
     @CheckLogin
     @PostMapping("saveTeamsRecruitmentsTags")
-    public List<TagsDTO> saveTeamsRecruitmentsTags(@RequestBody String[] tagIds, Long TeamId, Long teamRecruitmentId) {
+    public List<TagsDTO> saveTeamsRecruitmentsTags(@RequestBody String[] tagIds, Long teamId, Long teamRecruitmentId) {
         Long uid = getUid();
         checkUser(uid);
-        teamsService.getAndCheckTeamByLeaderIdAndTeamId(uid, teamRecruitmentId);
+        teamsService.getAndCheckTeamByLeaderIdAndTeamId(uid, teamId);
         return teamsService.saveTeamsRecruitmentsTags(tagIds, teamRecruitmentId);
     }
 
@@ -120,7 +117,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
         Long leaderId = getUid();
         teamsService.getAndCheckTeamByLeaderIdAndTeamId(leaderId, teamInviteParam.getTeamId());
         UserInfo userInfo = userInfoService.getOneActivatedByUid(teamInviteParam.getUid());
-        if (ObjectUtils.isEmpty(userInfo)){
+        if (ObjectUtils.isEmpty(userInfo)) {
             throw new AuthenticationException("只能邀请通过认证的用户！");
         }
         return teamsService.teamInvitesUser(teamInviteParam);
@@ -156,7 +153,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
                                                             Integer status) {
         Long leaderId = getUid();
         List<Long> teamIds = teamsService.getTeamIdsByLeaderId(leaderId);
-        if(teamIds.size() == 0){
+        if (teamIds.size() == 0) {
             return CommentPage.emptyPage();
         }
         Page page = new Page(pageNum, pageSize);
@@ -171,7 +168,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
                                                              Integer status) {
         Long leaderId = getUid();
         List<Long> teamIds = teamsService.getTeamIdsByLeaderId(leaderId);
-        if(teamIds.size() == 0){
+        if (teamIds.size() == 0) {
             return CommentPage.emptyPage();
         }
         Page page = new Page(pageNum, pageSize);
@@ -192,7 +189,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @CheckLogin
     public BaseResponse<String> userDealWithInvitation(@Valid @RequestBody DealInvitationOrApplyParam param) {
         ApplyStatusEnum statusEnum = ApplyStatusEnum.getByType(param.getStatus());
-        if (ObjectUtils.isEmpty(statusEnum) || statusEnum == ApplyStatusEnum.WAITING){
+        if (ObjectUtils.isEmpty(statusEnum) || statusEnum == ApplyStatusEnum.WAITING) {
             throw new BadRequestException("status参数有误！");
         }
         Long uid = getUid();
@@ -205,7 +202,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @CheckLogin
     public BaseResponse<String> teamDealWithApplication(@Valid @RequestBody DealInvitationOrApplyParam param) {
         ApplyStatusEnum statusEnum = ApplyStatusEnum.getByType(param.getStatus());
-        if (ObjectUtils.isEmpty(statusEnum) || statusEnum == ApplyStatusEnum.WAITING){
+        if (ObjectUtils.isEmpty(statusEnum) || statusEnum == ApplyStatusEnum.WAITING) {
             throw new BadRequestException("status参数有误！");
         }
         Long leaderId = getUid();
@@ -217,9 +214,9 @@ public class TeamsController extends BaseController implements TeamsControllerAp
      * 检验用户是否通过认证
      * @param uid user's id
      */
-    private void checkUser(Long uid){
+    private void checkUser(Long uid) {
         UserInfo userInfo = userInfoService.getOneActivatedByUid(uid);
-        if (ObjectUtils.isEmpty(userInfo)){
+        if (ObjectUtils.isEmpty(userInfo)) {
             throw new AuthenticationException("只有通过认证的用户才能创建团队！");
         }
     }

@@ -15,7 +15,7 @@ import run.ut.app.model.vo.TeamsRecruitmentsVO;
 import java.util.List;
 
 
-@Api(value="用于返回首页等主页数据",tags = "主页数据核心API")
+@Api(value = "用于返回首页等主页数据",tags = "主页数据核心API")
 public interface IndexControllerApi {
 
     @ApiOperation(value = "获取首页的学生列表（找队友）")
