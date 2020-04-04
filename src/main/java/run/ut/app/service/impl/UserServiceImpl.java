@@ -33,6 +33,7 @@ import run.ut.app.model.vo.StudentVO;
 import run.ut.app.security.token.AuthToken;
 import run.ut.app.security.util.JwtOperator;
 import run.ut.app.service.*;
+import run.ut.app.utils.BeanUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -89,18 +90,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // Verify that the newly saved tags are the same as the original ones
         List<Tags> tags1 = userTagsService.listByUid(uid);
         if (tags.equals(tags1)) {
-            return tags.stream().map(e -> {
-                return (TagsDTO)new TagsDTO().convertFrom(e);
-            }).collect(Collectors.toList());
+            return BeanUtils.transformFromInBatch(tags, TagsDTO.class);
         }
 
         // Delete old tags
         userTagsService.deleteByUid(uid);
 
         // Repopulate New Tags
-        List<UserTags> userTags = tags.stream().map(e -> {
-            return (UserTags) new UserTags().setTagId(e.getId()).setUid(uid);
-        }).collect(Collectors.toList());
+        List<UserTags> userTags = tags.stream().map(e -> new UserTags().setTagId(e.getId()).setUid(uid))
+            .collect(Collectors.toList());
 
         userTagsService.saveBatch(userTags);
 
@@ -108,9 +106,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         userInfo.setUpdateTime(null);
         userInfoService.updateById(userInfo.setTagIds(tagIdsString));
 
-        return tags.stream().map(e -> {
-            return (TagsDTO)new TagsDTO().convertFrom(e);
-        }).collect(Collectors.toList());
+        return BeanUtils.transformFromInBatch(tags, TagsDTO.class);
     }
 
     @Override
@@ -120,10 +116,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new NotFoundException("该id的用户不存在！");
         }
         UserInfo userInfo = userInfoService.getOneActivatedByUid(uid);
-        List<TagsDTO> tagsDTOList = userTagsService.listByUid(uid)
-                .stream().map(e -> (TagsDTO) new TagsDTO().convertFrom(e)).collect(Collectors.toList());
-        List<UserExperiencesDTO> userExperiencesDTOList = userExperiencesService.getUserExperiencesByUid(uid)
-                .stream().map(e -> (UserExperiencesDTO) new UserExperiencesDTO().convertFrom(e)).collect(Collectors.toList());
+        List<TagsDTO> tagsDTOList = BeanUtils.transformFromInBatch(userTagsService.listByUid(uid), TagsDTO.class);
+        List<UserExperiencesDTO> userExperiencesDTOList = BeanUtils.transformFromInBatch(userExperiencesService.getUserExperiencesByUid(uid), UserExperiencesDTO.class);
 
         boolean hasAuthInfo = !ObjectUtils.isEmpty(userInfo);
 

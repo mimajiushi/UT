@@ -13,6 +13,7 @@ import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.param.TagsParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.service.TagsService;
+import run.ut.app.utils.BeanUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,7 +62,9 @@ public class TagsServiceImpl extends ServiceImpl<TagsMapper, Tags> implements Ta
 
     @Override
     public List<TagsDTO> listTagsByParentId(@NonNull Integer parentId) {
-        return list(new QueryWrapper<Tags>().eq("parent_id", parentId))
-                .stream().map(e -> (TagsDTO)new TagsDTO().convertFrom(e)).collect(Collectors.toList());
+        return BeanUtils.transformFromInBatch(
+            list(new QueryWrapper<Tags>().eq("parent_id", parentId)),
+            TagsDTO.class
+        );
     }
 }

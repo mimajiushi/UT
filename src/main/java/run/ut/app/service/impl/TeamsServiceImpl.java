@@ -31,6 +31,7 @@ import run.ut.app.service.TagsService;
 import run.ut.app.service.TeamsRecruitmentsTagsService;
 import run.ut.app.service.TeamsService;
 import run.ut.app.service.TeamsTagsService;
+import run.ut.app.utils.BeanUtils;
 import run.ut.app.utils.ImageUtils;
 
 import java.util.ArrayList;
@@ -121,9 +122,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         // Verify that the newly saved tags are the same as the original ones
         List<Tags> tags2 = teamsTagsService.listByTeamsId(teamsId);
         if (tags.equals(tags2)) {
-            return tags.stream().map(e -> {
-                return (TagsDTO)new TagsDTO().convertFrom(e);
-            }).collect(Collectors.toList());
+            return BeanUtils.transformFromInBatch(tags, TagsDTO.class);
         }
 
         // Delete old tags
@@ -139,9 +138,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         team.setUpdateTime(null);
         updateById(team.setTagIds(tagIdsString));
 
-        return tags.stream().map(e -> {
-            return (TagsDTO)new TagsDTO().convertFrom(e);
-        }).collect(Collectors.toList());
+        return BeanUtils.transformFromInBatch(tags, TagsDTO.class);
     }
 
     @Override
@@ -166,9 +163,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         // Verify that the newly saved tags are the same as the original ones
         List<Tags> tags2 = teamsRecruitmentsTagsService.listByTeamsRecruitmentsId(teamRecruitmentId);
         if (tags.equals(tags2)) {
-            return tags.stream().map(e -> {
-                return (TagsDTO)new TagsDTO().convertFrom(e);
-            }).collect(Collectors.toList());
+            return BeanUtils.transformFromInBatch(tags, TagsDTO.class);
         }
 
         // delete old tags
@@ -184,9 +179,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         recruitment.setTagIds(tagIdsString)
                 .setUpdateTime(null);
         teamsRecruitmentsMapper.updateById(recruitment);
-        return tags.stream().map(e -> {
-            return (TagsDTO)new TagsDTO().convertFrom(e);
-        }).collect(Collectors.toList());
+        return BeanUtils.transformFromInBatch(tags, TagsDTO.class);
     }
 
     @Override
@@ -331,6 +324,6 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         if (ObjectUtils.isEmpty(teamIdsByLeaderId) || teamIdsByLeaderId.size() == 0) {
             return new ArrayList<>();
         }
-        return listByIds(teamIdsByLeaderId).stream().map(e -> (TeamsDTO)new TeamsDTO().convertFrom(e)).collect(Collectors.toList());
+        return BeanUtils.transformFromInBatch(listByIds(teamIdsByLeaderId), TeamsDTO.class);
     }
 }

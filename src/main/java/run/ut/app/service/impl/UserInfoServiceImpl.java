@@ -27,6 +27,7 @@ import run.ut.app.model.support.UploadResult;
 import run.ut.app.service.DataAreaService;
 import run.ut.app.service.DataSchoolService;
 import run.ut.app.service.UserInfoService;
+import run.ut.app.utils.BeanUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -130,9 +131,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         }
         userInfoQueryWrapper.orderByDesc("create_time");
         Page<UserInfo> userInfoPage = userInfoMapper.selectPage(page, userInfoQueryWrapper);
-        List<UserInfoDTO> userInfoDTOList = userInfoPage.getRecords().stream().map(e -> {
-            return (UserInfoDTO) new UserInfoDTO().convertFrom(e);
-        }).collect(Collectors.toList());
+        List<UserInfoDTO> userInfoDTOList = BeanUtils.transformFromInBatch(userInfoPage.getRecords(), UserInfoDTO.class);
 
         return new CommentPage<>(userInfoPage.getTotal(), userInfoDTOList);
     }

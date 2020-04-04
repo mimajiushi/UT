@@ -12,6 +12,7 @@ import run.ut.app.model.dto.DataAreaDTO;
 import run.ut.app.model.dto.DataSchoolDTO;
 import run.ut.app.service.DataAreaService;
 import run.ut.app.service.DataSchoolService;
+import run.ut.app.utils.BeanUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,8 +32,7 @@ public class AreaController implements AreaControllerApi {
     @GetMapping("/{id}/child")
     @Override
     public List<DataAreaDTO> getCityByParentId(@PathVariable Integer id) throws Exception {
-        return dataAreaService.getAreaDataByParentId(id)
-                .stream().map(e -> (DataAreaDTO)new DataAreaDTO().convertFrom(e)).collect(Collectors.toList());
+        return BeanUtils.transformFromInBatch(dataAreaService.getAreaDataByParentId(id), DataAreaDTO.class);
     }
 
 
@@ -42,8 +42,7 @@ public class AreaController implements AreaControllerApi {
     @GetMapping("/school/{provinceId}")
     @Override
     public List<DataSchoolDTO> getSchoolByProvinceId(@PathVariable Integer provinceId) {
-        return dataSchoolService.getListByProvinceId(provinceId)
-                .stream().map(e -> (DataSchoolDTO)new DataSchoolDTO().convertFrom(e)).collect(Collectors.toList());
+        return BeanUtils.transformFromInBatch(dataSchoolService.getListByProvinceId(provinceId), DataSchoolDTO.class);
     }
 
     /**

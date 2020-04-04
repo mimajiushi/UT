@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import run.ut.app.api.TagsControllerApi;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.service.TagsService;
+import run.ut.app.utils.BeanUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,7 +39,7 @@ public class TagsController implements TagsControllerApi {
     @Override
     @GetMapping("listAllTags")
     public List<TagsDTO> listAllTags() {
-        return tagsService.list().stream().map(e -> (TagsDTO) new TagsDTO().convertFrom(e)).collect(Collectors.toList());
-    }
+        return BeanUtils.transformFromInBatch(tagsService.list(), TagsDTO.class);
+}
 
 }

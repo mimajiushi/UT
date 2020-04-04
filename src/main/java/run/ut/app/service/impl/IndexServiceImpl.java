@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -32,6 +31,7 @@ import run.ut.app.model.vo.TeamMemberVO;
 import run.ut.app.model.vo.TeamVO;
 import run.ut.app.model.vo.TeamsRecruitmentsVO;
 import run.ut.app.service.*;
+import run.ut.app.utils.BeanUtils;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
@@ -66,9 +66,8 @@ public class IndexServiceImpl implements IndexService {
             studentVO.setSchool(dataSchoolService.getById(studentVO.getSchoolId()).getName());
             String tagIds = studentVO.getTagIds();
             if (!StringUtils.isBlank(tagIds)) {
-                List<TagsDTO> tagsDTOList = tagsService.listByIds(Arrays.asList(tagIds.split(","))).stream().map(e -> {
-                    return (TagsDTO) new TagsDTO().convertFrom(e);
-                }).collect(Collectors.toList());
+                List<TagsDTO> tagsDTOList = BeanUtils
+                    .transformFromInBatch(tagsService.listByIds(Arrays.asList(tagIds.split(","))), TagsDTO.class);
                 studentVO.setTags(tagsDTOList);
             }
         }
@@ -89,9 +88,8 @@ public class IndexServiceImpl implements IndexService {
             TeamVO teamVO = teamVOList.get(i);
             String tagIds = teamVO.getTagIds();
             if (!StringUtils.isBlank(tagIds)) {
-                List<TagsDTO> tagsDTOList = tagsService.listByIds(Arrays.asList(tagIds.split(","))).stream().map(e -> {
-                    return (TagsDTO) new TagsDTO().convertFrom(e);
-                }).collect(Collectors.toList());
+                List<TagsDTO> tagsDTOList = BeanUtils
+                    .transformFromInBatch(tagsService.listByIds(Arrays.asList(tagIds.split(","))), TagsDTO.class);
                 teamVO.setTags(tagsDTOList);
             }
         }
@@ -127,10 +125,9 @@ public class IndexServiceImpl implements IndexService {
         if (ObjectUtils.isEmpty(userInfo)) {
             throw new NotFoundException("该用户没有认证信息，uid: " + uid);
         }
-        List<TagsDTO> tagsDTOList = userTagsService.listByUid(uid)
-                .stream().map(e -> (TagsDTO) new TagsDTO().convertFrom(e)).collect(Collectors.toList());
-        List<UserExperiencesDTO> userExperiencesDTOList = userExperiencesService.getUserExperiencesByUid(uid)
-                .stream().map(e -> (UserExperiencesDTO) new UserExperiencesDTO().convertFrom(e)).collect(Collectors.toList());
+        List<TagsDTO> tagsDTOList = BeanUtils.transformFromInBatch(userTagsService.listByUid(uid), TagsDTO.class);
+        List<UserExperiencesDTO> userExperiencesDTOList = BeanUtils.
+            transformFromInBatch(userExperiencesService.getUserExperiencesByUid(uid), UserExperiencesDTO.class);
         String schoolName = dataSchoolService.getById(userInfo.getSchoolId()).getName();
 
         return new StudentVO()
@@ -160,11 +157,10 @@ public class IndexServiceImpl implements IndexService {
         if (ObjectUtils.isEmpty(team)) {
             throw new NotFoundException("该id的团队不存在！");
         }
-        BeanUtils.copyProperties(team, teamVO);
+        teamVO = BeanUtils.transformFrom(team, TeamVO.class);
 
         // Get tags
-        List<TagsDTO> tags = teamsTagsService.listByTeamsId(teamsId)
-                .stream().map(e -> (TagsDTO) new TagsDTO().convertFrom(e)).collect(Collectors.toList());
+        List<TagsDTO> tags = BeanUtils.transformFromInBatch(teamsTagsService.listByTeamsId(teamsId), TagsDTO.class);
         teamVO.setTags(tags);
 
         // Get members
@@ -172,8 +168,8 @@ public class IndexServiceImpl implements IndexService {
         teamVO.setMembers(memberVOs);
 
         // Get recruitments
-        List<TeamsRecruitmentsDTO> teamsRecruitmentsDTOList = teamsRecruitmentsService.listTeamsRecruitmentsByTeamsId(teamsId)
-                .stream().map(e -> (TeamsRecruitmentsDTO) new TeamsRecruitmentsDTO().convertFrom(e)).collect(Collectors.toList());
+        List<TeamsRecruitmentsDTO> teamsRecruitmentsDTOList = BeanUtils.
+            transformFromInBatch(teamsRecruitmentsService.listTeamsRecruitmentsByTeamsId(teamsId), TeamsRecruitmentsDTO.class);
         teamVO.setRecruitments(teamsRecruitmentsDTOList);
 
         return teamVO;
@@ -202,9 +198,10 @@ public class IndexServiceImpl implements IndexService {
 
     @Override
     public List<TeamsRecruitmentsDTO> listRecruitmentsByTeamId(@Nonnull Long teamId) {
-        return teamsRecruitmentsMapper.selectList(new QueryWrapper<TeamsRecruitments>()
-                .eq("team_id", teamId)).stream().map(e -> (TeamsRecruitmentsDTO) new TeamsRecruitmentsDTO().convertFrom(e))
-                .collect(Collectors.toList());
+        return BeanUtils.transformFromInBatch(
+                teamsRecruitmentsMapper.selectList(new QueryWrapper<TeamsRecruitments>().eq("team_id", teamId)),
+                TeamsRecruitmentsDTO.class
+            );
     }
 
 }
