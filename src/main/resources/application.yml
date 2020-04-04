@@ -48,9 +48,9 @@ spring:
   ##########################################################
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.129.133:3306/ut?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
-    username: root
-    password: 123456
+    url: jdbc:mysql://47.101.156.14:3306/ut?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+    username: ut
+    password: 7NcC8RHnyTRNEY4p
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       connection-timeout: 30000
@@ -68,10 +68,10 @@ spring:
   ##
   ##########################################################
   redis:
-    host: 192.168.129.133
+    host: 47.101.156.14
     database: 0
     port: 6379
-    password: 123456
+    password: 6KbRAVKdTgXhEko0
     jedis:
       pool:
         max-active: 8 # 连接池最大连接数（使用负值表示没有限制）

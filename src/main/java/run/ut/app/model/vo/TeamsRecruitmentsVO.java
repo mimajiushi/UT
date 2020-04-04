@@ -52,7 +52,6 @@ public class TeamsRecruitmentsVO implements OutputConverter<TeamsRecruitmentsVO,
 
     @ApiModelProperty(value = "只注入了所属团队的名字、头像等，若查看详情请前端根据团队id跳转到团队详情的接口",
             notes = "在首页显示职位list的接口则不会填充这个参数")
-    @Deprecated
     private TeamVO teamVO;
 
     @ApiModelProperty(value = "队伍名", notes = "首页显示职位list时就会填充这个参数")

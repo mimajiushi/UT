@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
-import run.ut.app.exception.AlreadyExistsException;
-import run.ut.app.exception.BadRequestException;
-import run.ut.app.exception.FileOperationException;
-import run.ut.app.exception.NotFoundException;
+import run.ut.app.exception.*;
 import run.ut.app.handler.FileHandlers;
 import run.ut.app.mapper.TeamsMembersMapper;
 import run.ut.app.mapper.TeamsRecruitmentsMapper;
@@ -196,6 +193,9 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
     public BaseResponse<String> updateTeamsLogo(MultipartFile logo, Long leaderId, Long teamsId) {
 
         Teams team = getAndCheckTeamByLeaderIdAndTeamId(leaderId, teamsId);
+        if (ObjectUtils.isEmpty(team)) {
+            throw new AuthenticationException("只有队长能设置logo");
+        }
         UploadResult uploadResult = fileHandlers.upload(logo);
         team.setLogo(uploadResult.getFilePath());
         team.setUpdateTime(null);

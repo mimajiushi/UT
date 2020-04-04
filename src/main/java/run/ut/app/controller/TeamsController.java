@@ -73,7 +73,6 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     public BaseResponse<String> updateTeamsLogo(@RequestPart("logo") MultipartFile logo, Long teamsId) {
         Long leaderId = getUid();
         checkUser(leaderId);
-
         if (!ImageUtils.isImage(logo)) {
             throw new FileOperationException("只接受图片格式文件！");
         }
