@@ -13,7 +13,6 @@ import run.ut.app.service.TagsService;
 import run.ut.app.utils.BeanUtils;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Manager tags controller, just allow admin
