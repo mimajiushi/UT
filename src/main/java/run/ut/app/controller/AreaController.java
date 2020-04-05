@@ -15,7 +15,6 @@ import run.ut.app.service.DataSchoolService;
 import run.ut.app.utils.BeanUtils;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @Slf4j

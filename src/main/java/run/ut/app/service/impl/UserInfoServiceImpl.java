@@ -2,19 +2,19 @@ package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.handler.FileHandlers;
+import run.ut.app.mapper.UserInfoMapper;
 import run.ut.app.mapper.UserMapper;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.domain.UserInfo;
-import run.ut.app.mapper.UserInfoMapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
 import run.ut.app.model.dto.UserInfoDTO;
 import run.ut.app.model.enums.DegreeEnum;
 import run.ut.app.model.enums.UserInfoStatusEnum;
@@ -30,7 +30,6 @@ import run.ut.app.service.UserInfoService;
 import run.ut.app.utils.BeanUtils;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * <p>
