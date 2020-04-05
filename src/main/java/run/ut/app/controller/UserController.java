@@ -66,8 +66,8 @@ public class UserController extends BaseController implements UserControllerApi 
     @Override
     @PostMapping("webPageLogin")
     public UserDTO webPageLogin(@Valid UserParam userParam) {
-        Assert.notNull(userParam.getSmsCode(), "Sms code must not be null");
-        Assert.notNull(userParam.getPhoneNumber(), "Phone number must not be null");
+        Assert.hasText(userParam.getSmsCode(), "Sms code must not be blank");
+        Assert.hasText(userParam.getPhoneNumber(), "Phone number must not be blank");
 
         User user = userParam.convertTo();
         // check phone number
@@ -150,7 +150,7 @@ public class UserController extends BaseController implements UserControllerApi 
         long realSize1 = size1 - (size1 / 8) * 2;
         long realSize2 = size2 - (size2 / 8) * 2;
         long maxFileSize = dataSize.toBytes();
-        if (size1 > maxFileSize || size2 > maxFileSize) {
+        if (realSize1 > maxFileSize || realSize2 > maxFileSize) {
             throw new BadRequestException("文件大小不可超过10Mb");
         }
 
