@@ -65,6 +65,7 @@ public class UserController extends BaseController implements UserControllerApi 
 
     @Override
     @PostMapping("webPageLogin")
+    @Deprecated
     public UserDTO webPageLogin(@Valid UserParam userParam) {
         Assert.hasText(userParam.getSmsCode(), "Sms code must not be blank");
         Assert.hasText(userParam.getPhoneNumber(), "Phone number must not be blank");

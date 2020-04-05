@@ -39,6 +39,6 @@ public class TagsController implements TagsControllerApi {
     @GetMapping("listAllTags")
     public List<TagsDTO> listAllTags() {
         return BeanUtils.transformFromInBatch(tagsService.list(), TagsDTO.class);
-}
+    }
 
 }

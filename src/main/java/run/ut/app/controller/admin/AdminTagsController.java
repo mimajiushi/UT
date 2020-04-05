@@ -21,11 +21,11 @@ import javax.validation.Valid;
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("admin")
+@CheckAuthorization(roles = AuthorizeRoles.ROLE_ADMIN)
 public class AdminTagsController implements AdminTagsControllerAPI {
     private final TagsService tagsService;
 
     @PostMapping("saveTag")
-    @CheckAuthorization(roles = AuthorizeRoles.ROLE_ADMIN)
     @Override
     public BaseResponse<TagsDTO> saveTag(@Valid TagsParam tagsParam) {
         return tagsService.saveTag(tagsParam);

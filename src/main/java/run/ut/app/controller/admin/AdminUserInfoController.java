@@ -21,12 +21,12 @@ import run.ut.app.service.UserInfoService;
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("admin")
+@CheckAuthorization(roles = AuthorizeRoles.ROLE_ADMIN)
 public class AdminUserInfoController implements AdminUserInfoControllerAPI {
 
     private final UserInfoService userInfoService;
 
     @Override
-    @CheckAuthorization(roles = AuthorizeRoles.ROLE_ADMIN)
     @PostMapping("verifyUserInfo")
     public BaseResponse<String> verifyUserInfo(Integer id, Integer status, String reason) {
         Assert.notNull(id, "id must not be null");
@@ -36,7 +36,6 @@ public class AdminUserInfoController implements AdminUserInfoControllerAPI {
 
 
     @Override
-    @CheckAuthorization(roles = AuthorizeRoles.ROLE_ADMIN)
     @GetMapping("listUserInfoByParam")
     public CommentPage<UserInfoDTO> listUserInfoByParam(UserInfoParam userInfoParam,
                                                         @RequestParam(defaultValue = "1") Integer pageNum,
