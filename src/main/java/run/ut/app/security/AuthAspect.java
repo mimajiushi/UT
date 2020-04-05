@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -40,60 +41,44 @@ public class AuthAspect {
 
     @Around("@annotation(run.ut.app.security.CheckAuthorization)")
     public Object checkAuthorizationMethod(ProceedingJoinPoint point) throws Throwable {
+        this.checkAuthorization(point);
+        return point.proceed();
+    }
+
+    @Around("@within(run.ut.app.security.CheckAuthorization)")
+    public Object checkAuthorizationType(ProceedingJoinPoint point) throws Throwable {
+        this.checkAuthorization(point);
+        return point.proceed();
+    }
+
+    private void checkAuthorization(ProceedingJoinPoint point) {
         try {
-            // 1. 从header里面获取token
+            // 1. get token from header
             HttpServletRequest request = getHttpServletRequest();
             String token = request.getHeader("UT-Token");
 
-            // 1. 验证token是否合法；
+            // 1. check token
             this.checkToken();
 
-            // 2. 验证用户角色是否匹配
+            // 2. check roles
             Claims claims = jwtOperator.getClaimsFromToken(token);
             int roles = Integer.parseInt(claims.get("roles") + "");
 
             MethodSignature signature = (MethodSignature) point.getSignature();
             Method method = signature.getMethod();
             CheckAuthorization annotation = method.getAnnotation(CheckAuthorization.class);
+            if (ObjectUtils.isEmpty(annotation)) {
+                annotation = point.getTarget().getClass().getAnnotation(CheckAuthorization.class);
+            }
 
             this.checkRoles(annotation, roles);
 
             request.setAttribute("uid", claims.get("uid"));
             request.setAttribute("openid", claims.get("openid"));
             request.setAttribute("roles", roles);
-
         } catch (Throwable throwable) {
             throw new AuthenticationException("用户没有相关权限！");
         }
-        return point.proceed();
-    }
-
-    @Around("@within(run.ut.app.security.CheckAuthorization)")
-    public Object checkAuthorizationType(ProceedingJoinPoint point) throws Throwable {
-        try {
-            // 1. 从header里面获取token
-            HttpServletRequest request = getHttpServletRequest();
-            String token = request.getHeader("UT-Token");
-
-            // 1. 验证token是否合法；
-            this.checkToken();
-
-            // 2. 验证用户角色是否匹配
-            Claims claims = jwtOperator.getClaimsFromToken(token);
-            int roles = Integer.parseInt(claims.get("roles") + "");
-
-            CheckAuthorization annotation = point.getTarget().getClass().getAnnotation(CheckAuthorization.class);
-
-            this.checkRoles(annotation, roles);
-
-            request.setAttribute("uid", claims.get("uid"));
-            request.setAttribute("openid", claims.get("openid"));
-            request.setAttribute("roles", roles);
-
-        } catch (Throwable throwable) {
-            throw new AuthenticationException("用户没有相关权限！");
-        }
-        return point.proceed();
     }
 
     private void checkRoles(CheckAuthorization annotation, int roles) {
@@ -109,18 +94,18 @@ public class AuthAspect {
 
     private void checkToken() {
         try {
-            // 1. 从header里面获取token
+            // 1. get token from header
             HttpServletRequest request = getHttpServletRequest();
 
             String token = request.getHeader("UT-Token");
 
-            // 2. 校验token是否合法&是否过期；如果不合法或已过期直接抛异常；如果合法放行
+            // 2. check token
             Boolean isValid = jwtOperator.validateToken(token);
             if (!isValid) {
                 throw new SecurityException("Token不合法！");
             }
 
-            // 3. 如果校验成功，那么就将用户的信息设置到request的attribute里面
+            // 3. If the verification is successful, set the user's uid,openid,roles to the attribute of the request
             Claims claims = jwtOperator.getClaimsFromToken(token);
             request.setAttribute("uid", claims.get("uid"));
             request.setAttribute("openid", claims.get("openid"));
