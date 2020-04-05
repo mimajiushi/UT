@@ -39,7 +39,7 @@ public class AuthAspect {
     }
 
     @Around("@annotation(run.ut.app.security.CheckAuthorization)")
-    public Object checkAuthorization(ProceedingJoinPoint point) throws Throwable {
+    public Object checkAuthorizationMethod(ProceedingJoinPoint point) throws Throwable {
         try {
             // 1. 从header里面获取token
             HttpServletRequest request = getHttpServletRequest();
@@ -56,14 +56,7 @@ public class AuthAspect {
             Method method = signature.getMethod();
             CheckAuthorization annotation = method.getAnnotation(CheckAuthorization.class);
 
-            // 获取注解上的值
-            String[] values = annotation.roles();
-            for (String value : values) {
-                int role = UserRolesEnum.getByName(value).getType();
-                if ((role & roles) != role) {
-                    throw new AuthenticationException("用户没有相关权限！");
-                }
-            }
+            this.checkRoles(annotation, roles);
 
             request.setAttribute("uid", claims.get("uid"));
             request.setAttribute("openid", claims.get("openid"));
@@ -76,7 +69,7 @@ public class AuthAspect {
     }
 
     @Around("@within(run.ut.app.security.CheckAuthorization)")
-    public Object checkAuthorization2(ProceedingJoinPoint point) throws Throwable {
+    public Object checkAuthorizationType(ProceedingJoinPoint point) throws Throwable {
         try {
             // 1. 从header里面获取token
             HttpServletRequest request = getHttpServletRequest();
@@ -91,14 +84,7 @@ public class AuthAspect {
 
             CheckAuthorization annotation = point.getTarget().getClass().getAnnotation(CheckAuthorization.class);
 
-            // 获取注解上的值
-            String[] values = annotation.roles();
-            for (String value : values) {
-                int role = UserRolesEnum.getByName(value).getType();
-                if ((role & roles) != role) {
-                    throw new AuthenticationException("用户没有相关权限！");
-                }
-            }
+            this.checkRoles(annotation, roles);
 
             request.setAttribute("uid", claims.get("uid"));
             request.setAttribute("openid", claims.get("openid"));
@@ -108,6 +94,17 @@ public class AuthAspect {
             throw new AuthenticationException("用户没有相关权限！");
         }
         return point.proceed();
+    }
+
+    private void checkRoles(CheckAuthorization annotation, int roles) {
+        // get roles from annotation
+        String[] values = annotation.roles();
+        for (String value : values) {
+            int role = UserRolesEnum.getByName(value).getType();
+            if ((role & roles) != role) {
+                throw new AuthenticationException("用户没有相关权限！");
+            }
+        }
     }
 
     private void checkToken() {
