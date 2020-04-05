@@ -12,8 +12,6 @@ server:
 spring:
   application:
     name: ut-app
-  thymeleaf:
-    cache: false
   servlet:
     multipart:
       max-file-size: 11MB
@@ -40,6 +38,7 @@ spring:
       charset: UTF-8
       # 长连接保持时间 单位s,不宜过长
       keep-alive-time: 10
+
 
   ##########################################################
   ##
@@ -79,6 +78,19 @@ spring:
         max-idle: 8 # 连接池中的最大空闲连接
         min-idle: 0 # 连接池中的最小空闲连接
     timeout: 3000ms # 连接超时时间（毫秒）
+
+  ##########################################################
+  ##
+  ## freemarker 模板引擎配置
+  ##
+  ##########################################################
+  freemarker:
+    suffix: .ftl
+    charset: UTF-8
+    template-loader-path: classpath:/templates
+    request-context-attribute: request
+
+
 ##########################################################
 ##
 ## mybatis-plus 配置
