@@ -186,4 +186,23 @@ public interface PropertyEnum extends ValueEnum<String> {
      * @return default value
      */
     String defaultValue();
+
+    /**
+     * Default value with given type.
+     *
+     * @param propertyType property type must not be null
+     * @param <T>          property type
+     * @return default value with given type
+     */
+    @Nullable
+    default <T> T defaultValue(Class<T> propertyType) {
+        // Get default value
+        String defaultValue = defaultValue();
+        if (defaultValue == null) {
+            return null;
+        }
+
+        // Convert to the given type
+        return PropertyEnum.convertTo(defaultValue, propertyType);
+    }
 }

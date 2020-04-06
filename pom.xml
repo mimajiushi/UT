@@ -65,6 +65,12 @@
             <optional>true</optional>
         </dependency>
 
+        <!--mail-->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+        </dependency>
+
         <!--test-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

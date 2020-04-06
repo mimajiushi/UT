@@ -7,12 +7,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import run.ut.app.config.properties.UtProperties;
+import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.event.options.OptionsUpdatedEvent;
 import run.ut.app.exception.MissingPropertyException;
 import run.ut.app.model.domain.Options;
 import run.ut.app.mapper.OptionsMapper;
@@ -44,6 +47,7 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
 
     private final OptionsMapper optionsMapper;
     private final ApplicationContext applicationContext;
+    private final ApplicationEventPublisher eventPublisher;
     private final RedisService redisService;
     private final Map<String, PropertyEnum> propertyEnumMap = Collections.unmodifiableMap(PropertyEnum.getValuePropertyEnumMap());
     private final UtProperties utProperties;
@@ -89,6 +93,11 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
 
         // Create them
         saveBatch(optionsToCreate);
+
+        if (!CollectionUtils.isEmpty(optionsToUpdate) || !CollectionUtils.isEmpty(optionsToCreate)) {
+            // If there is something changed
+            publishOptionUpdatedEvent();
+        }
     }
 
     @Override
@@ -105,6 +114,7 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
     public void save(OptionsParam optionParam) {
         Options option = optionParam.convertTo();
         save(option);
+        publishOptionUpdatedEvent();
     }
 
     @Override
@@ -112,6 +122,7 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
         Options optionToUpdate = getById(optionId);
         optionParam.update(optionToUpdate);
         updateById(optionToUpdate);
+        publishOptionUpdatedEvent();
     }
 
     @Override
@@ -137,7 +148,7 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
     @Override
     public Map<String, Object> listOptions() {
         // Get options from cache
-        String resJson = redisService.get(OPTIONS_KEY);
+        String resJson = redisService.get(RedisConfig.OPTIONS_KEY);
 
         if (StringUtils.isBlank(resJson)) {
             List<Options> options = list();
@@ -173,7 +184,7 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
                     });
 
             // Cache the result
-            redisService.set(OPTIONS_KEY, JSON.toJSONString(result));
+            redisService.set(RedisConfig.OPTIONS_KEY, JSON.toJSONString(result));
 
             return result;
         }
@@ -248,6 +259,11 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
     }
 
     @Override
+    public <T> T getByPropertyOrDefault(PropertyEnum property, Class<T> propertyType) {
+        return getByProperty(property, propertyType).orElse(property.defaultValue(propertyType));
+    }
+
+    @Override
     public <T extends Enum<T>> T getEnumByPropertyOrDefault(PropertyEnum property, Class<T> valueType, T defaultValue) {
         return getEnumByProperty(property, valueType).orElse(defaultValue);
     }
@@ -285,5 +301,9 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
             return zone;
 
         }).orElseGet(Zone::autoZone);
+    }
+
+    private void publishOptionUpdatedEvent() {
+        eventPublisher.publishEvent(new OptionsUpdatedEvent(this));
     }
 }

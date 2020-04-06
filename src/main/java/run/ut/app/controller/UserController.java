@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.api.UserControllerApi;
 import run.ut.app.config.wechat.WechatAccountConfig;
 import run.ut.app.exception.BadRequestException;
-import run.ut.app.exception.FileOperationException;
 import run.ut.app.exception.WeChatException;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.dto.TagsDTO;
@@ -202,7 +201,7 @@ public class UserController extends BaseController implements UserControllerApi 
     @PostMapping("updateUserAvatar")
     public BaseResponse<String> updateUserAvatar(@RequestPart("avatar") MultipartFile avatar) {
         if (!ImageUtils.isImage(avatar)) {
-            throw new FileOperationException("只接受图片格式文件！");
+            throw new BadRequestException("只接受图片格式文件！");
         }
         return userService.updateUserAvatar(getUid(), avatar);
     }

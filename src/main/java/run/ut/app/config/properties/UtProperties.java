@@ -64,12 +64,6 @@ public class UtProperties {
      */
     private Duration downloadTimeout = Duration.ofSeconds(30);
 
-    /**
-     * cache store impl
-     * memory
-     * level
-     */
-    private String cache = "memory";
 
 
     public UtProperties() throws IOException {

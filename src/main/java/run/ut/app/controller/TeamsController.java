@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.api.TeamsControllerApi;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
-import run.ut.app.exception.FileOperationException;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
@@ -74,7 +73,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
         Long leaderId = getUid();
         checkUser(leaderId);
         if (!ImageUtils.isImage(logo)) {
-            throw new FileOperationException("只接受图片格式文件！");
+            throw new BadRequestException("只接受图片格式文件！");
         }
         return teamsService.updateTeamsLogo(logo, leaderId, teamsId);
     }
