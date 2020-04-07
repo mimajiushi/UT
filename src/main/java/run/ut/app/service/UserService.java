@@ -40,5 +40,8 @@ public interface UserService extends IService<User> {
     User getUserByOpenId(@NonNull String openId);
 
     @NonNull
+    User getUserByEmail(@NonNull String email);
+
+    @NonNull
     BaseResponse<String> updateUserAvatar(@NonNull Long uid, @NonNull MultipartFile avatar);
 }

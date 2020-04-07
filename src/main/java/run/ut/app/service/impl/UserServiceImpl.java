@@ -178,6 +178,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
+    public User getUserByEmail(String email) {
+        return getOne(new QueryWrapper<User>().eq("email", email));
+    }
+
+    @Override
     public BaseResponse<String> updateUserAvatar(Long uid, MultipartFile avatar) {
         UploadResult upload = fileHandlers.upload(avatar);
         User user = getById(uid);

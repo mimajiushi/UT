@@ -32,8 +32,6 @@ public interface OptionsService extends IService<Options> {
 
     int DEFAULT_RSS_PAGE_SIZE = 20;
 
-    String OPTIONS_KEY = "options";
-
     /**
      * Save multiple options
      *
@@ -139,6 +137,18 @@ public interface OptionsService extends IService<Options> {
      */
     @NonNull
     Optional<Object> getByProperty(@NonNull PropertyEnum property);
+
+    /**
+     * Gets property value by blog property.
+     * <p>
+     * Default value from property default value.
+     *
+     * @param property     blog property must not be null
+     * @param propertyType property type must not be null
+     * @param <T>          property type
+     * @return property value
+     */
+    <T> T getByPropertyOrDefault(@NonNull PropertyEnum property, @NonNull Class<T> propertyType);
 
     /**
      * Gets property value by blog property.

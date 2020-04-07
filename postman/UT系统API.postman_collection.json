@@ -9,7 +9,7 @@
 			"name": "用户操作API",
 			"item": [
 				{
-					"name": "手机号+验证码登录（自动注册）",
+					"name": "手机号+验证码登录（已过期）",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -133,7 +133,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/ut/user/sendSms?phoneNumber=13533533208",
+							"raw": "http://localhost:8080/ut/user/sendSms?phoneNumber=15521245562",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -147,7 +147,7 @@
 							"query": [
 								{
 									"key": "phoneNumber",
-									"value": "13533533208"
+									"value": "15521245562"
 								}
 							]
 						},
@@ -2452,6 +2452,315 @@
 							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 6,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:37:35\",\n                \"deleted\": 0,\n                \"id\": 21,\n                \"uid\": 24,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2017,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰4\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:38:10\",\n                \"deleted\": 0,\n                \"id\": 22,\n                \"uid\": 25,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰5\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:38:10\",\n                \"deleted\": 0,\n                \"id\": 23,\n                \"uid\": 26,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰6\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:38:10\",\n                \"deleted\": 0,\n                \"id\": 24,\n                \"uid\": 27,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰7\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:38:10\",\n                \"deleted\": 0,\n                \"id\": 25,\n                \"uid\": 28,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2018,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰8\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            },\n            {\n                \"createTime\": \"2020-03-13 22:11:13\",\n                \"updateTime\": \"2020-03-13 15:40:05\",\n                \"deleted\": 0,\n                \"id\": 27,\n                \"uid\": 30,\n                \"school\": null,\n                \"degreeId\": \"本科\",\n                \"area\": null,\n                \"role\": null,\n                \"grade\": 2019,\n                \"subject\": \"信息工程\",\n                \"realName\": \"陈文杰10\",\n                \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1584108670796.jpg\",\n                \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1584108671791.jpg\",\n                \"status\": \"审核中\",\n                \"reason\": \"\",\n                \"tagIds\": \"\"\n            }\n        ]\n    }\n}"
 						}
 					]
+				},
+				{
+					"name": "管理员登录（邮箱+验证码）",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "1498780478@qq.com",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/admin/loginByEmail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"admin",
+								"loginByEmail"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "邮箱或者验证码错误",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "1498780478@qq.com",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "1234567",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/loginByEmail",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"loginByEmail"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Apr 2020 13:59:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"message\": \"无效帐号或验证码！\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						},
+						{
+							"name": "登录成功",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "1498780478@qq.com",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "123456",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/loginByEmail",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"loginByEmail"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Apr 2020 13:57:06 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-09 13:41:30\",\n        \"updateTime\": \"2020-03-30 19:47:26\",\n        \"deleted\": 0,\n        \"id\": null,\n        \"uid\": 21,\n        \"openid\": \"onjYF5ldIp8BdssDb9yXeHVFC7hs\",\n        \"nickname\": \"chenwenjie\",\n        \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n        \"phoneNumber\": \"15521245562\",\n        \"email\": \"1498780478@qq.com\",\n        \"description\": \"1.曾参与过xxx项目，项目已上线，获得过xxx奖。\\n2.曾参与过xxx项目，项目已上线，获得过xxx奖。\\n3. 曾参与过xxx项目，项目已上线，获得过xxx奖\",\n        \"sex\": \"男\",\n        \"roles\": 13,\n        \"token\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiJvbmpZRjVsZElwOEJkc3NEYjl5WGVIVkZDN2hzIiwicm9sZXMiOjEzLCJpYXQiOjE1ODYxODE0MjYsImV4cCI6MTYxNzcxNzQyNn0.eRYSdgrt3rBWibkDZTc3gpSCRMqGW3GNIbROxB4khNU\",\n            \"expiration_time\": 1617717426493\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "发送管理员登录验证码邮件",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ut/admin/sendEmailCode?email=1498780478@qq.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"admin",
+								"sendEmailCode"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "1498780478@qq.com",
+									"description": "管理员邮箱"
+								},
+								{
+									"key": "email",
+									"value": "1599603313@qq.com",
+									"description": "非管理员邮箱",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "输入非管理员邮箱",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/sendEmailCode?email=1599603313@qq.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"sendEmailCode"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "1498780478@qq.com",
+											"description": "管理员邮箱",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "1599603313@qq.com",
+											"description": "非管理员邮箱"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Apr 2020 14:42:25 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"message\": \"非管理员邮箱！\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						},
+						{
+							"name": "成功案例",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/sendEmailCode?email=1498780478@qq.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"sendEmailCode"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "1498780478@qq.com"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Apr 2020 14:27:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"发送验证码成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -2465,7 +2774,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/ut/index/listStudentByParam?grade=2017&tagId=2&schoolId=3237&degreeId=2&pageNum=1&pageSize=10",
+							"raw": "http://localhost:8080/ut/index/listStudentByParam?pageNum=1&pageSize=10&name=chen",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2479,19 +2788,23 @@
 							"query": [
 								{
 									"key": "grade",
-									"value": "2017"
+									"value": "2017",
+									"disabled": true
 								},
 								{
 									"key": "tagId",
-									"value": "2"
+									"value": "2",
+									"disabled": true
 								},
 								{
 									"key": "schoolId",
-									"value": "3237"
+									"value": "3237",
+									"disabled": true
 								},
 								{
 									"key": "degreeId",
-									"value": "2"
+									"value": "2",
+									"disabled": true
 								},
 								{
 									"key": "pageNum",
@@ -2500,6 +2813,10 @@
 								{
 									"key": "pageSize",
 									"value": "10"
+								},
+								{
+									"key": "name",
+									"value": "chen"
 								}
 							]
 						}
@@ -2730,6 +3047,87 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"realName\": \"陈文杰2\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "姓名模糊查询",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listStudentByParam?pageNum=1&pageSize=10&name=chen",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listStudentByParam"
+									],
+									"query": [
+										{
+											"key": "grade",
+											"value": "2017",
+											"disabled": true
+										},
+										{
+											"key": "tagId",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "schoolId",
+											"value": "3237",
+											"disabled": true
+										},
+										{
+											"key": "degreeId",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										},
+										{
+											"key": "name",
+											"value": "chen"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Mar 2020 04:50:52 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"sex\": null,\n                \"roles\": null,\n                \"phoneNumber\": null,\n                \"email\": null,\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"subject\": null,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"我是一个xxxxxxx\",\n                \"credentialsPhotoFront\": null,\n                \"credentialsPhotoReverse\": null,\n                \"hasAuthInfo\": false\n            }\n        ]\n    }\n}"
 						},
 						{
 							"name": "全条件查询",

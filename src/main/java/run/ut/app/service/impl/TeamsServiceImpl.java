@@ -75,7 +75,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         boolean hasLogo = !ObjectUtils.isEmpty(logo);
         if (hasLogo) {
             if (!ImageUtils.isImage()) {
-                throw new FileOperationException("只接受图片格式文件！");
+                throw new BadRequestException("只接受图片格式文件！");
             }
             uploadResult = fileHandlers.upload(logo);
         }
