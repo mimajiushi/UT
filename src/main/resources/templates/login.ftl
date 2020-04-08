@@ -128,9 +128,11 @@
                     });
                 }
             }
-
         });
 
+        //防止登录页在iframe里跳转
+        if (window != top)
+            top.location.href = location.href;
     });
 </script>
 </body>
