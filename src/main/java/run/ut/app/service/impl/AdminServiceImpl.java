@@ -156,7 +156,7 @@ public class AdminServiceImpl implements AdminService {
 
         linesArray.forEach(line -> {
             result.append(line)
-                .append("<br/>");
+                .append(StringUtils.LF);
         });
 
         return result.toString();

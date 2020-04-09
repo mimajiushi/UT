@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import run.ut.app.api.admin.LogControllerApi;
 import run.ut.app.controller.BaseController;
+import run.ut.app.model.support.BaseResponse;
 import run.ut.app.service.AdminService;
 
 @RestController
@@ -23,8 +24,8 @@ public class LogController extends BaseController implements LogControllerApi {
      * TODO check admin
      */
     @Override
-    @GetMapping(value = "ut/spring_log_file", produces = "text/html;charset=utf-8")
-    public String getSpringLogsFiles(@RequestParam(name = "lines", defaultValue = "200") Long lines) {
-        return adminService.getSpringLogsFiles(lines);
+    @GetMapping(value = "ut/spring_log_file")
+    public BaseResponse<String> getSpringLogsFiles(@RequestParam(name = "lines", defaultValue = "200") Long lines) {
+        return BaseResponse.ok(adminService.getSpringLogsFiles(lines));
     }
 }
