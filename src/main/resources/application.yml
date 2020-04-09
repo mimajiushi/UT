@@ -153,19 +153,15 @@ alipay:
   alipay-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk6ITEWXX0Kb+sOHy2cR5qQ/bXGDLVcoQqkISap/Xu/cTofcgbWp21/Fo4Iq4xNaEsuEnfpOA9odIN3TiBS0pbzC+yfkMN27eIpJEpc/VylfrzVe0PBqK1Kb3W0RSuF4p/PsuGLjKYK7HPrOiLGGOjWtuambmWJ4L+bHSAySy0TR8LDK9uoRc4HCefmSwTlvz2Vt55TTL4n7U4WdsWzoZRKiwK0SIpFvu4TAE1zKBM5ozgISwSZA4+3oCQmH7OJeOrLlFgMhjSEUFQg3oDQdz79e5tQbtiEK+tdztBn3X1cvbwQYw7UFc+wZWX1w48j9ed7sWyuCHboUCbZtwfOBqzQIDAQAB
   notify-url: http://wenjie.nat200.top/order/alipay/notify # 支付异步通知URL，需公网能够访问
   return-url: http://localhost:40200/order/alipay/return # 同步通知URL，无需公网访问
-
-##########################################################
-##
-## 日志 配置
-##
-##########################################################
-logging.file: logs/${spring.application.name}.log
 logging:
   file:
     max-size: 10MB
     max-history: 20
+    name: \${user.home}/.ut/logs/ut-app.log
+    clean-history-on-start: true
   level:
-    run.ut.app.core: debug
+    run.ut.app: info
+#    run.ut.app.core: debug
     org.apache.http: debug
 #    root: debug
 #    org.springframework.web.client.RestTemplate: debug

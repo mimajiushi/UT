@@ -8,6 +8,8 @@ import run.ut.app.model.support.BaseResponse;
 
 public interface AdminService {
 
+    String LOG_PATH = "logs/ut-app.log";
+
     @NonNull
     UserDTO loginByEmail(@NonNull AdminLoginParam adminLoginParam);
 
@@ -16,5 +18,8 @@ public interface AdminService {
 
     @NonNull
     BaseResponse<String> sendEmailCode(@NonNull String email);
+
+    @NonNull
+    String getSpringLogsFiles(@NonNull Long lines);
 
 }

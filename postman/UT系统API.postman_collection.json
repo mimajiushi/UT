@@ -2761,6 +2761,93 @@
 							"body": "{\n    \"status\": 200,\n    \"message\": \"发送验证码成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						}
 					]
+				},
+				{
+					"name": "查看Spring日志",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ut/admin/log/ut/spring_log_file?lines=20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"admin",
+								"log",
+								"ut",
+								"spring_log_file"
+							],
+							"query": [
+								{
+									"key": "lines",
+									"value": "20",
+									"description": "查询日志的行数"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "查看Spring日志",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/log/ut/spring_log_file?lines=20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"log",
+										"ut",
+										"spring_log_file"
+									],
+									"query": [
+										{
+											"key": "lines",
+											"value": "20",
+											"description": "查询日志的行数"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/html;charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3113"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 Apr 2020 08:28:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "2020-04-09 16:26:29.996  INFO 23756 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3693 ms\n<br/>2020-04-09 16:26:36.720  INFO 23756 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]\n<br/>2020-04-09 16:26:36.942  INFO 23756 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729\n<br/>2020-04-09 16:26:38.987  INFO 23756 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed\n<br/>2020-04-09 16:26:39.008  INFO 23756 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)\n<br/>2020-04-09 16:26:39.082  INFO 23756 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references\n<br/>2020-04-09 16:26:40.105  INFO 23756 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/ut'\n<br/>2020-04-09 16:26:40.110  INFO 23756 --- [restartedMain] run.ut.app.UtApplication                 : Started UtApplication in 14.981 seconds (JVM running for 17.858)\n<br/>2020-04-09 16:26:40.114  INFO 23756 --- [restartedMain] run.ut.app.listener.StartedListener      : UT-App started at         http://localhost:8080/ut\n<br/>2020-04-09 16:26:40.114  INFO 23756 --- [data-company-loader] run.ut.app.listener.StartedListener      : 开始加载所有省、市级信息...\n<br/>2020-04-09 16:26:40.114  INFO 23756 --- [restartedMain] run.ut.app.listener.StartedListener      : UT-App admin started at   http://localhost:8080/ut/admin\n<br/>2020-04-09 16:26:40.114  INFO 23756 --- [restartedMain] run.ut.app.listener.StartedListener      : UT-App api doc was enabled at  http://localhost:8080/ut/docs.html\n<br/>2020-04-09 16:26:40.114  INFO 23756 --- [restartedMain] run.ut.app.listener.StartedListener      : UT-App has started successfully!\n<br/>2020-04-09 16:26:40.154  INFO 23756 --- [data-company-loader] com.zaxxer.hikari.HikariDataSource       : DatebookHikariCP - Starting...\n<br/>2020-04-09 16:26:41.475  INFO 23756 --- [data-company-loader] com.zaxxer.hikari.HikariDataSource       : DatebookHikariCP - Start completed.\n<br/>2020-04-09 16:26:41.829  INFO 23756 --- [data-company-loader] io.lettuce.core.EpollProvider            : Starting without optional epoll library\n<br/>2020-04-09 16:26:41.832  INFO 23756 --- [data-company-loader] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library\n<br/>2020-04-09 16:26:47.497  INFO 23756 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/ut]     : Initializing Spring DispatcherServlet 'dispatcherServlet'\n<br/>2020-04-09 16:26:47.498  INFO 23756 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'\n<br/>2020-04-09 16:26:47.528  INFO 23756 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 30 ms\n<br/>"
+						}
+					]
 				}
 			],
 			"protocolProfileBehavior": {}
