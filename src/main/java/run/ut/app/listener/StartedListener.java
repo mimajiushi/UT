@@ -44,6 +44,9 @@ public class StartedListener implements ApplicationListener<ApplicationStartedEv
     @Value("${server.servlet.context-path}")
     private String contextPath;
 
+    @Value("${logging.file.path}")
+    private String logPath;
+
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
         this.init();
@@ -56,6 +59,7 @@ public class StartedListener implements ApplicationListener<ApplicationStartedEv
         log.info("UT-App started at         {}", baseApiPath);
         log.info("UT-App admin started at   {}/{}", baseApiPath, "admin");
         log.info("UT-App api doc was enabled at  {}/docs.html", baseApiPath);
+        log.info("UT-App log file at   {}/spring.log", logPath);
         log.info("UT-App has started successfully!");
     }
 

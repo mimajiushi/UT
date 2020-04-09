@@ -157,8 +157,7 @@ logging:
   file:
     max-size: 10MB
     max-history: 20
-    name: \${user.home}/.ut/logs/ut-app.log
-    clean-history-on-start: true
+    path: ${user.home}/.ut/logs
   level:
     run.ut.app: info
 #    run.ut.app.core: debug
