@@ -30,6 +30,6 @@
 
 #### 鸣谢
 
-- 特别感谢**[施晓权](https://gitee.com/sxq2017)**提供的服务器，用于部署jenkins等应用。
+- 特别感谢[@施晓权](https://gitee.com/sxq2017)提供的服务器，用于部署jenkins等应用。
 
 
