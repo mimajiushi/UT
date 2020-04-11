@@ -18,6 +18,7 @@
 
 #### 开发者须知
 
+- 统一使用gitee：https://gitee.com/wenjie2018/UT-APP （集成了CI/CD）
 - 代码风格：风格约束配置请参考 -> https://halo.run/archives/code-style  不懂的也可以问我。
 - 提交PR： 提交的PR后都会经过jenkins的编译、打包测试，通过了会自动在PR下留言测试结果， **请务必保证测试结果通过** （现阶段PR里面一个失败一个成功，可以参考下）。  
 
