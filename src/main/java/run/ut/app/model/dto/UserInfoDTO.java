@@ -9,6 +9,8 @@ import run.ut.app.model.enums.DegreeEnum;
 import run.ut.app.model.enums.UserInfoStatusEnum;
 import run.ut.app.model.enums.UserRolesEnum;
 
+import java.util.List;
+
 /**
  * <p>
  * UserInfoDTO
@@ -37,7 +39,9 @@ public class UserInfoDTO extends BaseDTO implements OutputConverter<UserInfoDTO,
     private String area;
 
     @ApiModelProperty(value = "Role of user application")
-    private UserRolesEnum role;
+    private Integer role;
+
+    private List<String> roles;
 
     @ApiModelProperty(value = "If he is a grade 17 student, fill in 17")
     private Integer grade;

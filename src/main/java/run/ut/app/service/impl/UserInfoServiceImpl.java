@@ -31,6 +31,8 @@ import run.ut.app.utils.BeanUtils;
 
 import java.util.List;
 
+import static run.ut.app.model.enums.UserRolesEnum.getByType;
+
 /**
  * <p>
  *  UserInfoServiceImpl
@@ -73,7 +75,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         userInfo.setCredentialsPhotoFront(upload1.getFilePath())
                 .setCredentialsPhotoReverse(upload2.getFilePath())
                 .setStatus(UserInfoStatusEnum.WAITING)
-                .setRole(UserRolesEnum.getByType(userInfoParam.getRole()).getType())
+                .setRole(getByType(userInfoParam.getRole()).getType())
                 .setDegreeId(DegreeEnum.getByType(userInfoParam.getDegreeId()));
 
         save(userInfo);
@@ -131,7 +133,12 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         userInfoQueryWrapper.orderByDesc("create_time");
         Page<UserInfo> userInfoPage = userInfoMapper.selectPage(page, userInfoQueryWrapper);
         List<UserInfoDTO> userInfoDTOList = BeanUtils.transformFromInBatch(userInfoPage.getRecords(), UserInfoDTO.class);
+        for (UserInfoDTO anUserInfoDTOList : userInfoDTOList) {
+            List<String> roles = UserRolesEnum.getRoles(anUserInfoDTOList.getRole());
+            anUserInfoDTOList.setRoles(roles);
+        }
 
         return new CommentPage<>(userInfoPage.getTotal(), userInfoDTOList);
     }
+
 }
