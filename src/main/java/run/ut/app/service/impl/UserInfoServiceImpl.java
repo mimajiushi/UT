@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.config.redis.RedisConfig;
 import run.ut.app.exception.AlreadyExistsException;
+import run.ut.app.exception.BadRequestException;
 import run.ut.app.handler.FileHandlers;
 import run.ut.app.mapper.UserInfoMapper;
 import run.ut.app.mapper.UserMapper;
@@ -110,6 +111,8 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
             userInfo.setStatus(UserInfoStatusEnum.FAIL);
             if (!StringUtils.isBlank(reason)) {
                 userInfo.setReason(reason);
+            } else {
+                throw new BadRequestException("不通过原因必须填写！");
             }
             updateById(userInfo);
             return BaseResponse.ok("审核完成，结果：" + userInfo.getStatus().getName());

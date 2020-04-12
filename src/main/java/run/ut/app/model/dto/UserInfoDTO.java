@@ -8,7 +8,6 @@ import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.base.OutputConverter;
 import run.ut.app.model.enums.DegreeEnum;
 import run.ut.app.model.enums.UserInfoStatusEnum;
-import run.ut.app.model.enums.UserRolesEnum;
 
 import java.util.List;
 

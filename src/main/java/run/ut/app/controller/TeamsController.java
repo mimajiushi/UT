@@ -15,7 +15,6 @@ import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
 import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.enums.ApplyStatusEnum;
-import run.ut.app.model.enums.LeaveModeEnum;
 import run.ut.app.model.enums.TeamsStatusEnum;
 import run.ut.app.model.param.*;
 import run.ut.app.model.support.BaseResponse;

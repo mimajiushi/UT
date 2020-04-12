@@ -32,7 +32,7 @@ public class AdminUserInfoController implements AdminUserInfoControllerAPI {
     @PostMapping("verifyUserInfo")
     public BaseResponse<String> verifyUserInfo(Integer id, Integer status, String reason) {
         Assert.notNull(id, "id must not be null");
-        Assert.notNull(id, "status must not be null");
+        Assert.notNull(status, "status must not be null");
         return userInfoService.verifyUserInfo(id, status, reason);
     }
 
