@@ -15,7 +15,7 @@ import run.ut.app.utils.BeanUtils;
 import java.util.List;
 
 /**
- * Manager tags controller, just allow admin
+ * tags controller
  *
  * @author wenjie
  */

@@ -15,4 +15,22 @@
         <result column="update_time" property="updateTime" />
     </resultMap>
 
+    <resultMap id="teamsDTO" type="run.ut.app.model.dto.TeamsDTO">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="logo" property="logo" />
+        <result column="description" property="description" />
+        <result column="tag_ids" property="tagIds" />
+        <result column="status" property="status" />
+        <result column="deleted" property="deleted" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="listTeamsByUid" resultMap="teamsDTO">
+        select t.id, t.`name`, t.logo, tm.is_leader role from teams_members tm
+            inner join teams t on t.id = tm.team_id
+        where tm.uid = #{uid} and tm.deleted = 0;
+    </select>
+
 </mapper>
