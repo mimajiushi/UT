@@ -38,7 +38,7 @@
             <dl class="layui-nav-child">
                 <!-- 二级菜单 -->
                 <dd>
-                    <a onclick="xadmin.open('个人信息','${base}/admin/userinfo')">个人信息</a></dd>
+                    <a onclick="xadmin.open('个人信息','${base}/admin/info')">个人信息</a></dd>
                 <dd>
                     <a id="logout">注销</a></dd>
             </dl>
@@ -53,14 +53,27 @@
         <ul id="nav">
             <li>
                 <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="用户管理">&#xe6b8;</i>
+                    <cite>用户管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('审核列表','${base}/admin/verifyList')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>审核列表</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a onclick="">
                     <i class="iconfont left-nav-li" lay-tips="标签管理">&#xe723;</i>
                     <cite>标签管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('添加标签','${base}/admin/xxx')">
+                        <a onclick="xadmin.add_tab('标签列表','${base}/admin/tagsList')">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>添加标签</cite></a>
+                            <cite>标签列表</cite></a>
                     </li>
                 </ul>
             </li>
