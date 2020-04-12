@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import run.ut.app.api.admin.AdminMainControllerApi;
 import run.ut.app.model.support.AuthorizeRoles;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.security.CheckAuthorization;
@@ -22,38 +23,43 @@ import java.util.Properties;
 
 @Controller
 @RequestMapping("admin")
-public class AdminMainController {
+public class AdminMainController implements AdminMainControllerApi {
     /**
      * 登录页
      * @return template path
      */
-    @RequestMapping("login")
+    @GetMapping("login")
     public String login() {
-        return "login";
+        return "common/login";
     }
 
     /**
      * 首页
      * @return template path
      */
-    @RequestMapping("index")
+    @GetMapping({"index", "/"})
     public String index() {
-        return "index";
+        return "common/main";
     }
 
     /**
      * 欢迎页
      * @return template path
      */
-    @RequestMapping("welcome")
+    @GetMapping("welcome")
     public String welcome() {
-        return "welcome";
+        return "common/welcome";
     }
 
     /**
-     * 获取系统信息
-     * @return System Information Json
+     * 审核列表
+     * @return template path
      */
+    @GetMapping("verifyList")
+    public String verifyList() {
+        return "user/verify_list";
+    }
+
     @ResponseBody
     @GetMapping("systemInfo")
     @CheckAuthorization(roles = AuthorizeRoles.ROLE_ADMIN)
