@@ -252,18 +252,6 @@
                                 ,content: html
                                 ,maxmin: true
                                 ,area: ['600px', '400px']
-                                // ,success: function () {
-                                //     //监听表格
-                                //     table.on('tool(userDetail)',function(obj) {
-                                //         //照片点击
-                                //         if (obj.event === 'photo') {
-                                //             layer.photos({
-                                //                 photos: '.layer-photos'
-                                //                 , anim: 5
-                                //             });
-                                //         }
-                                //     });
-                                // }
                             });
                         });
                     }
