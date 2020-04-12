@@ -10,6 +10,8 @@ import run.ut.app.model.param.UserInfoParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 
+import java.io.IOException;
+
 /**
  * <p>
  *  UserInfoService
@@ -30,5 +32,5 @@ public interface UserInfoService extends IService<UserInfo> {
     BaseResponse<String> verifyUserInfo(@NonNull Integer id, @NonNull Integer status, @Nullable String reason);
 
     @NonNull
-    CommentPage<UserInfoDTO> listUserInfoByParam(@NonNull UserInfoParam userInfoParam, @NonNull Page<UserInfo> page);
+    CommentPage<UserInfoDTO> listUserInfoByParam(@NonNull UserInfoParam userInfoParam, @NonNull Page<UserInfo> page) throws IOException;
 }

@@ -15,11 +15,9 @@ import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
 import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.enums.ApplyStatusEnum;
+import run.ut.app.model.enums.LeaveModeEnum;
 import run.ut.app.model.enums.TeamsStatusEnum;
-import run.ut.app.model.param.DealInvitationOrApplyParam;
-import run.ut.app.model.param.TeamApplyOrInviteParam;
-import run.ut.app.model.param.TeamsParam;
-import run.ut.app.model.param.TeamsRecruitmentsParam;
+import run.ut.app.model.param.*;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.ApplyOrInviteMsgVO;
@@ -91,6 +89,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @Override
     @CheckLogin
     @PostMapping("saveTeamsRecruitmentsTags")
+    @Deprecated
     public List<TagsDTO> saveTeamsRecruitmentsTags(@RequestBody String[] tagIds, Long teamId, Long teamRecruitmentId) {
         Long uid = getUid();
         checkUser(uid);
@@ -183,6 +182,13 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     }
 
     @Override
+    @CheckLogin
+    @GetMapping("listTeamsByUser")
+    public List<TeamsDTO> listTeamsByUser() {
+        return teamsService.listTeamsByUid(getUid());
+    }
+
+    @Override
     @PostMapping("userDealWithInvitation")
     @CheckLogin
     public BaseResponse<String> userDealWithInvitation(@Valid @RequestBody DealInvitationOrApplyParam param) {
@@ -207,6 +213,15 @@ public class TeamsController extends BaseController implements TeamsControllerAp
 
         return userTeamApplyLogService.teamDealWithApplication(leaderId, param);
     }
+
+    @Override
+    @PostMapping("leave")
+    @CheckLogin
+    public BaseResponse<String> leave(@RequestBody @Valid LeaveParam leaveParam) {
+        leaveParam.setUid(getUid());
+        return teamsService.leave(leaveParam);
+    }
+
 
     /**
      * 检验用户是否通过认证

@@ -1,5 +1,6 @@
 package run.ut.app.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -32,6 +33,9 @@ public class UserInfoDTO extends BaseDTO implements OutputConverter<UserInfoDTO,
 
     private Long uid;
 
+    @JsonIgnore
+    private Integer schoolId;
+
     private String school;
 
     private DegreeEnum degreeId;
@@ -39,6 +43,7 @@ public class UserInfoDTO extends BaseDTO implements OutputConverter<UserInfoDTO,
     private String area;
 
     @ApiModelProperty(value = "Role of user application")
+    @JsonIgnore
     private Integer role;
 
     private List<String> roles;

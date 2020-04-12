@@ -19,10 +19,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
-import run.ut.app.model.enums.ApplyModeEnum;
-import run.ut.app.model.enums.ApplyStatusEnum;
-import run.ut.app.model.enums.TeamsMemberEnum;
-import run.ut.app.model.enums.TeamsStatusEnum;
+import run.ut.app.model.enums.*;
+import run.ut.app.model.param.LeaveParam;
 import run.ut.app.model.param.TeamApplyOrInviteParam;
 import run.ut.app.model.param.TeamsParam;
 import run.ut.app.model.support.BaseResponse;
@@ -53,6 +51,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements TeamsService {
 
+    private final TeamsMapper teamsMapper;
     private final FileHandlers fileHandlers;
     private final TeamsMembersMapper teamsMembersMapper;
     private final TagsService tagsService;
@@ -294,6 +293,30 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         userTeamApplyLogMapper.insert(userTeamApplyLog);
 
         return BaseResponse.ok("邀请成功！请耐心等待回应~");
+    }
+
+    @Override
+    public List<TeamsDTO> listTeamsByUid(Long uid) {
+        return teamsMapper.listTeamsByUid(uid);
+    }
+
+    @Override
+    public BaseResponse<String> leave(LeaveParam leaveParam) {
+        Long uid = leaveParam.getUid();
+        Long teamsId = leaveParam.getTeamsId();
+        Long firedUid = leaveParam.getFiredUid();
+        if (uid == firedUid) {
+           throw new BadRequestException("队长不能开除自己");
+        }
+        if (leaveParam.getMode() == LeaveModeEnum.EXPEL_USER.getType()) {
+            getAndCheckTeamByLeaderIdAndTeamId(uid, teamsId);
+            teamsMembersMapper.delete(new QueryWrapper<TeamsMembers>()
+                .eq("uid", firedUid)
+                .eq("is_leader", TeamsMemberEnum.NORMAL.getType()));
+        } else {
+            teamsMembersMapper.delete(new QueryWrapper<TeamsMembers>().eq("uid", uid));
+        }
+        return BaseResponse.ok("操作成功");
     }
 
     @Override

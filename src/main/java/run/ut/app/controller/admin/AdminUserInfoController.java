@@ -16,6 +16,8 @@ import run.ut.app.model.support.CommentPage;
 import run.ut.app.security.CheckAuthorization;
 import run.ut.app.service.UserInfoService;
 
+import java.io.IOException;
+
 
 @RestController
 @Slf4j
@@ -39,7 +41,7 @@ public class AdminUserInfoController implements AdminUserInfoControllerAPI {
     @GetMapping("listUserInfoByParam")
     public CommentPage<UserInfoDTO> listUserInfoByParam(UserInfoParam userInfoParam,
                                                         @RequestParam(defaultValue = "1") Integer pageNum,
-                                                        @RequestParam(defaultValue = "10") Integer pageSize) {
+                                                        @RequestParam(defaultValue = "10") Integer pageSize) throws IOException {
         Page<UserInfo> page = new Page<>(pageNum, pageSize);
         return userInfoService.listUserInfoByParam(userInfoParam, page);
     }

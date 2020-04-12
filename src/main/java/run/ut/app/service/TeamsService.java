@@ -7,6 +7,7 @@ import run.ut.app.model.domain.Teams;
 import com.baomidou.mybatisplus.extension.service.IService;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
+import run.ut.app.model.param.LeaveParam;
 import run.ut.app.model.param.TeamApplyOrInviteParam;
 import run.ut.app.model.param.TeamsParam;
 import run.ut.app.model.support.BaseResponse;
@@ -43,6 +44,18 @@ public interface TeamsService extends IService<Teams> {
 
     @NonNull
     BaseResponse<String> teamInvitesUser(@NonNull TeamApplyOrInviteParam teamInviteParam);
+
+    @NonNull
+    List<TeamsDTO> listTeamsByUid(@NonNull Long uid);
+
+    /**
+     * Member fired or Members leave voluntarily, depending on run.ut.app.model.param.LeaveParam#mode
+     *
+     * @param leaveParam parms
+     * @return response body
+     */
+    @NonNull
+    BaseResponse<String> leave(@NonNull LeaveParam leaveParam);
 
     /**
      * Get team by leader's uid and team's id, if could not found team by uid, throw NotFoundException

@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import run.ut.app.config.redis.RedisConfig;
 import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.handler.FileHandlers;
 import run.ut.app.mapper.UserInfoMapper;
 import run.ut.app.mapper.UserMapper;
+import run.ut.app.model.domain.DataSchool;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.UserInfoDTO;
@@ -26,9 +28,12 @@ import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.support.UploadResult;
 import run.ut.app.service.DataAreaService;
 import run.ut.app.service.DataSchoolService;
+import run.ut.app.service.RedisService;
 import run.ut.app.service.UserInfoService;
 import run.ut.app.utils.BeanUtils;
+import run.ut.app.utils.JsonUtils;
 
+import java.io.IOException;
 import java.util.List;
 
 import static run.ut.app.model.enums.UserRolesEnum.getByType;
@@ -50,6 +55,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     private final DataAreaService dataAreaService;
     private final UserMapper userMapper;
     private final UserInfoMapper userInfoMapper;
+    private final RedisService redisService;
 
     @Override
     @Transactional
@@ -124,7 +130,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     }
 
     @Override
-    public CommentPage<UserInfoDTO> listUserInfoByParam(UserInfoParam userInfoParam, Page<UserInfo> page) {
+    public CommentPage<UserInfoDTO> listUserInfoByParam(UserInfoParam userInfoParam, Page<UserInfo> page) throws IOException {
         QueryWrapper<UserInfo> userInfoQueryWrapper = new QueryWrapper<>();
         Integer status = userInfoParam.getStatus();
         if (null != status) {
@@ -133,9 +139,12 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         userInfoQueryWrapper.orderByDesc("create_time");
         Page<UserInfo> userInfoPage = userInfoMapper.selectPage(page, userInfoQueryWrapper);
         List<UserInfoDTO> userInfoDTOList = BeanUtils.transformFromInBatch(userInfoPage.getRecords(), UserInfoDTO.class);
-        for (UserInfoDTO anUserInfoDTOList : userInfoDTOList) {
-            List<String> roles = UserRolesEnum.getRoles(anUserInfoDTOList.getRole());
-            anUserInfoDTOList.setRoles(roles);
+        for (UserInfoDTO userInfoDTO : userInfoDTOList) {
+            List<String> roles = UserRolesEnum.getRoles(userInfoDTO.getRole());
+            String schoolJson = redisService.get(RedisConfig.SCHOOL_DATA_PREFIX + "::" + userInfoDTO.getSchoolId());
+            DataSchool school = JsonUtils.jsonToObject(schoolJson, DataSchool.class);
+            userInfoDTO.setRoles(roles);
+            userInfoDTO.setSchool(school.getName());
         }
 
         return new CommentPage<>(userInfoPage.getTotal(), userInfoDTOList);
