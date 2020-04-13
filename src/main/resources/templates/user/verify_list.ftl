@@ -203,8 +203,8 @@
                                     success: function(res) {
                                         obj.update({
                                             status: "审核通过"
+                                            , updateTime: layui.util.toDateString(new Date().getTime(), 'yyyy-MM-dd HH:mm:ss')
                                         });
-                                        layer.close(index);
                                         layer.msg(res.message, {icon: 1});
                                     },
                                     error: function ajaxTokenError (jqXHR) {
@@ -214,11 +214,11 @@
                                                 location.href = '${base}/admin/login';
                                             });
                                         }else {
-                                            layer.close(index);
                                             layer.msg(res.message, {icon: 5});
                                         }
                                     }
                                 });
+                            layer.close(index);
                         }, function(index) {
                             layer.close(index);
                             layer.prompt({
@@ -233,8 +233,8 @@
                                         obj.update({
                                             status: '审核不通过'
                                             , reason: value
+                                            , updateTime: layui.util.toDateString(new Date().getTime(), 'yyyy-MM-dd HH:mm:ss')
                                         });
-                                        layer.close(index);
                                         layer.msg(res.message, {icon: 1});
                                     },
                                     error: function ajaxTokenError(jqXHR) {
@@ -244,11 +244,11 @@
                                                 location.href = '${base}/admin/login';
                                             });
                                         } else {
-                                            layer.close(index);
                                             layer.msg(res.message, {icon: 5});
                                         }
                                     }
                                 });
+                                layer.close(index);
                             });
                         });
                     }else if (obj.event === 'detail') {
@@ -276,8 +276,8 @@
                         , {field: 'status', title: '状态', templet: '#statusTemplate'}
                         , {field: 'credentialsPhoto', title: '证件照', event: 'photo', templet: '#photoTemplate'}
                         , {field: 'detail', title: '操作', align: 'center', templet: function () {
-                                return  ' <a title="详情" href="javascript:;">' +
-                                    '<i class="layui-icon" lay-event="detail">&#xe63c;</i></a>';
+                                return  '<button class="layui-btn layui-btn-warm layui-btn-xs"  lay-event="detail">' +
+                                    '<i class="layui-icon">&#xe63c;</i>详情</button>';
                             }}
                     ]]
                     , toolbar: true

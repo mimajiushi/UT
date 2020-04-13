@@ -110,34 +110,32 @@
         var $ = layui.jquery;
         var layer = layui.layer;
 
-        //注销
-        $('#logout').click(function() {
-            if (store.enabled) {
-                layer.confirm('确定注销?', {icon: 3, title:'提示'}, function(index){
-                    store.remove('user');
-                    location.href = '${base}/admin/login';
-                    layer.close(index);
-                });
-            }else {
-                layer.msg("请关闭无痕模式！", {icon: 5});
-            }
-        });
+        if (store.enabled) {
+            var user = store.get('user');
 
-        //init
-        $(document).ready(function() {
-            if (store.enabled) {
-                var user = store.get('user');
-                if (!user){
-                    layer.msg("请重新登录！", {icon: 5, anim: 6}, function () {
+            if (!user) {
+                layer.msg("请重新登录！", {icon: 5, anim: 6}, function () {
+                    location.href = '${base}/admin/login';
+                });
+            } else {
+
+                //注销
+                $('#logout').click(function () {
+                    layer.confirm('确定注销?', {icon: 3, title: '提示'}, function (index) {
+                        store.remove('user');
                         location.href = '${base}/admin/login';
+                        layer.close(index);
                     });
-                }else {
+                });
+
+                //init
+                $(document).ready(function () {
                     $("#nickname").html(user.nickname);
-                }
-            }else {
-                layer.msg("请关闭无痕模式！", {icon: 5});
+                });
             }
-        });
+        }else {
+            layer.msg("请关闭无痕模式！", {icon: 5});
+        }
     });
 </script>
 </body>

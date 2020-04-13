@@ -60,6 +60,15 @@ public class AdminMainController implements AdminMainControllerApi {
         return "user/verify_list";
     }
 
+    /**
+     * 标签列表
+     * @return template path
+     */
+    @GetMapping("tagsList")
+    public String tagsList() {
+        return "tags/tags_list";
+    }
+
     @ResponseBody
     @GetMapping("systemInfo")
     @CheckAuthorization(roles = AuthorizeRoles.ROLE_ADMIN)
