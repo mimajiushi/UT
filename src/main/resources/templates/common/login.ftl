@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${base}/css/xadmin.css">
     <script src="${base}/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${base}/js/store.legacy.min.js"></script>
+    <script type="text/javascript" src="${base}/js/failReqHandler.js"></script>
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -63,8 +64,9 @@
                 success: function(res){
                     if (store.enabled) {
                         store.set('user', res.data);
+                        store.set('token', res.data.token.access_token)
                         layer.msg('登陆成功！', {icon: 1}, function () {
-                            location.href = '${base}/admin/index'
+                            goLogin("${base}");
                         });
                     }else {
                         layer.msg("请关闭无痕模式！", {icon: 5});
