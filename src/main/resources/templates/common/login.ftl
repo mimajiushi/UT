@@ -66,7 +66,7 @@
                         store.set('user', res.data);
                         store.set('token', res.data.token.access_token)
                         layer.msg('登陆成功！', {icon: 1}, function () {
-                            goLogin("${base}");
+                            location.href = '${base}/admin/index';
                         });
                     }else {
                         layer.msg("请关闭无痕模式！", {icon: 5});
