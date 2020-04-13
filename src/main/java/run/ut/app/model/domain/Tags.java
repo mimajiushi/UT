@@ -26,9 +26,11 @@ public class Tags extends BaseEntity {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @Deprecated
     private Integer parentId;
 
     private String name;
 
+    @Deprecated
     private Integer level;
 }

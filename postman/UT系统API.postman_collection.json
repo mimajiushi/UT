@@ -1486,7 +1486,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/ut/admin/saveTag?parentId=0&name=新增标签",
+							"raw": "http://localhost:8080/ut/admin/saveTag?id=1&name=技术2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1500,16 +1500,16 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "35",
-									"disabled": true
+									"value": "1"
 								},
 								{
 									"key": "parentId",
-									"value": "0"
+									"value": "0",
+									"disabled": true
 								},
 								{
 									"key": "name",
-									"value": "新增标签"
+									"value": "技术2"
 								}
 							]
 						}
@@ -1744,6 +1744,74 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"设置标签成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-11 22:44:39\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 36,\n        \"parentId\": 0,\n        \"name\": \"测试标签（顶级标签）\",\n        \"level\": 0\n    }\n}"
+						},
+						{
+							"name": "更新标签",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/saveTag?id=1&name=技术2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"saveTag"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										},
+										{
+											"key": "parentId",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "技术2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Apr 2020 12:52:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"设置标签成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": null,\n        \"updateTime\": \"2020-04-13 20:52:01\",\n        \"deleted\": 0,\n        \"id\": 1,\n        \"parentId\": null,\n        \"name\": \"技术2\",\n        \"level\": null\n    }\n}"
 						},
 						{
 							"name": "新增/更新标签（更新金融子标签）",

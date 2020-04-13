@@ -38,23 +38,23 @@ public class TagsServiceImpl extends ServiceImpl<TagsMapper, Tags> implements Ta
             if (ObjectUtils.isEmpty(oldTag)) {
                 throw new NotFoundException("未找到指定标签，更新标签失败！tag_id=" + tags.getId() + " tag_name= " + tags.getName());
             }
-            oldTag.setName(tags.getName())
-                    .setParentId(tags.getParentId())
-                    .setUpdateTime(null);
-            if (null != tags.getParentId() || tags.getParentId() > 0) {
-                oldTag.setLevel(getById(tags.getParentId()).getLevel() + 1);
-            } else {
-                oldTag.setLevel(0);
-            }
-            tags = oldTag;
+            // oldTag.setName(tags.getName())
+            //         .setParentId(tags.getParentId())
+            //        .setUpdateTime(null);
+            // if (null != tags.getParentId() || tags.getParentId() > 0) {
+            //     oldTag.setLevel(getById(tags.getParentId()).getLevel() + 1);
+            // } else {
+            //     oldTag.setLevel(0);
+            // }
+            // tags = oldTag;
         }
 
         // insert if id == null
-        if (null != tags.getParentId() && tags.getParentId() > 0) {
-            tags.setLevel(getById(tags.getParentId()).getLevel() + 1);
-        } else {
-            tags.setLevel(0);
-        }
+        // if (null != tags.getParentId() && tags.getParentId() > 0) {
+        //     tags.setLevel(getById(tags.getParentId()).getLevel() + 1);
+        // } else {
+        //     tags.setLevel(0);
+        // }
         saveOrUpdate(tags);
         return BaseResponse.ok("设置标签成功！", new TagsDTO().convertFrom(tags));
     }

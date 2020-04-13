@@ -28,6 +28,7 @@ public class TagsParam extends BaseDTO implements InputConverter<Tags> {
 
     private Integer id;
 
+    @Deprecated
     private Integer parentId;
 
     @NotBlank(message = "标签名不能为空")
