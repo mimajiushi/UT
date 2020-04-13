@@ -194,54 +194,61 @@
                         });
                     } else if (obj.event === 'change') { //状态审核
                         layer.confirm("是否通过审核？",{
-                            btn: ['通过', '不通过'], title: ""
+                            btn: ['通过', '不通过'], title: "提示", icon: 3
                         }, function(index) {
-                            $.ajax({
-                                type: "POST",
-                                url: "${base}/admin/verifyUserInfo",
-                                data: {id: data.id, status: 1},
-                                success: function(res) {
-                                    obj.update({
-                                        status: "审核通过"
-                                    });
-                                    layer.close(index);
-                                    layer.msg(res.message, {icon: 1});
-                                },
-                                error: function ajaxTokenError (jqXHR) {
-                                    var res = $.parseJSON(jqXHR.responseText);
-                                    if (res.status == 401) {
-                                        layer.msg("请重新登录！", {icon: 5}, function () {
-                                            location.href = '${base}/admin/login';
+                                $.ajax({
+                                    type: "POST",
+                                    url: "${base}/admin/verifyUserInfo",
+                                    data: {id: data.id, status: 1},
+                                    success: function(res) {
+                                        obj.update({
+                                            status: "审核通过"
                                         });
-                                    }else {
                                         layer.close(index);
-                                        layer.msg(res.message, {icon: 5});
+                                        layer.msg(res.message, {icon: 1});
+                                    },
+                                    error: function ajaxTokenError (jqXHR) {
+                                        var res = $.parseJSON(jqXHR.responseText);
+                                        if (res.status == 401) {
+                                            layer.msg("请重新登录！", {icon: 5}, function () {
+                                                location.href = '${base}/admin/login';
+                                            });
+                                        }else {
+                                            layer.close(index);
+                                            layer.msg(res.message, {icon: 5});
+                                        }
                                     }
-                                }
-                            });
+                                });
                         }, function(index) {
-                            $.ajax({
-                                type: "POST",
-                                url: "${base}/admin/verifyUserInfo",
-                                data: {id: data.id, status: -1},
-                                success: function(res) {
-                                    obj.update({
-                                        status: '审核不通过'
-                                    });
-                                    layer.close(index);
-                                    layer.msg(res.message, {icon: 1});
-                                },
-                                error: function ajaxTokenError (jqXHR) {
-                                    var res = $.parseJSON(jqXHR.responseText);
-                                    if (res.status == 401) {
-                                        layer.msg("请重新登录！", {icon: 5}, function () {
-                                            location.href = '${base}/admin/login';
+                            layer.close(index);
+                            layer.prompt({
+                                formType: 2,
+                                title: '请输入理由'
+                            }, function(value, index) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "${base}/admin/verifyUserInfo",
+                                    data: {id: data.id, status: -1, reason: value},
+                                    success: function (res) {
+                                        obj.update({
+                                            status: '审核不通过'
+                                            , reason: value
                                         });
-                                    }else {
                                         layer.close(index);
-                                        layer.msg(res.message, {icon: 5});
+                                        layer.msg(res.message, {icon: 1});
+                                    },
+                                    error: function ajaxTokenError(jqXHR) {
+                                        var res = $.parseJSON(jqXHR.responseText);
+                                        if (res.status == 401) {
+                                            layer.msg("请重新登录！", {icon: 5}, function () {
+                                                location.href = '${base}/admin/login';
+                                            });
+                                        } else {
+                                            layer.close(index);
+                                            layer.msg(res.message, {icon: 5});
+                                        }
                                     }
-                                }
+                                });
                             });
                         });
                     }else if (obj.event === 'detail') {
