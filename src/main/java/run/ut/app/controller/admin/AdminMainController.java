@@ -69,6 +69,15 @@ public class AdminMainController implements AdminMainControllerApi {
         return "tags/tags_list";
     }
 
+    /**
+     * 查看日志
+     * @return template path
+     */
+    @GetMapping("log")
+    public String log() {
+        return "system/system_log";
+    }
+
     @ResponseBody
     @GetMapping("systemInfo")
     @CheckAuthorization(roles = AuthorizeRoles.ROLE_ADMIN)

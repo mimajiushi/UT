@@ -78,6 +78,19 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a onclick="">
+                    <i class="iconfont left-nav-li" lay-tips="系统管理">&#xe723;</i>
+                    <cite>系统管理</cite>
+                    <i class="iconfont nav_right">&#xe6ae;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('查看日志','${base}/admin/log')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>查看日志</cite></a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
