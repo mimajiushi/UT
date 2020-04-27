@@ -15,6 +15,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.security.util.JwtOperator;
+import run.ut.app.utils.ServletUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
@@ -55,7 +56,8 @@ public class AuthAspect {
         try {
             // 1. get token from header
             HttpServletRequest request = getHttpServletRequest();
-            String token = request.getHeader("UT-Token");
+//            String token = request.getHeader("UT-Token");
+            String token = ServletUtils.getHeaderIgnoreCase("UT-Token");
 
             // 1. check token
             this.checkToken();
@@ -97,7 +99,7 @@ public class AuthAspect {
             // 1. get token from header
             HttpServletRequest request = getHttpServletRequest();
 
-            String token = request.getHeader("UT-Token");
+            String token = ServletUtils.getHeaderIgnoreCase("UT-Token");
 
             // 2. check token
             Boolean isValid = jwtOperator.validateToken(token);

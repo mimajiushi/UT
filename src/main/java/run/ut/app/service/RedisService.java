@@ -2,6 +2,7 @@ package run.ut.app.service;
 
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author wenjie
@@ -16,16 +17,29 @@ public interface RedisService {
 
     boolean setKeyValTTL(String key, String value, long ttl);
 
+    /**
+     * Time is in seconds
+     */
     boolean expire(String key, long expire);
+
+    boolean expire(String key, long expire, TimeUnit unit);
 
     boolean remove(String key);
 
     public Boolean zadd(String key, String menber, double score);
 
-    Double increment(String key, String menber, double delta);
+    /**
+     * Zset's Increment
+     */
+    Double zIncrement(String key, String menber, double delta);
+
+
+    Long increment(String key, int variable);
 
     Double zscore(String key, String menber);
 
     Long zrem(String key, Object... menbers);
+
+    boolean overRequestRateLimit(final String key, final int expireTime, final int max, TimeUnit timeUnit, String userAgent);
 
 }

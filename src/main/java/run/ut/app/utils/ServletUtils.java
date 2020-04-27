@@ -53,4 +53,12 @@ public class ServletUtils {
         return getCurrentRequest().map(request -> ServletUtil.getHeaderIgnoreCase(request, header)).orElse(null);
     }
 
+    /**
+     * Gets request URI
+     */
+    @Nullable
+    public static String getRequestURI() {
+        return getCurrentRequest().map(HttpServletRequest::getRequestURI).orElse(null);
+    }
+
 }

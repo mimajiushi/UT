@@ -113,16 +113,16 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
     @Override
     public void save(OptionsParam optionParam) {
         Options option = optionParam.convertTo();
-        save(option);
         publishOptionUpdatedEvent();
+        save(option);
     }
 
     @Override
     public void update(Integer optionId, OptionsParam optionParam) {
         Options optionToUpdate = getById(optionId);
         optionParam.update(optionToUpdate);
-        updateById(optionToUpdate);
         publishOptionUpdatedEvent();
+        updateById(optionToUpdate);
     }
 
     @Override

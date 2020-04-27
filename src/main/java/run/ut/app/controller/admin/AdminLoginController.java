@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import run.ut.app.api.admin.AdminLoginControllerApi;
+import run.ut.app.cache.lock.RequestRateLimit;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.model.dto.UserDTO;
+import run.ut.app.model.enums.RateLimitEnum;
 import run.ut.app.model.param.AdminLoginParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.service.AdminService;
@@ -31,6 +33,7 @@ public class AdminLoginController implements AdminLoginControllerApi {
     private final AdminService adminService;
 
     @Override
+    @RequestRateLimit(limit = RateLimitEnum.RRLimit_1_5)
     @PostMapping("loginByEmail")
     public UserDTO loginByEmail(AdminLoginParam adminLoginParam) {
         Assert.hasText(adminLoginParam.getEmail(), "email must not be blank");
@@ -45,6 +48,7 @@ public class AdminLoginController implements AdminLoginControllerApi {
     }
 
     @Override
+    @RequestRateLimit(limit = RateLimitEnum.RRLimit_1_60)
     @PostMapping("sendEmailCode")
     public BaseResponse<String> sendEmailCode(String email) {
         Assert.hasText(email, "email must not be blank");

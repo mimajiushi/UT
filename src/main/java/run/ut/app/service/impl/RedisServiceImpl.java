@@ -1,5 +1,6 @@
 package run.ut.app.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @author wenjie
  */
 @Service
+@Slf4j
 public class RedisServiceImpl implements RedisService {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -33,7 +35,7 @@ public class RedisServiceImpl implements RedisService {
         Assert.hasText(key, "redis key must not be blank");
         Assert.notEmpty(list, "redis list must not be empty");
 
-        Long count = redisTemplate.opsForList().rightPushAll(key, list);
+        Long count = stringRedisTemplate.opsForList().rightPushAll(key, list);
         if (null == count) {
             count = 0L;
         }
@@ -49,7 +51,7 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public boolean setKeyValTTL(String key, String value, long ttl) {
         Assert.hasText(key, "redis key must not be blank");
-        Assert.hasText(value, "redis value must not be blank");
+        Assert.hasText(value, "redis incrementvalue must not be blank");
 
         stringRedisTemplate.boundValueOps(key).set(value,ttl, TimeUnit.SECONDS);
         Long expire = stringRedisTemplate.getExpire(key, TimeUnit.SECONDS);
@@ -63,6 +65,16 @@ public class RedisServiceImpl implements RedisService {
     public boolean expire(String key, long expire) {
         Assert.hasText(key, "redis key must not be blank");
         Boolean res = stringRedisTemplate.expire(key, expire, TimeUnit.SECONDS);
+        if (null == res) {
+            res = false;
+        }
+        return res;
+    }
+
+    @Override
+    public boolean expire(String key, long expire, TimeUnit unit) {
+        Assert.hasText(key, "redis key must not be blank");
+        Boolean res = stringRedisTemplate.expire(key, expire, unit);
         if (null == res) {
             res = false;
         }
@@ -85,8 +97,13 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public Double increment(String key, String menber, double delta) {
+    public Double zIncrement(String key, String menber, double delta) {
         return stringRedisTemplate.opsForZSet().incrementScore(key, menber, delta);
+    }
+
+    @Override
+    public Long increment(String key, int variable) {
+        return stringRedisTemplate.opsForValue().increment(key, variable);
     }
 
     @Override
@@ -97,5 +114,26 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public Long zrem(String key, Object... menbers) {
         return stringRedisTemplate.opsForZSet().remove(key, menbers);
+    }
+
+    @Override
+    public boolean overRequestRateLimit(String key, int max, int expireTime, TimeUnit timeUnit, String userAgent) {
+        long count = increment(key, 1);
+        long time = stringRedisTemplate.getExpire(key);
+        /*
+         * count = 1: 表示在本次请求前，key不存在或者key已过期。
+         * time = -1: 表示未设置过期时间
+         */
+        if (count == 1 || time == -1) {
+            expire(key, expireTime, timeUnit);
+        }
+
+        if (count <= max) {
+            return false;
+        }
+
+        log.debug("Express api request limit rate:too many requests: key={}, redis count={}, max count={}, " +
+            "expire time= {} s, user-agent={} ", key, count, max, expireTime, userAgent);
+        return true;
     }
 }
