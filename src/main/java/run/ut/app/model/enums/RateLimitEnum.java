@@ -5,6 +5,9 @@ package run.ut.app.model.enums;
  */
 public enum RateLimitEnum {
 
+    /**
+     * M/N means that only M times can be requested in N time units
+     */
     RRLimit_1_5("1/5"),
     RRLimit_1_60("1/60"),;
 
