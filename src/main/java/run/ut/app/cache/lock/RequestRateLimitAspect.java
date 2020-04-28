@@ -49,6 +49,7 @@ public class RequestRateLimitAspect {
 
         // Generates key
         String key = String.format("ut_api_request_limit_rate_%s_%s_%s", requestIp, method.getName(), requestURI);
+        // Checks
         boolean over = redisService.overRequestRateLimit(key, limitParams[0], limitParams[1], timeUnit, userAgent);
         if (over) {
             throw new FrequentAccessException("请求过于频繁，请稍后重试。");
@@ -59,6 +60,8 @@ public class RequestRateLimitAspect {
 
     /***
      * In the returned array,
+     *
+     * @return ↓
      * elements[0] is the time limit,
      * elements[1] is the number of times that can be requested within the time limit.
      */

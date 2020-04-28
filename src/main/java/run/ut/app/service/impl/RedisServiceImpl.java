@@ -103,21 +103,27 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public Long increment(String key, int variable) {
+        Assert.hasText(key, "key must not be blank");
         return stringRedisTemplate.opsForValue().increment(key, variable);
     }
 
     @Override
-    public Double zscore(String key, String menber) {
-        return stringRedisTemplate.opsForZSet().score(key, menber);
+    public Double zscore(String key, String member) {
+        Assert.hasText(key, "key must not be blank");
+        Assert.hasText(member, "member must not be blank");
+        return stringRedisTemplate.opsForZSet().score(key, member);
     }
 
     @Override
-    public Long zrem(String key, Object... menbers) {
-        return stringRedisTemplate.opsForZSet().remove(key, menbers);
+    public Long zrem(String key, Object... members) {
+        Assert.hasText(key, "key must not be blank");
+        return stringRedisTemplate.opsForZSet().remove(key, members);
     }
 
     @Override
     public boolean overRequestRateLimit(String key, int max, int expireTime, TimeUnit timeUnit, String userAgent) {
+        Assert.hasText(key, "redis key must not be blank");
+
         long count = increment(key, 1);
         long time = stringRedisTemplate.getExpire(key);
         /*
@@ -128,12 +134,9 @@ public class RedisServiceImpl implements RedisService {
             expire(key, expireTime, timeUnit);
         }
 
-        if (count <= max) {
-            return false;
-        }
-
         log.debug("Express api request limit rate:too many requests: key={}, redis count={}, max count={}, " +
             "expire time= {} s, user-agent={} ", key, count, max, expireTime, userAgent);
-        return true;
+
+        return count > max;
     }
 }

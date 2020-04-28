@@ -1,6 +1,8 @@
 package run.ut.app.service;
 
 
+import org.springframework.lang.NonNull;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -40,6 +42,7 @@ public interface RedisService {
 
     Long zrem(String key, Object... menbers);
 
-    boolean overRequestRateLimit(final String key, final int expireTime, final int max, TimeUnit timeUnit, String userAgent);
+    boolean overRequestRateLimit(@NonNull String key, final int expireTime, final int max,
+                                 @NonNull TimeUnit timeUnit, String userAgent);
 
 }

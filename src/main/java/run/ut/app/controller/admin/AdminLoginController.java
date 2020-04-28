@@ -48,7 +48,7 @@ public class AdminLoginController implements AdminLoginControllerApi {
     }
 
     @Override
-    @RequestRateLimit(limit = RateLimitEnum.RRLimit_1_60)
+    @RequestRateLimit(limit = RateLimitEnum.RRLimit_1_10)
     @PostMapping("sendEmailCode")
     public BaseResponse<String> sendEmailCode(String email) {
         Assert.hasText(email, "email must not be blank");
@@ -56,7 +56,6 @@ public class AdminLoginController implements AdminLoginControllerApi {
         if (!isEmail) {
             throw new BadRequestException("非法邮箱！");
         }
-
         return adminService.sendEmailCode(email);
     }
 }
