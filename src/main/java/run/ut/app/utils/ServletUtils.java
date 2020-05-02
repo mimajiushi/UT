@@ -12,7 +12,9 @@ import java.util.Optional;
 /**
  * Servlet utilities.
  *
+ * @author johnniang
  * @author wenjie
+ * @date 20-4-28
  */
 public class ServletUtils {
 
@@ -55,6 +57,7 @@ public class ServletUtils {
 
     /**
      * Gets request URI
+     * @return URI or null
      */
     @Nullable
     public static String getRequestURI() {

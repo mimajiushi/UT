@@ -30,4 +30,6 @@ public class RedisConfig {
 
     public static final String OPTIONS_KEY = "options";
 
+    public static final String CHANNEL_KEY = "CHANNEL_KEY";
+
 }

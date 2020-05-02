@@ -49,7 +49,7 @@ public class StartedListener implements ApplicationListener<ApplicationStartedEv
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
-        this.init();
+        this.initAreaData();
         this.printStartInfo();
     }
 
@@ -66,7 +66,7 @@ public class StartedListener implements ApplicationListener<ApplicationStartedEv
     /**
      * Init area and school data
      */
-    private void init() {
+    private void initAreaData() {
         // 数据加载线程池， https://www.jianshu.com/p/502f9952c09b
         ScheduledThreadPoolExecutor executorService = new ScheduledThreadPoolExecutor(1,
                 new ThreadFactoryBuilder().setNameFormat("data-company-loader").build());
@@ -102,4 +102,5 @@ public class StartedListener implements ApplicationListener<ApplicationStartedEv
             log.info("加载校园数据结束...");
         }, 0, 7, TimeUnit.DAYS);
     }
+
 }

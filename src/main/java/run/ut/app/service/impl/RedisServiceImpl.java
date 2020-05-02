@@ -51,7 +51,7 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public boolean setKeyValTTL(String key, String value, long ttl) {
         Assert.hasText(key, "redis key must not be blank");
-        Assert.hasText(value, "redis incrementvalue must not be blank");
+        Assert.hasText(value, "value must not be blank");
 
         stringRedisTemplate.boundValueOps(key).set(value,ttl, TimeUnit.SECONDS);
         Long expire = stringRedisTemplate.getExpire(key, TimeUnit.SECONDS);
@@ -126,15 +126,15 @@ public class RedisServiceImpl implements RedisService {
 
         long count = increment(key, 1);
         long time = stringRedisTemplate.getExpire(key);
+
         /*
-         * count = 1: 表示在本次请求前，key不存在或者key已过期。
-         * time = -1: 表示未设置过期时间
+         * count == 1  means that redis key is set for the first time
          */
         if (count == 1 || time == -1) {
             expire(key, expireTime, timeUnit);
         }
 
-        log.debug("Express api request limit rate:too many requests: key={}, redis count={}, max count={}, " +
+        log.debug("UT api request limit rate:too many requests: key={}, redis count={}, max count={}, " +
             "expire time= {} s, user-agent={} ", key, count, max, expireTime, userAgent);
 
         return count > max;

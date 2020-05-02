@@ -23,7 +23,7 @@
         <springfox-swagger.version>2.7.0</springfox-swagger.version>
         <fastjson.version>1.2.30</fastjson.version>
         <mysql-connector-java.version>5.1.40</mysql-connector-java.version>
-        <guava.version>27.1-jre</guava.version>
+        <guava.version>28.1-jre</guava.version>
         <mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
         <mybatis-plus-generator.version>3.3.1</mybatis-plus-generator.version>
         <alipay-sdk-java.version>3.0.52.ALL</alipay-sdk-java.version>
@@ -38,6 +38,7 @@
         <jjwt-jackson.version>0.10.7</jjwt-jackson.version>
         <qiniu-java-sdk.version>7.2.18</qiniu-java-sdk.version>
         <image4j.version>0.7zensight1</image4j.version>
+        <netty-all.version>4.1.42.Final</netty-all.version>
     </properties>
 
     <dependencies>
@@ -70,6 +71,14 @@
             <groupId>com.sun.mail</groupId>
             <artifactId>jakarta.mail</artifactId>
         </dependency>
+
+        <!--netty-->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty-all.version}</version>
+        </dependency>
+
 
         <!--test-->
         <dependency>
