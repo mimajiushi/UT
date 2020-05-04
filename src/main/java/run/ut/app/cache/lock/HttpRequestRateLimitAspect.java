@@ -25,11 +25,11 @@ import java.util.concurrent.TimeUnit;
 @Aspect
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class RequestRateLimitAspect {
+public class HttpRequestRateLimitAspect {
 
     private final RedisService redisService;
 
-    @Around("@annotation(run.ut.app.cache.lock.RequestRateLimit)")
+    @Around("@annotation(run.ut.app.cache.lock.HttpRequestRateLimit)")
     public Object requestRateLimit(ProceedingJoinPoint point) throws Throwable {
         // Gets request URI
         String requestURI = ServletUtils.getRequestURI();
@@ -41,7 +41,7 @@ public class RequestRateLimitAspect {
         // Gets method
         final Method method = ((MethodSignature) point.getSignature()).getMethod();
         // Gets annotation
-        RequestRateLimit requestRateLimit = method.getAnnotation(RequestRateLimit.class);
+        HttpRequestRateLimit requestRateLimit = method.getAnnotation(HttpRequestRateLimit.class);
         // Gets annotation params
         RateLimitEnum limitEnum = requestRateLimit.limit();
         TimeUnit timeUnit = requestRateLimit.timeUnit();

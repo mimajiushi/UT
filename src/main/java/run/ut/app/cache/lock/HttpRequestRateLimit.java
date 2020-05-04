@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface RequestRateLimit {
+public @interface HttpRequestRateLimit {
     RateLimitEnum limit();
 
     TimeUnit timeUnit() default TimeUnit.SECONDS;

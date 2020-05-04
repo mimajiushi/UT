@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelId;
 import io.netty.channel.group.ChannelGroup;
+import io.netty.channel.group.ChannelGroupFuture;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.util.concurrent.GlobalEventExecutor;
@@ -14,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.model.enums.WebSocketMsgTypeEnum;
+import run.ut.app.model.support.WebSocketMsg;
 import run.ut.app.service.RedisService;
 import run.ut.app.utils.JsonUtils;
 
@@ -38,7 +41,7 @@ public class UserChannelManager {
 
     private final RedisService redisService;
 
-    private final Long TTL = 60L * 30L;
+    private final Long TTL = 60L * 60L;
 
     /**
      * Save the mapping of uid and channel
@@ -118,23 +121,41 @@ public class UserChannelManager {
 
 
     /**
-     * Write and Flush by uid
+     * Write and flush by uid
      *
      * @param uid      uid
      * @param msgObj   msg object, it will be automatically converted to json.
      * @throws JsonProcessingException If msgObj fails to convert to json.
      */
-    public void writeAndFlush(Long uid, Object msgObj) throws JsonProcessingException {
+    public void writeAndFlush(Long uid, Object msgObj, WebSocketMsgTypeEnum typeEnum) throws JsonProcessingException {
         Channel channel = userChannelMap.get(uid);
         boolean active = channel.isActive();
         if (active) {
-            String json = JsonUtils.objectToJson(msgObj);
+            WebSocketMsg webSocketMsg = new WebSocketMsg()
+                .setType(typeEnum.getType())
+                .setMsg(msgObj);
+            String json = JsonUtils.objectToJson(webSocketMsg);
             TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame(json);
             channel.writeAndFlush(textWebSocketFrame);
         } else {
             redisService.remove(RedisConfig.CHANNEL_KEY + "::" + channel.id().asLongText());
             userChannelMap.remove(uid);
         }
+    }
+
+    /**
+     * Write and flush to every user
+     * @param msgObj msg object, it will be automatically converted to json.
+     * @return ChannelGroupFuture
+     * @throws JsonProcessingException If msgObj fails to convert to json.
+     */
+    public ChannelGroupFuture writeAndFlush(Object msgObj, WebSocketMsgTypeEnum typeEnum) throws JsonProcessingException {
+        WebSocketMsg webSocketMsg = new WebSocketMsg()
+            .setType(typeEnum.getType())
+            .setMsg(msgObj);
+        String json = JsonUtils.objectToJson(webSocketMsg);
+        TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame(json);
+        return channels.writeAndFlush(textWebSocketFrame);
     }
 
     public void reSetCache() {
