@@ -28,6 +28,7 @@ public class WSServerInitialzer extends ChannelInitializer<SocketChannel> {
         ChannelPipeline pipeline = ch.pipeline();
 
         pipeline
+            .addLast(new WebSocketRateLimitHandler())
             .addLast(new HttpServerCodec())
             .addLast(new ChunkedWriteHandler())
             .addLast(new HttpObjectAggregator(1024 * 64))
@@ -36,7 +37,6 @@ public class WSServerInitialzer extends ChannelInitializer<SocketChannel> {
             .addLast(new HeartBeatHandler())
             .addLast(new WebSocketServerProtocolHandler(webSocketConfiguration.getContextPath()))
             .addLast(new AuthHandler())
-            .addLast(new WebSocketRateLimitHandler())
             .addLast(new ClientMsgHandler());
     }
 
