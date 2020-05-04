@@ -32,6 +32,7 @@ public class WebSocketRateLimitHandler extends ChannelInboundHandlerAdapter {
         if (over) {
             log.debug("IP: {} 触发限流了 ",ip);
             ctx.channel().close();
+            return;
         }
         ctx.fireChannelRead(msg);
     }
