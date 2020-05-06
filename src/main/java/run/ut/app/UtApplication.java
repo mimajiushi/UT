@@ -8,13 +8,12 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-
 /**
- * Halo main class.
+ * UT main class
  *
- * @author ryanwang
- * @date 2017-11-14
+ * @author wenjie
  */
+
 @SpringBootApplication
 @EnableAsync
 @EnableScheduling
