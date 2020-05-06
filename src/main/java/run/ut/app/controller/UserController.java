@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.api.UserControllerApi;
+import run.ut.app.cache.lock.HttpRequestRateLimit;
 import run.ut.app.config.wechat.WechatAccountConfig;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.WeChatException;
@@ -23,6 +24,7 @@ import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.dto.UserInfoDTO;
+import run.ut.app.model.enums.RateLimitEnum;
 import run.ut.app.model.enums.SexEnum;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.*;
@@ -64,6 +66,7 @@ public class UserController extends BaseController implements UserControllerApi 
 
     @Override
     @PostMapping("webPageLogin")
+    @HttpRequestRateLimit(limit = RateLimitEnum.RRLimit_1_5)
     @Deprecated
     public UserDTO webPageLogin(@Valid UserParam userParam) {
         Assert.hasText(userParam.getSmsCode(), "Sms code must not be blank");

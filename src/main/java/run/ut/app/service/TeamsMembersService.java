@@ -3,6 +3,7 @@ package run.ut.app.service;
 import org.springframework.lang.NonNull;
 import run.ut.app.model.domain.TeamsMembers;
 import com.baomidou.mybatisplus.extension.service.IService;
+import run.ut.app.model.domain.User;
 
 import java.util.List;
 
@@ -24,4 +25,7 @@ public interface TeamsMembersService extends IService<TeamsMembers> {
 
     @NonNull
     Integer countByLeaderId(@NonNull Long leaderId, @NonNull Long teamId);
+
+    @NonNull
+    User getLeaderByTeamsId(@NonNull Long teamsId);
 }

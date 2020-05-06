@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class StartedListener implements ApplicationListener<ApplicationStartedEvent> {
+public class StartedEventListener implements ApplicationListener<ApplicationStartedEvent> {
 
     private final DataAreaService dataAreaService;
     private final DataSchoolService dataSchoolService;

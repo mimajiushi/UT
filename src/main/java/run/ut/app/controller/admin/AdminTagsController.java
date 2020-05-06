@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import run.ut.app.api.admin.AdminTagsControllerAPI;
 import run.ut.app.model.dto.TagsDTO;
+import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.TagsParam;
-import run.ut.app.model.support.AuthorizeRoles;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.security.CheckAuthorization;
 import run.ut.app.service.TagsService;
@@ -23,7 +23,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("admin")
-@CheckAuthorization(roles = AuthorizeRoles.ROLE_ADMIN)
+@CheckAuthorization(roles = UserRolesEnum.ROLE_ADMIN)
 public class AdminTagsController implements AdminTagsControllerAPI {
     private final TagsService tagsService;
 

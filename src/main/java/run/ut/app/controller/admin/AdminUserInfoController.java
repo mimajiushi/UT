@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.admin.AdminUserInfoControllerAPI;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.UserInfoDTO;
+import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.UserInfoParam;
-import run.ut.app.model.support.AuthorizeRoles;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.security.CheckAuthorization;
@@ -23,7 +23,7 @@ import java.io.IOException;
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("admin")
-@CheckAuthorization(roles = AuthorizeRoles.ROLE_ADMIN)
+@CheckAuthorization(roles = UserRolesEnum.ROLE_ADMIN)
 public class AdminUserInfoController implements AdminUserInfoControllerAPI {
 
     private final UserInfoService userInfoService;

@@ -5,9 +5,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
+import run.ut.app.event.team.TeamsApplyOrInviteEvent;
 import run.ut.app.exception.*;
 import run.ut.app.handler.FileHandlers;
 import run.ut.app.mapper.TeamsMembersMapper;
@@ -59,6 +61,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
     private final TeamsRecruitmentsTagsService teamsRecruitmentsTagsService;
     private final TeamsRecruitmentsMapper teamsRecruitmentsMapper;
     private final UserTeamApplyLogMapper userTeamApplyLogMapper;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Override
     @Transactional
@@ -142,6 +145,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
 
     @Override
     @Transactional
+    @Deprecated
     public List<TagsDTO> saveTeamsRecruitmentsTags(String[] tagIds, Long teamRecruitmentId) {
 
         TeamsRecruitments recruitment = teamsRecruitmentsMapper.selectById(teamRecruitmentId);
@@ -249,7 +253,8 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
                 .setStatus(ApplyStatusEnum.WAITING);
 
 
-        // TODO send resume email
+        // Publish event
+        eventPublisher.publishEvent(new TeamsApplyOrInviteEvent(this, teamApplyParam, ApplyModeEnum.USER_TO_TEAM));
 
         userTeamApplyLogMapper.insert(userTeamApplyLog);
 
@@ -291,6 +296,9 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         userTeamApplyLog.setMode(ApplyModeEnum.TEAM_TO_USER)
                 .setStatus(ApplyStatusEnum.WAITING);
         userTeamApplyLogMapper.insert(userTeamApplyLog);
+
+        // publish event
+        eventPublisher.publishEvent(new TeamsApplyOrInviteEvent(this, teamInviteParam, ApplyModeEnum.TEAM_TO_USER));
 
         return BaseResponse.ok("邀请成功！请耐心等待回应~");
     }

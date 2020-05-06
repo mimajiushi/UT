@@ -85,9 +85,9 @@ public class AuthAspect {
 
     private void checkRoles(CheckAuthorization annotation, int roles) {
         // get roles from annotation
-        String[] values = annotation.roles();
-        for (String value : values) {
-            int role = UserRolesEnum.getByName(value).getType();
+        UserRolesEnum[] rolesEnums = annotation.roles();
+        for (UserRolesEnum roleEnum : rolesEnums) {
+            int role = roleEnum.getType();
             if ((role & roles) != role) {
                 throw new AuthenticationException("用户没有相关权限！");
             }

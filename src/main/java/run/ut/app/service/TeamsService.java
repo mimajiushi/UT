@@ -31,6 +31,7 @@ public interface TeamsService extends IService<Teams> {
     List<TagsDTO> saveTeamsTags(String[] tagIds, @NonNull Long leaderId, @NonNull Long teamsId);
 
     @NonNull
+    @Deprecated
     List<TagsDTO> saveTeamsRecruitmentsTags(@Nullable String[] tagIds, @NonNull Long teamRecruitmentId);
 
     @NonNull

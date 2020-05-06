@@ -21,7 +21,7 @@ import run.ut.app.netty.WebSocketServer;
 @Order(Ordered.HIGHEST_PRECEDENCE + 1)
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class ContextRefreshedListener implements ApplicationListener<ContextRefreshedEvent> {
+public class ContextRefreshedEventListener implements ApplicationListener<ContextRefreshedEvent> {
 
     private final WebSocketConfiguration webSocketConfiguration;
 
