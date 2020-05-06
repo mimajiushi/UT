@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import run.ut.app.api.admin.AdminMainControllerApi;
 import run.ut.app.model.enums.UserRolesEnum;
-import run.ut.app.model.support.AuthorizeRoles;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.security.CheckAuthorization;
 
