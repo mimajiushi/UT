@@ -34,6 +34,7 @@ import run.ut.app.service.*;
 import run.ut.app.utils.BeanUtils;
 
 import javax.annotation.Nonnull;
+import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class IndexServiceImpl implements IndexService {
     private final TeamsRecruitmentsTagsService teamsRecruitmentsTagsService;
 
     @Override
-    public CommentPage<StudentVO> listStudentByParam(SearchStudentParam searchStudentParam, Page page) {
+    public CommentPage<StudentVO> listStudentByParam(@NotNull SearchStudentParam searchStudentParam, @NotNull Page page) {
 
         IPage<StudentVO> studentVOIPage = userMapper.listStudentByParam(page, searchStudentParam);
         List<StudentVO> records = studentVOIPage.getRecords();
@@ -77,7 +78,7 @@ public class IndexServiceImpl implements IndexService {
     }
 
     @Override
-    public CommentPage<TeamVO> listTeamByParam(SearchTeamParam searchTeamParam, Page page) {
+    public CommentPage<TeamVO> listTeamByParam(@NotNull SearchTeamParam searchTeamParam, @NotNull Page page) {
         if (StringUtils.isAllBlank(searchTeamParam.getName(), searchTeamParam.getTagId() + "")) {
             searchTeamParam.setStatus(TeamsStatusEnum.PUBLIC.getType());
         }
@@ -96,7 +97,7 @@ public class IndexServiceImpl implements IndexService {
     }
 
     @Override
-    public CommentPage<TeamsRecruitmentsVO> listRecruitmentByParam(SearchRecruitmentParam searchRecruitmentParam, Page page) {
+    public CommentPage<TeamsRecruitmentsVO> listRecruitmentByParam(@NotNull SearchRecruitmentParam searchRecruitmentParam, @NotNull Page page) {
         IPage<TeamsRecruitmentsVO> teamsRecruitmentsVOIPage = teamsRecruitmentsMapper.listRecruitmentByParam(page, searchRecruitmentParam);
         long total = teamsRecruitmentsVOIPage.getTotal();
 
@@ -115,7 +116,7 @@ public class IndexServiceImpl implements IndexService {
     }
 
     @Override
-    public StudentVO showUserPageInfo(Long uid) {
+    public StudentVO showUserPageInfo(@NotNull Long uid) {
         User user = userMapper.selectById(uid);
         if (ObjectUtils.isEmpty(user)) {
             throw new NotFoundException("该id的用户不存在！");

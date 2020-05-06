@@ -27,7 +27,4 @@ public class SearchStudentParam {
     @Size(max = 20, message = "昵称/姓名不得超过20字")
     private String name;
 
-    // TODO 考虑要不要加上地域搜索，可是这么做需要改表，等以后需要再加上吧。
-
-
 }

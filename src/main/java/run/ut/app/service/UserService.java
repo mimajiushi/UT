@@ -24,24 +24,62 @@ import java.util.List;
  */
 public interface UserService extends IService<User> {
 
+    /**
+     * save user tags
+     *
+     * @param uid           uid
+     * @param tagIds        tag ids
+     * @return              TagsDTO list
+     * @throws Exception    exception
+     */
     @NonNull
     List<TagsDTO> saveUserTags(@NonNull Long uid, @Nullable String[] tagIds) throws Exception;
 
+    /**
+     * Get user info by uid
+     *
+     * @param uid  uid
+     * @return     StudentVO
+     */
     @NonNull
     StudentVO showSelfPage(@NonNull Long uid);
 
     /**
      * If the user is not registered, it will be automatically registered
+     *
+     * @param weChatLoginParam  wechat login parameters
+     * @param weChatResponse    parameters returned by wechat
+     * @return                  UserDTO
      */
     @NonNull
     UserDTO wechatLogin(@NonNull WeChatLoginParam weChatLoginParam, @NonNull WeChatResponse weChatResponse);
 
+    /**
+     * Get user by openId
+     *
+     * @param openId openId
+     * @return       User
+     */
     @NonNull
     User getUserByOpenId(@NonNull String openId);
 
+
+    /**
+     * Get user by email
+     *
+     * @param email  email
+     * @return       User
+     */
     @NonNull
     User getUserByEmail(@NonNull String email);
 
+    /**
+     * Update user's avatar
+     *
+     * @param uid       uid
+     * @param avatar    avatar (MultipartFile)
+     * @return ok result with message
+     */
     @NonNull
     BaseResponse<String> updateUserAvatar(@NonNull Long uid, @NonNull MultipartFile avatar);
 }

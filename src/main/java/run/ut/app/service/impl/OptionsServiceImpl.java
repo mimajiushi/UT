@@ -30,6 +30,7 @@ import run.ut.app.service.RedisService;
 import run.ut.app.utils.ServiceUtils;
 import run.ut.app.utils.ValidationUtils;
 
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 /**
@@ -118,7 +119,7 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
     }
 
     @Override
-    public void update(Integer optionId, OptionsParam optionParam) {
+    public void update(@NotNull Integer optionId, @NotNull OptionsParam optionParam) {
         Options optionToUpdate = getById(optionId);
         optionParam.update(optionToUpdate);
         publishOptionUpdatedEvent();
@@ -126,14 +127,14 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
     }
 
     @Override
-    public void saveProperty(PropertyEnum property, String value) {
+    public void saveProperty(@NotNull PropertyEnum property, String value) {
         Assert.notNull(property, "Property must not be null");
 
         save(property.getValue(), value);
     }
 
     @Override
-    public void saveProperties(Map<? extends PropertyEnum, String> properties) {
+    public void saveProperties(@NotNull Map<? extends PropertyEnum, String> properties) {
         if (CollectionUtils.isEmpty(properties)) {
             return;
         }

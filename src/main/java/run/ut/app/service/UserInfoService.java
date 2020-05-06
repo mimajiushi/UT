@@ -22,15 +22,42 @@ import java.io.IOException;
  */
 public interface UserInfoService extends IService<UserInfo> {
 
+    /**
+     * Apply for identity authentication
+     *
+     * @param userInfoParam user info
+     * @return ok result with UserInfoDTO
+     */
     @NonNull
     BaseResponse<UserInfoDTO> applyForCertification(@NonNull UserInfoParam userInfoParam);
 
+    /**
+     * Get approved user info by uid
+     *
+     * @param uid uid
+     * @return UserInfo
+     */
     @NonNull
     UserInfo getOneActivatedByUid(@NonNull Long uid);
 
+    /**
+     * Verify identity authentication
+     *
+     * @param id        user info id
+     * @param status    status
+     * @param reason    reason
+     * @return ok result with message
+     */
     @NonNull
     BaseResponse<String> verifyUserInfo(@NonNull Integer id, @NonNull Integer status, @Nullable String reason);
 
+    /**
+     *
+     * @param userInfoParam    params
+     * @param page             Paging object of mybatis
+     * @return serInfoDTO
+     * @throws IOException IOException
+     */
     @NonNull
     CommentPage<UserInfoDTO> listUserInfoByParam(@NonNull UserInfoParam userInfoParam, @NonNull Page<UserInfo> page) throws IOException;
 }

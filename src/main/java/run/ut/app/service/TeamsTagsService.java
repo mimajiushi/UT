@@ -17,8 +17,18 @@ import java.util.List;
  */
 public interface TeamsTagsService extends IService<TeamsTags> {
 
+    /**
+     * List tags by team id
+     *
+     * @param teamsId team id
+     * @return Tags list
+     */
     @NonNull
     List<Tags> listByTeamsId(@NonNull Long teamsId);
 
+    /**
+     * Delete tags by team id
+     * @param teamsId team id
+     */
     void deleteByTeamsId(@NonNull Long teamsId);
 }

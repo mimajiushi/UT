@@ -17,9 +17,20 @@ import java.util.List;
  */
 public interface UserTagsService extends IService<UserTags> {
 
+    /**
+     * List tags by uid
+     *
+     * @param uid uid
+     * @return    Tags list
+     */
     @NonNull
     public List<Tags> listByUid(@NonNull Long uid);
 
+    /**
+     * Delete tags by uid
+     *
+     * @param uid uid
+     */
     public void deleteByUid(@NonNull Long uid);
 
 }

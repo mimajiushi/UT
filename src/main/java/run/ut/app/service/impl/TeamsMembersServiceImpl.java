@@ -15,6 +15,7 @@ import run.ut.app.model.domain.User;
 import run.ut.app.model.enums.TeamsMemberEnum;
 import run.ut.app.service.TeamsMembersService;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -33,17 +34,17 @@ public class TeamsMembersServiceImpl extends ServiceImpl<TeamsMembersMapper, Tea
     private final UserMapper userMapper;
 
     @Override
-    public List<TeamsMembers> listByTeamsId(Long teamsId) {
+    public List<TeamsMembers> listByTeamsId(@NotNull Long teamsId) {
         return list(new QueryWrapper<TeamsMembers>().eq("team_id", teamsId));
     }
 
     @Override
-    public Integer countByUid(Long uid, Long teamId) {
+    public Integer countByUid(@NotNull Long uid, @NotNull Long teamId) {
         return count(new QueryWrapper<TeamsMembers>().eq("uid", uid).eq("team_id", teamId));
     }
 
     @Override
-    public Integer countByLeaderId(Long leaderId, Long teamId) {
+    public Integer countByLeaderId(@NotNull Long leaderId, @NotNull Long teamId) {
         return count(new QueryWrapper<TeamsMembers>()
                 .eq("uid", leaderId)
                 .eq("is_leader", TeamsMemberEnum.LEADER.getType())
@@ -51,7 +52,7 @@ public class TeamsMembersServiceImpl extends ServiceImpl<TeamsMembersMapper, Tea
     }
 
     @Override
-    public User getLeaderByTeamsId(Long teamsId) {
+    public User getLeaderByTeamsId(@NotNull Long teamsId) {
         TeamsMembers teamsMembers = getOne(new QueryWrapper<TeamsMembers>()
             .eq("team_id", teamsId)
             .eq("is_leader", TeamsMemberEnum.LEADER.getType()));

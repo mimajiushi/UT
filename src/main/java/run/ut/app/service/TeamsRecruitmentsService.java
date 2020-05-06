@@ -20,9 +20,21 @@ import java.util.List;
  */
 public interface TeamsRecruitmentsService extends IService<TeamsRecruitments> {
 
+    /**
+     * Save team's recruitments
+     *
+     * @param teamsRecruitmentsParam recruitment's info
+     * @return TeamsRecruitmentsDTO and tips
+     */
     @NonNull
     BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(@NonNull TeamsRecruitmentsParam teamsRecruitmentsParam);
 
+    /**
+     * List recruitments by team id
+     *
+     * @param teamsId team id
+     * @return TeamsRecruitments list
+     */
     @Nonnull
     List<TeamsRecruitments> listTeamsRecruitmentsByTeamsId(@NonNull Long teamsId);
 

@@ -8,6 +8,7 @@ import org.springframework.lang.NonNull;
  *
  * @author wenjie
  */
+@Deprecated
 public interface SmsService {
     /**
      * SMS messages

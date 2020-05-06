@@ -11,6 +11,12 @@ import java.util.concurrent.TimeUnit;
  */
 public interface RedisService {
 
+    /**
+     * Redis set
+     *
+     * @param key key
+     * @param value value
+     */
     void set(String key, String value);
 
     public long setList(String key, List list);

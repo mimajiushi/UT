@@ -23,6 +23,9 @@ public interface IndexService {
 
     /**
      * list students by param
+     *
+     * @param searchStudentParam  Search parameters
+     * @param page                Paging object of mybatis
      * @return student vo list
      */
     @NonNull
@@ -30,6 +33,9 @@ public interface IndexService {
 
     /**
      * list teams by param
+     *
+     * @param searchTeamParam     Search parameters
+     * @param page                Paging object of mybatis
      * @return team vo list
      */
     @NonNull
@@ -37,22 +43,43 @@ public interface IndexService {
 
     /**
      * list recruitments by param
+     *
+     * @param searchRecruitmentParam     Search parameters
+     * @param page                       Paging object of mybatis
      * @return recruitment vo list
      */
     CommentPage<TeamsRecruitmentsVO> listRecruitmentByParam(@NonNull SearchRecruitmentParam searchRecruitmentParam, @NonNull Page page);
 
     /**
-     * @return Student's non-private information
+     * Get user info by uid
+     *
+     * @param uid user's id
+     * @return User's(Student's) non-private information
      */
     @NonNull
     StudentVO showUserPageInfo(@NonNull Long uid);
 
+    /**
+     * Get team info by team's id.
+     * @param teamsId team's id
+     * @return TeamVO
+     */
     @NonNull
     TeamVO showTeamsInfo(@NonNull Long teamsId);
 
+    /**
+     * Get recruitment info by recruitment's id
+     * @param recruitmentsId recruitment's id
+     * @return TeamsRecruitmentsVO
+     */
     @NonNull
     TeamsRecruitmentsVO showRecruitmentsInfo(@NonNull Long recruitmentsId);
 
+    /**
+     * Get all recruitments of the team by team's id
+     * @param teamId team's id
+     * @return TeamsRecruitmentsDTO list
+     */
     @NonNull
     List<TeamsRecruitmentsDTO> listRecruitmentsByTeamId(@Nonnull Long teamId);
 

@@ -15,6 +15,7 @@ import run.ut.app.model.support.BaseResponse;
 import run.ut.app.service.TeamsRecruitmentsService;
 import run.ut.app.utils.BeanUtils;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class TeamsRecruitmentsServiceImpl extends ServiceImpl<TeamsRecruitmentsM
 
     @Override
     @Transactional
-    public BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(TeamsRecruitmentsParam teamsRecruitmentsParam) {
+    public BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(@NotNull TeamsRecruitmentsParam teamsRecruitmentsParam) {
 
         TeamsRecruitments teamsRecruitments = teamsRecruitmentsParam.convertTo();
 
@@ -52,7 +53,7 @@ public class TeamsRecruitmentsServiceImpl extends ServiceImpl<TeamsRecruitmentsM
     }
 
     @Override
-    public List<TeamsRecruitments> listTeamsRecruitmentsByTeamsId(Long teamsId) {
+    public List<TeamsRecruitments> listTeamsRecruitmentsByTeamsId(@NotNull Long teamsId) {
         return list(new QueryWrapper<TeamsRecruitments>().eq("team_id", teamsId));
     }
 }
