@@ -2,6 +2,7 @@ package run.ut.app.listener;
 
 
 import cn.hutool.core.lang.Validator;
+import cn.hutool.core.util.ObjectUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -69,6 +70,10 @@ public class TeamsApplyOrInviteEventListener {
         String msg = String.format("团队【%s】邀请您加入~", team.getName());
         String subject = "【UT】入队邀请通知";
 
+        if (ObjectUtil.isAllEmpty(team, user)) {
+            return;
+        }
+
         HashMap<String, Object> params = new HashMap<>();
         params.put("msg", msg);
         params.put("nickname", user.getNickname());
@@ -92,6 +97,10 @@ public class TeamsApplyOrInviteEventListener {
         User leader = teamsMembersService.getLeaderByTeamsId(teamId);
         String msg = String.format("用户【%s】申请加入您的【%s】队伍~", user.getNickname(), team.getName());
         String subject = "【UT】入队申请通知";
+
+        if (ObjectUtil.isAllEmpty(team, user, leader)) {
+            return;
+        }
 
         HashMap<String, Object> params = new HashMap<>();
         params.put("msg", msg);

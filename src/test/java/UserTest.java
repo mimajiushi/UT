@@ -1,4 +1,4 @@
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import run.ut.app.model.domain.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = UtApplication.class)
+@Slf4j
 public class UserTest {
 
     @Autowired
@@ -18,7 +19,8 @@ public class UserTest {
 
     @Test
     public void test1(){
-        User phone_numner = userMapper.selectOne(new QueryWrapper<User>().eq("phone_number", "15521245562"));
-        System.out.println(phone_numner);
+//        User phone_numner = userMapper.selectOne(new QueryWrapper<User>().eq("phone_number", "15521245562"));
+//        System.out.println(phone_numner);
+        User user = userMapper.selectById(123123123L);
     }
 }
