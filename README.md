@@ -24,8 +24,8 @@
 
 #### 计划实现
 
+- websocket实时推送消息（Netty实现）...✔
 - 组队...ing（后端基本完成）
-- websocket实时推送消息...ing（打算使用Netty实现）
 - bbs...ing
 - 校园活动发布/订阅...ing
 
