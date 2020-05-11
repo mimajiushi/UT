@@ -37,7 +37,7 @@ public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
                 // Closes the channel which state is ALL_IDLE
                 Channel channel = ctx.channel();
                 // Clear cache
-                userChannelManager.remove(channel.id().asLongText());
+                userChannelManager.remove(channel);
                 channel.close();
                 log.debug("close channel: " + channel.id().asLongText());
             }

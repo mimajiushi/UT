@@ -7,6 +7,7 @@
         <result column="id" property="id" />
         <result column="team_id" property="teamId" />
         <result column="name" property="name" />
+        <result column="logo" property="logo" />
         <result column="tag_ids" property="tagIds" />
         <result column="description" property="description" />
         <result column="team_name" property="teamName" />
@@ -14,7 +15,7 @@
     </resultMap>
     
     <select id="listRecruitmentByParam" resultMap="resMap">
-            select tr.id, tr.team_id, tr.tag_ids, tr.`name`, tr.description, tr.create_time, t.`name` team_name
+            select tr.id, tr.team_id, tr.tag_ids, tr.`name`, left(tr.description, 40), tr.create_time, t.`name` team_name, t.logo
                 from (teams_recruitments tr, teams_recruitments_tags trt)
                     inner join teams t on t.id = tr.team_id
                 <where>

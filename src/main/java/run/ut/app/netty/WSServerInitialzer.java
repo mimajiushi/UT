@@ -32,7 +32,7 @@ public class WSServerInitialzer extends ChannelInitializer<SocketChannel> {
             .addLast(new HttpServerCodec())
             .addLast(new ChunkedWriteHandler())
             .addLast(new HttpObjectAggregator(1024 * 64))
-//            .addLast(new IdleStateHandler(30, 30, 60, TimeUnit.SECONDS))
+//            .addLast(new IdleStateHandler(30, 30, 5, TimeUnit.SECONDS))
             .addLast(new IdleStateHandler(10, 10, 30, TimeUnit.MINUTES))
             .addLast(new HeartBeatHandler())
             .addLast(new WebSocketServerProtocolHandler(webSocketConfiguration.getContextPath()))
