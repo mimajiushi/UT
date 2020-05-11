@@ -27,12 +27,12 @@
 
     <form method="post" class="layui-form" >
         <div class="layui-form-item">
-            <input name="phoneNumber" id="phoneNumber" placeholder="手机号"  type="text" lay-verify="required|phone" class="layui-input-normal" >
+            <input name="email" id="email" placeholder="邮箱"  type="text" lay-verify="required|email" class="layui-input-normal" >
         </div>
         <hr class="hr15">
         <div class="layui-form-item layui-col-space10">
             <div class="layui-col-xs7">
-                <input name="smsCode" lay-verify="required" type="text" placeholder="验证码" class="layui-input-normal" style="width: 100%">
+                <input name="code" lay-verify="required" type="text" placeholder="验证码" class="layui-input-normal" style="width: 100%">
             </div>
             <div class="layui-col-xs5">
                 <button id="getVerifyCode" type="button" class="layui-btn layui-btn-normal" style="width: 100%;height: 50px;">获取验证码</button>
@@ -58,8 +58,8 @@
             $("#login").attr("disabled", true);
             $.ajax({
                 type: "POST",
-                url: "${base}/user/webPageLogin",
-                data: {phoneNumber:$.trim(data.phoneNumber),smsCode:$.trim(data.smsCode)},
+                url: "${base}/admin/loginByEmail",
+                data: {email:$.trim(data.email),code:$.trim(data.code)},
                 dataType: "json",
                 success: function(res){
                     if (store.enabled) {
@@ -82,9 +82,9 @@
             return false;
         });
 
-        // 验证手机号
-        function isPhoneNo(phone) {
-            var pattern = /^1[34578]\d{9}$/;
+        // 验证邮箱
+        function isEmail(phone) {
+            var pattern = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
             return pattern.test(phone);
         }
 
@@ -105,29 +105,33 @@
             }
         }
 
-        //发送验证码
+        //获取验证码
         $('#getVerifyCode').click(function () {
-            if ($.trim($("#phoneNumber").val()).length == 0) {
-                layer.msg("手机号没有输入！", {icon: 5, anim: 6});
-                $("#phoneNumber")
+            if ($.trim($("#email").val()).length == 0) {
+                layer.msg("邮箱没有输入！", {icon: 5, anim: 6});
+                $("#email").focus();
             } else {
-                if (isPhoneNo($.trim($("#phoneNumber").val())) == false) {
-                    layer.msg("手机号码不正确！", {icon: 5, anim: 6});
+                if (isEmail($.trim($("#email").val())) == false) {
+                    layer.msg("邮箱不正确！", {icon: 5, anim: 6});
+                    $("#email").focus();
                 }else {
+                    var index = layer.load(2);
                     $.ajax({
                         type: "POST",
-                        url: "${base}/user/sendSms",
-                        data: {phoneNumber:$.trim($("#phoneNumber").val())},
+                        url: "${base}/admin/sendEmailCode",
+                        data: {email:$.trim($("#email").val())},
                         dataType: "json",
                         success: function(res){
-                                var bu = $('#getVerifyCode');
-                                time(bu);
+                            var bu = $('#getVerifyCode');
+                            time(bu);
+                            layer.msg(res.message, {icon: 1});
                         },
                         error:function (jqXHR) {
                             var res = $.parseJSON(jqXHR.responseText);
                             layer.msg(res.message, {icon: 5});
                         }
                     });
+                    layer.close(index);
                 }
             }
         });
