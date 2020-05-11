@@ -19,14 +19,8 @@ import java.util.List;
 @Api(value = "用户信息API",tags = "用户操作API", description = "用户登录、注册、完善信息、更改信息等操作")
 public interface UserControllerApi {
 
-    @ApiOperation(value = "用户登录（网页端）", notes = "用户首次登录即可自动注册，无需手动注册")
-    public UserDTO webPageLogin(UserParam userParam);
-
     @ApiOperation(value = "用户登录（微信小程序）", notes = "用户首次登录即可自动注册，无需手动注册")
     public UserDTO wechatLogin(WeChatLoginParam weChatLoginParam) throws Exception;
-
-    @ApiOperation("发送短信验证码接口")
-    public BaseResponse<String> sendSms(String phoneNumber);
 
     @ApiOperation(value = "用户查看个人主页", notes = "需要登录Token")
     public StudentVO showSelfPage();

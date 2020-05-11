@@ -39,6 +39,8 @@
         <qiniu-java-sdk.version>7.2.18</qiniu-java-sdk.version>
         <image4j.version>0.7zensight1</image4j.version>
         <netty-all.version>4.1.42.Final</netty-all.version>
+        <httpclient.version>4.5.9</httpclient.version>
+        <org.eclipse.jgit.version>5.3.0.201903130848-r</org.eclipse.jgit.version>
     </properties>
 
     <dependencies>
@@ -142,7 +144,7 @@
         <dependency>
             <groupId>org.eclipse.jgit</groupId>
             <artifactId>org.eclipse.jgit</artifactId>
-            <version>5.3.0.201903130848-r</version>
+            <version>${org.eclipse.jgit.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
@@ -214,16 +216,11 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alipay.sdk</groupId>
-            <artifactId>alipay-sdk-java</artifactId>
-            <version>${alipay-sdk-java.version}</version>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
         </dependency>
-        <!--腾讯云短信sdk-->
-        <dependency>
-            <groupId>com.github.qcloudsms</groupId>
-            <artifactId>qcloudsms</artifactId>
-            <version>${qcloudsms.version}</version>
-        </dependency>
+
         <!--七牛云存储sdk-->
         <dependency>
             <groupId>com.qiniu</groupId>

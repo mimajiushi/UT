@@ -1,45 +1,38 @@
 package run.ut.app.controller;
 
 
-import cn.hutool.core.lang.Validator;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.Assert;
 import org.springframework.util.unit.DataSize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.api.UserControllerApi;
-import run.ut.app.cache.lock.HttpRequestRateLimit;
 import run.ut.app.config.wechat.WechatAccountConfig;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.WeChatException;
-import run.ut.app.model.domain.User;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.dto.UserInfoDTO;
-import run.ut.app.model.enums.RateLimitEnum;
 import run.ut.app.model.enums.SexEnum;
-import run.ut.app.model.enums.UserRolesEnum;
-import run.ut.app.model.param.*;
+import run.ut.app.model.param.UserExperiencesParam;
+import run.ut.app.model.param.UserInfoParam;
+import run.ut.app.model.param.UserSimpleParam;
+import run.ut.app.model.param.WeChatLoginParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.WeChatResponse;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.security.CheckLogin;
 import run.ut.app.security.util.JwtOperator;
-import run.ut.app.service.SmsService;
 import run.ut.app.service.UserExperiencesService;
 import run.ut.app.service.UserInfoService;
 import run.ut.app.service.UserService;
 import run.ut.app.utils.ImageUtils;
-import run.ut.app.utils.RandomUtils;
-import run.ut.app.utils.UtUtils;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -54,7 +47,6 @@ import java.util.Map;
 public class UserController extends BaseController implements UserControllerApi {
 
     private final UserService userService;
-    private final SmsService smsService;
     private final JwtOperator jwtOperator;
     private final UserInfoService userInfoService;
     private final UserExperiencesService userExperiencesService;
@@ -63,43 +55,6 @@ public class UserController extends BaseController implements UserControllerApi 
 
     @Value("${spring.servlet.multipart.max-file-size}")
     private DataSize dataSize;
-
-    @Override
-    @PostMapping("webPageLogin")
-    @HttpRequestRateLimit(limit = RateLimitEnum.RRLimit_1_5)
-    @Deprecated
-    public UserDTO webPageLogin(@Valid UserParam userParam) {
-        Assert.hasText(userParam.getSmsCode(), "Sms code must not be blank");
-        Assert.hasText(userParam.getPhoneNumber(), "Phone number must not be blank");
-
-        User user = userParam.convertTo();
-        // check phone number
-        int count = userService.count(new QueryWrapper<User>().eq("phone_number", userParam.getPhoneNumber()));
-        if (!Validator.isMobile(userParam.getPhoneNumber() + "")) {
-            throw new BadRequestException("非法手机号！");
-        }
-        if (count > 0) {
-            // login
-            smsService.checkCode(userParam.getPhoneNumber(), userParam.getSmsCode());
-            user = userService.getOne(new QueryWrapper<User>().eq("phone_number", userParam.getPhoneNumber()));
-            UserDTO userDTO = new UserDTO().convertFrom(user);
-            userDTO.setToken(jwtOperator.buildAuthToken(user));
-            return userDTO;
-        } else {
-            // register and login
-            smsService.checkCode(userParam.getPhoneNumber(), userParam.getSmsCode());
-
-            user.setNickname("UT_" + UtUtils.randomUUIDWithoutDash());
-            user.setSex(SexEnum.UNKNOW);
-            user.setRoles(UserRolesEnum.ROLE_TOURIST.getType());
-            user.setAvatar("https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg");
-            userService.save(user);
-
-            UserDTO userDTO = new UserDTO().convertFrom(user);
-            userDTO.setToken(jwtOperator.buildAuthToken(user));
-            return userDTO;
-        }
-    }
 
     @Override
     @PostMapping("wechatLogin")
@@ -122,17 +77,6 @@ public class UserController extends BaseController implements UserControllerApi 
         }
         WeChatResponse weChatResponse = res.getBody();
         return userService.wechatLogin(weChatLoginParam, weChatResponse);
-    }
-
-    @Override
-    @PostMapping("sendSms")
-    public BaseResponse<String> sendSms(String phoneNumber) {
-        Assert.notNull(phoneNumber, "Phone number must not be null");
-        if (!Validator.isMobile(phoneNumber + "")) {
-            throw new BadRequestException("非法手机号！");
-        }
-        smsService.sendCode(phoneNumber, RandomUtils.number(6));
-        return BaseResponse.ok("发送验证码成功！");
     }
 
     @Override
