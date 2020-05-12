@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="run.ut.app.mapper.PostCommentsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="run.ut.app.model.domain.PostComments">
+        <id column="id" property="id" />
+        <result column="post_id" property="postId" />
+        <result column="father_comment_id" property="fatherCommentId" />
+        <result column="to_uid" property="toUid" />
+        <result column="from_uid" property="fromUid" />
+        <result column="to_nickname" property="toNickname" />
+        <result column="from_nickname" property="fromNickname" />
+        <result column="content" property="content" />
+        <result column="likes" property="likes" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="delete" property="delete" />
+    </resultMap>
+
+</mapper>
