@@ -1,5 +1,7 @@
 package run.ut.app.model.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -21,6 +23,7 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "活动收藏对象", description = "")
 public class ActivityCollect extends BaseEntity {
 
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     private Long uid;
