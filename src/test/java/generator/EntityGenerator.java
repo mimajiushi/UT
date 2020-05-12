@@ -44,11 +44,11 @@ public class EntityGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://192.168.129.133:3306/ut?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://47.101.156.14:3306/ut?useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("123456");
+        dsc.setUsername("ut");
+        dsc.setPassword("7NcC8RHnyTRNEY4p");
         mpg.setDataSource(dsc);
 
         // 包配置
@@ -72,7 +72,7 @@ public class EntityGenerator {
 
         mpg.setCfg(cfg);
 
-        String[] tables = {"teams_recruitments_tags"};
+        String[] tables = {"activity", "activity_appointment", "activity_collect"};
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
