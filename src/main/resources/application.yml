@@ -119,31 +119,20 @@ netty:
 
 ##########################################################
 ##
-## 第三方sdk 配置
+## 微信小程序 配置
 ##
 ##########################################################
-third-api-config:
-  # 腾讯云短信验证码配置
-  sms:
-    # 应用 SDK AppID
-    app-id: 1400274431
-    # 应用 App Key
-    app-key: 3fddda3db61f49ae02bd9c7de3dc56aa
-    # 短信正文ID
-    template-id: 448386
-    # 短信签名
-    sign: chen学习
-    # 短信发送分钟间隔
-    interval-min: 1
-    # 短信有效分钟
-    valid-min: 5
-
 wechat:
   mp-app-id: wx0520203ba32fb247
   mp-app-secret: a211d5b68dc57636ccf1c9dce638e9e3
   authorize-url: https://api.weixin.qq.com/sns/jscode2session
   grant-type: authorization_code
 
+##########################################################
+##
+## 日志 配置
+##
+##########################################################
 logging:
   file:
     max-size: 10MB
