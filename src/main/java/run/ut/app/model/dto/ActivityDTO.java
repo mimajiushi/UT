@@ -38,11 +38,4 @@ public class ActivityDTO  extends BaseDTO implements OutputConverter<ActivityDTO
     private LocalDateTime startTime;
 
     private LocalDateTime endTime;
-
-    private Integer delete;
-
-    private LocalDateTime updateTime;
-
-    private LocalDateTime createTime;
-
 }
