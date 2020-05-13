@@ -47,7 +47,6 @@ import java.util.Map;
 public class UserController extends BaseController implements UserControllerApi {
 
     private final UserService userService;
-    private final JwtOperator jwtOperator;
     private final UserInfoService userInfoService;
     private final UserExperiencesService userExperiencesService;
     private final RestTemplate restTemplate;

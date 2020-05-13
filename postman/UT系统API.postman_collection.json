@@ -6706,6 +6706,173 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "BBS相关API",
+			"item": [
+				{
+					"name": "发布/更新帖子",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 2,\t\r\n  \"title\": \"测试标题3\",\r\n  \"content\": \"测试内容3\",\r\n  \"photos\": [\r\n    \"https://www.wenjie.store//blog/img//1_1579829890521.png\",\r\n    \"https://www.wenjie.store//blog/img//1_1579829890521.png\",\r\n    \"https://www.wenjie.store//blog/img//1_1579829890521.png\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/post/savePost",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"post",
+								"savePost"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "更新帖子",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 2,\t\r\n  \"title\": \"测试标题3\",\r\n  \"content\": \"测试内容3\",\r\n  \"photos\": [\r\n    \"https://www.wenjie.store//blog/img//1_1579829890521.png\",\r\n    \"https://www.wenjie.store//blog/img//1_1579829890521.png\",\r\n    \"https://www.wenjie.store//blog/img//1_1579829890521.png\"\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/post/savePost",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"post",
+										"savePost"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 May 2020 05:27:18 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"发布成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						},
+						{
+							"name": "发布帖子",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"测试标题\",\r\n  \"content\": \"测试内容\",\r\n  \"photos\": [\r\n    \"https://www.wenjie.store//blog/img//1_1579829890521.png\"\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/post/savePost",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"post",
+										"savePost"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 13 May 2020 04:55:42 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"发布成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}

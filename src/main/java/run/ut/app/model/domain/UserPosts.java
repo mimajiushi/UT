@@ -6,8 +6,6 @@ import io.swagger.annotations.ApiModel;
 import lombok.*;
 import lombok.experimental.Accessors;
 
-import java.time.LocalDateTime;
-
 /**
  * <p>
  * UserPosts
@@ -31,11 +29,4 @@ public class UserPosts extends BaseEntity {
     private Long uid;
 
     private Long postId;
-
-    private LocalDateTime createTime;
-
-    private LocalDateTime updateTime;
-
-    private Integer deleted;
-
 }

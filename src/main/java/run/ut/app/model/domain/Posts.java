@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
+import run.ut.app.model.dto.base.InputConverter;
+import run.ut.app.model.param.PostParam;
 
 /**
  * <p>
@@ -22,7 +24,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "Posts对象", description = "")
-public class Posts extends BaseEntity {
+public class Posts extends BaseEntity implements InputConverter<PostParam> {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;

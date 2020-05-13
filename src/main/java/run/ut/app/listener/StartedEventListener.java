@@ -57,7 +57,7 @@ public class StartedEventListener implements ApplicationListener<ApplicationStar
         String baseApiPath = "http://localhost:" + port +
                 (null == contextPath ? "" : contextPath);
         log.info("UT-App started at         {}", baseApiPath);
-        log.info("UT-App admin started at   {}/{}", baseApiPath, "admin");
+        log.info("UT-App admin started at   {}/{}", baseApiPath, "admin/login");
         log.info("UT-App api doc was enabled at  {}/docs.html", baseApiPath);
         log.info("UT-App log file at   {}/spring.log", logPath);
         log.info("UT-App has started successfully!");
