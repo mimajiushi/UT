@@ -25,5 +25,5 @@ public interface PostControllerApi {
     BaseResponse<String> collect(@PathVariable Long postId);
 
     @ApiOperation(value = "取消帖子收藏")
-    BaseResponse<String> cancalCollect(@PathVariable Long postId);
+    BaseResponse<String> cancelCollect(@PathVariable Long postId);
 }
