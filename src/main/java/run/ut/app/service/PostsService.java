@@ -1,10 +1,15 @@
 package run.ut.app.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.lang.NonNull;
 import run.ut.app.model.domain.Posts;
 import com.baomidou.mybatisplus.extension.service.IService;
 import run.ut.app.model.param.PostParam;
+import run.ut.app.model.param.SearchPostParam;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.vo.PostVO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -74,4 +79,14 @@ public interface PostsService extends IService<Posts> {
      */
     @NonNull
     BaseResponse<String> cancelCollect(@NonNull Long postId, @NonNull Long uid);
+
+    /**
+     * Lists posts by params
+     *
+     * @param searchPostParam  search parameters
+     * @param page             paging object of mybatis
+     * @return                 PostVO list
+     */
+    @NonNull
+    List<PostVO> listPostsByParams(@NonNull SearchPostParam searchPostParam, @NonNull Page page);
 }

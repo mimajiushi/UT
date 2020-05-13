@@ -1,6 +1,7 @@
 package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +18,9 @@ import run.ut.app.model.domain.PostPhotos;
 import run.ut.app.model.domain.Posts;
 import run.ut.app.model.domain.UserPosts;
 import run.ut.app.model.param.PostParam;
+import run.ut.app.model.param.SearchPostParam;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.vo.PostVO;
 import run.ut.app.service.PostPhotosService;
 import run.ut.app.service.PostsService;
 import run.ut.app.service.RedisService;
@@ -136,5 +139,11 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         userPostsService.remove(new QueryWrapper<UserPosts>()
             .eq("post_id", postId).eq("uid", uid));
         return BaseResponse.ok("取消成功~");
+    }
+
+    @Override
+    public List<PostVO> listPostsByParams(SearchPostParam searchPostParam, Page page) {
+        // TODO 写sql
+        return null;
     }
 }
