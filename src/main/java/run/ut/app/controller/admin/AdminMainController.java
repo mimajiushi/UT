@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import run.ut.app.api.admin.AdminMainControllerApi;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.vo.SystemInfoVO;
 import run.ut.app.security.CheckAuthorization;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -78,19 +77,28 @@ public class AdminMainController implements AdminMainControllerApi {
         return "system/system_log";
     }
 
+    /**
+     * 活动列表
+     * @return template path
+     */
+    @GetMapping("activityList")
+    public String activityList() {
+        return "activity/activity_list";
+    }
+
     @ResponseBody
     @GetMapping("systemInfo")
     @CheckAuthorization(roles = UserRolesEnum.ROLE_ADMIN)
-    public BaseResponse<Map<String, String>> systemInfo(HttpServletRequest request) {
+    public BaseResponse<SystemInfoVO> systemInfo(HttpServletRequest request) {
         Properties properties = System.getProperties();
-        Map<String, String> map = new HashMap<>();
-        map.put("java", properties.getProperty("java.version"));
-        map.put("osArch", properties.getProperty("os.arch"));
-        map.put("osVersion", properties.getProperty("os.version"));
-        map.put("JVM", properties.getProperty("java.vm.name"));
-        map.put("osName", properties.getProperty("os.name"));
-        map.put("server", request.getServletContext().getServerInfo());
-        map.put("cpu", Runtime.getRuntime().availableProcessors() + "核");
-        return BaseResponse.ok(map);
+        SystemInfoVO systemInfo = new SystemInfoVO();
+        systemInfo.setAvailableProcessors(Runtime.getRuntime().availableProcessors() + "核")
+                .setJavaVersion(properties.getProperty("java.version"))
+                .setJvmName(properties.getProperty("java.vm.name"))
+                .setOsArch(properties.getProperty("os.arch"))
+                .setOsName(properties.getProperty("os.name"))
+                .setOsVersion(properties.getProperty("os.version"))
+                .setServerInfo(request.getServletContext().getServerInfo());
+        return BaseResponse.ok(systemInfo);
     }
 }
