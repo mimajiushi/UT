@@ -24,4 +24,54 @@ public interface PostsService extends IService<Posts> {
      */
     @NonNull
     BaseResponse<String> savePost(@NonNull PostParam postParam);
+
+    /**
+     * Delete post by id
+     *
+     * @param postId  post id
+     * @param uid     uid
+     * @return        ok result with message
+     */
+    @NonNull
+    BaseResponse<String> delPost(@NonNull Long postId, @NonNull Long uid);
+
+    /**
+     * User likes post
+     *
+     * @param postId  post id
+     * @param uid     uid
+     * @return        ok result with message
+     */
+    @NonNull
+    BaseResponse<String> like(@NonNull Long postId, @NonNull Long uid);
+
+    /**
+     * User cancel likes
+     *
+     * @param postId   post id
+     * @param uid      uid
+     * @return         ok result with message
+     */
+    @NonNull
+    BaseResponse<String> unLike(@NonNull Long postId, @NonNull Long uid);
+
+    /**
+     * User collects post
+     *
+     * @param postId   post id
+     * @param uid      uid
+     * @return         ok result with message
+     */
+    @NonNull
+    BaseResponse<String> collect(@NonNull Long postId, @NonNull Long uid);
+
+    /**
+     * User cancel collect post
+     *
+     * @param postId   post id
+     * @param uid      uid
+     * @return         ok result with message
+     */
+    @NonNull
+    BaseResponse<String> cancelCollect(@NonNull Long postId, @NonNull Long uid);
 }

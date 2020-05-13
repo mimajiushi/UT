@@ -60,4 +60,10 @@ public interface UserInfoService extends IService<UserInfo> {
      */
     @NonNull
     CommentPage<UserInfoDTO> listUserInfoByParam(@NonNull UserInfoParam userInfoParam, @NonNull Page<UserInfo> page) throws IOException;
+
+    /**
+     * 检验用户是否通过认证
+     * @param uid user's id
+     */
+    void checkUser(@NonNull Long uid);
 }

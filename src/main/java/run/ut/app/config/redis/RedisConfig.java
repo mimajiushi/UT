@@ -32,4 +32,7 @@ public class RedisConfig {
 
     public static final String CHANNEL_KEY = "CHANNEL_KEY";
 
+    public static final String USER_LIKE_POST = "USER::%s::LIKE::%s";
+    public static final String POST_LIKE_COUNT = "POST_LIKE_COUNT::%s";
+
 }

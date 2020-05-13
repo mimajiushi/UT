@@ -28,7 +28,6 @@ import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.WeChatResponse;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.security.CheckLogin;
-import run.ut.app.security.util.JwtOperator;
 import run.ut.app.service.UserExperiencesService;
 import run.ut.app.service.UserInfoService;
 import run.ut.app.service.UserService;
