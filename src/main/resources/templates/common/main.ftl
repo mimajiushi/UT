@@ -80,6 +80,19 @@
             </li>
             <li>
                 <a onclick="">
+                    <i class="iconfont left-nav-li" lay-tips="活动管理">&#xe723;</i>
+                    <cite>活动管理</cite>
+                    <i class="iconfont nav_right">&#xe6bb;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('活动列表','${base}/admin/activityList')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>活动列表</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a onclick="">
                     <i class="iconfont left-nav-li" lay-tips="系统管理">&#xe723;</i>
                     <cite>系统管理</cite>
                     <i class="iconfont nav_right">&#xe6ae;</i></a>

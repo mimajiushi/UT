@@ -3,9 +3,9 @@ package run.ut.app.api.admin;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.vo.SystemInfoVO;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 /**
  * @author Lucien
@@ -17,5 +17,5 @@ import java.util.Map;
 public interface AdminMainControllerApi {
 
     @ApiOperation(value = "获取系统信息")
-    BaseResponse<Map<String, String>> systemInfo(HttpServletRequest request);
+    BaseResponse<SystemInfoVO> systemInfo(HttpServletRequest request);
 }

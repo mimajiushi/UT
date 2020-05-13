@@ -38,13 +38,13 @@
                             <tbody>
                             <tr>
                                 <th>Java版本</th>
-                                <td>{{ d.java }}</td></tr>
+                                <td>{{ d.javaVersion }}</td></tr>
                             <tr>
                                 <th>JVM</th>
-                                <td>{{ d.JVM }}</td></tr>
+                                <td>{{ d.jvmName }}</td></tr>
                             <tr>
                                 <th>服务器版本</th>
-                                <td>{{ d.server }}</td></tr>
+                                <td>{{ d.serverInfo }}</td></tr>
                             <tr>
                                 <th>操作系统</th>
                                 <td>{{ d.osName }}</td></tr>
@@ -56,7 +56,7 @@
                                 <td>{{ d.osVersion }}</td></tr>
                             <tr>
                                 <th>CPU核数</th>
-                                <td>{{ d.cpu }}</td></tr>
+                                <td>{{ d.availableProcessors }}</td></tr>
                             </tbody>
                         </table>
                     </div>

@@ -42,12 +42,5 @@ public class Activity extends BaseEntity {
 
     private LocalDateTime endTime;
 
-    private Integer delete;
-
-    private LocalDateTime updateTime;
-
-    private LocalDateTime createTime;
-
-
 
 }
