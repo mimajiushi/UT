@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e368ae96-e4cd-4e48-afec-8e3aec9ff3e0",
+		"_postman_id": "e66630ec-a101-4fbe-a117-1edec4a0e650",
 		"name": "UT系统API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -321,6 +321,120 @@
 					},
 					"response": [
 						{
+							"name": "申请角色认证（未登录或登录token过期案例）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file_front",
+											"description": "证件照正面",
+											"type": "file",
+											"src": "/D:/图包/P站3/1.jpg"
+										},
+										{
+											"key": "file_reverse",
+											"description": "证件照反面",
+											"type": "file",
+											"src": "/D:/图包/P站3/2.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/user/applyForCertification?uid=21&schoolId=1367&degreeId=2&areaId=110000&role=4&grade=2017&subject=信息工程&realName=陈文杰",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"applyForCertification"
+									],
+									"query": [
+										{
+											"key": "uid",
+											"value": "21",
+											"description": "用户uid"
+										},
+										{
+											"key": "schoolId",
+											"value": "1367",
+											"description": "学校id"
+										},
+										{
+											"key": "degreeId",
+											"value": "2",
+											"description": "学位id  1-大专 2-本科 3-博士及以上"
+										},
+										{
+											"key": "areaId",
+											"value": "110000",
+											"description": "省/市/区id"
+										},
+										{
+											"key": "role",
+											"value": "4",
+											"description": "角色id  1-学生认证  2-导师认证  4-赛事主办方认证"
+										},
+										{
+											"key": "grade",
+											"value": "2017",
+											"description": "2017级学生就填2017，学生以外填0"
+										},
+										{
+											"key": "subject",
+											"value": "信息工程",
+											"description": "填专业，如软件工程、信息工程"
+										},
+										{
+											"key": "realName",
+											"value": "陈文杰",
+											"description": "真实姓名"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 06:58:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"message\": \"Token不合法/登录状态过期，请重新登录\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						},
+						{
 							"name": "申请角色认证（成功案例）",
 							"originalRequest": {
 								"method": "POST",
@@ -438,120 +552,6 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"提交资料成功！请耐心等待审核\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-11 15:00:30\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 16,\n        \"uid\": 21,\n        \"school\": \"北京大学\",\n        \"degreeId\": \"本科\",\n        \"area\": \"北京\",\n        \"role\": \"学生\",\n        \"grade\": 2017,\n        \"subject\": \"信息工程\",\n        \"readName\": \"陈文杰\",\n        \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1583910029607.jpg\",\n        \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1583910029949.jpg\",\n        \"status\": \"审核中\"\n    }\n}"
-						},
-						{
-							"name": "申请角色认证（未登录或登录token过期案例）",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/x-www-form-urlencoded",
-										"type": "text",
-										"disabled": true
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "file_front",
-											"description": "证件照正面",
-											"type": "file",
-											"src": "/D:/图包/P站3/1.jpg"
-										},
-										{
-											"key": "file_reverse",
-											"description": "证件照反面",
-											"type": "file",
-											"src": "/D:/图包/P站3/2.jpg"
-										}
-									]
-								},
-								"url": {
-									"raw": "http://localhost:8080/ut/user/applyForCertification?uid=21&schoolId=1367&degreeId=2&areaId=110000&role=4&grade=2017&subject=信息工程&realName=陈文杰",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"user",
-										"applyForCertification"
-									],
-									"query": [
-										{
-											"key": "uid",
-											"value": "21",
-											"description": "用户uid"
-										},
-										{
-											"key": "schoolId",
-											"value": "1367",
-											"description": "学校id"
-										},
-										{
-											"key": "degreeId",
-											"value": "2",
-											"description": "学位id  1-大专 2-本科 3-博士及以上"
-										},
-										{
-											"key": "areaId",
-											"value": "110000",
-											"description": "省/市/区id"
-										},
-										{
-											"key": "role",
-											"value": "4",
-											"description": "角色id  1-学生认证  2-导师认证  4-赛事主办方认证"
-										},
-										{
-											"key": "grade",
-											"value": "2017",
-											"description": "2017级学生就填2017，学生以外填0"
-										},
-										{
-											"key": "subject",
-											"value": "信息工程",
-											"description": "填专业，如软件工程、信息工程"
-										},
-										{
-											"key": "realName",
-											"value": "陈文杰",
-											"description": "真实姓名"
-										}
-									]
-								}
-							},
-							"status": "Unauthorized",
-							"code": 401,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 11 Mar 2020 06:58:46 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 401,\n    \"message\": \"Token不合法/登录状态过期，请重新登录\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						}
 					]
 				},
@@ -691,68 +691,6 @@
 					},
 					"response": [
 						{
-							"name": "添加个人经历",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "UT-Token",
-										"type": "text",
-										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"uid\": 1,\r\n  \"name\": \"智慧食堂4\",\r\n  \"awards\": \"吹牛一等奖\",\r\n  \"role\": \"后端开发\",\r\n  \"projectUrl\": \"https://wenjie.store\",\r\n  \"description\": \"项目描述xxxxx\",\r\n  \"startTime\": \"2019年10月\",\r\n  \"endTime\": \"2020年8月\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/ut/user/saveUserExperiences",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"user",
-										"saveUserExperiences"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 22 Mar 2020 09:39:03 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-22 17:39:03\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 20,\n        \"uid\": 21,\n        \"name\": \"智慧食堂4\",\n        \"awards\": \"吹牛一等奖\",\n        \"role\": \"后端开发\",\n        \"projectUrl\": \"https://wenjie.store\",\n        \"description\": \"项目描述xxxxx\",\n        \"startTime\": \"2019年10月\",\n        \"endTime\": \"2020年8月\"\n    }\n}"
-						},
-						{
 							"name": "更新个人经历",
 							"originalRequest": {
 								"method": "POST",
@@ -813,6 +751,68 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": null,\n        \"updateTime\": \"2020-03-22 17:40:04\",\n        \"deleted\": 0,\n        \"id\": 20,\n        \"uid\": 21,\n        \"name\": \"智慧食堂4\",\n        \"awards\": \"吹牛一等奖\",\n        \"role\": \"后端开发\",\n        \"projectUrl\": \"https://wenjie.store\",\n        \"description\": \"项目描述xxxxx\",\n        \"startTime\": \"2019年10月\",\n        \"endTime\": \"2020年8月\"\n    }\n}"
+						},
+						{
+							"name": "添加个人经历",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"type": "text",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"uid\": 1,\r\n  \"name\": \"智慧食堂4\",\r\n  \"awards\": \"吹牛一等奖\",\r\n  \"role\": \"后端开发\",\r\n  \"projectUrl\": \"https://wenjie.store\",\r\n  \"description\": \"项目描述xxxxx\",\r\n  \"startTime\": \"2019年10月\",\r\n  \"endTime\": \"2020年8月\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/user/saveUserExperiences",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"saveUserExperiences"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Mar 2020 09:39:03 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-22 17:39:03\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 20,\n        \"uid\": 21,\n        \"name\": \"智慧食堂4\",\n        \"awards\": \"吹牛一等奖\",\n        \"role\": \"后端开发\",\n        \"projectUrl\": \"https://wenjie.store\",\n        \"description\": \"项目描述xxxxx\",\n        \"startTime\": \"2019年10月\",\n        \"endTime\": \"2020年8月\"\n    }\n}"
 						}
 					]
 				},
@@ -1669,83 +1669,6 @@
 							"body": "{\n    \"status\": 200,\n    \"message\": \"设置标签成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-11 22:41:36\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 34,\n        \"parentId\": 6,\n        \"name\": \"测试标签（金融子标签）\",\n        \"level\": 1\n    }\n}"
 						},
 						{
-							"name": "新增/更新标签（创建顶级标签）",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "UT-Token",
-										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsIm9wZW5pZCI6IiIsInJvbGVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU4MzkyNjk2OSwiZXhwIjoxNjE1NDYyOTY5fQ.vPCLEp4PCZYtiLPog3tJV92AnC76dLR9sClZeFNPPDA",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"id\": 12,\r\n  \"parentId\": 7,\r\n  \"name\": \"更新（理财子标签）\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/ut/tags/saveTag?parentId=0&name=测试标签（顶级标签）",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"tags",
-										"saveTag"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": null,
-											"disabled": true
-										},
-										{
-											"key": "parentId",
-											"value": "0"
-										},
-										{
-											"key": "name",
-											"value": "测试标签（顶级标签）"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 11 Mar 2020 14:44:39 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"设置标签成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-11 22:44:39\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 36,\n        \"parentId\": 0,\n        \"name\": \"测试标签（顶级标签）\",\n        \"level\": 0\n    }\n}"
-						},
-						{
 							"name": "更新标签",
 							"originalRequest": {
 								"method": "POST",
@@ -1888,6 +1811,83 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"设置标签成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-11 19:37:28\",\n        \"updateTime\": \"2020-02-25 12:50:09\",\n        \"deleted\": 0,\n        \"id\": 9,\n        \"parentId\": 6,\n        \"name\": \"更新（金融子标签）\",\n        \"level\": 1\n    }\n}"
+						},
+						{
+							"name": "新增/更新标签（创建顶级标签）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsIm9wZW5pZCI6IiIsInJvbGVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTU4MzkyNjk2OSwiZXhwIjoxNjE1NDYyOTY5fQ.vPCLEp4PCZYtiLPog3tJV92AnC76dLR9sClZeFNPPDA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 12,\r\n  \"parentId\": 7,\r\n  \"name\": \"更新（理财子标签）\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/tags/saveTag?parentId=0&name=测试标签（顶级标签）",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"tags",
+										"saveTag"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "parentId",
+											"value": "0"
+										},
+										{
+											"key": "name",
+											"value": "测试标签（顶级标签）"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 11 Mar 2020 14:44:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"设置标签成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-11 22:44:39\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 36,\n        \"parentId\": 0,\n        \"name\": \"测试标签（顶级标签）\",\n        \"level\": 0\n    }\n}"
 						}
 					]
 				},
@@ -2418,68 +2418,6 @@
 					},
 					"response": [
 						{
-							"name": "邮箱或者验证码错误",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "email",
-											"value": "1498780478@qq.com",
-											"type": "text"
-										},
-										{
-											"key": "code",
-											"value": "1234567",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "http://localhost:8080/ut/admin/loginByEmail",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"admin",
-										"loginByEmail"
-									]
-								}
-							},
-							"status": "Unauthorized",
-							"code": 401,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 06 Apr 2020 13:59:11 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 401,\n    \"message\": \"无效帐号或验证码！\",\n    \"devMessage\": null,\n    \"data\": null\n}"
-						},
-						{
 							"name": "登录成功",
 							"originalRequest": {
 								"method": "POST",
@@ -2540,6 +2478,68 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-09 13:41:30\",\n        \"updateTime\": \"2020-03-30 19:47:26\",\n        \"deleted\": 0,\n        \"id\": null,\n        \"uid\": 21,\n        \"openid\": \"onjYF5ldIp8BdssDb9yXeHVFC7hs\",\n        \"nickname\": \"chenwenjie\",\n        \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n        \"phoneNumber\": \"15521245562\",\n        \"email\": \"1498780478@qq.com\",\n        \"description\": \"1.曾参与过xxx项目，项目已上线，获得过xxx奖。\\n2.曾参与过xxx项目，项目已上线，获得过xxx奖。\\n3. 曾参与过xxx项目，项目已上线，获得过xxx奖\",\n        \"sex\": \"男\",\n        \"roles\": 13,\n        \"token\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiJvbmpZRjVsZElwOEJkc3NEYjl5WGVIVkZDN2hzIiwicm9sZXMiOjEzLCJpYXQiOjE1ODYxODE0MjYsImV4cCI6MTYxNzcxNzQyNn0.eRYSdgrt3rBWibkDZTc3gpSCRMqGW3GNIbROxB4khNU\",\n            \"expiration_time\": 1617717426493\n        }\n    }\n}"
+						},
+						{
+							"name": "邮箱或者验证码错误",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "1498780478@qq.com",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "1234567",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/loginByEmail",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"loginByEmail"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 Apr 2020 13:59:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 401,\n    \"message\": \"无效帐号或验证码！\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						}
 					]
 				},
@@ -2942,6 +2942,312 @@
 					},
 					"response": [
 						{
+							"name": "全条件查询",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listStudentByParam?grade=2017&tagId=2&schoolId=3237&degreeId=2&pageNum=1&pageSize=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listStudentByParam"
+									],
+									"query": [
+										{
+											"key": "grade",
+											"value": "2017"
+										},
+										{
+											"key": "tagId",
+											"value": "2"
+										},
+										{
+											"key": "schoolId",
+											"value": "3237"
+										},
+										{
+											"key": "degreeId",
+											"value": "2"
+										},
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Mar 2020 14:54:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"realName\": \"陈文杰2\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "姓名模糊查询",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listStudentByParam?pageNum=1&pageSize=10&name=chen",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listStudentByParam"
+									],
+									"query": [
+										{
+											"key": "grade",
+											"value": "2017",
+											"disabled": true
+										},
+										{
+											"key": "tagId",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "schoolId",
+											"value": "3237",
+											"disabled": true
+										},
+										{
+											"key": "degreeId",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										},
+										{
+											"key": "name",
+											"value": "chen"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Mar 2020 04:50:52 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"sex\": null,\n                \"roles\": null,\n                \"phoneNumber\": null,\n                \"email\": null,\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"subject\": null,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"我是一个xxxxxxx\",\n                \"credentialsPhotoFront\": null,\n                \"credentialsPhotoReverse\": null,\n                \"hasAuthInfo\": false\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "查询tagid=2且2017的",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listStudentByParam?grade=2017&tagId=2&pageNum=1&pageSize=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listStudentByParam"
+									],
+									"query": [
+										{
+											"key": "grade",
+											"value": "2017"
+										},
+										{
+											"key": "tagId",
+											"value": "2"
+										},
+										{
+											"key": "schoolId",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "degreeId",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Mar 2020 14:53:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"realName\": \"陈文杰2\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "不带条件",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listStudentByParam?pageNum=1&pageSize=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listStudentByParam"
+									],
+									"query": [
+										{
+											"key": "grade",
+											"value": "2017",
+											"disabled": true
+										},
+										{
+											"key": "tagId",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "schoolId",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "degreeId",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Mar 2020 14:51:54 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 3,\n        \"rows\": [\n            {\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"realName\": \"陈文杰2\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 23,\n                \"nickname\": \"UT_8B1266\",\n                \"realName\": \"陈文杰3\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2018,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            }\n        ]\n    }\n}"
+						},
+						{
 							"name": "查询华软的2017学生",
 							"originalRequest": {
 								"method": "GET",
@@ -3091,312 +3397,6 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"realName\": \"陈文杰2\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            }\n        ]\n    }\n}"
-						},
-						{
-							"name": "查询tagid=2且2017的",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/ut/index/listStudentByParam?grade=2017&tagId=2&pageNum=1&pageSize=10",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"index",
-										"listStudentByParam"
-									],
-									"query": [
-										{
-											"key": "grade",
-											"value": "2017"
-										},
-										{
-											"key": "tagId",
-											"value": "2"
-										},
-										{
-											"key": "schoolId",
-											"value": null,
-											"disabled": true
-										},
-										{
-											"key": "degreeId",
-											"value": null,
-											"disabled": true
-										},
-										{
-											"key": "pageNum",
-											"value": "1"
-										},
-										{
-											"key": "pageSize",
-											"value": "10"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 12 Mar 2020 14:53:09 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"realName\": \"陈文杰2\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            }\n        ]\n    }\n}"
-						},
-						{
-							"name": "姓名模糊查询",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/ut/index/listStudentByParam?pageNum=1&pageSize=10&name=chen",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"index",
-										"listStudentByParam"
-									],
-									"query": [
-										{
-											"key": "grade",
-											"value": "2017",
-											"disabled": true
-										},
-										{
-											"key": "tagId",
-											"value": "2",
-											"disabled": true
-										},
-										{
-											"key": "schoolId",
-											"value": "3237",
-											"disabled": true
-										},
-										{
-											"key": "degreeId",
-											"value": "2",
-											"disabled": true
-										},
-										{
-											"key": "pageNum",
-											"value": "1"
-										},
-										{
-											"key": "pageSize",
-											"value": "10"
-										},
-										{
-											"key": "name",
-											"value": "chen"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 30 Mar 2020 04:50:52 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"sex\": null,\n                \"roles\": null,\n                \"phoneNumber\": null,\n                \"email\": null,\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"subject\": null,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"我是一个xxxxxxx\",\n                \"credentialsPhotoFront\": null,\n                \"credentialsPhotoReverse\": null,\n                \"hasAuthInfo\": false\n            }\n        ]\n    }\n}"
-						},
-						{
-							"name": "全条件查询",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/ut/index/listStudentByParam?grade=2017&tagId=2&schoolId=3237&degreeId=2&pageNum=1&pageSize=10",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"index",
-										"listStudentByParam"
-									],
-									"query": [
-										{
-											"key": "grade",
-											"value": "2017"
-										},
-										{
-											"key": "tagId",
-											"value": "2"
-										},
-										{
-											"key": "schoolId",
-											"value": "3237"
-										},
-										{
-											"key": "degreeId",
-											"value": "2"
-										},
-										{
-											"key": "pageNum",
-											"value": "1"
-										},
-										{
-											"key": "pageSize",
-											"value": "10"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 12 Mar 2020 14:54:21 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"realName\": \"陈文杰2\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            }\n        ]\n    }\n}"
-						},
-						{
-							"name": "不带条件",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/ut/index/listStudentByParam?pageNum=1&pageSize=10",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"index",
-										"listStudentByParam"
-									],
-									"query": [
-										{
-											"key": "grade",
-											"value": "2017",
-											"disabled": true
-										},
-										{
-											"key": "tagId",
-											"value": "2",
-											"disabled": true
-										},
-										{
-											"key": "schoolId",
-											"value": null,
-											"disabled": true
-										},
-										{
-											"key": "degreeId",
-											"value": null,
-											"disabled": true
-										},
-										{
-											"key": "pageNum",
-											"value": "1"
-										},
-										{
-											"key": "pageSize",
-											"value": "10"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 12 Mar 2020 14:51:54 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 3,\n        \"rows\": [\n            {\n                \"uid\": 22,\n                \"nickname\": \"UT_8B1234\",\n                \"realName\": \"陈文杰2\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 23,\n                \"nickname\": \"UT_8B1266\",\n                \"realName\": \"陈文杰3\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2018,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            },\n            {\n                \"uid\": 21,\n                \"nickname\": \"UT_9a7293\",\n                \"realName\": \"陈文杰\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"degree\": \"本科\",\n                \"grade\": 2017,\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2,3\",\n                \"schoolId\": 3237,\n                \"school\": \"广州大学华软软件学院\",\n                \"experiences\": null,\n                \"description\": \"\"\n            }\n        ]\n    }\n}"
 						}
 					]
 				},
@@ -3594,14 +3594,190 @@
 					},
 					"response": [
 						{
+							"name": "默认查询",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listTeamByParam",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listTeamByParam"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "u",
+											"description": "团队名（模糊查询）",
+											"disabled": true
+										},
+										{
+											"key": "tagId",
+											"value": "1",
+											"description": "标签id",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Mar 2020 06:19:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 22,\n        \"rows\": [\n            {\n                \"id\": 22,\n                \"name\": \"UT小分队3\",\n                \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248460308.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-15 13:01:01\"\n            },\n            {\n                \"id\": 21,\n                \"name\": \"UT小分队\",\n                \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248275363.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-15 12:57:57\"\n            },\n            {\n                \"id\": 1,\n                \"name\": \"UT小分队2\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"adawa\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"2,3\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 3,\n                \"name\": \"uilul\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 4,\n                \"name\": \"rjfdber\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 5,\n                \"name\": \"yyyy\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 6,\n                \"name\": \"xxxxx\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 7,\n                \"name\": \"qqqq\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 8,\n                \"name\": \"uuuu\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "团队名模糊查询",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listTeamByParam?name=u",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listTeamByParam"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "u",
+											"description": "团队名（模糊查询）"
+										},
+										{
+											"key": "tagId",
+											"value": "1",
+											"description": "标签id",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Mar 2020 06:19:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 6,\n        \"rows\": [\n            {\n                \"id\": 22,\n                \"name\": \"UT小分队3\",\n                \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248460308.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-15 13:01:01\"\n            },\n            {\n                \"id\": 21,\n                \"name\": \"UT小分队\",\n                \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248275363.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-15 12:57:57\"\n            },\n            {\n                \"id\": 1,\n                \"name\": \"UT小分队2\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 3,\n                \"name\": \"uilul\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 8,\n                \"name\": \"uuuu\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 18,\n                \"name\": \"uuu\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "团队名+标签查询",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listTeamByParam?name=u&tagId=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listTeamByParam"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "u",
+											"description": "团队名（模糊查询）"
+										},
+										{
+											"key": "tagId",
+											"value": "1",
+											"description": "标签id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Mar 2020 06:20:31 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 1,\n                \"name\": \"UT小分队2\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            }\n        ]\n    }\n}"
+						},
+						{
 							"name": "补上之前忘记了的分页查询",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
 								"url": {
 									"raw": "http://localhost:8080/ut/index/listTeamByParam?pageNum=1&pageSize=100",
 									"protocol": "http",
@@ -3665,198 +3841,6 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 23,\n        \"rows\": [\n            {\n                \"id\": 2,\n                \"name\": \"adawa\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"2,3\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 3,\n                \"name\": \"uilul\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 4,\n                \"name\": \"rjfdber\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 5,\n                \"name\": \"yyyy\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 6,\n                \"name\": \"xxxxx\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 7,\n                \"name\": \"qqqq\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 8,\n                \"name\": \"uuuu\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 9,\n                \"name\": \"iii\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 10,\n                \"name\": \"sss\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 11,\n                \"name\": \"zzz\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 12,\n                \"name\": \"xxx\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 13,\n                \"name\": \"vvvv\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 14,\n                \"name\": \"tejtyk\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 15,\n                \"name\": \"dawd\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 16,\n                \"name\": \"eee\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 17,\n                \"name\": \"yyy\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 18,\n                \"name\": \"uuu\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 19,\n                \"name\": \"afawf\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 20,\n                \"name\": \"nnn\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 21,\n                \"name\": \"UT小分队\",\n                \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248275363.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-15 12:57:57\"\n            },\n            {\n                \"id\": 22,\n                \"name\": \"UT小分队3\",\n                \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248460308.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-15 13:01:01\"\n            },\n            {\n                \"id\": 23,\n                \"name\": \"UT小分队666\",\n                \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584284862205.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-15 23:07:44\"\n            },\n            {\n                \"id\": 1,\n                \"name\": \"UT小分队2\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"status\": \"招募中\",\n                \"recruitments\": null,\n                \"members\": null,\n                \"createTime\": \"2020-03-17 21:16:50\"\n            }\n        ]\n    }\n}"
-						},
-						{
-							"name": "团队名+标签查询",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
-								"url": {
-									"raw": "http://localhost:8080/ut/index/listTeamByParam?name=u&tagId=1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"index",
-										"listTeamByParam"
-									],
-									"query": [
-										{
-											"key": "name",
-											"value": "u",
-											"description": "团队名（模糊查询）"
-										},
-										{
-											"key": "tagId",
-											"value": "1",
-											"description": "标签id"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 15 Mar 2020 06:20:31 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 1,\n                \"name\": \"UT小分队2\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            }\n        ]\n    }\n}"
-						},
-						{
-							"name": "团队名模糊查询",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
-								"url": {
-									"raw": "http://localhost:8080/ut/index/listTeamByParam?name=u",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"index",
-										"listTeamByParam"
-									],
-									"query": [
-										{
-											"key": "name",
-											"value": "u",
-											"description": "团队名（模糊查询）"
-										},
-										{
-											"key": "tagId",
-											"value": "1",
-											"description": "标签id",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 15 Mar 2020 06:19:49 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 6,\n        \"rows\": [\n            {\n                \"id\": 22,\n                \"name\": \"UT小分队3\",\n                \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248460308.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-15 13:01:01\"\n            },\n            {\n                \"id\": 21,\n                \"name\": \"UT小分队\",\n                \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248275363.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-15 12:57:57\"\n            },\n            {\n                \"id\": 1,\n                \"name\": \"UT小分队2\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 3,\n                \"name\": \"uilul\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 8,\n                \"name\": \"uuuu\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 18,\n                \"name\": \"uuu\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            }\n        ]\n    }\n}"
-						},
-						{
-							"name": "默认查询",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
-								"url": {
-									"raw": "http://localhost:8080/ut/index/listTeamByParam",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"index",
-										"listTeamByParam"
-									],
-									"query": [
-										{
-											"key": "name",
-											"value": "u",
-											"description": "团队名（模糊查询）",
-											"disabled": true
-										},
-										{
-											"key": "tagId",
-											"value": "1",
-											"description": "标签id",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 15 Mar 2020 06:19:21 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 22,\n        \"rows\": [\n            {\n                \"id\": 22,\n                \"name\": \"UT小分队3\",\n                \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248460308.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-15 13:01:01\"\n            },\n            {\n                \"id\": 21,\n                \"name\": \"UT小分队\",\n                \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248275363.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-15 12:57:57\"\n            },\n            {\n                \"id\": 1,\n                \"name\": \"UT小分队2\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n                \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:03\",\n                        \"updateTime\": \"2020-02-25 13:45:33\",\n                        \"deleted\": 0,\n                        \"id\": 1,\n                        \"parentId\": 0,\n                        \"name\": \"技术\",\n                        \"level\": 0\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"1,2\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"adawa\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": [\n                    {\n                        \"createTime\": \"2020-03-11 13:04:34\",\n                        \"updateTime\": \"2020-02-25 13:45:43\",\n                        \"deleted\": 0,\n                        \"id\": 2,\n                        \"parentId\": 1,\n                        \"name\": \"Java\",\n                        \"level\": 1\n                    },\n                    {\n                        \"createTime\": \"2020-03-11 13:04:53\",\n                        \"updateTime\": \"2020-02-25 13:45:50\",\n                        \"deleted\": 0,\n                        \"id\": 3,\n                        \"parentId\": 1,\n                        \"name\": \"PHP\",\n                        \"level\": 1\n                    }\n                ],\n                \"tagIds\": \"2,3\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 3,\n                \"name\": \"uilul\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 4,\n                \"name\": \"rjfdber\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 5,\n                \"name\": \"yyyy\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 6,\n                \"name\": \"xxxxx\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 7,\n                \"name\": \"qqqq\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            },\n            {\n                \"id\": 8,\n                \"name\": \"uuuu\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"description\": \"awdawd\",\n                \"tags\": null,\n                \"tagIds\": \"\",\n                \"status\": \"招募中\",\n                \"createTime\": \"2020-03-14 21:16:50\"\n            }\n        ]\n    }\n}"
 						}
 					]
 				},
@@ -3967,6 +3951,67 @@
 					},
 					"response": [
 						{
+							"name": "首页获取招聘职位list（关键字搜索）",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/listRecruitmentByParam?pageNum=1&pageSize=10&name=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"listRecruitmentByParam"
+									],
+									"query": [
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										},
+										{
+											"key": "name",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 May 2020 13:11:06 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 5,\n        \"rows\": [\n            {\n                \"id\": 2,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发2批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"UT小分队2\",\n                \"createTime\": \"2020-03-15 16:43:14\"\n            },\n            {\n                \"id\": 7,\n                \"teamId\": 2,\n                \"name\": \"php后端开发2批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"adawa\",\n                \"createTime\": \"2020-03-15 16:43:14\"\n            },\n            {\n                \"id\": 12,\n                \"teamId\": 3,\n                \"name\": \"go后端开发2批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"uilul\",\n                \"createTime\": \"2020-03-15 16:43:14\"\n            },\n            {\n                \"id\": 17,\n                \"teamId\": 4,\n                \"name\": \"c++后端开发2批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"rjfdber\",\n                \"createTime\": \"2020-03-15 16:43:14\"\n            },\n            {\n                \"id\": 22,\n                \"teamId\": 5,\n                \"name\": \"nodejs后端开发2批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"yyyy\",\n                \"createTime\": \"2020-03-15 16:43:14\"\n            }\n        ]\n    }\n}"
+						},
+						{
 							"name": "首页获取招聘职位list",
 							"originalRequest": {
 								"method": "GET",
@@ -4031,67 +4076,6 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 28,\n        \"rows\": [\n            {\n                \"id\": 5,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发5批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"UT小分队2\",\n                \"createTime\": \"2020-03-15 17:08:36\"\n            },\n            {\n                \"id\": 10,\n                \"teamId\": 2,\n                \"name\": \"php后端开发5批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"adawa\",\n                \"createTime\": \"2020-03-15 17:08:36\"\n            },\n            {\n                \"id\": 15,\n                \"teamId\": 3,\n                \"name\": \"go后端开发5批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"uilul\",\n                \"createTime\": \"2020-03-15 17:08:36\"\n            },\n            {\n                \"id\": 20,\n                \"teamId\": 4,\n                \"name\": \"c++后端开发5批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"rjfdber\",\n                \"createTime\": \"2020-03-15 17:08:36\"\n            },\n            {\n                \"id\": 25,\n                \"teamId\": 5,\n                \"name\": \"nodejs后端开发5批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"yyyy\",\n                \"createTime\": \"2020-03-15 17:08:36\"\n            },\n            {\n                \"id\": 26,\n                \"teamId\": 14,\n                \"name\": \"nodejs后端开发6批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"tejtyk\",\n                \"createTime\": \"2020-03-15 17:08:36\"\n            },\n            {\n                \"id\": 27,\n                \"teamId\": 15,\n                \"name\": \"nodejs后端开发10批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"dawd\",\n                \"createTime\": \"2020-03-15 17:08:36\"\n            },\n            {\n                \"id\": 28,\n                \"teamId\": 16,\n                \"name\": \"nodejs后端开发11批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"eee\",\n                \"createTime\": \"2020-03-15 17:08:36\"\n            },\n            {\n                \"id\": 4,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发4批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"UT小分队2\",\n                \"createTime\": \"2020-03-15 17:08:32\"\n            },\n            {\n                \"id\": 9,\n                \"teamId\": 2,\n                \"name\": \"php后端开发4批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"adawa\",\n                \"createTime\": \"2020-03-15 17:08:32\"\n            }\n        ]\n    }\n}"
-						},
-						{
-							"name": "首页获取招聘职位list（关键字搜索）",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/ut/index/listRecruitmentByParam?pageNum=1&pageSize=10&name=2",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"index",
-										"listRecruitmentByParam"
-									],
-									"query": [
-										{
-											"key": "pageNum",
-											"value": "1"
-										},
-										{
-											"key": "pageSize",
-											"value": "10"
-										},
-										{
-											"key": "name",
-											"value": "2"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 11 May 2020 13:11:06 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 5,\n        \"rows\": [\n            {\n                \"id\": 2,\n                \"teamId\": 1,\n                \"name\": \"Java后端开发2批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584251690013.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"UT小分队2\",\n                \"createTime\": \"2020-03-15 16:43:14\"\n            },\n            {\n                \"id\": 7,\n                \"teamId\": 2,\n                \"name\": \"php后端开发2批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"adawa\",\n                \"createTime\": \"2020-03-15 16:43:14\"\n            },\n            {\n                \"id\": 12,\n                \"teamId\": 3,\n                \"name\": \"go后端开发2批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"uilul\",\n                \"createTime\": \"2020-03-15 16:43:14\"\n            },\n            {\n                \"id\": 17,\n                \"teamId\": 4,\n                \"name\": \"c++后端开发2批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"rjfdber\",\n                \"createTime\": \"2020-03-15 16:43:14\"\n            },\n            {\n                \"id\": 22,\n                \"teamId\": 5,\n                \"name\": \"nodejs后端开发2批\",\n                \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n                \"tagIds\": \"\",\n                \"tags\": null,\n                \"description\": null,\n                \"teamVO\": null,\n                \"teamName\": \"yyyy\",\n                \"createTime\": \"2020-03-15 16:43:14\"\n            }\n        ]\n    }\n}"
 						}
 					]
 				},
@@ -4934,6 +4918,87 @@
 					},
 					"response": [
 						{
+							"name": "更新招聘职位案例",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "职位id，更新时传",
+											"type": "text"
+										},
+										{
+											"key": "teamId",
+											"value": "1",
+											"description": "岗位所属的团队id",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Java后端开发2批",
+											"description": "岗位名称",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "要求：Java基础扎实，能熟练运用现有的流行框架",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"saveTeamsRecruitment"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Mar 2020 08:45:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"更新职位信息成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-15 16:42:27\",\n        \"updateTime\": \"2020-03-15 16:45:16\",\n        \"deleted\": 0,\n        \"id\": 1,\n        \"teamId\": 1,\n        \"name\": \"Java后端开发2批\",\n        \"tagIds\": \"\",\n        \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n    }\n}"
+						},
+						{
 							"name": "新增职位案例",
 							"originalRequest": {
 								"method": "POST",
@@ -5014,87 +5079,6 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"新增职位信息成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-15 16:43:14\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 2,\n        \"teamId\": 1,\n        \"name\": \"Java后端开发\",\n        \"tagIds\": null,\n        \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n    }\n}"
-						},
-						{
-							"name": "更新招聘职位案例",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "UT-Token",
-										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "id",
-											"value": "1",
-											"description": "职位id，更新时传",
-											"type": "text"
-										},
-										{
-											"key": "teamId",
-											"value": "1",
-											"description": "岗位所属的团队id",
-											"type": "text"
-										},
-										{
-											"key": "name",
-											"value": "Java后端开发2批",
-											"description": "岗位名称",
-											"type": "text"
-										},
-										{
-											"key": "description",
-											"value": "要求：Java基础扎实，能熟练运用现有的流行框架",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitment",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"teams",
-										"saveTeamsRecruitment"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 15 Mar 2020 08:45:16 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"更新职位信息成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-15 16:42:27\",\n        \"updateTime\": \"2020-03-15 16:45:16\",\n        \"deleted\": 0,\n        \"id\": 1,\n        \"teamId\": 1,\n        \"name\": \"Java后端开发2批\",\n        \"tagIds\": \"\",\n        \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n    }\n}"
 						}
 					]
 				},
@@ -6081,6 +6065,68 @@
 					},
 					"response": [
 						{
+							"name": "拒绝邀请",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjMwLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MzU2OTcxLCJleHAiOjE2MTU4OTI5NzF9.XAFWx6HcX4eyRdvjhNXO92PdJzuQgh5c5pNYL9B7iro",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [24, 25],\r\n  \"status\": -1,\r\n  \"reason\": \"太忙了\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/userDealWithInvitation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"userDealWithInvitation"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 18 Mar 2020 09:16:29 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"处理完成，处理结果：拒绝\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						},
+						{
 							"name": "用户同意邀请",
 							"originalRequest": {
 								"method": "POST",
@@ -6145,68 +6191,6 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"处理完成，处理结果：同意\",\n    \"devMessage\": null,\n    \"data\": null\n}"
-						},
-						{
-							"name": "拒绝邀请",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "UT-Token",
-										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjMwLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MzU2OTcxLCJleHAiOjE2MTU4OTI5NzF9.XAFWx6HcX4eyRdvjhNXO92PdJzuQgh5c5pNYL9B7iro",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"ids\": [24, 25],\r\n  \"status\": -1,\r\n  \"reason\": \"太忙了\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/ut/teams/userDealWithInvitation",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"teams",
-										"userDealWithInvitation"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 18 Mar 2020 09:16:29 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"处理完成，处理结果：拒绝\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						}
 					]
 				},
@@ -7001,6 +6985,56 @@
 							},
 							"response": [
 								{
+									"name": "重复点赞",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ut/post/like/3",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"post",
+												"like",
+												"3"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 13 May 2020 10:39:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 400,\n    \"message\": \"已经点赞过了\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								},
+								{
 									"name": "点赞成功",
 									"originalRequest": {
 										"method": "POST",
@@ -7053,56 +7087,6 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"status\": 200,\n    \"message\": \"点赞成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
-								},
-								{
-									"name": "重复点赞",
-									"originalRequest": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "UT-Token",
-												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "http://localhost:8080/ut/post/like/3",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "8080",
-											"path": [
-												"ut",
-												"post",
-												"like",
-												"3"
-											]
-										}
-									},
-									"status": "Bad Request",
-									"code": 400,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Transfer-Encoding",
-											"value": "chunked"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 13 May 2020 10:39:43 GMT"
-										},
-										{
-											"key": "Connection",
-											"value": "close"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"status\": 400,\n    \"message\": \"已经点赞过了\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 								}
 							]
 						},
@@ -7425,8 +7409,7 @@
 									{
 										"key": "UT-Token",
 										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
-										"type": "text",
-										"disabled": true
+										"type": "text"
 									}
 								],
 								"url": {
@@ -7467,7 +7450,7 @@
 							},
 							"response": [
 								{
-									"name": "无条件查询（游客）",
+									"name": "查询uid=21用户发的帖子列表",
 									"originalRequest": {
 										"method": "GET",
 										"header": [
@@ -7479,7 +7462,7 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:8080/ut/index/list/post/?pageNum=1&pageSize=10",
+											"raw": "http://localhost:8080/ut/index/list/post/?pageNum=1&pageSize=10&uid=21",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -7508,8 +7491,7 @@
 												},
 												{
 													"key": "uid",
-													"value": "21",
-													"disabled": true
+													"value": "21"
 												}
 											]
 										}
@@ -7528,7 +7510,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Thu, 14 May 2020 04:28:31 GMT"
+											"value": "Thu, 14 May 2020 04:30:11 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -7692,7 +7674,7 @@
 									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"id\": 12,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题12\",\n                \"content\": \"测试内容12\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:37:32\",\n                \"updateTime\": \"2020-05-13 23:37:33\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 9,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题2\",\n                \"content\": \"测试内容2\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:37:04\",\n                \"updateTime\": \"2020-05-13 23:37:06\",\n                \"like\": false,\n                \"collect\": false\n            }\n        ]\n    }\n}"
 								},
 								{
-									"name": "查询uid=21用户发的帖子列表",
+									"name": "无条件查询（游客）",
 									"originalRequest": {
 										"method": "GET",
 										"header": [
@@ -7704,7 +7686,7 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:8080/ut/index/list/post/?pageNum=1&pageSize=10&uid=21",
+											"raw": "http://localhost:8080/ut/index/list/post/?pageNum=1&pageSize=10",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -7733,7 +7715,8 @@
 												},
 												{
 													"key": "uid",
-													"value": "21"
+													"value": "21",
+													"disabled": true
 												}
 											]
 										}
@@ -7752,7 +7735,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Thu, 14 May 2020 04:30:11 GMT"
+											"value": "Thu, 14 May 2020 04:28:31 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -8132,6 +8115,204 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"status\": 200,\n    \"message\": \"回复成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "删除自己的评论",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/comment/delComment/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"comment",
+										"delComment",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "删除自己的评论",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ut/comment/delComment/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"comment",
+												"delComment",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Set-Cookie",
+											"value": "JSESSIONID=A4D1F250F982D42DAFEEAA09950F87C3; Path=/ut; HttpOnly"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 14 May 2020 13:44:07 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"删除成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "评论点赞",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/comment/likesComment/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"comment",
+										"likesComment",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "评论取消点赞",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/comment/cancelLikesComment/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"comment",
+										"cancelLikesComment",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "评论取消点赞",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ut/comment/cancelLikesComment/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"comment",
+												"cancelLikesComment",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 14 May 2020 14:50:44 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"取消点赞~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 								}
 							]
 						}

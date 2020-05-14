@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.CommentControllerApi;
 import run.ut.app.model.param.CommentParam;
 import run.ut.app.model.support.BaseResponse;
@@ -50,5 +47,26 @@ public class CommentController extends BaseController implements CommentControll
         userInfoService.checkUser(uid);
         commentParam.setFromUid(uid);
         return postCommentsService.replyToComments(commentParam);
+    }
+
+    @Override
+    @PostMapping("delComment/{commentId:\\d+}")
+    @CheckLogin
+    public BaseResponse<String> delComment(@PathVariable Long commentId) {
+        return postCommentsService.delComment(getUid(), commentId);
+    }
+
+    @Override
+    @PostMapping("/likesComment/{commentId:\\d+}")
+    @CheckLogin
+    public BaseResponse<String> likesComment(@PathVariable Long commentId) {
+        return postCommentsService.likesComment(getUid(), commentId);
+    }
+
+    @Override
+    @PostMapping("/cancelLikesComment/{commentId:\\d+}")
+    @CheckLogin
+    public BaseResponse<String> cancelLikesComment(@PathVariable Long commentId) {
+        return postCommentsService.cancelLikesComment(getUid(), commentId);
     }
 }
