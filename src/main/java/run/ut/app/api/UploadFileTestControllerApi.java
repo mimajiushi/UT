@@ -5,6 +5,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.model.support.UploadResult;
 
+/**
+ * @author wenjie
+ */
 
 @Api(value = "上传文件测试API",tags = "上传文件测试API")
 public interface UploadFileTestControllerApi {

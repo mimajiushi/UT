@@ -30,5 +30,8 @@ public class PostIndexController extends BaseController implements PostIndexCont
         return postsService.listPostsByParams(searchPostParam, page);
     }
 
+    /**
+     * TODO 查看帖子详情接口，这个接口在评论接口完成后编写
+     */
 
 }

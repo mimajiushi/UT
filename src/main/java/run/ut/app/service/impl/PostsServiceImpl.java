@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.mapper.PostsMapper;
@@ -86,7 +87,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         String key2 = String.format(RedisConfig.POST_LIKE_COUNT, postId);
         String res = redisService.get(key1);
         if (!StringUtils.isBlank(res)) {
-            throw new BadRequestException("已经点赞过了");
+            throw new AlreadyExistsException("已经点赞过了");
         }
         redisService.set(key1, "1");
         redisService.increment(key2, 1);
@@ -115,6 +116,10 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         Posts post = getById(postId);
         if (ObjectUtils.isEmpty(post)) {
             throw new BadRequestException("收藏的帖子不存在！");
+        }
+        Integer count = userPostsMapper.selectCount(new QueryWrapper<UserPosts>().eq("uid", uid).eq("post_id", postId));
+        if (count < 1) {
+            throw new AlreadyExistsException("已经收藏过了~");
         }
         UserPosts userPosts = new UserPosts().setPostId(postId).setUid(uid);
         userPostsMapper.insert(userPosts);

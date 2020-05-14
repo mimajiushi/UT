@@ -15,6 +15,10 @@ import run.ut.app.model.vo.ApplyOrInviteMsgVO;
 
 import java.util.List;
 
+/**
+ * @author wenjie
+ */
+
 @Api(value = "队伍操作API",tags = "队伍操作API")
 public interface TeamsControllerApi {
 

@@ -19,6 +19,9 @@ import run.ut.app.service.UserInfoService;
 
 import javax.validation.Valid;
 
+/**
+ * @author wenjie
+ */
 
 @RestController
 @Slf4j

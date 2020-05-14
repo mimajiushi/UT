@@ -20,7 +20,6 @@ import java.util.List;
  * @author wenjie
  */
 
-
 @RestController
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))

@@ -8,6 +8,9 @@ import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.PostVO;
 
+/**
+ * @author wenjie
+ */
 @Api(value = "bbs相关API",tags = "bbs相关API")
 public interface PostControllerApi {
 

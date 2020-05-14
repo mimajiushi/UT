@@ -6,6 +6,9 @@ import run.ut.app.model.param.SearchPostParam;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.PostVO;
 
+/**
+ * @author wenjie
+ */
 @Api(value = "BBS数据加载API",tags = "BBS数据加载API")
 public interface PostIndexControllerApi {
 

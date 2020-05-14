@@ -15,6 +15,9 @@ import run.ut.app.model.vo.StudentVO;
 
 import java.util.List;
 
+/**
+ * @author wenjie
+ */
 
 @Api(value = "用户信息API",tags = "用户操作API", description = "用户登录、注册、完善信息、更改信息等操作")
 public interface UserControllerApi {
