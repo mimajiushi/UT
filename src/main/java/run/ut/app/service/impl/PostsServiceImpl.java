@@ -1,6 +1,7 @@
 package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -14,14 +15,13 @@ import run.ut.app.config.redis.RedisConfig;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.mapper.PostsMapper;
-import run.ut.app.model.domain.PostPhotos;
 import run.ut.app.model.domain.Posts;
 import run.ut.app.model.domain.UserPosts;
 import run.ut.app.model.param.PostParam;
 import run.ut.app.model.param.SearchPostParam;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.PostVO;
-import run.ut.app.service.PostPhotosService;
 import run.ut.app.service.PostsService;
 import run.ut.app.service.RedisService;
 import run.ut.app.service.UserPostsService;
@@ -42,21 +42,17 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements PostsService {
 
-    private final PostPhotosService postPhotosService;
     private final UserPostsService userPostsService;
     private final RedisService redisService;
+    private final PostsMapper postsMapper;
 
     @Override
     @Transactional
     public BaseResponse<String> savePost(PostParam postParam) {
         boolean insert = (null == postParam.getId());
-        List<String> photos = postParam.getPhotos();
         if (insert) {
             Posts posts = postParam.convertTo();
             save(posts);
-            List<PostPhotos> postPhotosList = photos.stream().map(url ->
-                new PostPhotos().setPostId(posts.getId()).setPhoto(url)).collect(Collectors.toList());
-            postPhotosService.saveBatch(postPhotosList);
         } else {
             Posts posts = getById(postParam.getId());
             if (ObjectUtils.isEmpty(posts)) {
@@ -64,11 +60,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
             }
             postParam.update(posts);
             posts.setUpdateTime(null);
-            postPhotosService.remove(new QueryWrapper<PostPhotos>().eq("post_id", posts.getId()));
-            List<PostPhotos> postPhotosList = photos.stream().map(url ->
-                new PostPhotos().setPostId(posts.getId()).setPhoto(url)).collect(Collectors.toList());
             updateById(posts);
-            postPhotosService.saveBatch(postPhotosList);
         }
         return BaseResponse.ok("发布成功~");
     }
@@ -81,7 +73,6 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
             throw new BadRequestException("你没有权限删除或帖子不存在！");
         }
         removeById(postId);
-        postPhotosService.remove(new QueryWrapper<PostPhotos>().eq("post_id", postId));
         return BaseResponse.ok("删除成功~");
     }
 
@@ -142,8 +133,54 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
     }
 
     @Override
-    public List<PostVO> listPostsByParams(SearchPostParam searchPostParam, Page page) {
-        // TODO 写sql
-        return null;
+    public CommentPage<PostVO> listPostsByParams(SearchPostParam searchPostParam, Page page) {
+        Long operatorUid = searchPostParam.getOperatorUid();
+
+        IPage<PostVO> postVOIPage = postsMapper.listPostsByParams(page, searchPostParam);
+        long total = postVOIPage.getTotal();
+
+        List<PostVO> postVOS1 = postVOIPage.getRecords();
+        List<Long> ids = postVOS1.stream().map(PostVO::getId).collect(Collectors.toList());
+        List<PostVO> postVOS2 = postVOS1.stream().map(postVO -> {
+            Long id = postVO.getId();
+            // set count
+            postVO.setLikeCount(getPostLikeCount(id)).setReadCount(getPostReadCount(id));
+            // set isLike
+            if (null != operatorUid) {
+                postVO.setLike(isLikePost(operatorUid, id));
+            }
+            return postVO;
+        }).collect(Collectors.toList());
+
+        return new CommentPage<>(total, postVOS2);
+    }
+
+    @Override
+    public Long getPostLikeCount(Long postId) {
+        String key = String.format(RedisConfig.POST_LIKE_COUNT, postId);
+        String res = redisService.get(key);
+        if (StringUtils.isBlank(res)) {
+            return 0L;
+        }
+        return Long.valueOf(res);
+    }
+
+    @Override
+    public Long getPostReadCount(Long postId) {
+        String key = String.format(RedisConfig.POST_READ_COUNT, postId);
+        String res = redisService.get(key);
+        if (StringUtils.isBlank(res)) {
+            return 0L;
+        }
+        return Long.valueOf(res);
+    }
+
+    public boolean isLikePost(Long uid, Long postId) {
+        String key = String.format(RedisConfig.USER_LIKE_POST, uid, postId);
+        String res = redisService.get(key);
+        if (StringUtils.isBlank(res)) {
+            return false;
+        }
+        return true;
     }
 }

@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PathVariable;
 import run.ut.app.model.param.PostParam;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.support.CommentPage;
+import run.ut.app.model.vo.PostVO;
 
 @Api(value = "bbs相关API",tags = "bbs相关API")
 public interface PostControllerApi {
@@ -26,4 +28,7 @@ public interface PostControllerApi {
 
     @ApiOperation(value = "取消帖子收藏")
     BaseResponse<String> cancelCollect(@PathVariable Long postId);
+
+    @ApiOperation(value = "查询用户收藏", notes = "需要token")
+    CommentPage<PostVO> listCollection();
 }

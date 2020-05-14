@@ -17,4 +17,7 @@ public class SearchPostParam {
 
     @ApiModelProperty(value = "帖子发布者uid")
     private Long uid;
+
+    @ApiModelProperty(value = "查询（操作）者的uid", notes = "由后端填充、需要用户token")
+    private Long operatorUid;
 }

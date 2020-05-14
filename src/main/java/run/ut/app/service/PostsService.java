@@ -2,11 +2,13 @@ package run.ut.app.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 import run.ut.app.model.domain.Posts;
 import com.baomidou.mybatisplus.extension.service.IService;
 import run.ut.app.model.param.PostParam;
 import run.ut.app.model.param.SearchPostParam;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.PostVO;
 
 import java.util.List;
@@ -88,5 +90,9 @@ public interface PostsService extends IService<Posts> {
      * @return                 PostVO list
      */
     @NonNull
-    List<PostVO> listPostsByParams(@NonNull SearchPostParam searchPostParam, @NonNull Page page);
+    CommentPage<PostVO> listPostsByParams(@NonNull SearchPostParam searchPostParam, @NonNull Page page);
+
+    Long getPostLikeCount(Long postId);
+
+    Long getPostReadCount(Long postId);
 }

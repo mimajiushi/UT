@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.PostIndexControllerApi;
 import run.ut.app.model.param.SearchPostParam;
+import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.PostVO;
 import run.ut.app.service.PostsService;
-
-import java.util.List;
 
 
 @RestController
@@ -22,11 +21,14 @@ public class PostIndexController extends BaseController implements PostIndexCont
     private final PostsService postsService;
 
     @Override
-    @PostMapping("/list/post/")
-    public List<PostVO> listPosts(@RequestBody SearchPostParam searchPostParam,
-                                  @RequestParam(defaultValue = "1") Integer pageNum,
-                                  @RequestParam(defaultValue = "5") Integer pageSize) {
+    @GetMapping("/list/post/")
+    public CommentPage<PostVO> listPosts(SearchPostParam searchPostParam,
+                                         @RequestParam(defaultValue = "1") Integer pageNum,
+                                         @RequestParam(defaultValue = "5") Integer pageSize) {
+        searchPostParam.setOperatorUid(getUidFromToken());
         Page page = new Page<>(pageNum, pageSize);
-        return null;
+        return postsService.listPostsByParams(searchPostParam, page);
     }
+
+
 }

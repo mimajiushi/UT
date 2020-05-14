@@ -1,6 +1,11 @@
 package run.ut.app.controller;
 
+import io.jsonwebtoken.Claims;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import run.ut.app.security.util.JwtOperator;
+import run.ut.app.utils.ServletUtils;
+import run.ut.app.utils.SpringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,5 +36,19 @@ public class BaseController {
 
     protected Long getUid() {
         return Long.parseLong(request.getAttribute("uid") + "");
+    }
+
+    protected Long getUidFromToken() {
+        String token = ServletUtils.getHeaderIgnoreCase("UT-Token");
+        if (StringUtils.isBlank(token)) {
+            return null;
+        }
+        try {
+            JwtOperator jwtOperator = SpringUtils.getBean(JwtOperator.class);
+            Claims claims = jwtOperator.getClaimsFromToken(token);
+            return Long.valueOf(claims.get("uid") + "");
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

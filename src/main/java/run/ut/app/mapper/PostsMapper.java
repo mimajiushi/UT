@@ -1,7 +1,12 @@
 package run.ut.app.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.Param;
 import run.ut.app.model.domain.Posts;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import run.ut.app.model.param.SearchPostParam;
+import run.ut.app.model.vo.PostVO;
 
 /**
  * <p>
@@ -12,5 +17,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2020-05-12
  */
 public interface PostsMapper extends BaseMapper<Posts> {
-
+    IPage<PostVO> listPostsByParams(Page page, @Param("param") SearchPostParam searchPostParam);
 }
