@@ -8,8 +8,6 @@ import run.ut.app.model.domain.Posts;
 import run.ut.app.model.dto.base.InputConverter;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Post VO

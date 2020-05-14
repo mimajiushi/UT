@@ -7,7 +7,6 @@ import run.ut.app.model.dto.base.InputConverter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 /**
  * Post params
