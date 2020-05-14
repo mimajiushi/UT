@@ -1,5 +1,6 @@
 package run.ut.app.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import run.ut.app.api.PostControllerApi;
 import run.ut.app.cache.lock.HttpRequestRateLimit;
 import run.ut.app.model.enums.RateLimitEnum;
 import run.ut.app.model.param.PostParam;
+import run.ut.app.model.param.SearchPostParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.PostVO;
@@ -74,7 +76,14 @@ public class PostController extends BaseController implements PostControllerApi 
     }
 
     @Override
-    public CommentPage<PostVO> listCollection() {
-        return null;
+    @CheckLogin
+    @GetMapping("list/self/collections")
+    public CommentPage<PostVO> listSelfCollection(String title,
+                                                  @RequestParam(defaultValue = "1") Integer pageNum,
+                                                  @RequestParam(defaultValue = "5") Integer pageSize) {
+        Long uid = getUid();
+        SearchPostParam searchPostParam = new SearchPostParam().setUid(uid).setTitle(title);
+        Page page = new Page(pageNum, pageSize);
+        return postsService.listCollectionByParams(page, searchPostParam);
     }
 }

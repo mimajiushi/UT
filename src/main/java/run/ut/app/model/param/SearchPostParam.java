@@ -3,6 +3,7 @@ package run.ut.app.model.param;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @author wenjie
@@ -10,6 +11,7 @@ import lombok.Data;
 
 @Data
 @ApiModel(description = "查询帖子list的参数")
+@Accessors(chain = true)
 public class SearchPostParam {
 
     @ApiModelProperty(value = "帖子标题")

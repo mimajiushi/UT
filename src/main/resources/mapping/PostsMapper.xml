@@ -26,7 +26,7 @@
     </resultMap>
 
     <select id="listPostsByParams" resultMap="postVo">
-        select p.id, p.title, left(p.content,30) content, p.create_time, p.update_time, u.uid, u.avatar, u.nickname from posts p
+        select p.id, p.title, left(p.content,50) content, p.create_time, p.update_time, u.uid, u.avatar, u.nickname from posts p
             inner join `user` u on u.uid = p.uid
         <where>
             1=1
@@ -40,6 +40,21 @@
         and p.deleted = 0
         group by p.id
         order by p.update_time desc
+    </select>
+
+    <select id="listCollectionByParams" resultMap="postVo">
+        select p.id, p.uid, p.title, left(p.content,50) content, u.nickname, u.avatar, up.create_time from user_posts up
+            inner join `user` u on u.uid = up.uid
+            inner join posts p on p.id = up.post_id
+        <where>
+            1=1
+            <if test="param.title!=null and param.title!=''">
+                and instr(p.title, #{param.title}) > 0
+            </if>
+        </where>
+        and u.uid = #{param.uid}
+        and up.deleted = 0
+        order by up.create_time
     </select>
 
 </mapper>

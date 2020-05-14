@@ -89,7 +89,19 @@ public interface PostsService extends IService<Posts> {
     @NonNull
     CommentPage<PostVO> listPostsByParams(@NonNull SearchPostParam searchPostParam, @NonNull Page page);
 
-    Long getPostLikeCount(Long postId);
+    /**
+     * List collection by uid
+     *
+     * @param page                aging object of mybatis
+     * @param searchPostParam     search parameters
+     * @return      PostVO list
+     */
+    @NonNull
+    CommentPage<PostVO> listCollectionByParams(@NonNull Page page, @NonNull SearchPostParam searchPostParam);
 
-    Long getPostReadCount(Long postId);
+    @NonNull
+    Long getPostLikeCount(@NonNull Long postId);
+
+    @NonNull
+    Long getPostReadCount(@NonNull Long postId);
 }

@@ -7767,6 +7767,194 @@
 									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 11,\n        \"rows\": [\n            {\n                \"id\": 12,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题12\",\n                \"content\": \"测试内容12\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:37:32\",\n                \"updateTime\": \"2020-05-13 23:37:33\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 11,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题11\",\n                \"content\": \"测试内容11\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:37:26\",\n                \"updateTime\": \"2020-05-13 23:37:27\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 10,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题6\",\n                \"content\": \"测试内容6\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:37:19\",\n                \"updateTime\": \"2020-05-13 23:37:20\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 9,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题2\",\n                \"content\": \"测试内容2\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:37:04\",\n                \"updateTime\": \"2020-05-13 23:37:06\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 8,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题10\",\n                \"content\": \"测试内容10\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:36:44\",\n                \"updateTime\": \"2020-05-13 23:36:46\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 7,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题9\",\n                \"content\": \"测试内容9\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:36:19\",\n                \"updateTime\": \"2020-05-13 23:36:20\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 6,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题7\",\n                \"content\": \"测试内容7\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:35:55\",\n                \"updateTime\": \"2020-05-13 23:35:56\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 5,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题5\",\n                \"content\": \"测试内容5\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:35:45\",\n                \"updateTime\": \"2020-05-13 23:35:46\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 4,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题4\",\n                \"content\": \"测试内容4\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:35:36\",\n                \"updateTime\": \"2020-05-13 23:35:37\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 2,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题3\",\n                \"content\": \"测试内容3\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 19:22:30\",\n                \"updateTime\": \"2020-05-13 19:22:30\",\n                \"like\": false,\n                \"collect\": false\n            }\n        ]\n    }\n}"
 								}
 							]
+						},
+						{
+							"name": "用户查询自己的收藏",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/post/list/self/collections?pageNum=1&pageSize=10&title=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"post",
+										"list",
+										"self",
+										"collections"
+									],
+									"query": [
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										},
+										{
+											"key": "title",
+											"value": "5"
+										}
+									]
+								},
+								"description": "需要带token，collect字段在这里统一为false，只有查看帖子详情才会有具体值\r\nlike为true表示已收藏\r\ncollect为true表示已收藏（这里统一为false，详情页才用到）\r\nlikeCount表示点赞数\r\nreadCount表示阅读数"
+							},
+							"response": [
+								{
+									"name": "关键字模糊查询收藏列表",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ut/post/list/self/collections?pageNum=1&pageSize=10&title=5",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"post",
+												"list",
+												"self",
+												"collections"
+											],
+											"query": [
+												{
+													"key": "pageNum",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												},
+												{
+													"key": "title",
+													"value": "5"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 14 May 2020 05:53:26 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 5,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题5\",\n                \"content\": \"测试内容5\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-12 13:22:50\",\n                \"updateTime\": null,\n                \"like\": true,\n                \"collect\": false\n            }\n        ]\n    }\n}"
+								},
+								{
+									"name": "查询收藏列表",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ut/post/list/self/collections?pageNum=1&pageSize=10",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"post",
+												"list",
+												"self",
+												"collections"
+											],
+											"query": [
+												{
+													"key": "pageNum",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												},
+												{
+													"key": "title",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Set-Cookie",
+											"value": "JSESSIONID=1096ED722A68198EAB46F828F51EB96B; Path=/ut; HttpOnly"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 14 May 2020 05:51:52 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 4,\n        \"rows\": [\n            {\n                \"id\": 2,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题3\",\n                \"content\": \"测试内容3\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-11 13:22:50\",\n                \"updateTime\": null,\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 3,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题\",\n                \"content\": \"测试内容\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-12 13:22:50\",\n                \"updateTime\": null,\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 4,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题4\",\n                \"content\": \"测试内容4\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-12 13:22:50\",\n                \"updateTime\": null,\n                \"like\": true,\n                \"collect\": false\n            },\n            {\n                \"id\": 5,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题5\",\n                \"content\": \"测试内容5\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-12 13:22:50\",\n                \"updateTime\": null,\n                \"like\": true,\n                \"collect\": false\n            }\n        ]\n    }\n}"
+								}
+							]
 						}
 					],
 					"protocolProfileBehavior": {},

@@ -30,5 +30,5 @@ public interface PostControllerApi {
     BaseResponse<String> cancelCollect(@PathVariable Long postId);
 
     @ApiOperation(value = "查询用户收藏", notes = "需要token")
-    CommentPage<PostVO> listCollection();
+    CommentPage<PostVO> listSelfCollection(String title, Integer pageNum, Integer pageSize);
 }

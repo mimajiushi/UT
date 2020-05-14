@@ -15,6 +15,7 @@ import run.ut.app.config.redis.RedisConfig;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.mapper.PostsMapper;
+import run.ut.app.mapper.UserPostsMapper;
 import run.ut.app.model.domain.Posts;
 import run.ut.app.model.domain.UserPosts;
 import run.ut.app.model.param.PostParam;
@@ -24,7 +25,6 @@ import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.PostVO;
 import run.ut.app.service.PostsService;
 import run.ut.app.service.RedisService;
-import run.ut.app.service.UserPostsService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,7 +42,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements PostsService {
 
-    private final UserPostsService userPostsService;
+    private final UserPostsMapper userPostsMapper;
     private final RedisService redisService;
     private final PostsMapper postsMapper;
 
@@ -117,7 +117,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
             throw new BadRequestException("收藏的帖子不存在！");
         }
         UserPosts userPosts = new UserPosts().setPostId(postId).setUid(uid);
-        userPostsService.save(userPosts);
+        userPostsMapper.insert(userPosts);
         return BaseResponse.ok("收藏成功~");
     }
 
@@ -127,7 +127,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         if (ObjectUtils.isEmpty(post)) {
             throw new BadRequestException("Bad request!");
         }
-        userPostsService.remove(new QueryWrapper<UserPosts>()
+        userPostsMapper.delete(new QueryWrapper<UserPosts>()
             .eq("post_id", postId).eq("uid", uid));
         return BaseResponse.ok("取消成功~");
     }
@@ -140,18 +140,20 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         long total = postVOIPage.getTotal();
 
         List<PostVO> postVOS1 = postVOIPage.getRecords();
-        List<Long> ids = postVOS1.stream().map(PostVO::getId).collect(Collectors.toList());
-        List<PostVO> postVOS2 = postVOS1.stream().map(postVO -> {
-            Long id = postVO.getId();
-            // set count
-            postVO.setLikeCount(getPostLikeCount(id)).setReadCount(getPostReadCount(id));
-            // set isLike
-            if (null != operatorUid) {
-                postVO.setLike(isLikePost(operatorUid, id));
-            }
-            return postVO;
-        }).collect(Collectors.toList());
+        List<PostVO> postVOS2 = setCountAndIsLike(postVOS1, operatorUid);
 
+        return new CommentPage<>(total, postVOS2);
+    }
+
+    @Override
+    public CommentPage<PostVO> listCollectionByParams(Page page, SearchPostParam searchPostParam) {
+        Long uid = searchPostParam.getUid();
+
+        IPage<PostVO> postVOIPage = postsMapper.listCollectionByParams(page, searchPostParam);
+        long total = postVOIPage.getTotal();
+
+        List<PostVO> postVOS1 = postVOIPage.getRecords();
+        List<PostVO> postVOS2 = setCountAndIsLike(postVOS1, uid);
         return new CommentPage<>(total, postVOS2);
     }
 
@@ -175,12 +177,22 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         return Long.valueOf(res);
     }
 
-    public boolean isLikePost(Long uid, Long postId) {
+    private List<PostVO> setCountAndIsLike(List<PostVO> postVOList, Long uid) {
+        return postVOList.stream().map(postVO -> {
+            Long id = postVO.getId();
+            // set count
+            postVO.setLikeCount(getPostLikeCount(id)).setReadCount(getPostReadCount(id));
+            // set isLike
+            if (null != uid) {
+                postVO.setLike(isLikePost(uid, id));
+            }
+            return postVO;
+        }).collect(Collectors.toList());
+    }
+
+    private boolean isLikePost(Long uid, Long postId) {
         String key = String.format(RedisConfig.USER_LIKE_POST, uid, postId);
         String res = redisService.get(key);
-        if (StringUtils.isBlank(res)) {
-            return false;
-        }
-        return true;
+        return !StringUtils.isBlank(res);
     }
 }
