@@ -2,7 +2,6 @@ package run.ut.app.api.admin;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.model.dto.ActivityDTO;
 import run.ut.app.model.param.ActivityParam;
 import run.ut.app.model.support.BaseResponse;
@@ -17,5 +16,5 @@ import run.ut.app.model.support.BaseResponse;
 public interface AdminActivityControllerApi {
 
     @ApiOperation(value = "管理员创建活动", notes = "需要管理员权限")
-    BaseResponse<ActivityDTO> createActivity(ActivityParam activityParam, MultipartFile cover);
+    BaseResponse<ActivityDTO> createActivity(ActivityParam activityParam);
 }

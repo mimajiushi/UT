@@ -86,6 +86,15 @@ public class AdminMainController implements AdminMainControllerApi {
         return "activity/activity_list";
     }
 
+    /**
+     * 发布活动
+     * @return template path
+     */
+    @GetMapping("activityAdd")
+    public String activityAdd() {
+        return "activity/activity_add";
+    }
+
     @ResponseBody
     @GetMapping("systemInfo")
     @CheckAuthorization(roles = UserRolesEnum.ROLE_ADMIN)

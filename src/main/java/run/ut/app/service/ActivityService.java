@@ -21,8 +21,7 @@ public interface ActivityService extends IService<Activity> {
      * create activity
      *
      * @param activityParam activity info
-     * @param cover cover photo (MultipartFile)
      * @return ActivityDTO
      */
-    ActivityDTO createActivity(@NonNull ActivityParam activityParam, @NonNull MultipartFile cover);
+    ActivityDTO createActivity(@NonNull ActivityParam activityParam);
 }

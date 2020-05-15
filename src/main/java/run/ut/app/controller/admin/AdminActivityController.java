@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.api.admin.AdminActivityControllerApi;
 import run.ut.app.model.dto.ActivityDTO;
 import run.ut.app.model.enums.UserRolesEnum;
@@ -34,7 +33,7 @@ public class AdminActivityController implements AdminActivityControllerApi {
 
     @PostMapping("saveActivity")
     @Override
-    public BaseResponse<ActivityDTO> createActivity(@Valid ActivityParam activityParam, MultipartFile cover) {
-        return BaseResponse.ok(activityService.createActivity(activityParam, cover));
+    public BaseResponse<ActivityDTO> createActivity(@Valid ActivityParam activityParam) {
+        return BaseResponse.ok("活动发布成功！", activityService.createActivity(activityParam));
     }
 }
