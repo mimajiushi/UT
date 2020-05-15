@@ -1,21 +1,31 @@
 package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
+import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.exception.AlreadyExistsException;
+import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.mapper.PostsMapper;
-import run.ut.app.model.domain.PostPhotos;
+import run.ut.app.mapper.UserPostsMapper;
 import run.ut.app.model.domain.Posts;
+import run.ut.app.model.domain.UserPosts;
 import run.ut.app.model.param.PostParam;
+import run.ut.app.model.param.SearchPostParam;
 import run.ut.app.model.support.BaseResponse;
-import run.ut.app.service.PostPhotosService;
+import run.ut.app.model.support.CommentPage;
+import run.ut.app.model.vo.PostVO;
 import run.ut.app.service.PostsService;
+import run.ut.app.service.RedisService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,19 +43,17 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements PostsService {
 
-    private final PostPhotosService postPhotosService;
+    private final UserPostsMapper userPostsMapper;
+    private final RedisService redisService;
+    private final PostsMapper postsMapper;
 
     @Override
     @Transactional
     public BaseResponse<String> savePost(PostParam postParam) {
         boolean insert = (null == postParam.getId());
-        List<String> photos = postParam.getPhotos();
         if (insert) {
             Posts posts = postParam.convertTo();
             save(posts);
-            List<PostPhotos> postPhotosList = photos.stream().map(url ->
-                new PostPhotos().setPostId(posts.getId()).setPhoto(url)).collect(Collectors.toList());
-            postPhotosService.saveBatch(postPhotosList);
         } else {
             Posts posts = getById(postParam.getId());
             if (ObjectUtils.isEmpty(posts)) {
@@ -53,12 +61,143 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
             }
             postParam.update(posts);
             posts.setUpdateTime(null);
-            postPhotosService.remove(new QueryWrapper<PostPhotos>().eq("post_id", posts.getId()));
-            List<PostPhotos> postPhotosList = photos.stream().map(url ->
-                new PostPhotos().setPostId(posts.getId()).setPhoto(url)).collect(Collectors.toList());
             updateById(posts);
-            postPhotosService.saveBatch(postPhotosList);
         }
         return BaseResponse.ok("发布成功~");
+    }
+
+    @Override
+    @Transactional
+    public BaseResponse<String> delPost(Long postId, Long uid) {
+        Posts post = getById(postId);
+        if (ObjectUtils.isEmpty(post) || !post.getUid().equals(uid)) {
+            throw new BadRequestException("你没有权限删除或帖子不存在！");
+        }
+        removeById(postId);
+        return BaseResponse.ok("删除成功~");
+    }
+
+    @Override
+    public BaseResponse<String> like(Long postId, Long uid) {
+        Posts post = getById(postId);
+        if (ObjectUtils.isEmpty(post)) {
+            throw new BadRequestException("帖子不存在！");
+        }
+        String key1 = String.format(RedisConfig.USER_LIKE_POST, uid, postId);
+        String key2 = String.format(RedisConfig.POST_LIKE_COUNT, postId);
+        String res = redisService.get(key1);
+        if (!StringUtils.isBlank(res)) {
+            throw new AlreadyExistsException("已经点赞过了");
+        }
+        redisService.set(key1, "1");
+        redisService.increment(key2, 1);
+        return BaseResponse.ok("点赞成功~");
+    }
+
+    @Override
+    public BaseResponse<String> unLike(Long postId, Long uid) {
+        Posts post = getById(postId);
+        if (ObjectUtils.isEmpty(post)) {
+            throw new BadRequestException("帖子不存在！");
+        }
+        String key1 = String.format(RedisConfig.USER_LIKE_POST, uid, postId);
+        String key2 = String.format(RedisConfig.POST_LIKE_COUNT, postId);
+        String res = redisService.get(key1);
+        if (StringUtils.isBlank(res)) {
+            throw new BadRequestException("Bad request!");
+        }
+        redisService.remove(key1);
+        redisService.increment(key2, -1);
+        return BaseResponse.ok("取消成功~");
+    }
+
+    @Override
+    public BaseResponse<String> collect(Long postId, Long uid) {
+        Posts post = getById(postId);
+        if (ObjectUtils.isEmpty(post)) {
+            throw new BadRequestException("收藏的帖子不存在！");
+        }
+        Integer count = userPostsMapper.selectCount(new QueryWrapper<UserPosts>().eq("uid", uid).eq("post_id", postId));
+        if (count < 1) {
+            throw new AlreadyExistsException("已经收藏过了~");
+        }
+        UserPosts userPosts = new UserPosts().setPostId(postId).setUid(uid);
+        userPostsMapper.insert(userPosts);
+        return BaseResponse.ok("收藏成功~");
+    }
+
+    @Override
+    public BaseResponse<String> cancelCollect(Long postId, Long uid) {
+        Posts post = getById(postId);
+        if (ObjectUtils.isEmpty(post)) {
+            throw new BadRequestException("Bad request!");
+        }
+        userPostsMapper.delete(new QueryWrapper<UserPosts>()
+            .eq("post_id", postId).eq("uid", uid));
+        return BaseResponse.ok("取消成功~");
+    }
+
+    @Override
+    public CommentPage<PostVO> listPostsByParams(SearchPostParam searchPostParam, Page page) {
+        Long operatorUid = searchPostParam.getOperatorUid();
+
+        IPage<PostVO> postVOIPage = postsMapper.listPostsByParams(page, searchPostParam);
+        long total = postVOIPage.getTotal();
+
+        List<PostVO> postVOS1 = postVOIPage.getRecords();
+        List<PostVO> postVOS2 = setCountAndIsLike(postVOS1, operatorUid);
+
+        return new CommentPage<>(total, postVOS2);
+    }
+
+    @Override
+    public CommentPage<PostVO> listCollectionByParams(Page page, SearchPostParam searchPostParam) {
+        Long uid = searchPostParam.getUid();
+
+        IPage<PostVO> postVOIPage = postsMapper.listCollectionByParams(page, searchPostParam);
+        long total = postVOIPage.getTotal();
+
+        List<PostVO> postVOS1 = postVOIPage.getRecords();
+        List<PostVO> postVOS2 = setCountAndIsLike(postVOS1, uid);
+        return new CommentPage<>(total, postVOS2);
+    }
+
+    @Override
+    public Long getPostLikeCount(Long postId) {
+        String key = String.format(RedisConfig.POST_LIKE_COUNT, postId);
+        String res = redisService.get(key);
+        if (StringUtils.isBlank(res)) {
+            return 0L;
+        }
+        return Long.valueOf(res);
+    }
+
+    @Override
+    public Long getPostReadCount(Long postId) {
+        String key = String.format(RedisConfig.POST_READ_COUNT, postId);
+        String res = redisService.get(key);
+        if (StringUtils.isBlank(res)) {
+            return 0L;
+        }
+        return Long.valueOf(res);
+    }
+
+    private List<PostVO> setCountAndIsLike(List<PostVO> postVOList, Long uid) {
+        return postVOList.stream().map(postVO -> {
+            Long id = postVO.getId();
+            // set count
+            postVO.setLikeCount(getPostLikeCount(id)).setReadCount(getPostReadCount(id));
+            // set isLike
+            if (null != uid) {
+                postVO.setLike(isLikePost(uid, id));
+            }
+            return postVO;
+        }).collect(Collectors.toList());
+    }
+
+    private boolean isLikePost(Long uid, Long postId) {
+        String key = String.format(RedisConfig.USER_LIKE_POST, uid, postId);
+        String res = redisService.get(key);
+        return !StringUtils.isBlank(res);
     }
 }

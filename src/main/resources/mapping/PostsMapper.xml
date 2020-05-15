@@ -14,4 +14,47 @@
         <result column="deleted" property="deleted" />
     </resultMap>
 
+    <resultMap id="postVo" type="run.ut.app.model.vo.PostVO">
+        <id column="id" property="id" />
+        <result column="uid" property="uid" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="nickname" property="nickname" />
+        <result column="avatar" property="avatar" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="listPostsByParams" resultMap="postVo">
+        select p.id, p.title, left(p.content,50) content, p.create_time, p.update_time, u.uid, u.avatar, u.nickname from posts p
+            inner join `user` u on u.uid = p.uid
+        <where>
+            1=1
+            <if test="param.title!=null and param.title!=''">
+                and instr(p.title, #{param.title}) > 0
+            </if>
+            <if test="param.uid!=null">
+                and u.uid = #{param.uid}
+            </if>
+        </where>
+        and p.deleted = 0
+        group by p.id
+        order by p.update_time desc
+    </select>
+
+    <select id="listCollectionByParams" resultMap="postVo">
+        select p.id, p.uid, p.title, left(p.content,50) content, u.nickname, u.avatar, up.create_time from user_posts up
+            inner join `user` u on u.uid = up.uid
+            inner join posts p on p.id = up.post_id
+        <where>
+            1=1
+            <if test="param.title!=null and param.title!=''">
+                and instr(p.title, #{param.title}) > 0
+            </if>
+        </where>
+        and u.uid = #{param.uid}
+        and up.deleted = 0
+        order by up.create_time
+    </select>
+
 </mapper>

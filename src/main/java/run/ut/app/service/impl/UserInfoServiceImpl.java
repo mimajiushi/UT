@@ -8,9 +8,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.config.redis.RedisConfig;
 import run.ut.app.exception.AlreadyExistsException;
+import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.handler.FileHandlers;
 import run.ut.app.mapper.UserInfoMapper;
@@ -151,6 +153,18 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         }
 
         return new CommentPage<>(userInfoPage.getTotal(), userInfoDTOList);
+    }
+
+    /**
+     * 检验用户是否通过认证
+     * @param uid user's id
+     */
+    @Override
+    public void checkUser(Long uid) {
+        UserInfo userInfo = getOneActivatedByUid(uid);
+        if (ObjectUtils.isEmpty(userInfo)) {
+            throw new AuthenticationException("只有通过认证的用户才能创建团队！");
+        }
     }
 
 }

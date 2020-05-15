@@ -7,7 +7,6 @@ import run.ut.app.model.dto.base.InputConverter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 /**
  * Post params
@@ -28,10 +27,6 @@ public class PostParam implements InputConverter<Posts> {
 
     @ApiModelProperty(value = "内容")
     @NotBlank(message = "帖子内容不能为空")
-    @Size(max = 1000, message = "内容长度不能超过1000字")
+    @Size(max = 10000, message = "内容长度不能超过10000字")
     private String content;
-
-    @ApiModelProperty(value = "图片的url列表")
-    @Size(max = 9, message = "图片不能 > 9张")
-    private List<String> photos;
 }

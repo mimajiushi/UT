@@ -14,6 +14,9 @@ import run.ut.app.model.vo.TeamsRecruitmentsVO;
 
 import java.util.List;
 
+/**
+ * @author wenjie
+ */
 
 @Api(value = "用于返回首页等主页数据",tags = "主页数据核心API")
 public interface IndexControllerApi {

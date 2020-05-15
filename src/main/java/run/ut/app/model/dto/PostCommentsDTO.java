@@ -29,17 +29,11 @@ public class PostCommentsDTO extends BaseDTO implements OutputConverter<PostComm
     private Long postId;
 
     @ApiModelProperty(value = "父评论id，如果为0则表示没有父级")
-    private Long fatherCommentId;
+    private Long parentCommentId;
 
     private Long toUid;
 
     private Long fromUid;
-
-    @ApiModelProperty(value = "被回复者的昵称（冗余）")
-    private String toNickname;
-
-    @ApiModelProperty(value = "回复者昵称")
-    private String fromNickname;
 
     @ApiModelProperty(value = "评论内容")
     private String content;
