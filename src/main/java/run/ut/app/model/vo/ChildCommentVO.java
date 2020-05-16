@@ -35,6 +35,9 @@ public class ChildCommentVO extends BaseVO {
     @ApiModelProperty(value = "被评论/回复者昵称")
     private String toNickname;
 
+    @ApiModelProperty(value = "评论者头像")
+    private String fromAvatar;
+
     @ApiModelProperty(value = "评论内容")
     private String content;
 

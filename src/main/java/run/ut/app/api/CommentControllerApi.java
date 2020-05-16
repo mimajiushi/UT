@@ -29,6 +29,6 @@ public interface CommentControllerApi {
     @ApiOperation(value = "取消点赞")
     BaseResponse<String> cancelLikesComment(@PathVariable Long commentId);
 
-    @ApiOperation(value = "获取帖子下的评论", notes = "如果传进token")
+    @ApiOperation(value = "获取帖子下的评论", notes = "如果需要判断用户是否收藏、点赞，请传token")
     CommentPage<ParentCommentVO> listCommentOfPost(@PathVariable Long postId, Integer pageNum, Integer pageSize);
 }

@@ -8558,7 +8558,7 @@
 							},
 							"response": [
 								{
-									"name": "查看帖子评论（id=1的帖子评论）",
+									"name": "查看帖子评论（id=1的帖子的评论）",
 									"originalRequest": {
 										"method": "GET",
 										"header": [
@@ -8569,7 +8569,7 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:8080/ut/comment/listCommentOfPost/1",
+											"raw": "http://localhost:8080/ut/comment/listCommentOfPost/1?pageNum=1&pageSize=20",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -8580,6 +8580,16 @@
 												"comment",
 												"listCommentOfPost",
 												"1"
+											],
+											"query": [
+												{
+													"key": "pageNum",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "20"
+												}
 											]
 										}
 									},
@@ -8587,6 +8597,10 @@
 									"code": 200,
 									"_postman_previewlanguage": "json",
 									"header": [
+										{
+											"key": "Set-Cookie",
+											"value": "JSESSIONID=C7F482612828298BF9A15B13593D0687; Path=/ut; HttpOnly"
+										},
 										{
 											"key": "Content-Type",
 											"value": "application/json"
@@ -8597,7 +8611,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Sat, 16 May 2020 08:35:44 GMT"
+											"value": "Sat, 16 May 2020 12:37:25 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -8609,7 +8623,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 3,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-05-14 19:07:07\",\n                \"updateTime\": \"2020-05-14 19:07:09\",\n                \"id\": 1,\n                \"postId\": 1,\n                \"fromUid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"content\": \"测试评论<image></image>>\",\n                \"likes\": 1,\n                \"childComments\": [\n                    {\n                        \"createTime\": \"2020-05-14 20:49:24\",\n                        \"updateTime\": \"2020-05-14 20:49:26\",\n                        \"id\": 5,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 30,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"Lucien\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"content\": \"666\",\n                        \"likes\": 1,\n                        \"like\": true\n                    },\n                    {\n                        \"createTime\": \"2020-05-14 20:48:36\",\n                        \"updateTime\": \"2020-05-14 20:48:37\",\n                        \"id\": 4,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 21,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"chenwenjie\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"content\": \"我回复我自己\",\n                        \"likes\": 0,\n                        \"like\": false\n                    },\n                    {\n                        \"createTime\": \"2020-05-14 20:48:19\",\n                        \"updateTime\": \"2020-05-14 20:48:21\",\n                        \"id\": 3,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 21,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"chenwenjie\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"content\": \"我回复我字节\",\n                        \"likes\": 1,\n                        \"like\": true\n                    }\n                ],\n                \"like\": true\n            },\n            {\n                \"createTime\": \"2020-05-16 16:18:59\",\n                \"updateTime\": \"2020-05-16 16:19:00\",\n                \"id\": 6,\n                \"postId\": 1,\n                \"fromUid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"content\": \"测试评论<image></image>>\",\n                \"likes\": 1,\n                \"childComments\": null,\n                \"like\": true\n            },\n            {\n                \"createTime\": \"2020-05-16 16:19:08\",\n                \"updateTime\": \"2020-05-16 16:19:09\",\n                \"id\": 7,\n                \"postId\": 1,\n                \"fromUid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"content\": \"awdawdawdawdawdawdawd\",\n                \"likes\": 0,\n                \"childComments\": null,\n                \"like\": false\n            }\n        ]\n    }\n}"
+									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 3,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-05-16 18:51:10\",\n                \"updateTime\": \"2020-05-16 18:51:10\",\n                \"id\": 1,\n                \"postId\": 1,\n                \"fromUid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"content\": \"测试评论<image></image>>\",\n                \"likes\": 1,\n                \"childComments\": [\n                    {\n                        \"createTime\": \"2020-05-16 18:54:11\",\n                        \"updateTime\": \"2020-05-16 18:54:11\",\n                        \"id\": 4,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 21,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"chenwenjie\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"fromAvatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                        \"content\": \"我回复我自己\",\n                        \"likes\": 0,\n                        \"like\": false\n                    },\n                    {\n                        \"createTime\": \"2020-05-16 18:54:08\",\n                        \"updateTime\": \"2020-05-16 18:54:08\",\n                        \"id\": 3,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 21,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"chenwenjie\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"fromAvatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                        \"content\": \"我回复我字节\",\n                        \"likes\": 1,\n                        \"like\": true\n                    },\n                    {\n                        \"createTime\": \"2020-05-16 18:54:00\",\n                        \"updateTime\": \"2020-05-16 18:54:00\",\n                        \"id\": 5,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 30,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"Lucien\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"fromAvatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                        \"content\": \"666\",\n                        \"likes\": 1,\n                        \"like\": true\n                    },\n                    {\n                        \"createTime\": \"2020-05-16 18:29:56\",\n                        \"updateTime\": \"2020-05-16 18:29:56\",\n                        \"id\": 2,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 21,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"chenwenjie\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"fromAvatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                        \"content\": \"我回复我字节\",\n                        \"likes\": 0,\n                        \"like\": false\n                    }\n                ],\n                \"like\": true\n            },\n            {\n                \"createTime\": \"2020-05-16 18:45:41\",\n                \"updateTime\": \"2020-05-16 18:45:41\",\n                \"id\": 7,\n                \"postId\": 1,\n                \"fromUid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"content\": \"awdawdawdawdawdawdawd\",\n                \"likes\": 999,\n                \"childComments\": null,\n                \"like\": false\n            },\n            {\n                \"createTime\": \"2020-05-16 18:54:14\",\n                \"updateTime\": \"2020-05-16 18:54:14\",\n                \"id\": 6,\n                \"postId\": 1,\n                \"fromUid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"content\": \"测试评论<image></image>>\",\n                \"likes\": 1,\n                \"childComments\": null,\n                \"like\": true\n            }\n        ]\n    }\n}"
 								}
 							]
 						}

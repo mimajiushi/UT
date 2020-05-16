@@ -161,8 +161,7 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
             v.forEach(e -> {
                 uids.add(e.getFromUid());
                 uids.add(e.getToUid());
-                e
-                .setLikes(getCommentLikeCount(e.getId()))
+                e.setLikes(getCommentLikeCount(e.getId()))
                 .setLike(isLikeComment(operatorUid, e.getId()));
             });
         });
@@ -175,7 +174,9 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
             v.forEach(e -> {
                 User fromUser = userHashMap.get(e.getFromUid());
                 User toUser = userHashMap.get(e.getToUid());
-                e.setFromNickname(fromUser.getNickname()).setToNickname(toUser.getNickname());
+                e.setFromNickname(fromUser.getNickname())
+                    .setToNickname(toUser.getNickname())
+                    .setFromAvatar(fromUser.getAvatar());
             });
         });
 
