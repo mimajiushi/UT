@@ -8449,7 +8449,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8080/ut/comment/cancelLikesComment/2",
+									"raw": "http://localhost:8080/ut/comment/cancelLikesComment/5",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -8459,7 +8459,7 @@
 										"ut",
 										"comment",
 										"cancelLikesComment",
-										"2"
+										"5"
 									]
 								}
 							},
@@ -8532,7 +8532,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8080/ut/comment/listCommentOfPost/1",
+									"raw": "http://localhost:8080/ut/comment/listCommentOfPost/1?pageNum=1&pageSize=20",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -8543,6 +8543,16 @@
 										"comment",
 										"listCommentOfPost",
 										"1"
+									],
+									"query": [
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "20"
+										}
 									]
 								}
 							},

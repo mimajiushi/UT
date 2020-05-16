@@ -41,7 +41,6 @@ public interface RedisService {
      */
     Double zIncrement(String key, String menber, double delta);
 
-
     Long increment(String key, int variable);
 
     Double zscore(String key, String menber);

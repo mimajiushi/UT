@@ -7,9 +7,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.event.LikesEvent;
 import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
@@ -18,6 +20,7 @@ import run.ut.app.mapper.PostsMapper;
 import run.ut.app.model.domain.PostComments;
 import run.ut.app.model.domain.Posts;
 import run.ut.app.model.domain.User;
+import run.ut.app.model.enums.LikesTypeEnum;
 import run.ut.app.model.param.CommentParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
@@ -47,6 +50,8 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
     private final PostsMapper postsMapper;
     private final RedisService redisService;
     private final UserService userService;
+    private final PostCommentsMapper postCommentsMapper;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Override
     public BaseResponse<String> commentPost(CommentParam commentParam) {
@@ -95,6 +100,10 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         redisService.set(key, "1");
         key = String.format(RedisConfig.COMMENT_LIKE_COUNT, commentId);
         redisService.increment(key, 1);
+
+        // publish event
+        eventPublisher.publishEvent(new LikesEvent(this, commentId, LikesTypeEnum.LIKE_COMMENT));
+
         return BaseResponse.ok("点赞成功~");
     }
 
@@ -108,6 +117,10 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         redisService.remove(key);
         key = String.format(RedisConfig.COMMENT_LIKE_COUNT, commentId);
         redisService.increment(key, -1);
+
+        // publish event
+        eventPublisher.publishEvent(new LikesEvent(this, commentId, LikesTypeEnum.UN_LIKE_COMMENT));
+
         return BaseResponse.ok("取消点赞~");
     }
 
@@ -148,7 +161,8 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
             v.forEach(e -> {
                 uids.add(e.getFromUid());
                 uids.add(e.getToUid());
-                e.setLikes(getCommentLikeCount(e.getId()))
+                e
+                .setLikes(getCommentLikeCount(e.getId()))
                 .setLike(isLikeComment(operatorUid, e.getId()));
             });
         });
@@ -175,6 +189,11 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         });
 
         return new CommentPage<>(postCommentsPage.getTotal(), parentCommentVOList);
+    }
+
+    @Override
+    public void incrementLikesCount(Long commentId, Integer delta) {
+        postCommentsMapper.incrementLikesCount(commentId, delta);
     }
 
 

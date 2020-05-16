@@ -88,6 +88,14 @@ public interface PostCommentsService extends IService<PostComments> {
     @NonNull
     CommentPage<ParentCommentVO> listCommentOfPost(@NonNull Page<PostComments> page, @NonNull Long postId, @NonNull Long operatorUid);
 
+    /**
+     * Increment likes count
+     *
+     * @param commentId   commentId
+     * @param delta        delta
+     */
+    void incrementLikesCount(Long commentId, Integer delta);
+
     @NonNull
     Long getCommentLikeCount(@NonNull Long commentId);
 }

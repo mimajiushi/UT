@@ -8,11 +8,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.event.LikesEvent;
 import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
@@ -22,6 +24,7 @@ import run.ut.app.mapper.UserPostsMapper;
 import run.ut.app.model.domain.Posts;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.domain.UserPosts;
+import run.ut.app.model.enums.LikesTypeEnum;
 import run.ut.app.model.param.PostParam;
 import run.ut.app.model.param.SearchPostParam;
 import run.ut.app.model.support.BaseResponse;
@@ -51,6 +54,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
     private final RedisService redisService;
     private final PostsMapper postsMapper;
     private final UserMapper userMapper;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Override
     @Transactional
@@ -96,6 +100,10 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         }
         redisService.set(key1, "1");
         redisService.increment(key2, 1);
+
+        // publish event
+        eventPublisher.publishEvent(new LikesEvent(this, postId, LikesTypeEnum.LIKE_POST));
+
         return BaseResponse.ok("点赞成功~");
     }
 
@@ -113,6 +121,10 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         }
         redisService.remove(key1);
         redisService.increment(key2, -1);
+
+        // publish event
+        eventPublisher.publishEvent(new LikesEvent(this, postId, LikesTypeEnum.UN_LIKE_POST));
+
         return BaseResponse.ok("取消成功~");
     }
 
@@ -183,6 +195,11 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         postVO.setNickname(user.getNickname()).setAvatar(user.getAvatar());
 
         return postVO;
+    }
+
+    @Override
+    public void incrementLikesCount(Long postId, Integer delta) {
+        postsMapper.incrementLikesCount(postId, delta);
     }
 
     @Override

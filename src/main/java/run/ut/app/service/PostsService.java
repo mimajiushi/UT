@@ -109,6 +109,14 @@ public interface PostsService extends IService<Posts> {
     @NonNull
     PostVO postDetail(@NonNull Long operatorUid, @NonNull Long postId);
 
+    /**
+     * Increment likes count
+     *
+     * @param postId      post id
+     * @param delta       delta
+     */
+    void incrementLikesCount(@NonNull Long postId, @NonNull Integer delta);
+
     @NonNull
     Long getPostLikeCount(@NonNull Long postId);
 
