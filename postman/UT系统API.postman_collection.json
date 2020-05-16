@@ -249,13 +249,13 @@
 							"formdata": [
 								{
 									"key": "file_front",
-									"description": "证件照正面",
+									"description": "证件照正面（改为base64）",
 									"type": "file",
 									"src": "/D:/图包/P站3/1.jpg"
 								},
 								{
 									"key": "file_reverse",
-									"description": "证件照反面",
+									"description": "证件照反面（改为base64）",
 									"type": "file",
 									"src": "/D:/图包/P站3/2.jpg"
 								}
@@ -7446,7 +7446,7 @@
 										}
 									]
 								},
-								"description": "用户身份查询需要带上token，collect字段在这里统一为false，只有查看帖子详情才会有具体值\r\nlike为true表示已收藏\r\ncollect为true表示已收藏（这里统一为false，详情页才用到）\r\nlikeCount表示点赞数\r\nreadCount表示阅读数"
+								"description": "用户身份查询需要带上token，collect字段在这里统一为false，只有查看帖子详情才会有具体值  \r\nlike为true表示已收藏  \r\ncollect为true表示已收藏（这里统一为false，详情页才用到）  \r\nlikeCount表示点赞数  \r\nreadCount表示阅读数  \r\n补充：如调试发现新字段，不用管，只是暂时来不及同步，如果字段影响到功能，我会立即更新的。"
 							},
 							"response": [
 								{
@@ -7974,6 +7974,92 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "查看单个帖子详情",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/index/post/detail/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"index",
+										"post",
+										"detail",
+										"2"
+									]
+								},
+								"description": "注意在这之后再去请求评论接口。 \r\n本接口不包含评论数据"
+							},
+							"response": [
+								{
+									"name": "查看单个帖子详情",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ut/index/post/detail/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"index",
+												"post",
+												"detail",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 16 May 2020 05:57:52 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"id\": 2,\n        \"uid\": 21,\n        \"nickname\": \"chenwenjie\",\n        \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n        \"title\": \"测试标题3\",\n        \"content\": \"测试内容3\",\n        \"likeCount\": 1,\n        \"readCount\": 0,\n        \"createTime\": \"2020-05-13 19:22:30\",\n        \"updateTime\": \"2020-05-13 19:22:30\",\n        \"collect\": true,\n        \"like\": true\n    }\n}"
+								}
+							]
 						}
 					],
 					"protocolProfileBehavior": {},
@@ -7995,7 +8081,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"postId\": 1,\r\n  \"content\": \"测试评论<image></image>>\"\r\n}",
+									"raw": "{\r\n  \"postId\": 1,\r\n  \"content\": \"awdawdawdawdawdawdawd\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -8016,7 +8102,70 @@
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "对帖子评论",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"postId\": 1,\r\n  \"content\": \"awdawdawdawdawdawdawd\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/ut/comment/toPost",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"comment",
+												"toPost"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 16 May 2020 08:19:07 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"评论成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								}
+							]
 						},
 						{
 							"name": "回复评论",
@@ -8217,7 +8366,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8080/ut/comment/likesComment/2",
+									"raw": "http://localhost:8080/ut/comment/likesComment/5",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -8227,11 +8376,66 @@
 										"ut",
 										"comment",
 										"likesComment",
-										"2"
+										"5"
 									]
 								}
 							},
-							"response": []
+							"response": [
+								{
+									"name": "评论点赞",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ut/comment/likesComment/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"comment",
+												"likesComment",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 16 May 2020 08:19:43 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"点赞成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								}
+							]
 						},
 						{
 							"name": "评论取消点赞",
@@ -8313,6 +8517,89 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"status\": 200,\n    \"message\": \"取消点赞~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "查看帖子评论",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/comment/listCommentOfPost/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"comment",
+										"listCommentOfPost",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "查看帖子评论（id=1的帖子评论）",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ut/comment/listCommentOfPost/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"comment",
+												"listCommentOfPost",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 16 May 2020 08:35:44 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 3,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-05-14 19:07:07\",\n                \"updateTime\": \"2020-05-14 19:07:09\",\n                \"id\": 1,\n                \"postId\": 1,\n                \"fromUid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"content\": \"测试评论<image></image>>\",\n                \"likes\": 1,\n                \"childComments\": [\n                    {\n                        \"createTime\": \"2020-05-14 20:49:24\",\n                        \"updateTime\": \"2020-05-14 20:49:26\",\n                        \"id\": 5,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 30,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"Lucien\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"content\": \"666\",\n                        \"likes\": 1,\n                        \"like\": true\n                    },\n                    {\n                        \"createTime\": \"2020-05-14 20:48:36\",\n                        \"updateTime\": \"2020-05-14 20:48:37\",\n                        \"id\": 4,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 21,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"chenwenjie\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"content\": \"我回复我自己\",\n                        \"likes\": 0,\n                        \"like\": false\n                    },\n                    {\n                        \"createTime\": \"2020-05-14 20:48:19\",\n                        \"updateTime\": \"2020-05-14 20:48:21\",\n                        \"id\": 3,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 21,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"chenwenjie\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"content\": \"我回复我字节\",\n                        \"likes\": 1,\n                        \"like\": true\n                    }\n                ],\n                \"like\": true\n            },\n            {\n                \"createTime\": \"2020-05-16 16:18:59\",\n                \"updateTime\": \"2020-05-16 16:19:00\",\n                \"id\": 6,\n                \"postId\": 1,\n                \"fromUid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"content\": \"测试评论<image></image>>\",\n                \"likes\": 1,\n                \"childComments\": null,\n                \"like\": true\n            },\n            {\n                \"createTime\": \"2020-05-16 16:19:08\",\n                \"updateTime\": \"2020-05-16 16:19:09\",\n                \"id\": 7,\n                \"postId\": 1,\n                \"fromUid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"content\": \"awdawdawdawdawdawdawd\",\n                \"likes\": 0,\n                \"childComments\": null,\n                \"like\": false\n            }\n        ]\n    }\n}"
 								}
 							]
 						}

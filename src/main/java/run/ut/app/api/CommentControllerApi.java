@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PathVariable;
 import run.ut.app.model.param.CommentParam;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.support.CommentPage;
+import run.ut.app.model.vo.ParentCommentVO;
 
 /**
  * @author wenjie
@@ -26,4 +28,7 @@ public interface CommentControllerApi {
 
     @ApiOperation(value = "取消点赞")
     BaseResponse<String> cancelLikesComment(@PathVariable Long commentId);
+
+    @ApiOperation(value = "获取帖子下的评论", notes = "如果传进token")
+    CommentPage<ParentCommentVO> listCommentOfPost(@PathVariable Long postId, Integer pageNum, Integer pageSize);
 }

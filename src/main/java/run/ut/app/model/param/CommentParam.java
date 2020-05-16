@@ -2,8 +2,6 @@ package run.ut.app.model.param;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import run.ut.app.model.domain.PostComments;
-import run.ut.app.model.dto.base.InputConverter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,7 +14,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @Data
-public class CommentParam implements InputConverter<PostComments> {
+public class CommentParam {
 
     @ApiModelProperty(value = "帖子id")
     @NotNull(message = "post id must not be null.")

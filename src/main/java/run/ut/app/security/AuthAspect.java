@@ -56,7 +56,6 @@ public class AuthAspect {
         try {
             // 1. get token from header
             HttpServletRequest request = getHttpServletRequest();
-//            String token = request.getHeader("UT-Token");
             String token = ServletUtils.getHeaderIgnoreCase("UT-Token");
 
             // 1. check token

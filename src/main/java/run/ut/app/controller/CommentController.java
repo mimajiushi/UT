@@ -1,13 +1,17 @@
 package run.ut.app.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.CommentControllerApi;
+import run.ut.app.model.domain.PostComments;
 import run.ut.app.model.param.CommentParam;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.support.CommentPage;
+import run.ut.app.model.vo.ParentCommentVO;
 import run.ut.app.security.CheckLogin;
 import run.ut.app.service.PostCommentsService;
 import run.ut.app.service.UserInfoService;
@@ -68,5 +72,15 @@ public class CommentController extends BaseController implements CommentControll
     @CheckLogin
     public BaseResponse<String> cancelLikesComment(@PathVariable Long commentId) {
         return postCommentsService.cancelLikesComment(getUid(), commentId);
+    }
+
+    @Override
+    @GetMapping("/listCommentOfPost/{postId:\\d+}")
+    public CommentPage<ParentCommentVO> listCommentOfPost(@PathVariable Long postId,
+                                                          @RequestParam(defaultValue = "1") Integer pageNum,
+                                                          @RequestParam(defaultValue = "10") Integer pageSize) {
+        Long operatorUid = getUidFromToken();
+        Page<PostComments> page = new Page<>(pageNum, pageSize);
+        return postCommentsService.listCommentOfPost(page, postId, operatorUid);
     }
 }

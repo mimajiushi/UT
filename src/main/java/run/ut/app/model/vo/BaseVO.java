@@ -1,6 +1,5 @@
-package run.ut.app.model.dto;
+package run.ut.app.model.vo;
 
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 /**
- * Base DTO.
+ * Base VO.
  *
  * @author wenjie
  */
@@ -20,7 +19,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @MappedSuperclass
 @Accessors(chain = true)
-public class BaseDTO {
+public class BaseVO {
 
     /**
      * Create time.
@@ -33,11 +32,5 @@ public class BaseDTO {
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime updateTime;
-
-    /**
-     * Delete flag.
-     */
-    @TableLogic
-    private int deleted = 0;
 
 }

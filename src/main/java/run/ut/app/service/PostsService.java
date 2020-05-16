@@ -99,6 +99,16 @@ public interface PostsService extends IService<Posts> {
     @NonNull
     CommentPage<PostVO> listCollectionByParams(@NonNull Page page, @NonNull SearchPostParam searchPostParam);
 
+    /**
+     *
+     *
+     * @param operatorUid    operator uid
+     * @param postId         post id
+     * @return               PostVO
+     */
+    @NonNull
+    PostVO postDetail(@NonNull Long operatorUid, @NonNull Long postId);
+
     @NonNull
     Long getPostLikeCount(@NonNull Long postId);
 
