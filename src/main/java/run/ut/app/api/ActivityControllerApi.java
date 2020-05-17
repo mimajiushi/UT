@@ -26,4 +26,10 @@ public interface ActivityControllerApi {
     @ApiOperation(value = "取消收藏活动")
     BaseResponse<String> cancelCollectActivity(@PathVariable Long activityId);
 
+    @ApiOperation(value = "预约活动")
+    BaseResponse<String> appointment(@PathVariable Long activityId);
+
+    @ApiOperation(value = "取消预约活动")
+    BaseResponse<String> cancelAppointment(@PathVariable Long activityId);
+
 }

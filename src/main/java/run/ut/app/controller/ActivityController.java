@@ -12,6 +12,7 @@ import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.ActivityVO;
 import run.ut.app.security.CheckLogin;
+import run.ut.app.service.ActivityAppointmentService;
 import run.ut.app.service.ActivityCollectService;
 import run.ut.app.service.ActivityService;
 
@@ -27,6 +28,7 @@ public class ActivityController extends BaseController implements ActivityContro
 
     private final ActivityService activityService;
     private final ActivityCollectService activityCollectService;
+    private final ActivityAppointmentService activityAppointmentService;
 
     @Override
     @GetMapping("list/activities")
@@ -57,5 +59,19 @@ public class ActivityController extends BaseController implements ActivityContro
     @CheckLogin
     public BaseResponse<String> cancelCollectActivity(@PathVariable Long activityId) {
         return activityCollectService.cancelCollectActivity(getUid(), activityId);
+    }
+
+    @Override
+    @PostMapping("appointment/{activityId:\\d+}")
+    @CheckLogin
+    public BaseResponse<String> appointment(@PathVariable Long activityId) {
+        return activityAppointmentService.appointment(getUid(), activityId);
+    }
+
+    @Override
+    @PostMapping("cancelAppointment/{activityId:\\d+}")
+    @CheckLogin
+    public BaseResponse<String> cancelAppointment(@PathVariable Long activityId) {
+        return activityAppointmentService.cancelAppointment(getUid(), activityId);
     }
 }
