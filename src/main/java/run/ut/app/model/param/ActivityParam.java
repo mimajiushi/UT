@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
+import run.ut.app.model.domain.Activity;
+import run.ut.app.model.dto.base.InputConverter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -26,7 +28,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "ActivityParam 对象", description = "")
-public class ActivityParam implements Serializable {
+public class ActivityParam implements Serializable, InputConverter<Activity> {
+    @ApiModelProperty(value = "活动id，更新时传入")
     private Long id;
 
     @ApiModelProperty(value = "活动标题")

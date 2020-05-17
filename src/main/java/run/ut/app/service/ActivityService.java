@@ -3,8 +3,8 @@ package run.ut.app.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.lang.NonNull;
 import run.ut.app.model.domain.Activity;
-import run.ut.app.model.dto.ActivityDTO;
 import run.ut.app.model.param.ActivityParam;
+import run.ut.app.model.support.BaseResponse;
 
 /**
  * <p>
@@ -22,5 +22,6 @@ public interface ActivityService extends IService<Activity> {
      * @param activityParam activity info
      * @return ActivityDTO
      */
-    ActivityDTO createActivity(@NonNull ActivityParam activityParam);
+    @NonNull
+    BaseResponse<String> saveActivity(@NonNull ActivityParam activityParam);
 }

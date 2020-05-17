@@ -5,11 +5,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import run.ut.app.mapper.ActivityMapper;
 import run.ut.app.model.domain.Activity;
-import run.ut.app.model.dto.ActivityDTO;
 import run.ut.app.model.param.ActivityParam;
+import run.ut.app.model.support.BaseResponse;
 import run.ut.app.service.ActivityService;
 
 /**
@@ -25,18 +24,18 @@ import run.ut.app.service.ActivityService;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> implements ActivityService {
 
-
     @Override
-    @Transactional
-    public ActivityDTO createActivity(ActivityParam activityParam) {
-
-        // save activity
-        Activity activity = new Activity();
-        activity.setContent(activityParam.getContent()).setTitle(activityParam.getTitle())
-                .setStartTime(activityParam.getStartTime()).setEndTime(activityParam.getEndTime())
-                .setCover(activityParam.getCover());
-
-        save(activity);
-        return new ActivityDTO().convertFrom(activity);
+    public BaseResponse<String> saveActivity(ActivityParam activityParam) {
+        Activity activity = activityParam.convertTo();
+        Long activityId = activity.getId();
+        if (activityId == null) {
+            // insert activity
+            save(activity);
+        } else {
+            // update activity
+            activity.setUpdateTime(null);
+            updateById(activity);
+        }
+        return BaseResponse.ok("活动发布成功");
     }
 }
