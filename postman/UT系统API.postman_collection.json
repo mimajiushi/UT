@@ -1519,7 +1519,7 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8080/ut/admin/saveActivity",
+									"raw": "http://localhost:8080/ut/admin/activity/saveActivity",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1528,6 +1528,7 @@
 									"path": [
 										"ut",
 										"admin",
+										"activity",
 										"saveActivity"
 									]
 								}
@@ -1582,7 +1583,7 @@
 											]
 										},
 										"url": {
-											"raw": "http://localhost:8080/ut/admin/saveActivity",
+											"raw": "http://localhost:8080/ut/admin/activity/saveActivity",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -1591,6 +1592,7 @@
 											"path": [
 												"ut",
 												"admin",
+												"activity",
 												"saveActivity"
 											]
 										}
@@ -1671,7 +1673,7 @@
 											]
 										},
 										"url": {
-											"raw": "http://localhost:8080/ut/admin/saveActivity",
+											"raw": "http://localhost:8080/ut/admin/activity/saveActivity",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -1680,6 +1682,7 @@
 											"path": [
 												"ut",
 												"admin",
+												"activity",
 												"saveActivity"
 											]
 										}
