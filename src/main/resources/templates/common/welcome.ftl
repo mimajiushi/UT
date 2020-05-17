@@ -94,11 +94,9 @@
             if (store.enabled) {
                 var user = store.get('user');
                 if (!user){
-                    if (self === top) {
-                        layer.msg("请重新登录！", {icon: 5, anim: 6}, function () {
-                            location.href = '${base}/admin/login';
-                        });
-                    }
+                    top.layer.msg("请重新登录！", {icon: 5, anim: 6}, function () {
+                        goLogin("${base}");
+                    });
                 }else {
                     //给ajax加上token
                     $.ajaxSetup({
@@ -153,7 +151,7 @@
                     });
                 }
             }else {
-                layer.msg("请关闭无痕模式！", {icon: 5});
+                top.layer.msg("请关闭无痕模式！", {icon: 5});
             }
         });
     });

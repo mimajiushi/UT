@@ -69,7 +69,7 @@
                             location.href = '${base}/admin/index';
                         });
                     }else {
-                        layer.msg("请关闭无痕模式！", {icon: 5});
+                        top.layer.msg("请关闭无痕模式！", {icon: 5});
                         $("#login").attr("disabled", false);
                     }
                 },
@@ -91,7 +91,7 @@
         //倒计时
         var wait = 60;
         function time(o) {
-            if (wait == 0) {
+            if (wait === 0) {
                 $(o).attr("disabled", false);
                 $(o).attr("class", "layui-btn layui-btn-normal");
                 $(o).html("获取验证码");
@@ -107,14 +107,16 @@
 
         //获取验证码
         $('#getVerifyCode').click(function () {
-            if ($.trim($("#email").val()).length == 0) {
+            if ($.trim($("#email").val()).length === 0) {
                 layer.msg("邮箱没有输入！", {icon: 5, anim: 6});
                 $("#email").focus();
             } else {
-                if (isEmail($.trim($("#email").val())) == false) {
+                if (isEmail($.trim($("#email").val())) === false) {
                     layer.msg("邮箱不正确！", {icon: 5, anim: 6});
                     $("#email").focus();
                 }else {
+                    var bu = $('#getVerifyCode');
+                    $(bu).attr("disabled", true);
                     var index = layer.load(2);
                     $.ajax({
                         type: "POST",
@@ -122,16 +124,18 @@
                         data: {email:$.trim($("#email").val())},
                         dataType: "json",
                         success: function(res){
-                            var bu = $('#getVerifyCode');
                             time(bu);
+                            layer.close(index);
                             layer.msg(res.message, {icon: 1});
                         },
                         error:function (jqXHR) {
                             var res = $.parseJSON(jqXHR.responseText);
+                            layer.close(index);
+                            $(bu).attr("disabled", false);
                             layer.msg(res.message, {icon: 5});
                         }
                     });
-                    layer.close(index);
+
                 }
             }
         });

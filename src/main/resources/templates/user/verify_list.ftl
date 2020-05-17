@@ -172,11 +172,9 @@
         if (store.enabled) {
             var user = store.get('user');
             if (!user) {
-                if (self === top) {
-                    layer.msg("请重新登录！", {icon: 5, anim: 6}, function () {
-                        goLogin("${base}");
-                    });
-                }
+                top.layer.msg("请重新登录！", {icon: 5, anim: 6}, function () {
+                    goLogin("${base}");
+                });
             } else {
                 //给ajax加上token
                 $.ajaxSetup({
@@ -199,21 +197,21 @@
                         layer.confirm("是否通过审核？",{
                             btn: ['通过', '不通过'], title: "提示", icon: 3
                         }, function(index) {
-                                $.ajax({
-                                    type: "POST",
-                                    url: "${base}/admin/verifyUserInfo",
-                                    data: {id: data.id, status: 1},
-                                    success: function(res) {
-                                        obj.update({
-                                            status: "审核通过"
-                                            , updateTime: layui.util.toDateString(new Date().getTime(), 'yyyy-MM-dd HH:mm:ss')
-                                        });
-                                        layer.msg(res.message, {icon: 1});
-                                    },
-                                    error: function ajaxTokenError (jqXHR) {
-                                        failReqHandler("${base}",jqXHR);
-                                    }
-                                });
+                            $.ajax({
+                                type: "POST",
+                                url: "${base}/admin/verifyUserInfo",
+                                data: {id: data.id, status: 1},
+                                success: function(res) {
+                                    obj.update({
+                                        status: "审核通过"
+                                        , updateTime: layui.util.toDateString(new Date().getTime(), 'yyyy-MM-dd HH:mm:ss')
+                                    });
+                                    layer.msg(res.message, {icon: 1});
+                                },
+                                error: function ajaxTokenError (jqXHR) {
+                                    failReqHandler("${base}",jqXHR);
+                                }
+                            });
                             layer.close(index);
                         }, function(index) {
                             layer.close(index);
@@ -304,7 +302,7 @@
 
             }
         }else {
-            layer.msg("请关闭无痕模式！", {icon: 5});
+            top.layer.msg("请关闭无痕模式！", {icon: 5});
         }
     });
 </script>

@@ -80,9 +80,9 @@
             </li>
             <li>
                 <a onclick="">
-                    <i class="iconfont left-nav-li" lay-tips="活动管理">&#xe723;</i>
+                    <i class="iconfont left-nav-li" lay-tips="活动管理">&#xe6bb;</i>
                     <cite>活动管理</cite>
-                    <i class="iconfont nav_right">&#xe6bb;</i></a>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
                         <a onclick="xadmin.add_tab('活动列表','${base}/admin/activityList')">
@@ -98,9 +98,9 @@
             </li>
             <li>
                 <a onclick="">
-                    <i class="iconfont left-nav-li" lay-tips="系统管理">&#xe723;</i>
+                    <i class="iconfont left-nav-li" lay-tips="系统管理">&#xe6ae;</i>
                     <cite>系统管理</cite>
-                    <i class="iconfont nav_right">&#xe6ae;</i></a>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
                         <a onclick="xadmin.add_tab('查看日志','${base}/admin/log')">
@@ -167,7 +167,7 @@
                 });
             }
         }else {
-            layer.msg("请关闭无痕模式！", {icon: 5});
+            top.layer.msg("请关闭无痕模式！", {icon: 5});
         }
     });
 </script>
