@@ -1,7 +1,6 @@
 package run.ut.app.model.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -23,7 +22,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ActivityDTO  extends BaseDTO implements OutputConverter<ActivityDTO, Activity> {
 
-    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     @ApiModelProperty(value = "活动标题")
@@ -35,7 +33,9 @@ public class ActivityDTO  extends BaseDTO implements OutputConverter<ActivityDTO
     @ApiModelProperty(value = "活动内容")
     private String content;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime startTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime endTime;
 }

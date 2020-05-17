@@ -5,7 +5,6 @@ package run.ut.app.config.redis;
  */
 public class RedisConfig {
 
-
     /**
      * Expiration time of SMS in seconds
      */
@@ -44,5 +43,10 @@ public class RedisConfig {
      */
     public static final String USER_LIKE_COMMENT = "USER::%s::LIKE_COMMENT::%s";
     public static final String COMMENT_LIKE_COUNT = "COMMENT_LIKE_COUNT::%s";
+
+    /**
+     * activity cache
+     */
+    public static final String ACTIVITY_READ_COUNT = "ACTIVITY_READ_COUNT::%s";
 
 }

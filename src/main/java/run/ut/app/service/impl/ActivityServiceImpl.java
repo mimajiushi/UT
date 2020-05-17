@@ -1,15 +1,28 @@
 package run.ut.app.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.mapper.ActivityAppointmentMapper;
 import run.ut.app.mapper.ActivityMapper;
 import run.ut.app.model.domain.Activity;
+import run.ut.app.model.domain.ActivityAppointment;
 import run.ut.app.model.param.ActivityParam;
+import run.ut.app.model.param.SearchActivityParam;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.support.CommentPage;
+import run.ut.app.model.vo.ActivityVO;
 import run.ut.app.service.ActivityService;
+import run.ut.app.service.RedisService;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -23,6 +36,9 @@ import run.ut.app.service.ActivityService;
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> implements ActivityService {
+
+    private final RedisService redisService;
+    private final ActivityAppointmentMapper activityAppointmentMapper;
 
     @Override
     public BaseResponse<String> saveActivity(ActivityParam activityParam) {
@@ -38,5 +54,55 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
             boolean res = updateById(activity);
             return res ? BaseResponse.ok("更新活动成功") : BaseResponse.ok("更新失败！活动可能已被删除！");
         }
+    }
+
+    @Override
+    public CommentPage<ActivityVO> listActivities(Page<Activity> page, SearchActivityParam searchActivityParam) {
+        QueryWrapper<Activity> wrapper = new QueryWrapper<>();
+        Long operatorUid = searchActivityParam.getOperatorUid();
+        String title = searchActivityParam.getTitle();
+        String column = searchActivityParam.getOrder();
+        SearchActivityParam.OrderEnum value = SearchActivityParam.OrderEnum.getByColumn(column);
+        if (!StringUtils.isBlank(title)) {
+            wrapper.like("title", title);
+        }
+        if (null != value) {
+            wrapper.orderByDesc(value.getColumn());
+        } else {
+            wrapper.orderByDesc("appointment_count");
+        }
+        Page<Activity> activityPage = page(page, wrapper);
+
+        List<Activity> activityList = activityPage.getRecords();
+        List<ActivityVO> activityVOList = activityList.stream().map(activity -> {
+            ActivityVO activityVO = new ActivityVO().convertFrom(activity)
+                .setReadCount(getReadCount(activity.getId()));
+            if (operatorUid != null) {
+                activityVO.setAppointment(isAppointment(operatorUid, activityVO.getId()));
+            }
+            return activityVO;
+        }).collect(Collectors.toList());
+
+        return new CommentPage<>(activityPage.getTotal(), activityVOList);
+    }
+
+    private long getReadCount(Long activityId) {
+        String key = String.format(RedisConfig.ACTIVITY_READ_COUNT, activityId);
+        String res = redisService.get(key);
+        if (StringUtils.isBlank(res)) {
+            return 0L;
+        }
+        try {
+            return Long.valueOf(res + "");
+        } catch (Exception e) {
+            return 0L;
+        }
+    }
+
+    private boolean isAppointment(Long uid, Long activityId) {
+        int count = activityAppointmentMapper.selectCount(new QueryWrapper<ActivityAppointment>()
+            .eq("uid", uid)
+            .eq("activity_id", activityId));
+        return count > 0;
     }
 }

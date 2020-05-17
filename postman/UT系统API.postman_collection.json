@@ -1400,7 +1400,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8080/ut/admin/delActivity/2",
+									"raw": "http://localhost:8080/ut/admin/activity/delActivity/2",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1409,6 +1409,7 @@
 									"path": [
 										"ut",
 										"admin",
+										"activity",
 										"delActivity",
 										"2"
 									]
@@ -7028,7 +7029,7 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "BBS相关API",
+			"name": "BBS相关API（非管理员）",
 			"item": [
 				{
 					"name": "帖子操作API",
@@ -8966,6 +8967,457 @@
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "活动相关API（非管理员）",
+			"item": [
+				{
+					"name": "活动列表",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/activity/list/activities?pageNum=1&pageSize=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"activity",
+								"list",
+								"activities"
+							],
+							"query": [
+								{
+									"key": "pageNum",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
+							]
+						},
+						"description": "如果不指定排序，则默认是预约人数最多的排前面  \r\n排序字段只有两个  \r\n①create_time：最近创建的排在前面  \r\n②appointment_count：预约多的排在前面  \r\n\r\nappointment表示是否预约"
+					},
+					"response": [
+						{
+							"name": "活动列表(create_time倒序)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"order\": \"create_time\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/activity/list/activities?pageNum=1&pageSize=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"activity",
+										"list",
+										"activities"
+									],
+									"query": [
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=1D95648DFCFF3392ED74435DDA371E6A; Path=/ut; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 May 2020 07:42:45 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 5,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-05-19 11:56:08\",\n                \"updateTime\": \"2020-05-17 15:38:47\",\n                \"id\": 6,\n                \"title\": \"dasdasda\",\n                \"cover\": \"https://www.wenjie.store/ut/img/测试用图1_1589687763465.png\",\n                \"content\": \"<p>adawawdawwwwwww</p>\",\n                \"appointmentCount\": 0,\n                \"appointment\": false,\n                \"readCount\": 0,\n                \"startTime\": \"2020-04-29 00:00:00\",\n                \"endTime\": \"2020-05-22 00:00:00\"\n            },\n            {\n                \"createTime\": \"2020-05-17 11:43:13\",\n                \"updateTime\": \"2020-05-17 11:43:13\",\n                \"id\": 5,\n                \"title\": \" demoData\",\n                \"cover\": \" demoData\",\n                \"content\": \" demoData\",\n                \"appointmentCount\": 0,\n                \"appointment\": false,\n                \"readCount\": 0,\n                \"startTime\": \"2020-05-17 11:26:09\",\n                \"endTime\": \"2020-05-17 11:26:09\"\n            },\n            {\n                \"createTime\": \"2020-05-17 11:26:09\",\n                \"updateTime\": \"2020-05-17 13:32:56\",\n                \"id\": 4,\n                \"title\": \"sdawdawd\",\n                \"cover\": \"https://www.wenjie.store/ut/img/测试用图12_1589685964507.png\",\n                \"content\": \"<p>asdadwawdawdawdawd</p>\",\n                \"appointmentCount\": 990,\n                \"appointment\": false,\n                \"readCount\": 0,\n                \"startTime\": \"2020-05-10 00:00:00\",\n                \"endTime\": \"2020-05-17 00:00:00\"\n            },\n            {\n                \"createTime\": \"2020-05-17 11:20:05\",\n                \"updateTime\": \"2020-05-17 11:21:21\",\n                \"id\": 3,\n                \"title\": \"测试标题\",\n                \"cover\": \"https://www.wenjie.store/ut/img/测试用图1_1589685603028.png\",\n                \"content\": \"<p>asdawdawd</p>\",\n                \"appointmentCount\": 0,\n                \"appointment\": true,\n                \"readCount\": 0,\n                \"startTime\": \"2020-05-10 11:19:53\",\n                \"endTime\": \"2020-05-17 00:00:00\"\n            },\n            {\n                \"createTime\": \"2020-05-15 16:29:06\",\n                \"updateTime\": \"2020-05-17 13:24:28\",\n                \"id\": 2,\n                \"title\": \"搜索\",\n                \"cover\": \"https://www.wenjie.store/ut/img/大三上_1589531342853.png\",\n                \"content\": \"<p><br></p>\",\n                \"appointmentCount\": 0,\n                \"appointment\": false,\n                \"readCount\": 0,\n                \"startTime\": \"2020-05-15 00:00:00\",\n                \"endTime\": \"2020-05-15 00:00:00\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "无条件查询（带toekn）",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/activity/list/activities?pageNum=1&pageSize=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"activity",
+										"list",
+										"activities"
+									],
+									"query": [
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 May 2020 07:35:55 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 5,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-05-17 11:26:09\",\n                \"updateTime\": \"2020-05-17 13:32:56\",\n                \"id\": 4,\n                \"title\": \"sdawdawd\",\n                \"cover\": \"https://www.wenjie.store/ut/img/测试用图12_1589685964507.png\",\n                \"content\": \"<p>asdadwawdawdawdawd</p>\",\n                \"appointmentCount\": 990,\n                \"appointment\": false,\n                \"readCount\": 0,\n                \"startTime\": \"2020-05-10 00:00:00\",\n                \"endTime\": \"2020-05-17 00:00:00\"\n            },\n            {\n                \"createTime\": \"2020-05-15 16:29:06\",\n                \"updateTime\": \"2020-05-17 13:24:28\",\n                \"id\": 2,\n                \"title\": \"搜索\",\n                \"cover\": \"https://www.wenjie.store/ut/img/大三上_1589531342853.png\",\n                \"content\": \"<p><br></p>\",\n                \"appointmentCount\": 0,\n                \"appointment\": false,\n                \"readCount\": 0,\n                \"startTime\": \"2020-05-15 00:00:00\",\n                \"endTime\": \"2020-05-15 00:00:00\"\n            },\n            {\n                \"createTime\": \"2020-05-17 11:20:05\",\n                \"updateTime\": \"2020-05-17 11:21:21\",\n                \"id\": 3,\n                \"title\": \"测试标题\",\n                \"cover\": \"https://www.wenjie.store/ut/img/测试用图1_1589685603028.png\",\n                \"content\": \"<p>asdawdawd</p>\",\n                \"appointmentCount\": 0,\n                \"appointment\": true,\n                \"readCount\": 0,\n                \"startTime\": \"2020-05-10 11:19:53\",\n                \"endTime\": \"2020-05-17 00:00:00\"\n            },\n            {\n                \"createTime\": \"2020-05-17 11:43:13\",\n                \"updateTime\": \"2020-05-17 11:43:13\",\n                \"id\": 5,\n                \"title\": \" demoData\",\n                \"cover\": \" demoData\",\n                \"content\": \" demoData\",\n                \"appointmentCount\": 0,\n                \"appointment\": false,\n                \"readCount\": 0,\n                \"startTime\": \"2020-05-17 11:26:09\",\n                \"endTime\": \"2020-05-17 11:26:09\"\n            },\n            {\n                \"createTime\": \"2020-05-17 11:56:08\",\n                \"updateTime\": \"2020-05-17 11:56:07\",\n                \"id\": 6,\n                \"title\": \"dasdasda\",\n                \"cover\": \"https://www.wenjie.store/ut/img/测试用图1_1589687763465.png\",\n                \"content\": \"<p>adawawdawwwwwww</p>\",\n                \"appointmentCount\": 0,\n                \"appointment\": false,\n                \"readCount\": 0,\n                \"startTime\": \"2020-04-29 00:00:00\",\n                \"endTime\": \"2020-05-22 00:00:00\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "关键字模糊查询",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"title\": \"sda\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/activity/list/activities?pageNum=1&pageSize=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"activity",
+										"list",
+										"activities"
+									],
+									"query": [
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 May 2020 07:43:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-05-17 11:26:09\",\n                \"updateTime\": \"2020-05-17 13:32:56\",\n                \"id\": 4,\n                \"title\": \"sdawdawd\",\n                \"cover\": \"https://www.wenjie.store/ut/img/测试用图12_1589685964507.png\",\n                \"content\": \"<p>asdadwawdawdawdawd</p>\",\n                \"appointmentCount\": 990,\n                \"appointment\": false,\n                \"readCount\": 0,\n                \"startTime\": \"2020-05-10 00:00:00\",\n                \"endTime\": \"2020-05-17 00:00:00\"\n            },\n            {\n                \"createTime\": \"2020-05-19 11:56:08\",\n                \"updateTime\": \"2020-05-17 15:38:47\",\n                \"id\": 6,\n                \"title\": \"dasdasda\",\n                \"cover\": \"https://www.wenjie.store/ut/img/测试用图1_1589687763465.png\",\n                \"content\": \"<p>adawawdawwwwwww</p>\",\n                \"appointmentCount\": 0,\n                \"appointment\": false,\n                \"readCount\": 0,\n                \"startTime\": \"2020-04-29 00:00:00\",\n                \"endTime\": \"2020-05-22 00:00:00\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "收藏活动",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/activity/collect/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"activity",
+								"collect",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "收藏活动",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/activity/collect/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"activity",
+										"collect",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=286B59BEF2CF0A7AB31D677373524BAC; Path=/ut; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 May 2020 08:15:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"收藏成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "取消收藏活动",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/activity/collect_cancel/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"activity",
+								"collect_cancel",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "取消收藏活动",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/activity/collect_cancel/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"activity",
+										"collect_cancel",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 May 2020 08:18:52 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"取消收藏成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
 				}
 			],
 			"protocolProfileBehavior": {}

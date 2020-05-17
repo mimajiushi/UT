@@ -10,7 +10,8 @@
         <result column="content" property="content" />
         <result column="start_time" property="startTime" />
         <result column="end_time" property="endTime" />
-        <result column="delete" property="delete" />
+        <result column="appointment_count" property="appointmentCount" />
+        <result column="deleted" property="deleted" />
         <result column="update_time" property="updateTime" />
         <result column="create_time" property="createTime" />
     </resultMap>

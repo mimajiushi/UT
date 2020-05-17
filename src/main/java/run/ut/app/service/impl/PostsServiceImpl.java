@@ -194,6 +194,9 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         User user = userMapper.selectById(post.getUid());
         postVO.setNickname(user.getNickname()).setAvatar(user.getAvatar());
 
+        String key = String.format(RedisConfig.POST_READ_COUNT, postId);
+        redisService.increment(key, 1);
+
         return postVO;
     }
 
