@@ -124,7 +124,7 @@
                     var data = data.field;
                     $.ajax({
                         type: "POST",
-                        url: "${base}/admin/saveActivity",
+                        url: "${base}/activity/saveActivity",
                         data: {
                             title: data.title
                             , content: editor.txt.html()

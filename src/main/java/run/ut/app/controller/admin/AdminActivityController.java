@@ -25,8 +25,8 @@ import javax.validation.Valid;
 @RestController
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping("admin")
-@CheckAuthorization(roles = UserRolesEnum.ROLE_ADMIN)
+@RequestMapping("activity")
+@CheckAuthorization(roles = {UserRolesEnum.ROLE_ADMIN, UserRolesEnum.ROLE_SPONSOR})
 public class AdminActivityController implements AdminActivityControllerApi {
 
     private final ActivityService activityService;
