@@ -3,6 +3,7 @@ package run.ut.app.controller.admin;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,9 +31,16 @@ public class AdminActivityController implements AdminActivityControllerApi {
 
     private final ActivityService activityService;
 
-    @PostMapping("saveActivity")
     @Override
+    @PostMapping("saveActivity")
     public BaseResponse<String> saveActivity(@Valid ActivityParam activityParam) {
         return activityService.saveActivity(activityParam);
+    }
+
+    @Override
+    @PostMapping("delActivity/{activityId:\\d+}")
+    public BaseResponse<String> delActivity(@PathVariable Long activityId) {
+        boolean res = activityService.removeById(activityId);
+        return res ? BaseResponse.ok("删除成功") : BaseResponse.ok("删除失败！活动可能已被删除！");
     }
 }

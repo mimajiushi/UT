@@ -1386,6 +1386,339 @@
 			"name": "管理员操作API",
 			"item": [
 				{
+					"name": "活动操作API",
+					"item": [
+						{
+							"name": "删除活动",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/delActivity/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"delActivity",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "删除活动",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ut/admin/delActivity/2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"admin",
+												"delActivity",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 17 May 2020 03:39:35 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"删除成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "创建/更新活动",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": " 2",
+											"description": "传入id表示更新",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": " demoData2",
+											"type": "text"
+										},
+										{
+											"key": "cover",
+											"value": " demoData2",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": " demoData2",
+											"type": "text"
+										},
+										{
+											"key": "startTime",
+											"value": "2020-05-17 11:26:09",
+											"type": "text"
+										},
+										{
+											"key": "endTime",
+											"value": "2020-05-17 11:26:09",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/saveActivity",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"saveActivity"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "创建活动",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "id",
+													"value": " 1",
+													"description": "传入id表示更新",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "title",
+													"value": " demoData",
+													"type": "text"
+												},
+												{
+													"key": "cover",
+													"value": " demoData",
+													"type": "text"
+												},
+												{
+													"key": "content",
+													"value": " demoData",
+													"type": "text"
+												},
+												{
+													"key": "startTime",
+													"value": "2020-05-17 11:26:09",
+													"type": "text"
+												},
+												{
+													"key": "endTime",
+													"value": "2020-05-17 11:26:09",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8080/ut/admin/saveActivity",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"admin",
+												"saveActivity"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 17 May 2020 03:43:13 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"活动发布成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								},
+								{
+									"name": "更新活动信息",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "id",
+													"value": " 2",
+													"description": "传入id表示更新",
+													"type": "text"
+												},
+												{
+													"key": "title",
+													"value": " demoData2",
+													"type": "text"
+												},
+												{
+													"key": "cover",
+													"value": " demoData2",
+													"type": "text"
+												},
+												{
+													"key": "content",
+													"value": " demoData2",
+													"type": "text"
+												},
+												{
+													"key": "startTime",
+													"value": "2020-05-17 11:26:09",
+													"type": "text"
+												},
+												{
+													"key": "endTime",
+													"value": "2020-05-17 11:26:09",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8080/ut/admin/saveActivity",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"admin",
+												"saveActivity"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 17 May 2020 03:45:39 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"更新活动成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "获取管理员身份token（测试用）",
 					"request": {
 						"method": "POST",

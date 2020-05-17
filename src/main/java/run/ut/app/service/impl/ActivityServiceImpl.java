@@ -31,11 +31,12 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
         if (activityId == null) {
             // insert activity
             save(activity);
+            return BaseResponse.ok("活动发布成功");
         } else {
             // update activity
             activity.setUpdateTime(null);
-            updateById(activity);
+            boolean res = updateById(activity);
+            return res ? BaseResponse.ok("更新活动成功") : BaseResponse.ok("更新失败！活动可能已被删除！");
         }
-        return BaseResponse.ok("活动发布成功");
     }
 }
