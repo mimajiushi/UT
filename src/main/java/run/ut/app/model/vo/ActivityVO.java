@@ -39,6 +39,9 @@ public class ActivityVO extends BaseVO implements OutputConverter<ActivityVO, Ac
     @ApiModelProperty(value = "是否已预约")
     private boolean appointment;
 
+    @ApiModelProperty(value = "是否已收藏")
+    private boolean collect;
+
     @ApiModelProperty(value = "阅读数")
     private long readCount;
 

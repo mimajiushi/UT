@@ -17,6 +17,9 @@ public interface ActivityControllerApi {
     @ApiOperation(value = "查询活动列表", notes = "传入token则会判断有无预约活动")
     CommentPage<ActivityVO> listActivities(SearchActivityParam searchActivityParam, Integer pageNum, Integer pageSize);
 
+    @ApiOperation(value = "活动详情")
+    ActivityVO activityDetail(@PathVariable Long activityId);
+
     @ApiOperation(value = "收藏活动")
     BaseResponse<String> collectActivity(@PathVariable Long activityId);
 

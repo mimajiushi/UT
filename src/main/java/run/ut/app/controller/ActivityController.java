@@ -40,6 +40,12 @@ public class ActivityController extends BaseController implements ActivityContro
     }
 
     @Override
+    @GetMapping("detail/{activityId:\\d+}")
+    public ActivityVO activityDetail(@PathVariable Long activityId) {
+        return activityService.activityDetail(getUidFromToken(), activityId);
+    }
+
+    @Override
     @PostMapping("collect/{activityId:\\d+}")
     @CheckLogin
     public BaseResponse<String> collectActivity(@PathVariable Long activityId) {

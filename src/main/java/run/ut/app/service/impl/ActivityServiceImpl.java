@@ -8,11 +8,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.exception.NotFoundException;
 import run.ut.app.mapper.ActivityAppointmentMapper;
+import run.ut.app.mapper.ActivityCollectMapper;
 import run.ut.app.mapper.ActivityMapper;
 import run.ut.app.model.domain.Activity;
 import run.ut.app.model.domain.ActivityAppointment;
+import run.ut.app.model.domain.ActivityCollect;
 import run.ut.app.model.param.ActivityParam;
 import run.ut.app.model.param.SearchActivityParam;
 import run.ut.app.model.support.BaseResponse;
@@ -39,6 +43,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
 
     private final RedisService redisService;
     private final ActivityAppointmentMapper activityAppointmentMapper;
+    private final ActivityCollectMapper activityCollectMapper;
 
     @Override
     public BaseResponse<String> saveActivity(ActivityParam activityParam) {
@@ -59,6 +64,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
     @Override
     public CommentPage<ActivityVO> listActivities(Page<Activity> page, SearchActivityParam searchActivityParam) {
         QueryWrapper<Activity> wrapper = new QueryWrapper<>();
+        wrapper.select("id", "title", "cover", "start_time", "end_time", "create_time", "update_time");
         Long operatorUid = searchActivityParam.getOperatorUid();
         String title = searchActivityParam.getTitle();
         String column = searchActivityParam.getOrder();
@@ -86,6 +92,21 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
         return new CommentPage<>(activityPage.getTotal(), activityVOList);
     }
 
+    @Override
+    public ActivityVO activityDetail(Long operatorUid, Long activityId) {
+        Activity activity = getById(activityId);
+        if (ObjectUtils.isEmpty(activity)) {
+            throw new NotFoundException("找不到指定活动信息~");
+        }
+        ActivityVO activityVO = new ActivityVO().convertFrom(activity);
+        activityVO.setReadCount(getReadCount(activityId));
+        if (operatorUid != null) {
+            activityVO.setAppointment(isAppointment(operatorUid, activityId))
+                .setCollect(isCollection(operatorUid, activityId));
+        }
+        return activityVO;
+    }
+
     private long getReadCount(Long activityId) {
         String key = String.format(RedisConfig.ACTIVITY_READ_COUNT, activityId);
         String res = redisService.get(key);
@@ -101,6 +122,13 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
 
     private boolean isAppointment(Long uid, Long activityId) {
         int count = activityAppointmentMapper.selectCount(new QueryWrapper<ActivityAppointment>()
+            .eq("uid", uid)
+            .eq("activity_id", activityId));
+        return count > 0;
+    }
+
+    private boolean isCollection(Long uid, Long activityId) {
+        int count = activityCollectMapper.selectCount(new QueryWrapper<ActivityCollect>()
             .eq("uid", uid)
             .eq("activity_id", activityId));
         return count > 0;

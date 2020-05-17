@@ -24,7 +24,7 @@ public interface ActivityService extends IService<Activity> {
      * create activity
      *
      * @param activityParam activity info
-     * @return ActivityDTO
+     * @return              ActivityDTO
      */
     @NonNull
     BaseResponse<String> saveActivity(@NonNull ActivityParam activityParam);
@@ -39,4 +39,14 @@ public interface ActivityService extends IService<Activity> {
      */
     @NonNull
     CommentPage<ActivityVO> listActivities(@NonNull Page<Activity> page, @NonNull SearchActivityParam searchActivityParam);
+
+    /**
+     * Get activity detail.
+     *
+     * @param operatorUid   operator uid
+     * @param activityId    activity id
+     * @return              ActivityVO
+     */
+    @NonNull
+    ActivityVO activityDetail(@NonNull Long operatorUid, @NonNull Long activityId);
 }
