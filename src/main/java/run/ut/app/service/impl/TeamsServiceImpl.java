@@ -67,9 +67,19 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
     @Transactional
     public TeamsDTO createTeam(TeamsParam teamsParam, Long leaderId, MultipartFile logo) {
 
+        boolean saveTags = false;
+
         int count = count(new QueryWrapper<Teams>().eq("name", teamsParam.getName()));
         if (count > 0) {
             throw new BadRequestException("团队名已重复！");
+        }
+        List<Tags> tags = new ArrayList<>();
+        if (teamsParam.getTagIds() != null && teamsParam.getTagIds().size() > 0) {
+            tags = tagsService.listByIds(teamsParam.getTagIds());
+            if (tags.size() < teamsParam.getTagIds().size()) {
+                throw new BadRequestException("标签参数有误！");
+            }
+            saveTags = true;
         }
 
         // upload logo
@@ -98,6 +108,16 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
                 .setIsLeader(TeamsMemberEnum.LEADER)
                 .setTeamId(team.getId());
         teamsMembersMapper.insert(teamsMember);
+
+        // save tags
+        if (saveTags) {
+            // save tags
+            List<TeamsTags> teamsTags = tags.stream().map(e -> {
+                return new TeamsTags().setTagId(e.getId()).setTeamId(team.getId());
+            }).collect(Collectors.toList());
+            teamsTagsService.saveBatch(teamsTags);
+        }
+
         return new TeamsDTO().convertFrom(team);
     }
 

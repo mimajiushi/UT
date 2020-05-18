@@ -4889,7 +4889,7 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "UT小分队3",
+									"value": "adawawda",
 									"description": "团队名",
 									"type": "text"
 								},
@@ -4897,7 +4897,7 @@
 									"key": "logo",
 									"description": "团队logo",
 									"type": "file",
-									"src": "/D:/图包/P站3/78572402_p0_master1200.jpg"
+									"src": "/D:/图包/P站3/17.jpg"
 								},
 								{
 									"key": "description",
@@ -4909,6 +4909,11 @@
 									"key": "status",
 									"value": "1",
 									"description": "0-不招人 1-招募中，只有发布中状态的团队才会展示在首页",
+									"type": "text"
+								},
+								{
+									"key": "tagIds",
+									"value": "1,2,3",
 									"type": "text"
 								}
 							]
@@ -5094,6 +5099,98 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 400,\n    \"message\": \"团队名已重复！\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						},
+						{
+							"name": "用户创建队伍（可设置标签）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"description": "拥有所有角色的Token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "adawawda",
+											"description": "团队名",
+											"type": "text"
+										},
+										{
+											"key": "logo",
+											"description": "团队logo",
+											"type": "file",
+											"src": "/D:/图包/P站3/17.jpg"
+										},
+										{
+											"key": "description",
+											"value": "UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍",
+											"description": "团队描述（可能含有富文本）",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"description": "0-不招人 1-招募中，只有发布中状态的团队才会展示在首页",
+											"type": "text"
+										},
+										{
+											"key": "tagIds",
+											"value": "1,2,3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/createTeam",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"createTeam"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=99C3423A8FDAE8301E0B515DC7F6D787; Path=/ut; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 May 2020 13:45:36 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-05-18 21:45:36\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 25,\n        \"name\": \"adawawda\",\n        \"logo\": \"https://www.wenjie.store/ut/img/17_1589809534908.jpg\",\n        \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n        \"tagIds\": null,\n        \"status\": \"招募中\",\n        \"role\": null\n    }\n}"
 						}
 					]
 				},
