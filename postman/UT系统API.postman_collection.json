@@ -251,18 +251,20 @@
 									"key": "file_front",
 									"description": "证件照正面（改为base64）",
 									"type": "file",
-									"src": "/D:/图包/P站3/1.jpg"
+									"src": "/D:/图包/P站3/1.jpg",
+									"disabled": true
 								},
 								{
 									"key": "file_reverse",
 									"description": "证件照反面（改为base64）",
 									"type": "file",
-									"src": "/D:/图包/P站3/2.jpg"
+									"src": "/D:/图包/P站3/2.jpg",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/ut/user/applyForCertification?schoolId=1367&degreeId=2&areaId=110000&role=4&grade=2017&subject=信息工程&realName=陈文杰",
+							"raw": "http://localhost:8080/ut/user/applyForCertification?schoolId=1367&degreeId=2&areaId=110000&role=4&grade=2017&subject=信息工程&realName=陈文杰&credentialsPhotoFront=xxx&credentialsPhotoReverse=xxx",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -314,6 +316,16 @@
 									"key": "realName",
 									"value": "陈文杰",
 									"description": "真实姓名"
+								},
+								{
+									"key": "credentialsPhotoFront",
+									"value": "xxx",
+									"description": "图片正面，base64串，可参考我博客"
+								},
+								{
+									"key": "credentialsPhotoReverse",
+									"value": "xxx",
+									"description": "图片反面，base64串"
 								}
 							]
 						},
