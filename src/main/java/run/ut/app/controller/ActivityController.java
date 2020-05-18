@@ -32,7 +32,7 @@ public class ActivityController extends BaseController implements ActivityContro
 
     @Override
     @GetMapping("list/activities")
-    public CommentPage<ActivityVO> listActivities(@RequestBody SearchActivityParam searchActivityParam,
+    public CommentPage<ActivityVO> listActivities(SearchActivityParam searchActivityParam,
                                                   @RequestParam(defaultValue = "1") Integer pageNum,
                                                   @RequestParam(defaultValue = "5") Integer pageSize) {
         searchActivityParam.setOperatorUid(getUidFromToken());
