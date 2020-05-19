@@ -48,13 +48,13 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @Override
     @PostMapping("createTeam")
     @CheckLogin
-    public TeamsDTO createTeam(TeamsParam teamsParam, @RequestPart("logo") MultipartFile logo) {
+    public TeamsDTO createTeam(@RequestBody TeamsParam teamsParam) {
         long leaderId = getUid();
         checkUser(leaderId);
         if (ObjectUtils.isEmpty(TeamsStatusEnum.getByType(teamsParam.getStatus()))) {
             throw new BadRequestException("团队发布状态参数有误！");
         }
-        return teamsService.createTeam(teamsParam, leaderId, logo);
+        return teamsService.createTeam(teamsParam, leaderId);
     }
 
     @Override

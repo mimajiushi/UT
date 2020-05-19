@@ -29,11 +29,10 @@ public interface TeamsService extends IService<Teams> {
      *
      * @param teamsParam    team info
      * @param leaderId      leader id
-     * @param logo          team logo (MultipartFile)
      * @return TeamsDTO
      */
     @NonNull
-    TeamsDTO createTeam(@NonNull TeamsParam teamsParam, @NonNull Long leaderId, @NonNull MultipartFile logo);
+    TeamsDTO createTeam(@NonNull TeamsParam teamsParam, @NonNull Long leaderId);
 
     /**
      * Save team tags

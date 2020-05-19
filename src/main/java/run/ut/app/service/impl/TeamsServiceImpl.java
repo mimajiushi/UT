@@ -65,7 +65,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
 
     @Override
     @Transactional
-    public TeamsDTO createTeam(TeamsParam teamsParam, Long leaderId, MultipartFile logo) {
+    public TeamsDTO createTeam(TeamsParam teamsParam, Long leaderId) {
 
         boolean saveTags = false;
 
@@ -81,16 +81,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
             }
             saveTags = true;
         }
-
-        // upload logo
-        UploadResult uploadResult = null;
-        boolean hasLogo = !ObjectUtils.isEmpty(logo);
-        if (hasLogo) {
-            if (!ImageUtils.isImage()) {
-                throw new BadRequestException("只接受图片格式文件！");
-            }
-            uploadResult = fileHandlers.upload(logo);
-        }
+        boolean hasLogo = !StringUtils.isBlank(teamsParam.getLogo());
 
         // save team
         Teams team = new Teams()
@@ -98,7 +89,7 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
                 .setName(teamsParam.getName())
                 .setStatus(TeamsStatusEnum.getByType(teamsParam.getStatus()));
         if (hasLogo) {
-            team.setLogo(uploadResult.getFilePath());
+            team.setLogo(teamsParam.getLogo());
         }
         save(team);
 
