@@ -31,6 +31,9 @@ public class Posts extends BaseEntity implements InputConverter<PostParam> {
 
     private Long uid;
 
+    @ApiModelProperty(value = "版块id")
+    private Long forumId;
+
     @ApiModelProperty(value = "标题")
     private String title;
 

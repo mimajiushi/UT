@@ -6,6 +6,7 @@
     <resultMap id="BaseResultMap" type="run.ut.app.model.domain.Posts">
         <id column="id" property="id" />
         <result column="uid" property="uid" />
+        <result column="forum_id" property="forumId" />
         <result column="title" property="title" />
         <result column="content" property="content" />
         <result column="likes" property="likes" />
@@ -17,6 +18,8 @@
     <resultMap id="postVo" type="run.ut.app.model.vo.PostVO">
         <id column="id" property="id" />
         <result column="uid" property="uid" />
+        <result column="forum_id" property="forumId" />
+        <result column="forum_name" property="forumName" />
         <result column="title" property="title" />
         <result column="content" property="content" />
         <result column="nickname" property="nickname" />
@@ -26,7 +29,7 @@
     </resultMap>
 
     <select id="listPostsByParams" resultMap="postVo">
-        select p.id, p.title, left(p.content,50) content, p.create_time, p.update_time, u.uid, u.avatar, u.nickname from posts p
+        select p.id, p.title, f.id forum_id , f.name forum_name, left(p.content,50) content, p.create_time, p.update_time, u.uid, u.avatar, u.nickname from (posts p, forum f)
             inner join `user` u on u.uid = p.uid
         <where>
             1=1
@@ -35,6 +38,9 @@
             </if>
             <if test="param.uid!=null">
                 and u.uid = #{param.uid}
+            </if>
+            <if test="param.forumId!=null">
+                and f.id = #{param.forumId}
             </if>
         </where>
         and p.deleted = 0

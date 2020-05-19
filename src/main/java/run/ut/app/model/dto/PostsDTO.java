@@ -28,6 +28,9 @@ public class PostsDTO extends BaseDTO implements OutputConverter<PostsDTO, Posts
 
     private Long uid;
 
+    @ApiModelProperty(value = "版块id")
+    private Long forumId;
+
     @ApiModelProperty(value = "标题")
     private String title;
 

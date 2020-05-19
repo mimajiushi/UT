@@ -18,9 +18,11 @@ import run.ut.app.event.LikesEvent;
 import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
+import run.ut.app.mapper.ForumMapper;
 import run.ut.app.mapper.PostsMapper;
 import run.ut.app.mapper.UserMapper;
 import run.ut.app.mapper.UserPostsMapper;
+import run.ut.app.model.domain.Forum;
 import run.ut.app.model.domain.Posts;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.domain.UserPosts;
@@ -55,11 +57,16 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
     private final PostsMapper postsMapper;
     private final UserMapper userMapper;
     private final ApplicationEventPublisher eventPublisher;
+    private final ForumMapper forumMapper;
 
     @Override
     @Transactional
     public BaseResponse<String> savePost(PostParam postParam) {
         boolean insert = (null == postParam.getId());
+        Forum forum = forumMapper.selectById(postParam.getForumId());
+        if (ObjectUtils.isEmpty(forum)) {
+            throw new BadRequestException("版块不存在！");
+        }
         if (insert) {
             Posts posts = postParam.convertTo();
             save(posts);
