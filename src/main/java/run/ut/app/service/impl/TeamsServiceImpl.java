@@ -1,24 +1,27 @@
 package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.event.team.TeamsApplyOrInviteEvent;
-import run.ut.app.exception.*;
+import run.ut.app.exception.AlreadyExistsException;
+import run.ut.app.exception.AuthenticationException;
+import run.ut.app.exception.BadRequestException;
+import run.ut.app.exception.NotFoundException;
 import run.ut.app.handler.FileHandlers;
+import run.ut.app.mapper.TeamsMapper;
 import run.ut.app.mapper.TeamsMembersMapper;
 import run.ut.app.mapper.TeamsRecruitmentsMapper;
 import run.ut.app.mapper.UserTeamApplyLogMapper;
 import run.ut.app.model.domain.*;
-import run.ut.app.mapper.TeamsMapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
 import run.ut.app.model.enums.*;
@@ -32,7 +35,6 @@ import run.ut.app.service.TeamsRecruitmentsTagsService;
 import run.ut.app.service.TeamsService;
 import run.ut.app.service.TeamsTagsService;
 import run.ut.app.utils.BeanUtils;
-import run.ut.app.utils.ImageUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -208,6 +210,33 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         team.setUpdateTime(null);
         updateById(team);
         return BaseResponse.ok("更新团队头像成功！");
+    }
+
+    @Override
+    public BaseResponse<String> updateTeamsBaseInfo(TeamsParam teamsParam, Long leaderId) {
+        Teams teamByLeaderIdAndTeamId = getTeamByLeaderIdAndTeamId(leaderId, teamsParam.getId());
+        if (ObjectUtils.isEmpty(teamByLeaderIdAndTeamId)) {
+            throw new AuthenticationException("你不是队长或队伍不存在！");
+        }
+
+        String name = teamsParam.getName();
+        if (!StringUtils.isBlank(name)) {
+            int count = count(new QueryWrapper<Teams>().eq("name", name));
+            if (count > 0) {
+                throw new AlreadyExistsException("团队名已存在！");
+            }
+        }
+
+        Teams teams = BeanUtils.transformFrom(teamsParam, Teams.class);
+        if (teamsParam.getStatus() != null) {
+            TeamsStatusEnum statusEnum = TeamsStatusEnum.getByType(teamsParam.getStatus());
+            if (statusEnum != null) {
+                teams.setStatus(statusEnum);
+            }
+        }
+        teams.setUpdateTime(null);
+        boolean update = updateById(teams);
+        return update ? BaseResponse.ok("修改信息成功~") : BaseResponse.ok("请稍后再试~");
     }
 
     @Override

@@ -31,6 +31,9 @@ public interface TeamsControllerApi {
     @ApiOperation(value = "更新团队logo", notes = "需要登录（Token）验证，只有队长才能更改团队logo")
     BaseResponse<String> updateTeamsLogo(@RequestPart("logo") MultipartFile logo, Long teamsId);
 
+    @ApiOperation(value = "更新团队基本信息，如团队名、团队描述、状态等（logo、标签除外）")
+    BaseResponse<String> updateTeamsBaseInfo(TeamsParam teamsParam);
+
     @ApiOperation(value = "设置招聘的职位", notes = "新增/更新，需要登录验证，只有队长才能设置")
     BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(TeamsRecruitmentsParam teamsRecruitmentsParam);
 

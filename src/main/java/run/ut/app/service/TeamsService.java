@@ -60,6 +60,17 @@ public interface TeamsService extends IService<Teams> {
     BaseResponse<String> updateTeamsLogo(@NonNull MultipartFile logo, @NonNull Long leaderId, @NonNull Long teamsId);
 
     /**
+     * Update team base info
+     *
+     * @param teamsParam    params
+     * @param leaderId      leader uid
+     * @return              ok result with message
+     */
+    @NonNull
+    BaseResponse<String> updateTeamsBaseInfo(@NonNull TeamsParam teamsParam, @NonNull Long leaderId);
+
+
+    /**
      * Get team by leader id and team id
      *
      * @param leaderId  leader id
