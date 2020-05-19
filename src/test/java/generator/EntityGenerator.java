@@ -72,7 +72,7 @@ public class EntityGenerator {
 
         mpg.setCfg(cfg);
 
-        String[] tables = {"user_posts", "comment_photos", "post_comments", "post_photos", "posts"};
+        String[] tables = {"user_comments", "forum", "post_forum"};
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);

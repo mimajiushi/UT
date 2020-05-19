@@ -23,6 +23,12 @@ public class PostVO implements InputConverter<Posts> {
     @ApiModelProperty(value = "发帖用户的uid")
     private Long uid;
 
+    @ApiModelProperty(value = "所属版块id")
+    private Long forumId;
+
+    @ApiModelProperty(value = "所属版块")
+    private String forumName;
+
     @ApiModelProperty(value = "用户昵称")
     private String nickname;
 

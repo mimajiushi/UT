@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,13 +49,13 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @Override
     @PostMapping("createTeam")
     @CheckLogin
-    public TeamsDTO createTeam(TeamsParam teamsParam, @RequestPart("logo") MultipartFile logo) {
+    public TeamsDTO createTeam(@RequestBody TeamsParam teamsParam) {
         long leaderId = getUid();
         checkUser(leaderId);
         if (ObjectUtils.isEmpty(TeamsStatusEnum.getByType(teamsParam.getStatus()))) {
             throw new BadRequestException("团队发布状态参数有误！");
         }
-        return teamsService.createTeam(teamsParam, leaderId, logo);
+        return teamsService.createTeam(teamsParam, leaderId);
     }
 
     @Override
@@ -76,6 +77,16 @@ public class TeamsController extends BaseController implements TeamsControllerAp
             throw new BadRequestException("只接受图片格式文件！");
         }
         return teamsService.updateTeamsLogo(logo, leaderId, teamsId);
+    }
+
+    @Override
+    @PostMapping("updateTeamsBaseInfo")
+    @CheckLogin
+    public BaseResponse<String> updateTeamsBaseInfo(@RequestBody TeamsParam teamsParam) {
+        Assert.notNull(teamsParam.getId(), "team id must not be null.");
+        userInfoService.checkUser(getUid());
+        teamsParam.setTagIds(null);
+        return teamsService.updateTeamsBaseInfo(teamsParam, getUid());
     }
 
     @Override

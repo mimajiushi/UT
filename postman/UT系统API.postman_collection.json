@@ -1299,25 +1299,31 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "文件相关测试",
+			"name": "上传文件接口",
 			"item": [
 				{
-					"name": "上传文件测试",
+					"name": "上传文件",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "file",
+									"key": "image",
 									"type": "file",
-									"src": "/D:/图包/P站3/1.jpg"
+									"src": "/D:/图包/P站3/11.jpg"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/ut/test/upload",
+							"raw": "http://localhost:8080/ut/user/uploadImage",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1325,30 +1331,36 @@
 							"port": "8080",
 							"path": [
 								"ut",
-								"test",
-								"upload"
+								"user",
+								"uploadImage"
 							]
 						},
-						"description": "如果发现失败，有可能是我七牛云没钱了"
+						"description": "如果发现失败，有可能是我七牛云没钱了  \r\n需要传token，只有通过认证的用户才能上传  \r\nfilePath就是文件的url地址  \r\n队伍名不能重复"
 					},
 					"response": [
 						{
-							"name": "上传文件测试",
+							"name": "上传文件",
 							"originalRequest": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "formdata",
 									"formdata": [
 										{
-											"key": "file",
+											"key": "image",
 											"type": "file",
-											"src": "/D:/图包/P站3/1.jpg"
+											"src": "/D:/图包/P站3/11.jpg"
 										}
 									]
 								},
 								"url": {
-									"raw": "http://localhost:8080/ut/test/upload",
+									"raw": "http://localhost:8080/ut/user/uploadImage",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1356,8 +1368,8 @@
 									"port": "8080",
 									"path": [
 										"ut",
-										"test",
-										"upload"
+										"user",
+										"uploadImage"
 									]
 								}
 							},
@@ -1365,6 +1377,10 @@
 							"code": 200,
 							"_postman_previewlanguage": "json",
 							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=0A475C88CE501A7D290F1933D2EA09A0; Path=/ut; HttpOnly"
+								},
 								{
 									"key": "Content-Type",
 									"value": "application/json"
@@ -1375,7 +1391,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 10 Mar 2020 12:03:35 GMT"
+									"value": "Tue, 19 May 2020 10:15:58 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -1387,7 +1403,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"filename\": \"1\",\n        \"filePath\": \"https://www.wenjie.store/ut/img/1_1583841815255.jpg\",\n        \"key\": \"ut/img/1_1583841815255.jpg\",\n        \"thumbPath\": \"https://www.wenjie.store/ut/img/1_1583841815255.jpg\",\n        \"suffix\": \"jpg\",\n        \"mediaType\": {\n            \"type\": \"image\",\n            \"subtype\": \"jpeg\",\n            \"parameters\": {},\n            \"qualityValue\": 1,\n            \"concrete\": true,\n            \"charset\": null,\n            \"wildcardType\": false,\n            \"wildcardSubtype\": false\n        },\n        \"size\": 441044,\n        \"width\": 1169,\n        \"height\": 733\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"filename\": \"11\",\n        \"filePath\": \"https://www.wenjie.store/ut/img/11_1589883357633.jpg\",\n        \"key\": \"ut/img/11_1589883357633.jpg\",\n        \"thumbPath\": \"https://www.wenjie.store/ut/img/11_1589883357633.jpg\",\n        \"suffix\": \"jpg\",\n        \"mediaType\": {\n            \"type\": \"image\",\n            \"subtype\": \"jpeg\",\n            \"parameters\": {},\n            \"qualityValue\": 1,\n            \"charset\": null,\n            \"wildcardSubtype\": false,\n            \"wildcardType\": false,\n            \"concrete\": true\n        },\n        \"size\": 261294,\n        \"width\": 1200,\n        \"height\": 497\n    }\n}"
 						}
 					]
 				}
@@ -1729,6 +1745,226 @@
 									"body": "{\n    \"status\": 200,\n    \"message\": \"更新活动成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 								}
 							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "版块操作API",
+					"item": [
+						{
+							"name": "新增/更新版块",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "测试版块2",
+											"description": "版块名称",
+											"type": "text"
+										},
+										{
+											"key": "id",
+											"value": "5",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/forum/saveForum",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"forum",
+										"saveForum"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "更新版块",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "测试版块2",
+													"description": "版块名称",
+													"type": "text"
+												},
+												{
+													"key": "id",
+													"value": "5",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8080/ut/admin/forum/saveForum",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"admin",
+												"forum",
+												"saveForum"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 19 May 2020 12:41:47 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"更新成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								},
+								{
+									"name": "新增版块",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "测试版块",
+													"description": "版块名称",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8080/ut/admin/forum/saveForum",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"admin",
+												"forum",
+												"saveForum"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Set-Cookie",
+											"value": "JSESSIONID=8822FB043DA52DDEF5016067CD2B1D83; Path=/ut; HttpOnly"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 19 May 2020 12:38:17 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"新增版块成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "删除版块",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/forum/removeForum/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"forum",
+										"removeForum",
+										"5"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},
@@ -4885,33 +5121,13 @@
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "UT小分队3",
-									"description": "团队名",
-									"type": "text"
-								},
-								{
-									"key": "logo",
-									"description": "团队logo",
-									"type": "file",
-									"src": "/D:/图包/P站3/78572402_p0_master1200.jpg"
-								},
-								{
-									"key": "description",
-									"value": "UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍",
-									"description": "团队描述（可能含有富文本）",
-									"type": "text"
-								},
-								{
-									"key": "status",
-									"value": "1",
-									"description": "0-不招人 1-招募中，只有发布中状态的团队才会展示在首页",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"dagadawaw\",\r\n\t\"logo\": \"https://www.wenjie.store/ut/img/11_1589883357633.jpg\",\r\n\t\"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\r\n\t\"status\": 1,\r\n\t\"tagIds\": [1,2,3]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8080/ut/teams/createTeam",
@@ -4926,11 +5142,11 @@
 								"createTeam"
 							]
 						},
-						"description": "注意，必须是通过认证的用户才可以创建队伍\n另外，团队名不能重复"
+						"description": "注意，必须是通过认证的用户才可以创建队伍\n另外，团队名不能重复  \nstatus=1表示团队处于招募状态，status=0表示团队处于非招募状态  \n\n只有招募状态才会在首页展示"
 					},
 					"response": [
 						{
-							"name": "创建成功案例",
+							"name": "用户创建队伍",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -4942,33 +5158,13 @@
 									}
 								],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "name",
-											"value": "UT小分队3",
-											"description": "团队名",
-											"type": "text"
-										},
-										{
-											"key": "logo",
-											"description": "团队logo",
-											"type": "file",
-											"src": "/D:/图包/P站3/78572402_p0_master1200.jpg"
-										},
-										{
-											"key": "description",
-											"value": "UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍",
-											"description": "团队描述（可能含有富文本）",
-											"type": "text"
-										},
-										{
-											"key": "status",
-											"value": "1",
-											"description": "0-不招人 1-招募中，只有发布中状态的团队才会展示在首页",
-											"type": "text"
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"dagadawaw\",\r\n\t\"logo\": \"https://www.wenjie.store/ut/img/11_1589883357633.jpg\",\r\n\t\"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\r\n\t\"status\": 1,\r\n\t\"tagIds\": [1,2,3]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
 									"raw": "http://localhost:8080/ut/teams/createTeam",
@@ -4989,10 +5185,6 @@
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
-									"key": "Set-Cookie",
-									"value": "JSESSIONID=FBE46EAD3232FD54D4DF0CCFFEE3AFE2; Path=/ut; HttpOnly"
-								},
-								{
 									"key": "Content-Type",
 									"value": "application/json"
 								},
@@ -5002,7 +5194,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 15 Mar 2020 05:01:01 GMT"
+									"value": "Tue, 19 May 2020 10:18:29 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -5014,86 +5206,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-15 13:01:01\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 22,\n        \"name\": \"UT小分队3\",\n        \"logo\": \"https://www.wenjie.store/ut/img/78572402_p0_master1200_1584248460308.jpg\",\n        \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n        \"tagIds\": null,\n        \"status\": \"招募中\"\n    }\n}"
-						},
-						{
-							"name": "创建失败案例（团队名重复）",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "UT-Token",
-										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
-										"description": "拥有所有角色的Token",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "name",
-											"value": "UT小分队",
-											"description": "团队名",
-											"type": "text"
-										},
-										{
-											"key": "logo",
-											"description": "团队logo",
-											"type": "file",
-											"src": "/D:/图包/P站3/78572402_p0_master1200.jpg"
-										},
-										{
-											"key": "description",
-											"value": "UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍",
-											"description": "团队描述（可能含有富文本）",
-											"type": "text"
-										},
-										{
-											"key": "status",
-											"value": "1",
-											"description": "0-待发布 1-发布中，只有发布中状态的团队才会展示在首页",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "http://localhost:8080/ut/teams/createTeam",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ut",
-										"teams",
-										"createTeam"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Sat, 14 Mar 2020 12:12:23 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "close"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 400,\n    \"message\": \"团队名已重复！\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-05-19 18:18:29\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 26,\n        \"name\": \"dagadawaw\",\n        \"logo\": \"https://www.wenjie.store/ut/img/11_1589883357633.jpg\",\n        \"description\": \"UT小分队是一个XXXXXXXXXXXXXXXXXXXXXX的队伍\",\n        \"tagIds\": null,\n        \"status\": \"招募中\",\n        \"role\": null\n    }\n}"
 						}
 					]
 				},
@@ -5432,15 +5545,15 @@
 					]
 				},
 				{
-					"name": "设置招聘岗位的标签",
+					"name": "设置招聘岗位的标签（已废弃）",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
-								"key": "UT-Token",
-								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
 								"description": "全角色+队长身份token",
-								"type": "text"
+								"key": "UT-Token",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw"
 							}
 						],
 						"body": {
@@ -7036,6 +7149,171 @@
 							"body": "{\n    \"status\": 200,\n    \"message\": \"操作成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						}
 					]
+				},
+				{
+					"name": "更新团队名字、描述、状态等信息",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"UT小分队222\",\r\n  \"description\":  \"测试描述22\",\r\n  \"status\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/teams/updateTeamsBaseInfo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"teams",
+								"updateTeamsBaseInfo"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "单独更新name",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"UT小分队22\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/updateTeamsBaseInfo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"updateTeamsBaseInfo"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 19 May 2020 10:55:02 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"修改信息成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						},
+						{
+							"name": "批量更新字段",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"UT小分队222\",\r\n  \"description\":  \"测试描述22\",\r\n  \"status\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/updateTeamsBaseInfo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"updateTeamsBaseInfo"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=02C65DE4C556AA22C7C8A24533AC750D; Path=/ut; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 19 May 2020 11:00:19 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"修改信息成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -7059,7 +7337,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"id\": 13,\r\n  \"title\": \"测试标题99\",\r\n  \"content\": \"测试内容99<image url=\\\"xxxx\\\"></image>\"\r\n}",
+									"raw": "{\r\n  \"id\": 14,\t\r\n  \"title\": \"测试标题100-update\",\r\n  \"forumId\": 2,\r\n  \"content\": \"测试内容100<image url=\\\"xxxx\\\"></image>--update\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -7078,7 +7356,8 @@
 										"post",
 										"savePost"
 									]
-								}
+								},
+								"description": "forumId为版块id"
 							},
 							"response": [
 								{
@@ -7094,7 +7373,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n  \"title\": \"测试标题3\",\r\n  \"content\": \"测试内容3<image url=\\\"xxxx\\\"></image>\"\r\n}",
+											"raw": "{\r\n  \"title\": \"测试标题100\",\r\n  \"forumId\": 1,\r\n  \"content\": \"测试内容100<image url=\\\"xxxx\\\"></image>\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -7129,7 +7408,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Thu, 14 May 2020 04:32:43 GMT"
+											"value": "Tue, 19 May 2020 11:42:53 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -7156,7 +7435,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n  \"id\": 13,\r\n  \"title\": \"测试标题99\",\r\n  \"content\": \"测试内容99<image url=\\\"xxxx\\\"></image>\"\r\n}",
+											"raw": "{\r\n  \"id\": 14,\t\r\n  \"title\": \"测试标题100-update\",\r\n  \"forumId\": 2,\r\n  \"content\": \"测试内容100<image url=\\\"xxxx\\\"></image>--update\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -7182,10 +7461,6 @@
 									"_postman_previewlanguage": "json",
 									"header": [
 										{
-											"key": "Set-Cookie",
-											"value": "JSESSIONID=86F5BD213518246AA5091013D82C2B48; Path=/ut; HttpOnly"
-										},
-										{
 											"key": "Content-Type",
 											"value": "application/json"
 										},
@@ -7195,7 +7470,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Thu, 14 May 2020 04:35:02 GMT"
+											"value": "Tue, 19 May 2020 11:44:21 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -7762,7 +8037,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8080/ut/index/list/post/?pageNum=1&pageSize=10&uid=21",
+									"raw": "http://localhost:8080/ut/index/list/post/?pageNum=1&pageSize=10&forumId=1",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -7786,12 +8061,19 @@
 										},
 										{
 											"key": "title",
-											"value": "2",
+											"value": "1",
 											"disabled": true
 										},
 										{
 											"key": "uid",
-											"value": "21"
+											"value": "21",
+											"description": "查询某个用户发的帖子时需要传",
+											"disabled": true
+										},
+										{
+											"key": "forumId",
+											"value": "1",
+											"description": "版块id"
 										}
 									]
 								},
@@ -7960,7 +8242,7 @@
 											}
 										],
 										"url": {
-											"raw": "http://localhost:8080/ut/index/list/post/?pageNum=1&pageSize=10&title=2",
+											"raw": "http://localhost:8080/ut/index/list/post/?pageNum=1&pageSize=10&title=update",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -7984,11 +8266,18 @@
 												},
 												{
 													"key": "title",
-													"value": "2"
+													"value": "update"
 												},
 												{
 													"key": "uid",
 													"value": "21",
+													"description": "查询某个用户发的帖子时需要传",
+													"disabled": true
+												},
+												{
+													"key": "forumId",
+													"value": "1",
+													"description": "版块id",
 													"disabled": true
 												}
 											]
@@ -8008,7 +8297,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Thu, 14 May 2020 04:29:32 GMT"
+											"value": "Tue, 19 May 2020 11:51:31 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -8020,18 +8309,98 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"id\": 12,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题12\",\n                \"content\": \"测试内容12\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:37:32\",\n                \"updateTime\": \"2020-05-13 23:37:33\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 9,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题2\",\n                \"content\": \"测试内容2\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:37:04\",\n                \"updateTime\": \"2020-05-13 23:37:06\",\n                \"like\": false,\n                \"collect\": false\n            }\n        ]\n    }\n}"
+									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 1,\n        \"rows\": [\n            {\n                \"id\": 14,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题100-update\",\n                \"content\": \"测试内容100<image url=\\\"xxxx\\\"></image>--update\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:42:53\",\n                \"updateTime\": \"2020-05-19 19:44:22\",\n                \"collect\": false,\n                \"like\": false\n            }\n        ]\n    }\n}"
 								},
 								{
-									"name": "无条件查询（游客）",
+									"name": "查询某版块的帖子list",
 									"originalRequest": {
 										"method": "GET",
 										"header": [
 											{
 												"key": "UT-Token",
 												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
-												"type": "text",
-												"disabled": true
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ut/index/list/post/?pageNum=1&pageSize=10&forumId=1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"index",
+												"list",
+												"post",
+												""
+											],
+											"query": [
+												{
+													"key": "pageNum",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												},
+												{
+													"key": "title",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "uid",
+													"value": "21",
+													"description": "查询某个用户发的帖子时需要传",
+													"disabled": true
+												},
+												{
+													"key": "forumId",
+													"value": "1",
+													"description": "版块id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 19 May 2020 11:54:05 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 14,\n        \"rows\": [\n            {\n                \"id\": 14,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题100-update\",\n                \"content\": \"测试内容100<image url=\\\"xxxx\\\"></image>--update\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:42:53\",\n                \"updateTime\": \"2020-05-19 19:44:22\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 13,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题99\",\n                \"content\": \"测试内容99<image url=\\\"xxxx\\\"></image>\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:30\",\n                \"updateTime\": \"2020-05-19 19:35:30\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 12,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题12\",\n                \"content\": \"测试内容12\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:28\",\n                \"updateTime\": \"2020-05-19 19:35:28\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 11,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题11\",\n                \"content\": \"测试内容11\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:26\",\n                \"updateTime\": \"2020-05-19 19:35:26\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 10,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题6\",\n                \"content\": \"测试内容6\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:25\",\n                \"updateTime\": \"2020-05-19 19:35:25\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 9,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题2\",\n                \"content\": \"测试内容2\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:23\",\n                \"updateTime\": \"2020-05-19 19:35:23\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 8,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题10\",\n                \"content\": \"测试内容10\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:22\",\n                \"updateTime\": \"2020-05-19 19:35:22\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 7,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题9\",\n                \"content\": \"测试内容9\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:21\",\n                \"updateTime\": \"2020-05-19 19:35:21\",\n                \"collect\": false,\n                \"like\": true\n            },\n            {\n                \"id\": 6,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题7\",\n                \"content\": \"测试内容7\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:19\",\n                \"updateTime\": \"2020-05-19 19:35:19\",\n                \"collect\": false,\n                \"like\": true\n            },\n            {\n                \"id\": 5,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题5\",\n                \"content\": \"测试内容5\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:18\",\n                \"updateTime\": \"2020-05-19 19:35:18\",\n                \"collect\": false,\n                \"like\": true\n            }\n        ]\n    }\n}"
+								},
+								{
+									"name": "无条件查询",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
 											}
 										],
 										"url": {
@@ -8065,6 +8434,13 @@
 												{
 													"key": "uid",
 													"value": "21",
+													"description": "查询某个用户发的帖子时需要传",
+													"disabled": true
+												},
+												{
+													"key": "forumId",
+													"value": "1",
+													"description": "版块id",
 													"disabled": true
 												}
 											]
@@ -8084,7 +8460,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Thu, 14 May 2020 04:28:31 GMT"
+											"value": "Tue, 19 May 2020 11:51:04 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -8096,7 +8472,88 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 11,\n        \"rows\": [\n            {\n                \"id\": 12,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题12\",\n                \"content\": \"测试内容12\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:37:32\",\n                \"updateTime\": \"2020-05-13 23:37:33\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 11,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题11\",\n                \"content\": \"测试内容11\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:37:26\",\n                \"updateTime\": \"2020-05-13 23:37:27\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 10,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题6\",\n                \"content\": \"测试内容6\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:37:19\",\n                \"updateTime\": \"2020-05-13 23:37:20\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 9,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题2\",\n                \"content\": \"测试内容2\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:37:04\",\n                \"updateTime\": \"2020-05-13 23:37:06\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 8,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题10\",\n                \"content\": \"测试内容10\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:36:44\",\n                \"updateTime\": \"2020-05-13 23:36:46\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 7,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题9\",\n                \"content\": \"测试内容9\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:36:19\",\n                \"updateTime\": \"2020-05-13 23:36:20\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 6,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题7\",\n                \"content\": \"测试内容7\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:35:55\",\n                \"updateTime\": \"2020-05-13 23:35:56\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 5,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题5\",\n                \"content\": \"测试内容5\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:35:45\",\n                \"updateTime\": \"2020-05-13 23:35:46\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 4,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题4\",\n                \"content\": \"测试内容4\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 23:35:36\",\n                \"updateTime\": \"2020-05-13 23:35:37\",\n                \"like\": false,\n                \"collect\": false\n            },\n            {\n                \"id\": 2,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题3\",\n                \"content\": \"测试内容3\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-13 19:22:30\",\n                \"updateTime\": \"2020-05-13 19:22:30\",\n                \"like\": false,\n                \"collect\": false\n            }\n        ]\n    }\n}"
+									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 14,\n        \"rows\": [\n            {\n                \"id\": 14,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题100-update\",\n                \"content\": \"测试内容100<image url=\\\"xxxx\\\"></image>--update\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:42:53\",\n                \"updateTime\": \"2020-05-19 19:44:22\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 13,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题99\",\n                \"content\": \"测试内容99<image url=\\\"xxxx\\\"></image>\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:30\",\n                \"updateTime\": \"2020-05-19 19:35:30\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 12,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题12\",\n                \"content\": \"测试内容12\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:28\",\n                \"updateTime\": \"2020-05-19 19:35:28\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 11,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题11\",\n                \"content\": \"测试内容11\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:26\",\n                \"updateTime\": \"2020-05-19 19:35:26\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 10,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题6\",\n                \"content\": \"测试内容6\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:25\",\n                \"updateTime\": \"2020-05-19 19:35:25\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 9,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题2\",\n                \"content\": \"测试内容2\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:23\",\n                \"updateTime\": \"2020-05-19 19:35:23\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 8,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题10\",\n                \"content\": \"测试内容10\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:22\",\n                \"updateTime\": \"2020-05-19 19:35:22\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 7,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题9\",\n                \"content\": \"测试内容9\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:21\",\n                \"updateTime\": \"2020-05-19 19:35:21\",\n                \"collect\": false,\n                \"like\": true\n            },\n            {\n                \"id\": 6,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题7\",\n                \"content\": \"测试内容7\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:19\",\n                \"updateTime\": \"2020-05-19 19:35:19\",\n                \"collect\": false,\n                \"like\": true\n            },\n            {\n                \"id\": 5,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题5\",\n                \"content\": \"测试内容5\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:18\",\n                \"updateTime\": \"2020-05-19 19:35:18\",\n                \"collect\": false,\n                \"like\": true\n            }\n        ]\n    }\n}"
+								},
+								{
+									"name": "查询uid=21用户发的帖子",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ut/index/list/post/?pageNum=1&pageSize=10&uid=21",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"index",
+												"list",
+												"post",
+												""
+											],
+											"query": [
+												{
+													"key": "pageNum",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												},
+												{
+													"key": "title",
+													"value": "1",
+													"disabled": true
+												},
+												{
+													"key": "uid",
+													"value": "21",
+													"description": "查询某个用户发的帖子时需要传"
+												},
+												{
+													"key": "forumId",
+													"value": "1",
+													"description": "版块id",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 19 May 2020 11:53:23 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 14,\n        \"rows\": [\n            {\n                \"id\": 14,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题100-update\",\n                \"content\": \"测试内容100<image url=\\\"xxxx\\\"></image>--update\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:42:53\",\n                \"updateTime\": \"2020-05-19 19:44:22\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 13,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题99\",\n                \"content\": \"测试内容99<image url=\\\"xxxx\\\"></image>\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:30\",\n                \"updateTime\": \"2020-05-19 19:35:30\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 12,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题12\",\n                \"content\": \"测试内容12\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:28\",\n                \"updateTime\": \"2020-05-19 19:35:28\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 11,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题11\",\n                \"content\": \"测试内容11\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:26\",\n                \"updateTime\": \"2020-05-19 19:35:26\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 10,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题6\",\n                \"content\": \"测试内容6\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:25\",\n                \"updateTime\": \"2020-05-19 19:35:25\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 9,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题2\",\n                \"content\": \"测试内容2\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:23\",\n                \"updateTime\": \"2020-05-19 19:35:23\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 8,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题10\",\n                \"content\": \"测试内容10\",\n                \"likeCount\": 0,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:22\",\n                \"updateTime\": \"2020-05-19 19:35:22\",\n                \"collect\": false,\n                \"like\": false\n            },\n            {\n                \"id\": 7,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题9\",\n                \"content\": \"测试内容9\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:21\",\n                \"updateTime\": \"2020-05-19 19:35:21\",\n                \"collect\": false,\n                \"like\": true\n            },\n            {\n                \"id\": 6,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题7\",\n                \"content\": \"测试内容7\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:19\",\n                \"updateTime\": \"2020-05-19 19:35:19\",\n                \"collect\": false,\n                \"like\": true\n            },\n            {\n                \"id\": 5,\n                \"uid\": 21,\n                \"forumId\": 1,\n                \"forumName\": \"校园八卦\",\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"title\": \"测试标题5\",\n                \"content\": \"测试内容5\",\n                \"likeCount\": 1,\n                \"readCount\": 0,\n                \"createTime\": \"2020-05-19 19:35:18\",\n                \"updateTime\": \"2020-05-19 19:35:18\",\n                \"collect\": false,\n                \"like\": true\n            }\n        ]\n    }\n}"
 								}
 							]
 						},
@@ -8973,6 +9430,88 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 3,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-05-16 18:51:10\",\n                \"updateTime\": \"2020-05-16 18:51:10\",\n                \"id\": 1,\n                \"postId\": 1,\n                \"fromUid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"content\": \"测试评论<image></image>>\",\n                \"likes\": 1,\n                \"childComments\": [\n                    {\n                        \"createTime\": \"2020-05-16 18:54:11\",\n                        \"updateTime\": \"2020-05-16 18:54:11\",\n                        \"id\": 4,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 21,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"chenwenjie\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"fromAvatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                        \"content\": \"我回复我自己\",\n                        \"likes\": 0,\n                        \"like\": false\n                    },\n                    {\n                        \"createTime\": \"2020-05-16 18:54:08\",\n                        \"updateTime\": \"2020-05-16 18:54:08\",\n                        \"id\": 3,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 21,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"chenwenjie\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"fromAvatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                        \"content\": \"我回复我字节\",\n                        \"likes\": 1,\n                        \"like\": true\n                    },\n                    {\n                        \"createTime\": \"2020-05-16 18:54:00\",\n                        \"updateTime\": \"2020-05-16 18:54:00\",\n                        \"id\": 5,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 30,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"Lucien\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"fromAvatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                        \"content\": \"666\",\n                        \"likes\": 1,\n                        \"like\": true\n                    },\n                    {\n                        \"createTime\": \"2020-05-16 18:29:56\",\n                        \"updateTime\": \"2020-05-16 18:29:56\",\n                        \"id\": 2,\n                        \"postId\": 1,\n                        \"parentCommentId\": 1,\n                        \"fromUid\": 21,\n                        \"toUid\": 21,\n                        \"fromNickname\": \"chenwenjie\",\n                        \"toNickname\": \"chenwenjie\",\n                        \"fromAvatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                        \"content\": \"我回复我字节\",\n                        \"likes\": 0,\n                        \"like\": false\n                    }\n                ],\n                \"like\": true\n            },\n            {\n                \"createTime\": \"2020-05-16 18:45:41\",\n                \"updateTime\": \"2020-05-16 18:45:41\",\n                \"id\": 7,\n                \"postId\": 1,\n                \"fromUid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"content\": \"awdawdawdawdawdawdawd\",\n                \"likes\": 999,\n                \"childComments\": null,\n                \"like\": false\n            },\n            {\n                \"createTime\": \"2020-05-16 18:54:14\",\n                \"updateTime\": \"2020-05-16 18:54:14\",\n                \"id\": 6,\n                \"postId\": 1,\n                \"fromUid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"content\": \"测试评论<image></image>>\",\n                \"likes\": 1,\n                \"childComments\": null,\n                \"like\": true\n            }\n        ]\n    }\n}"
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "版块相关API",
+					"item": [
+						{
+							"name": "获取版块list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ut/forum/list/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"forum",
+										"list",
+										"all"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "获取版块list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/ut/forum/list/all",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"forum",
+												"list",
+												"all"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Set-Cookie",
+											"value": "JSESSIONID=8384389A7450F4EA789A9053E2664E12; Path=/ut; HttpOnly"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 19 May 2020 12:14:56 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"createTime\": \"2020-05-19 19:10:43\",\n            \"updateTime\": \"2020-05-19 19:10:44\",\n            \"deleted\": 0,\n            \"id\": 1,\n            \"name\": \"校园八卦\"\n        },\n        {\n            \"createTime\": \"2020-05-19 19:10:43\",\n            \"updateTime\": \"2020-05-19 19:10:44\",\n            \"deleted\": 0,\n            \"id\": 2,\n            \"name\": \"每日一水\"\n        },\n        {\n            \"createTime\": \"2020-05-19 19:10:43\",\n            \"updateTime\": \"2020-05-19 19:11:34\",\n            \"deleted\": 0,\n            \"id\": 3,\n            \"name\": \"学习\"\n        },\n        {\n            \"createTime\": \"2020-05-19 19:10:43\",\n            \"updateTime\": \"2020-05-19 19:10:44\",\n            \"deleted\": 0,\n            \"id\": 4,\n            \"name\": \"游戏\"\n        }\n    ]\n}"
 								}
 							]
 						}

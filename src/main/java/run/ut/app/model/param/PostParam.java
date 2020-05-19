@@ -2,10 +2,12 @@ package run.ut.app.model.param;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.lang.NonNull;
 import run.ut.app.model.domain.Posts;
 import run.ut.app.model.dto.base.InputConverter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -19,6 +21,10 @@ public class PostParam implements InputConverter<Posts> {
 
     @ApiModelProperty(value = "用户uid，由后端填充")
     private Long uid;
+
+    @ApiModelProperty(value = "版块id")
+    @NotNull(message = "必须选择版块")
+    private Long forumId;
 
     @ApiModelProperty(value = "标题")
     @NotBlank(message = "标题不能为空！")

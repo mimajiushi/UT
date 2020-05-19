@@ -23,13 +23,16 @@ import java.util.List;
 public interface TeamsControllerApi {
 
     @ApiOperation(value = "用户创建队伍", notes = "需要登录（Token）验证，且创建者至少通过学生级别或以上认证，创建完之后创建者默认会成为队长")
-    TeamsDTO createTeam(TeamsParam teamsParam, @RequestPart("logo") MultipartFile logo);
+    TeamsDTO createTeam(TeamsParam teamsParam);
 
     @ApiOperation(value = "设置团队标签", notes = "需要登录（Token）验证，且只有队长才可以设置团队标签")
     List<TagsDTO> saveTeamsTags(String[] tagIds, Long teamsId);
 
     @ApiOperation(value = "更新团队logo", notes = "需要登录（Token）验证，只有队长才能更改团队logo")
     BaseResponse<String> updateTeamsLogo(@RequestPart("logo") MultipartFile logo, Long teamsId);
+
+    @ApiOperation(value = "更新团队基本信息，如团队名、团队描述、状态等（logo、标签除外）")
+    BaseResponse<String> updateTeamsBaseInfo(TeamsParam teamsParam);
 
     @ApiOperation(value = "设置招聘的职位", notes = "新增/更新，需要登录验证，只有队长才能设置")
     BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(TeamsRecruitmentsParam teamsRecruitmentsParam);
