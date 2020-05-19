@@ -3,7 +3,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>发布活动</title>
+    <title>编辑活动</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -24,7 +24,8 @@
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
-            <form class="layui-form" id="myForm">
+            <form class="layui-form" id="myForm" lay-filter="myForm">
+                <input type="hidden" name="id" lay-verify="required" class="layui-input"/>
                 <div class="layui-card">
                     <div class="layui-card-body">
                         <span>活动标题</span>
@@ -50,8 +51,7 @@
                         <button type="button" class="layui-btn layui-btn-primary" id="upload">
                             <i class="layui-icon">&#xe67c;</i>上传活动封面
                         </button>
-                        <img class="layui-upload-img" id="demo" height="100" width="100"
-                             src="${base}/images/img.png">
+                        <img class="layui-upload-img" id="demo" height="100" width="100">
                         <span id="demoText"></span>
                     </div>
                 </div>
@@ -63,8 +63,7 @@
                 </div>
                 <div class="layui-card">
                     <div class="layui-card-body ">
-                        <input value="发布活动" class="layui-btn layui-btn-normal" lay-submit lay-filter="push" type="submit">
-                        <input value="清空" id="resetForm" class="layui-btn layui-btn-normal" type="button">
+                        <input value="更新活动" class="layui-btn layui-btn-normal" lay-submit lay-filter="push" type="submit">
                     </div>
                 </div>
             </form>
@@ -106,18 +105,28 @@
                 };
                 editor.create();
 
-                //清空
-                function clearFrom() {
-                    $('#myForm')[0].reset();
-                    form.render();
-                    editor.txt.clear();
-                    $('#demo').attr('src', "${base}/images/img.png");
-                }
+                //赋值
+                $.ajax({
+                    type: "GET",
+                    url: "${base}/activity/detail/" + ${Request["activityId"]!"0"},
+                    success: function(res){
+                        var data = res.data;
+                        form.val('myForm',{
+                            id: data.id
+                            , title: data.title
+                            , startTime: data.startTime
+                            , endTime: data.endTime
+                            , cover: data.cover
+                        });
+                        $('#demo').attr('src', data.cover);
+                        editor.txt.html(data.content);
+                    },
+                    error:function (jqXHR) {
+                        failReqHandler("${base}",jqXHR);
+                    }
+                });
 
-                //reset
-                $('#resetForm').click(clearFrom);
-
-                //发布
+                //更新
                 form.on('submit(push)', function(data){
                     if ($.trim(editor.txt.text()) === ""){
                         layer.msg("活动不能没有文字内容！", {icon: 5});
@@ -129,7 +138,8 @@
                         type: "POST",
                         url: "${base}/admin/activity/saveActivity",
                         data: {
-                            title: data.title
+                            id: data.id
+                            , title: data.title
                             , content: editor.txt.html()
                             , startTime: data.startTime
                             , endTime: data.endTime

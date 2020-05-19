@@ -89,11 +89,6 @@
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>活动列表</cite></a>
                     </li>
-                    <li>
-                        <a onclick="xadmin.add_tab('发布活动','${base}/admin/activityAdd')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>发布活动</cite></a>
-                    </li>
                 </ul>
             </li>
             <li>

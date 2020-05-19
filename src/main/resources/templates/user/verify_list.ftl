@@ -254,7 +254,6 @@
                 //渲染表格
                 var verifyList = table.render({
                     elem: '#verifyList'
-                    , id: 'id'
                     , url: '${base}/admin/listUserInfoByParam'
                     , title: '用户列表'
                     , cols: [[
