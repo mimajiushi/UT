@@ -4063,7 +4063,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/ut/index/team/2",
+							"raw": "http://localhost:8080/ut/index/team/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4073,7 +4073,7 @@
 								"ut",
 								"index",
 								"team",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -5335,33 +5335,13 @@
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "id",
-									"value": "2",
-									"description": "职位id，更新时传",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "teamId",
-									"value": "1",
-									"description": "岗位所属的团队id",
-									"type": "text"
-								},
-								{
-									"key": "name",
-									"value": "Java后端开发5批",
-									"description": "岗位名称",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "要求：Java基础扎实，能熟练运用现有的流行框架",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{ \r\n  \"id\": 1,\r\n  \"teamId\": 1,\r\n  \"name\": \"Java后端开发999批\",\r\n  \"description\": \"wfawfawdawdawdawdawdawdawdawd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitment",
@@ -5461,7 +5441,7 @@
 							"body": "{\n    \"status\": 200,\n    \"message\": \"更新职位信息成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-15 16:42:27\",\n        \"updateTime\": \"2020-03-15 16:45:16\",\n        \"deleted\": 0,\n        \"id\": 1,\n        \"teamId\": 1,\n        \"name\": \"Java后端开发2批\",\n        \"tagIds\": \"\",\n        \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n    }\n}"
 						},
 						{
-							"name": "新增职位案例",
+							"name": "新增职位",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -5472,33 +5452,79 @@
 									}
 								],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "id",
-											"value": "",
-											"description": "职位id，更新时传",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "teamId",
-											"value": "1",
-											"description": "岗位所属的团队id",
-											"type": "text"
-										},
-										{
-											"key": "name",
-											"value": "Java后端开发",
-											"description": "岗位名称",
-											"type": "text"
-										},
-										{
-											"key": "description",
-											"value": "要求：Java基础扎实，能熟练运用现有的流行框架",
-											"type": "text"
+									"mode": "raw",
+									"raw": "{\r\n  \"teamId\": 1,\r\n  \"name\": \"Java后端开发99批\",\r\n  \"description\": \"wfawfawdawdawdawdawdawdawdawd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"saveTeamsRecruitment"
 									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=51C7DC916F6D86725CE0A9801DA869F8; Path=/ut; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 May 2020 14:08:20 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"新增职位信息成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-05-20 22:08:20\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 29,\n        \"teamId\": 1,\n        \"name\": \"Java后端开发99批\",\n        \"tagIds\": null,\n        \"description\": \"wfawfawdawdawdawdawdawdawdawd\"\n    }\n}"
+						},
+						{
+							"name": "更新",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"teamId\": 1,\r\n  \"name\": \"Java后端开发999批\",\r\n  \"description\": \"wfawfawdawdawdawdawdawdawdawd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
 									"raw": "http://localhost:8080/ut/teams/saveTeamsRecruitment",
@@ -5528,7 +5554,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 15 Mar 2020 08:43:14 GMT"
+									"value": "Wed, 20 May 2020 14:09:12 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -5540,7 +5566,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"新增职位信息成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-15 16:43:14\",\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": 2,\n        \"teamId\": 1,\n        \"name\": \"Java后端开发\",\n        \"tagIds\": null,\n        \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"更新职位信息成功！\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-15 16:42:27\",\n        \"updateTime\": \"2020-05-20 22:09:12\",\n        \"deleted\": 0,\n        \"id\": 1,\n        \"teamId\": 1,\n        \"name\": \"Java后端开发999批\",\n        \"tagIds\": \"1,2,3\",\n        \"description\": \"wfawfawdawdawdawdawdawdawdawd\"\n    }\n}"
 						}
 					]
 				},
@@ -7163,7 +7189,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"UT小分队222\",\r\n  \"description\":  \"测试描述22\",\r\n  \"status\": 0\r\n}",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"UT小分队2222\",\r\n  \"description\":  \"测试描述22\",\r\n  \"status\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
