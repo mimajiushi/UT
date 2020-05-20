@@ -45,5 +45,4 @@ public class TeamsRecruitmentsParam implements InputConverter<TeamsRecruitments>
     @ApiModelProperty(value = "岗位要求、描述")
     @Size(max = 5000, message = "岗位描述不能超过 {max} 个字符（可能白喊的 富文本 or MarkDown等特殊字符）")
     private String description;
-
 }
