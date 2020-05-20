@@ -2,7 +2,6 @@ package run.ut.app.model.param;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.springframework.lang.NonNull;
 import run.ut.app.model.domain.Posts;
 import run.ut.app.model.dto.base.InputConverter;
 

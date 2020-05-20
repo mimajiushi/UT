@@ -1,6 +1,5 @@
 package run.ut.app.controller.admin;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +12,6 @@ import run.ut.app.model.vo.SystemInfoVO;
 import run.ut.app.security.CheckAuthorization;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 import java.util.Properties;
 
 /**
