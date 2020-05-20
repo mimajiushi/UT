@@ -92,7 +92,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @Override
     @CheckLogin
     @PostMapping("saveTeamsRecruitment")
-    public BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(@Valid TeamsRecruitmentsParam teamsRecruitmentsParam) {
+    public BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(@RequestBody @Valid TeamsRecruitmentsParam teamsRecruitmentsParam) {
         Long uid = getUid();
         checkUser(uid);
         teamsService.getAndCheckTeamByLeaderIdAndTeamId(uid, teamsRecruitmentsParam.getTeamId());

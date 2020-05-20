@@ -39,7 +39,7 @@ public class TeamsRecruitmentsParam implements InputConverter<TeamsRecruitments>
 
     @ApiModelProperty(value = "招聘岗位名称", required = true)
     @NotBlank(message = "岗位名称不能为空")
-    @Size(max = 10, message = "岗位名称不能超过{max}个字")
+    @Size(max = 15, message = "岗位名称不能超过{max}个字")
     private String name;
 
     @ApiModelProperty(value = "岗位要求、描述")
