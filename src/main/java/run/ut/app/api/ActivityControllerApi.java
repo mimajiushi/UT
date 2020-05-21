@@ -33,7 +33,10 @@ public interface ActivityControllerApi {
     BaseResponse<String> cancelAppointment(@PathVariable Long activityId);
 
     @ApiOperation(value = "获取用户收藏的活动")
-    CommentPage<ActivityVO> listSelfCollection(String name, Integer pageNum, Integer pageSize);
+    CommentPage<ActivityVO> listSelfCollection(Integer pageNum, Integer pageSize);
+
+    @ApiOperation(value = "获取用户预约的活动")
+    CommentPage<ActivityVO> listSelfAppointment(Integer pageNum, Integer pageSize);
 
 
 }

@@ -1,6 +1,7 @@
 package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.ActivityVO;
 import run.ut.app.service.ActivityService;
 import run.ut.app.service.RedisService;
+import run.ut.app.utils.BeanUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,6 +46,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
     private final RedisService redisService;
     private final ActivityAppointmentMapper activityAppointmentMapper;
     private final ActivityCollectMapper activityCollectMapper;
+    private final ActivityMapper activityMapper;
 
     @Override
     public BaseResponse<String> saveActivity(ActivityParam activityParam) {
@@ -108,8 +111,17 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
     }
 
     @Override
-    public CommentPage<ActivityVO> listSelfCollection(Page page, Long uid, String name) {
-        return null;
+    public CommentPage<ActivityVO> listSelfCollection(Page<ActivityCollect> page, Long uid) {
+        IPage<Activity> activityIPage = activityMapper.listSelfCollection(page, uid);
+        List<ActivityVO> activityVOS = BeanUtils.transformFromInBatch(activityIPage.getRecords(), ActivityVO.class);
+        return new CommentPage<>(activityIPage.getTotal(), activityVOS);
+    }
+
+    @Override
+    public CommentPage<ActivityVO> listSelfAppointment(Page<ActivityAppointment> page, Long uid) {
+        IPage<Activity> activityIPage = activityMapper.listSelfAppointment(page, uid);
+        List<ActivityVO> activityVOS = BeanUtils.transformFromInBatch(activityIPage.getRecords(), ActivityVO.class);
+        return new CommentPage<>(activityIPage.getTotal(), activityVOS);
     }
 
     private long getReadCount(Long activityId) {

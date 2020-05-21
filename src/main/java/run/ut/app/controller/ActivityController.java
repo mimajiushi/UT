@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.ActivityControllerApi;
 import run.ut.app.model.domain.Activity;
+import run.ut.app.model.domain.ActivityAppointment;
+import run.ut.app.model.domain.ActivityCollect;
 import run.ut.app.model.param.SearchActivityParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
@@ -78,7 +80,18 @@ public class ActivityController extends BaseController implements ActivityContro
     @Override
     @GetMapping("list/self/collections")
     @CheckLogin
-    public CommentPage<ActivityVO> listSelfCollection(String name, Integer pageNum, Integer pageSize) {
-        return null;
+    public CommentPage<ActivityVO> listSelfCollection(@RequestParam(defaultValue = "1") Integer pageNum,
+                                                      @RequestParam(defaultValue = "10") Integer pageSize) {
+        Page<ActivityCollect> page = new Page<>(pageNum, pageSize);
+        return activityService.listSelfCollection(page, getUid());
+    }
+
+    @Override
+    @GetMapping("list/self/appointments")
+    @CheckLogin
+    public CommentPage<ActivityVO> listSelfAppointment(@RequestParam(defaultValue = "1") Integer pageNum,
+                                                       @RequestParam(defaultValue = "10") Integer pageSize) {
+        Page<ActivityAppointment> page = new Page<>(pageNum, pageSize);
+        return activityService.listSelfAppointment(page, getUid());
     }
 }

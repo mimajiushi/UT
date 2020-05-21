@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.lang.NonNull;
 import run.ut.app.model.domain.Activity;
+import run.ut.app.model.domain.ActivityAppointment;
+import run.ut.app.model.domain.ActivityCollect;
 import run.ut.app.model.param.ActivityParam;
 import run.ut.app.model.param.SearchActivityParam;
 import run.ut.app.model.support.BaseResponse;
@@ -55,9 +57,18 @@ public interface ActivityService extends IService<Activity> {
      *
      * @param page   Paging object of mybatis
      * @param uid    uid
-     * @param name   activity name
      * @return       ActivityVO list
      */
     @NonNull
-    CommentPage<ActivityVO> listSelfCollection(@NonNull Page page, @NonNull Long uid, @NonNull String name);
+    CommentPage<ActivityVO> listSelfCollection(@NonNull Page<ActivityCollect> page, @NonNull Long uid);
+
+    /**
+     * List appointments by uid
+     *
+     * @param page   Paging object of mybatis
+     * @param uid    uid
+     * @return       ActivityVO list
+     */
+    @NonNull
+    CommentPage<ActivityVO> listSelfAppointment(@NonNull Page<ActivityAppointment> page, @NonNull Long uid);
 }
