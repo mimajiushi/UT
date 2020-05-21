@@ -353,16 +353,35 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         Long uid = leaveParam.getUid();
         Long teamsId = leaveParam.getTeamsId();
         Long firedUid = leaveParam.getFiredUid();
-        if (uid == firedUid) {
-           throw new BadRequestException("队长不能开除自己");
-        }
+
         if (leaveParam.getMode() == LeaveModeEnum.EXPEL_USER.getType()) {
             getAndCheckTeamByLeaderIdAndTeamId(uid, teamsId);
-            teamsMembersMapper.delete(new QueryWrapper<TeamsMembers>()
+            TeamsMembers teamsMembers = teamsMembersMapper.selectOne(new QueryWrapper<TeamsMembers>()
                 .eq("uid", firedUid)
+                .eq("team_id", teamsId)
                 .eq("is_leader", TeamsMemberEnum.NORMAL.getType()));
+            if (ObjectUtils.isEmpty(teamsMembers)) {
+                throw new NotFoundException("队伍中没有该成员");
+            }
+            teamsMembersMapper.deleteById(teamsMembers.getId());
         } else {
-            teamsMembersMapper.delete(new QueryWrapper<TeamsMembers>().eq("uid", uid));
+            TeamsMembers teamsMembers = teamsMembersMapper.selectOne(new QueryWrapper<TeamsMembers>()
+                .eq("uid", uid)
+                .eq("team_id", teamsId));
+            if (ObjectUtils.isEmpty(teamsMembers)) {
+                throw new NotFoundException("队伍中没有该成员");
+            }
+            teamsMembersMapper.deleteById(teamsMembers.getId());
+            if (teamsMembers.getIsLeader() == TeamsMemberEnum.LEADER) {
+                // 如果主动退出者是队长，则退出后取一个队伍成员为队长，如果没有成员了则解散队伍
+                TeamsMembers teamsMembers1 = teamsMembersMapper.selectOne(new QueryWrapper<TeamsMembers>().eq("team_id", teamsId));
+                if (ObjectUtils.isEmpty(teamsMembers1)) {
+                    removeById(teamsId);
+                } else {
+                    teamsMembers1.setIsLeader(TeamsMemberEnum.LEADER);
+                    teamsMembersMapper.updateById(teamsMembers1);
+                }
+            }
         }
         return BaseResponse.ok("操作成功");
     }
@@ -397,4 +416,40 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
         }
         return BeanUtils.transformFromInBatch(listByIds(teamIdsByLeaderId), TeamsDTO.class);
     }
+
+    @Override
+    public TeamsMembers getMemberByUidAndTeamId(Long uid, Long teamId) {
+        return teamsMembersMapper.selectOne(new QueryWrapper<TeamsMembers>().eq("uid", uid).eq("team_id", teamId));
+    }
+
+    @Override
+    @Transactional
+    public BaseResponse<String> transferLeader(Long leaderId, Long targetUid, Long teamId) {
+        TeamsMembers member = getMemberByUidAndTeamId(targetUid, teamId);
+        if (ObjectUtils.isEmpty(member)) {
+            throw new NotFoundException("队伍中不存在该成员");
+        }
+        TeamsMembers leader = getMemberByUidAndTeamId(leaderId, teamId);
+        if (ObjectUtils.isEmpty(leader) || leader.getIsLeader() != TeamsMemberEnum.LEADER) {
+            throw new AuthenticationException("当前用户无法操作");
+        }
+        leader.setIsLeader(TeamsMemberEnum.NORMAL);
+        member.setIsLeader(TeamsMemberEnum.LEADER);
+        teamsMembersMapper.updateById(member);
+        teamsMembersMapper.updateById(leader);
+        return BaseResponse.ok("操作成功~");
+    }
+
+    @Override
+    @Transactional
+    public BaseResponse<String> disband(Long leaderId, Long teamId) {
+        Teams team = getTeamByLeaderIdAndTeamId(leaderId, teamId);
+        if (ObjectUtils.isEmpty(team)) {
+            throw new AuthenticationException("无权操作！");
+        }
+        removeById(teamId);
+        teamsMembersMapper.delete(new QueryWrapper<TeamsMembers>().eq("team_id", teamId));
+        return BaseResponse.ok("解散队伍成功");
+    }
+
 }

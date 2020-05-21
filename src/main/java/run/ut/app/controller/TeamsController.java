@@ -235,6 +235,20 @@ public class TeamsController extends BaseController implements TeamsControllerAp
         return teamsService.leave(leaveParam);
     }
 
+    @Override
+    @PostMapping("transferLeader")
+    @CheckLogin
+    public BaseResponse<String> transferLeader(Long targetUid, Long teamId) {
+        return teamsService.transferLeader(getUid(), targetUid, teamId);
+    }
+
+    @Override
+    @PostMapping("disband/{teamId:\\d+}")
+    @CheckLogin
+    public BaseResponse<String> disband(@PathVariable Long teamId) {
+        return teamsService.disband(getUid(), teamId);
+    }
+
 
     /**
      * 检验用户是否通过认证

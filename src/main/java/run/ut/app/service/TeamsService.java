@@ -5,6 +5,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.model.domain.Teams;
 import com.baomidou.mybatisplus.extension.service.IService;
+import run.ut.app.model.domain.TeamsMembers;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
 import run.ut.app.model.param.LeaveParam;
@@ -123,7 +124,7 @@ public interface TeamsService extends IService<Teams> {
      * @param teamsId team id
      * @return Teams
      */
-    @NonNull
+    @Nullable
     Teams getAndCheckTeamByLeaderIdAndTeamId(@NonNull Long leaderId, @NonNull Long teamsId);
 
     /**
@@ -132,7 +133,7 @@ public interface TeamsService extends IService<Teams> {
      * @param leaderId leader id
      * @return list of team ids
      */
-    @NonNull
+    @Nullable
     List<Long> getTeamIdsByLeaderId(@NonNull Long leaderId);
 
     /**
@@ -143,4 +144,34 @@ public interface TeamsService extends IService<Teams> {
      */
     @NonNull
     List<TeamsDTO> listTeamsByLeaderId(@NonNull Long leaderId);
+
+    /**
+     * Get TeamMembers obj by uid and team id
+     *
+     * @param uid       uid
+     * @param teamId    team id
+     * @return
+     */
+    @Nullable
+    TeamsMembers getMemberByUidAndTeamId(Long uid, Long teamId);
+
+    /**
+     * Transfer team's leader
+     *
+     * @param leaderId    leader
+     * @param targetUid   target uid
+     * @param teamId      teams id
+     * @return            ok result with message
+     */
+    @NonNull
+    BaseResponse<String> transferLeader(@NonNull Long leaderId, @NonNull Long targetUid, @NonNull Long teamId);
+
+    /**
+     * Disband team
+     *
+     * @param teamId   team id
+     * @return         ok result with message
+     */
+    @NonNull
+    BaseResponse<String> disband(@NonNull Long leaderId, @NonNull Long teamId);
 }

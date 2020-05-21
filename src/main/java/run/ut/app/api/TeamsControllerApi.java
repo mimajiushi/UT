@@ -1,8 +1,8 @@
 package run.ut.app.api;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.model.dto.TagsDTO;
@@ -70,6 +70,12 @@ public interface TeamsControllerApi {
     @ApiOperation(value = "队长处理收到的用户申请（加入团队的申请）", notes = "需要队长登录Token")
     BaseResponse<String> teamDealWithApplication(DealInvitationOrApplyParam param);
 
-    @ApiModelProperty(value = "踢人/离队", notes = "mode字段说明：1-队长踢人 2-成员主动退队")
+    @ApiOperation(value = "踢人/离队", notes = "mode字段说明：1-队长踢人 2-成员主动退队。如果队长主动离开，则会自动选取一个队员为队长，若没有队员，则自动删除队伍")
     BaseResponse<String> leave(LeaveParam leaveParam);
+
+    @ApiOperation(value = "转让队长")
+    BaseResponse<String> transferLeader(Long targetUid, Long teamId);
+
+    @ApiOperation(value = "解散队伍")
+    BaseResponse<String> disband(@PathVariable Long teamId);
 }

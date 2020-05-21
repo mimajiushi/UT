@@ -74,4 +74,11 @@ public class ActivityController extends BaseController implements ActivityContro
     public BaseResponse<String> cancelAppointment(@PathVariable Long activityId) {
         return activityAppointmentService.cancelAppointment(getUid(), activityId);
     }
+
+    @Override
+    @GetMapping("list/self/collections")
+    @CheckLogin
+    public CommentPage<ActivityVO> listSelfCollection(String name, Integer pageNum, Integer pageSize) {
+        return null;
+    }
 }

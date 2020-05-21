@@ -49,4 +49,15 @@ public interface ActivityService extends IService<Activity> {
      */
     @NonNull
     ActivityVO activityDetail(@NonNull Long operatorUid, @NonNull Long activityId);
+
+    /**
+     * List collection by uid
+     *
+     * @param page   Paging object of mybatis
+     * @param uid    uid
+     * @param name   activity name
+     * @return       ActivityVO list
+     */
+    @NonNull
+    CommentPage<ActivityVO> listSelfCollection(@NonNull Page page, @NonNull Long uid, @NonNull String name);
 }

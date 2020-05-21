@@ -107,6 +107,11 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
         return activityVO;
     }
 
+    @Override
+    public CommentPage<ActivityVO> listSelfCollection(Page page, Long uid, String name) {
+        return null;
+    }
+
     private long getReadCount(Long activityId) {
         String key = String.format(RedisConfig.ACTIVITY_READ_COUNT, activityId);
         String res = redisService.get(key);

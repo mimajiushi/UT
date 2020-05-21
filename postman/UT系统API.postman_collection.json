@@ -5336,7 +5336,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"id\": 1,\r\n  \"teamId\": 1,\r\n  \"name\": \"Java后端开发999批\",\r\n  \"description\": \"wfawfawdawdawdawdawdawdawdawd\"\r\n}",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"teamId\": 1,\r\n  \"name\": \"Java后端开发999批\",\r\n  \"description\": \"wfawfawdawdawdawdawdawdawdawd\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6996,16 +6996,16 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "UT-Token",
-								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
 								"description": "队长token",
+								"key": "UT-Token",
 								"type": "text",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
 								"disabled": true
 							},
 							{
 								"key": "UT-Token",
-								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjMwLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MzU2OTcxLCJleHAiOjE2MTU4OTI5NzF9.XAFWx6HcX4eyRdvjhNXO92PdJzuQgh5c5pNYL9B7iro",
-								"type": "text"
+								"type": "text",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjMwLCJvcGVuaWQiOiIiLCJyb2xlcyI6MSwiaWF0IjoxNTg0MzU2OTcxLCJleHAiOjE2MTU4OTI5NzF9.XAFWx6HcX4eyRdvjhNXO92PdJzuQgh5c5pNYL9B7iro"
 							}
 						],
 						"body": {
@@ -7029,7 +7029,8 @@
 								"teams",
 								"leave"
 							]
-						}
+						},
+						"description": "mode=1表示炒队友鱿鱼，mode=2表示主动离开  \r\n如果队长踢自己，则会自动选取一个队员为队长，若没有队员，则自动删除队伍"
 					},
 					"response": [
 						{
@@ -7338,6 +7339,196 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"修改信息成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "转移队长",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/teams/transferLeader/?targetUid= 22&teamId= 1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"teams",
+								"transferLeader",
+								""
+							],
+							"query": [
+								{
+									"key": "targetUid",
+									"value": " 22",
+									"description": "转移者的uid，此人必须是队伍成员"
+								},
+								{
+									"key": "teamId",
+									"value": " 1",
+									"description": "队伍id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "转移队长",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/transferLeader/?targetUid= 22&teamId= 1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"transferLeader",
+										""
+									],
+									"query": [
+										{
+											"key": "targetUid",
+											"value": " 22",
+											"description": "转移者的uid，此人必须是队伍成员"
+										},
+										{
+											"key": "teamId",
+											"value": " 1",
+											"description": "队伍id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 May 2020 08:35:31 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"操作成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "解散队伍",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/teams/disband/33",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"teams",
+								"disband",
+								"33"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "解散队伍",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/disband/33",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"disband",
+										"33"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 May 2020 08:39:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"解散队伍成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						}
 					]
 				}
