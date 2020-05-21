@@ -106,7 +106,7 @@
                 form.on('submit(add)', function(){
                     layer.prompt({
                         formType: 3,
-                        title: '增加标签',
+                        title: '增加标签'
                     }, function(value, index) {
                         $.ajax({
                             type: "POST",

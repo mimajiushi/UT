@@ -93,6 +93,18 @@
             </li>
             <li>
                 <a onclick="">
+                    <i class="iconfont left-nav-li" lay-tips="BBS管理">&#xe69b;</i>
+                    <cite>BBS管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('板块列表','${base}/admin/forumList')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>板块列表</cite></a>
+                    </li>
+                </ul>
+            <li>
+                <a onclick="">
                     <i class="iconfont left-nav-li" lay-tips="系统管理">&#xe6ae;</i>
                     <cite>系统管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>

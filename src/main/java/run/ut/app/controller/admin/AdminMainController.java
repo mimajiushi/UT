@@ -105,6 +105,15 @@ public class AdminMainController implements AdminMainControllerApi {
         return "activity/activity_edit";
     }
 
+    /**
+     * 板块列表
+     * @return template path
+     */
+    @GetMapping("forumList")
+    public String forumList() {
+        return "bbs/forum_list";
+    }
+
     @ResponseBody
     @GetMapping("systemInfo")
     @CheckAuthorization(roles = UserRolesEnum.ROLE_ADMIN)
