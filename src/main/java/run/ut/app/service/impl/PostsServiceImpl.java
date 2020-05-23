@@ -142,7 +142,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
             throw new BadRequestException("收藏的帖子不存在！");
         }
         Integer count = userPostsMapper.selectCount(new QueryWrapper<UserPosts>().eq("uid", uid).eq("post_id", postId));
-        if (count < 1) {
+        if (count > 0) {
             throw new AlreadyExistsException("已经收藏过了~");
         }
         UserPosts userPosts = new UserPosts().setPostId(postId).setUid(uid);
