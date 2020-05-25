@@ -137,9 +137,8 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         // list parent comments
         Page<PostComments> postCommentsPage = listParentCommentsByPostId(page, postId);
         long total = postCommentsPage.getTotal();
-        Set<Long> uids = new HashSet<>();
+        Set<Long> uids = new HashSet<>(1 << 8);
         List<Long> parentCommentIds = new ArrayList<>();
-        HashMap<Long, User> userHashMap = new HashMap<>();
         List<ParentCommentVO> parentCommentVOList = postCommentsPage.getRecords()
             .stream().map(e -> {
                 uids.add(e.getFromUid());
@@ -167,7 +166,9 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         });
 
         // list user and then transform map
-        userService.listByIds(uids).forEach(e -> userHashMap.put(e.getUid(), e));
+        List<User> users = userService.listByIds(uids);
+        HashMap<Long, User> userHashMap = new HashMap<>(users.size());
+        users.forEach(e -> userHashMap.put(e.getUid(), e));
 
         // set nickname、avatar、child comments and so on.
         childCommentMap.forEach((k, v) -> {

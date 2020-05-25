@@ -29,7 +29,7 @@
     </resultMap>
 
     <select id="listPostsByParams" resultMap="postVo">
-        select p.id, p.title, f.id forum_id , f.name forum_name, left(p.content,50) content, p.create_time, p.update_time, u.uid, u.avatar, u.nickname from (posts p, forum f)
+        select p.id, p.title, f.id forum_id , f.name forum_name, p.content, p.create_time, p.update_time, u.uid, u.avatar, u.nickname from (posts p, forum f)
             inner join `user` u on u.uid = p.uid
         <where>
             1=1
@@ -49,7 +49,7 @@
     </select>
 
     <select id="listCollectionByParams" resultMap="postVo">
-        select p.id, p.uid, p.title, left(p.content,50) content, u.nickname, u.avatar, up.create_time from user_posts up
+        select p.id, p.uid, p.title, p.content, u.nickname, u.avatar, up.create_time from user_posts up
             inner join `user` u on u.uid = up.uid
             inner join posts p on p.id = up.post_id
         <where>
