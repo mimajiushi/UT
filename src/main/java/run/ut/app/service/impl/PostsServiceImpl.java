@@ -166,11 +166,16 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
     public CommentPage<PostVO> listPostsByParams(SearchPostParam searchPostParam, Page page) {
         Long operatorUid = searchPostParam.getOperatorUid();
 
+        Long forumId = searchPostParam.getForumId();
+        Forum forum = forumMapper.selectById(forumId);
+
         IPage<PostVO> postVOIPage = postsMapper.listPostsByParams(page, searchPostParam);
         long total = postVOIPage.getTotal();
 
         List<PostVO> postVOS1 = postVOIPage.getRecords();
-        List<PostVO> postVOS2 = setCountAndIsLike(postVOS1, operatorUid);
+        List<PostVO> postVOS2 = setCountAndIsLike(postVOS1, operatorUid).stream().map(e -> {
+             return e.setForumName(forum.getName()).setForumId(forum.getId());
+        }).collect(Collectors.toList());
 
         return new CommentPage<>(total, postVOS2);
     }

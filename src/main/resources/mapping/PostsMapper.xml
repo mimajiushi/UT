@@ -29,7 +29,7 @@
     </resultMap>
 
     <select id="listPostsByParams" resultMap="postVo">
-        select p.id, p.title, f.id forum_id , f.name forum_name, p.content, p.create_time, p.update_time, u.uid, u.avatar, u.nickname from (posts p, forum f)
+        select p.id, p.title, p.content, p.create_time, p.update_time, u.uid, u.avatar, u.nickname from posts p
             inner join `user` u on u.uid = p.uid
         <where>
             1=1
@@ -40,7 +40,7 @@
                 and u.uid = #{param.uid}
             </if>
             <if test="param.forumId!=null">
-                and f.id = #{param.forumId}
+                and p.forum_id = #{param.forumId}
             </if>
         </where>
         and p.deleted = 0
