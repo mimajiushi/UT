@@ -48,7 +48,7 @@
         </where>
         and p.deleted = 0
         group by p.id
-        order by p.update_time desc
+        order by p.create_time desc
     </select>
 
     <select id="listCollectionByParams" resultMap="postVo">
