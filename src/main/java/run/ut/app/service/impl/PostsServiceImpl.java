@@ -168,15 +168,20 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
 
         Long forumId = searchPostParam.getForumId();
         Forum forum = forumMapper.selectById(forumId);
+        if (forumId != null && ObjectUtils.isEmpty(forum)) {
+            throw new NotFoundException("版块不存在！");
+        }
 
         IPage<PostVO> postVOIPage = postsMapper.listPostsByParams(page, searchPostParam);
         long total = postVOIPage.getTotal();
 
         List<PostVO> postVOS1 = postVOIPage.getRecords();
         List<PostVO> postVOS2 = setCountAndIsLike(postVOS1, operatorUid);
-        postVOS2 = postVOS2.stream().map(e -> {
-            return e.setForumName(forum.getName()).setForumId(forum.getId());
-        }).collect(Collectors.toList());
+        if (!ObjectUtils.isEmpty(forum)) {
+            postVOS2 = postVOS2.stream().map(e -> {
+                return e.setForumName(forum.getName()).setForumId(forum.getId());
+            }).collect(Collectors.toList());
+        }
 
         return new CommentPage<>(total, postVOS2);
     }
