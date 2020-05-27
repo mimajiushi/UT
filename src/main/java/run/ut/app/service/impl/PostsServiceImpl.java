@@ -173,8 +173,9 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         long total = postVOIPage.getTotal();
 
         List<PostVO> postVOS1 = postVOIPage.getRecords();
-        List<PostVO> postVOS2 = setCountAndIsLike(postVOS1, operatorUid).stream().map(e -> {
-             return e.setForumName(forum.getName()).setForumId(forum.getId());
+        List<PostVO> postVOS2 = setCountAndIsLike(postVOS1, operatorUid);
+        postVOS2 = postVOS2.stream().map(e -> {
+            return e.setForumName(forum.getName()).setForumId(forum.getId());
         }).collect(Collectors.toList());
 
         return new CommentPage<>(total, postVOS2);
