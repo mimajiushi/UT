@@ -18,14 +18,8 @@ import run.ut.app.event.LikesEvent;
 import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
-import run.ut.app.mapper.ForumMapper;
-import run.ut.app.mapper.PostsMapper;
-import run.ut.app.mapper.UserMapper;
-import run.ut.app.mapper.UserPostsMapper;
-import run.ut.app.model.domain.Forum;
-import run.ut.app.model.domain.Posts;
-import run.ut.app.model.domain.User;
-import run.ut.app.model.domain.UserPosts;
+import run.ut.app.mapper.*;
+import run.ut.app.model.domain.*;
 import run.ut.app.model.enums.LikesTypeEnum;
 import run.ut.app.model.param.PostParam;
 import run.ut.app.model.param.SearchPostParam;
@@ -58,6 +52,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
     private final UserMapper userMapper;
     private final ApplicationEventPublisher eventPublisher;
     private final ForumMapper forumMapper;
+    private final PostCommentsMapper postCommentsMapper;
 
     @Override
     @Transactional
@@ -176,14 +171,16 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         long total = postVOIPage.getTotal();
 
         List<PostVO> postVOS1 = postVOIPage.getRecords();
-        List<PostVO> postVOS2 = setCountAndIsLike(postVOS1, operatorUid);
+        postVOS1 = setCountAndIsLike(postVOS1, operatorUid);
+
         if (!ObjectUtils.isEmpty(forum)) {
-            postVOS2 = postVOS2.stream().map(e -> {
-                return e.setForumName(forum.getName()).setForumId(forum.getId());
+            postVOS1 = postVOS1.stream().map(e -> {
+                return e.setForumName(forum.getName())
+                    .setForumId(forum.getId());
             }).collect(Collectors.toList());
         }
 
-        return new CommentPage<>(total, postVOS2);
+        return new CommentPage<>(total, postVOS1);
     }
 
     @Override
@@ -254,6 +251,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
             Long id = postVO.getId();
             // set count
             postVO.setLikeCount(getPostLikeCount(id)).setReadCount(getPostReadCount(id));
+            postVO.setCommentCount(postCommentsMapper.selectCount(new QueryWrapper<PostComments>().eq("post_id", postVO.getId())));
             // set isLike
             if (null != uid) {
                 postVO.setLike(isLikePost(uid, id));

@@ -44,6 +44,9 @@ public class PostVO implements InputConverter<Posts> {
     @ApiModelProperty(value = "点赞数")
     private Long likeCount;
 
+    @ApiModelProperty(value = "评论数")
+    private Integer commentCount;
+
     @ApiModelProperty(value = "阅读数")
     private Long readCount;
 
