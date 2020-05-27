@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.config.redis.RedisConfig;
 import run.ut.app.event.LikesEvent;
@@ -54,25 +55,31 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
     private final ApplicationEventPublisher eventPublisher;
 
     @Override
+    @Transactional
     public BaseResponse<String> commentPost(CommentParam commentParam) {
-        int count = postsMapper.selectCount(new QueryWrapper<Posts>().eq("id", commentParam.getPostId()));
-        if (count < 1) {
+        Posts posts = postsMapper.selectById(commentParam.getPostId());
+        if (ObjectUtils.isEmpty(posts)) {
             throw new NotFoundException("帖子不存在");
         }
         PostComments postComments = BeanUtils.transformFrom(commentParam, PostComments.class);
+        posts.setUpdateTime(null);
+        postsMapper.updateById(posts);
         save(postComments);
         return BaseResponse.ok("评论成功~");
     }
 
     @Override
+    @Transactional
     public BaseResponse<String> replyToComments(CommentParam commentParam) {
-        int count1 = postsMapper.selectCount(new QueryWrapper<Posts>().eq("id", commentParam.getPostId()));
+        Posts posts = postsMapper.selectById(commentParam.getPostId());
         int count2 = count(new QueryWrapper<PostComments>().eq("post_id", commentParam.getPostId()));
-        if (count1 < 1 || count2 < 1) {
+        if (ObjectUtils.isEmpty(posts) || count2 < 1) {
             throw new NotFoundException("帖子不存在");
         }
         PostComments postComments = BeanUtils.transformFrom(commentParam, PostComments.class);
         save(postComments);
+        posts.setUpdateTime(null);
+        postsMapper.updateById(posts);
         return BaseResponse.ok("回复成功~");
     }
 
