@@ -95,8 +95,11 @@ public class CommentController extends BaseController implements CommentControll
     }
 
     @Override
+    @GetMapping("listCommentToSelfPost")
+    @CheckLogin
     public CommentPage<ParentCommentVO> listCommentToSelfPost(@RequestParam(defaultValue = "1") Integer pageNum,
                                                               @RequestParam(defaultValue = "10") Integer pageSize) {
-        return null;
+        Page<PostComments> page = new Page<>(pageNum, pageSize);
+        return postCommentsService.listCommentToSelfPost(getUid(), page);
     }
 }

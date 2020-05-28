@@ -1,6 +1,7 @@
 package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -243,7 +244,8 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
 
     @Override
     public CommentPage<ParentCommentVO> listCommentToSelfPost(Long uid, Page<PostComments> page) {
-        return null;
+        IPage<ParentCommentVO> parentCommentVOIPage = baseMapper.listCommentToSelfPost(page, uid);
+        return new CommentPage<>(parentCommentVOIPage.getTotal(), parentCommentVOIPage.getRecords());
     }
 
     private boolean isLikeComment(Long uid, Long commentId) {

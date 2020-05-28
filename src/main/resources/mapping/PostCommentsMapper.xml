@@ -6,7 +6,7 @@
     <resultMap id="BaseResultMap" type="run.ut.app.model.domain.PostComments">
         <id column="id" property="id" />
         <result column="post_id" property="postId" />
-        <result column="father_comment_id" property="parentCommentId" />
+        <result column="parent_comment_id" property="parentCommentId" />
         <result column="to_uid" property="toUid" />
         <result column="from_uid" property="fromUid" />
         <result column="content" property="content" />
@@ -16,4 +16,22 @@
         <result column="deleted" property="deleted" />
     </resultMap>
 
+    <resultMap id="parentCommentVO" type="run.ut.app.model.vo.ParentCommentVO">
+        <result column="id" property="id" />
+        <result column="post_id" property="postId" />
+        <result column="from_uid" property="fromUid" />
+        <result column="nickname" property="nickname" />
+        <result column="avatar" property="avatar" />
+        <result column="content" property="content" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+    
+    <select id="listCommentToSelfPost" resultMap="parentCommentVO">
+        select pc.id, pc.post_id, pc.content, pc.create_time, p.id ,p.title, u.uid, u.nickname, u.avatar  from post_comments pc
+            inner join posts p on p.id = pc.post_id
+            inner join `user` u on u.uid = pc.from_uid
+        where p.uid = #{uid} and pc.parent_comment_id = 0 and pc.deleted = 0
+        order by pc.create_time desc
+    </select>
 </mapper>
