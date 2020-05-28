@@ -102,9 +102,11 @@ mybatis-plus:
     # 是否显示mybatis-plus图标
     banner: false
   typeEnumsPackage: run.ut.app.model.enums
-  # SQL 执行log，调试时可打开
   configuration:
+    # 关闭二级缓存
     cache-enabled: false
+    # 单体应用可以开启一级缓存
+    localCacheScope: SESSION
 
 ##########################################################
 ##

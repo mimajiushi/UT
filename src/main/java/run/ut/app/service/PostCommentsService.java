@@ -7,6 +7,7 @@ import run.ut.app.model.domain.PostComments;
 import run.ut.app.model.param.CommentParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
+import run.ut.app.model.vo.ChildCommentVO;
 import run.ut.app.model.vo.ParentCommentVO;
 
 /**
@@ -94,8 +95,32 @@ public interface PostCommentsService extends IService<PostComments> {
      * @param commentId   commentId
      * @param delta        delta
      */
-    void incrementLikesCount(Long commentId, Integer delta);
+    void incrementLikesCount(@NonNull Long commentId, @NonNull Integer delta);
 
+    /**
+     * Get comment likes count
+     *
+     * @param commentId    commentId
+     * @return             count
+     */
     @NonNull
     Long getCommentLikeCount(@NonNull Long commentId);
+
+    /**
+     * List comments that are send to user
+     *
+     * @param uid   uid
+     * @return      comment list
+     */
+    @NonNull
+    CommentPage<ChildCommentVO> listCommentToSelf(@NonNull Long uid, @NonNull Page<PostComments> page);
+
+    /**
+     * List the comment of user's post
+     *
+     * @param uid    uid
+     * @return       comment list
+     */
+    @NonNull
+    CommentPage<ParentCommentVO> listCommentToSelfPost(@NonNull Long uid, @NonNull Page<PostComments> page);
 }

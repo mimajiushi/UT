@@ -11,6 +11,7 @@ import run.ut.app.model.domain.PostComments;
 import run.ut.app.model.param.CommentParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
+import run.ut.app.model.vo.ChildCommentVO;
 import run.ut.app.model.vo.ParentCommentVO;
 import run.ut.app.security.CheckLogin;
 import run.ut.app.service.PostCommentsService;
@@ -82,5 +83,20 @@ public class CommentController extends BaseController implements CommentControll
         Long operatorUid = getUidFromToken();
         Page<PostComments> page = new Page<>(pageNum, pageSize);
         return postCommentsService.listCommentOfPost(page, postId, operatorUid);
+    }
+
+    @Override
+    @GetMapping("listCommentToSelf")
+    @CheckLogin
+    public CommentPage<ChildCommentVO> listCommentToSelf(@RequestParam(defaultValue = "1") Integer pageNum,
+                                                         @RequestParam(defaultValue = "10") Integer pageSize) {
+        Page<PostComments> page = new Page<>(pageNum, pageSize);
+        return postCommentsService.listCommentToSelf(getUid(), page);
+    }
+
+    @Override
+    public CommentPage<ParentCommentVO> listCommentToSelfPost(@RequestParam(defaultValue = "1") Integer pageNum,
+                                                              @RequestParam(defaultValue = "10") Integer pageSize) {
+        return null;
     }
 }

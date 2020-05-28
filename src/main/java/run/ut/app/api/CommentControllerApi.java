@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import run.ut.app.model.param.CommentParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
+import run.ut.app.model.vo.ChildCommentVO;
 import run.ut.app.model.vo.ParentCommentVO;
 
 /**
@@ -31,4 +32,10 @@ public interface CommentControllerApi {
 
     @ApiOperation(value = "获取帖子下的评论", notes = "如果需要判断用户是否收藏、点赞，请传token")
     CommentPage<ParentCommentVO> listCommentOfPost(@PathVariable Long postId, Integer pageNum, Integer pageSize);
+
+    @ApiOperation(value = "用户查询别人对自己的回复", notes = "需要传token，帖子的父评论不包括在内，帖子回复是另一个接口")
+    CommentPage<ChildCommentVO> listCommentToSelf(Integer pageNum, Integer pageSize);
+
+    @ApiOperation(value = "用户查看自己帖子有哪些回复", notes = "需要传token，仅父评论，父评论下的子评论是另一个接口")
+    CommentPage<ParentCommentVO> listCommentToSelfPost(Integer pageNum, Integer pageSize);
 }

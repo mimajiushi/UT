@@ -173,9 +173,9 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         });
 
         // list user and then transform map
-        List<User> users = userService.listByIds(uids);
-        HashMap<Long, User> userHashMap = new HashMap<>(users.size());
-        users.forEach(e -> userHashMap.put(e.getUid(), e));
+//        HashMap<Long, User> userHashMap = new HashMap<>(users.size());
+//        users.forEach(e -> userHashMap.put(e.getUid(), e));
+        Map<Long, User> userHashMap = userService.listByIds(uids).stream().collect(Collectors.toMap(User::getUid, e -> e));
 
         // set nickname、avatar、child comments and so on.
         childCommentMap.forEach((k, v) -> {
@@ -214,6 +214,36 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
             return 0L;
         }
         return Long.valueOf(res + "");
+    }
+
+    @Override
+    public CommentPage<ChildCommentVO> listCommentToSelf(Long uid, Page<PostComments> page) {
+        Page<PostComments> postCommentsPage = page(page, new QueryWrapper<PostComments>().eq("to_uid", uid).orderByDesc("create_time"));
+        List<PostComments> postCommentsList = postCommentsPage.getRecords();
+
+        HashSet<Long> uids = new HashSet<>(postCommentsList.size());
+        postCommentsList.forEach(e -> uids.add(e.getFromUid()));
+
+        Map<Long, User> userMap = userService.listByIds(uids).stream().collect(Collectors.toMap(User::getUid, e -> e));
+
+        List<ChildCommentVO> childCommentVOList = postCommentsList.stream().map(e -> {
+            ChildCommentVO childCommentVO = BeanUtils.transformFrom(e, ChildCommentVO.class);
+            User user = userMap.get(e.getFromUid());
+            if (!ObjectUtils.isEmpty(user)) {
+                assert childCommentVO != null;
+                childCommentVO.setFromNickname(user.getNickname())
+                    .setFromAvatar(user.getAvatar());
+            }
+            return childCommentVO;
+        }).collect(Collectors.toList());
+
+
+        return new CommentPage<>(postCommentsPage.getTotal(), childCommentVOList);
+    }
+
+    @Override
+    public CommentPage<ParentCommentVO> listCommentToSelfPost(Long uid, Page<PostComments> page) {
+        return null;
     }
 
     private boolean isLikeComment(Long uid, Long commentId) {
