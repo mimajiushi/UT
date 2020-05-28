@@ -50,4 +50,6 @@ public class ActivityVO extends BaseVO implements OutputConverter<ActivityVO, Ac
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime endTime;
+
+    private Integer deleted;
 }

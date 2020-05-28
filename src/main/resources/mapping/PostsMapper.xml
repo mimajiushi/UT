@@ -24,6 +24,7 @@
         <result column="content" property="content" />
         <result column="nickname" property="nickname" />
         <result column="avatar" property="avatar" />
+        <result column="deleted" property="deleted" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
@@ -52,7 +53,7 @@
     </select>
 
     <select id="listCollectionByParams" resultMap="postVo">
-        select p.id, p.uid, p.title, p.content, u.nickname, u.avatar, up.create_time from user_posts up
+        select p.id, p.uid, p.title, p.content, u.nickname, u.avatar, up.create_time, p.deleted from user_posts up
             inner join `user` u on u.uid = up.uid
             inner join posts p on p.id = up.post_id
         <where>
