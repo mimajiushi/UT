@@ -49,10 +49,10 @@ public class ActivityCollectServiceImpl extends ServiceImpl<ActivityCollectMappe
 
     @Override
     public BaseResponse<String> cancelCollectActivity(Long uid, Long activityId) {
-        Activity activity = activityMapper.selectById(activityId);
-        if (ObjectUtils.isEmpty(activity)) {
-            throw new NotFoundException("活动不存在");
-        }
+//        Activity activity = activityMapper.selectById(activityId);
+//        if (ObjectUtils.isEmpty(activity)) {
+//            throw new NotFoundException("活动不存在");
+//        }
         int count = count(new QueryWrapper<ActivityCollect>().eq("uid", uid).eq("activity_id", activityId));
         if (count < 1) {
             throw new BadRequestException("没有收藏记录");
