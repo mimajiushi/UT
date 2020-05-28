@@ -198,6 +198,10 @@ public class IndexServiceImpl implements IndexService {
 
     @Override
     public List<TeamsRecruitmentsDTO> listRecruitmentsByTeamId(@Nonnull Long teamId) {
+        Teams teams = teamsMapper.selectById(teamId);
+        if (ObjectUtils.isEmpty(teams)) {
+            throw new NotFoundException("团队不存在");
+        }
         return BeanUtils.transformFromInBatch(
                 teamsRecruitmentsMapper.selectList(new QueryWrapper<TeamsRecruitments>().eq("team_id", teamId)),
                 TeamsRecruitmentsDTO.class

@@ -22,7 +22,7 @@
         <result column="from_uid" property="fromUid" />
         <result column="nickname" property="nickname" />
         <result column="avatar" property="avatar" />
-        <result column="content" property="content" />
+        <result column="crecruitmentsontent" property="content" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
