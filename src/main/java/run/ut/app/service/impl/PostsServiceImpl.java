@@ -148,13 +148,13 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
 
     @Override
     public BaseResponse<String> cancelCollect(Long postId, Long uid) {
-        Posts post = getById(postId);
-        if (ObjectUtils.isEmpty(post)) {
-            throw new BadRequestException("Bad request!");
-        }
-        userPostsMapper.delete(new QueryWrapper<UserPosts>()
+//        Posts post = getById(postId);
+//        if (ObjectUtils.isEmpty(post)) {
+//            throw new BadRequestException("Bad request!");
+//        }
+        int delete = userPostsMapper.delete(new QueryWrapper<UserPosts>()
             .eq("post_id", postId).eq("uid", uid));
-        return BaseResponse.ok("取消成功~");
+        return delete > 0 ? BaseResponse.ok("取消收藏成功~") : BaseResponse.ok("取消失败！");
     }
 
     @Override
