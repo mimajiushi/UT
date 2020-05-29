@@ -44,4 +44,7 @@ public interface CommentControllerApi {
 
     @ApiOperation(value = "获取未读评论/回复消息数量", notes = "index=0的元素为帖子评论未读，index=1的元素为回复未读")
     List<Integer> getCommentUnreadCount();
+
+    @ApiOperation(value = "清除未读消息数量的记录")
+    BaseResponse<String> clearUnreadCount();
 }

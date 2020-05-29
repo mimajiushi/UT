@@ -136,4 +136,13 @@ public interface PostCommentsService extends IService<PostComments> {
      */
     @NonNull
     List<Integer> getCommentUnreadCount(@NonNull Long uid);
+
+    /**
+     * Clear the cache of the unread comment count
+     *
+     * @param uid   uid
+     * @return      ok result with message
+     */
+    @NonNull
+    BaseResponse<String> clearUnreadCount(@NonNull Long uid);
 }

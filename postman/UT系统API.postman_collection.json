@@ -9123,7 +9123,8 @@
 										"comment",
 										"toPost"
 									]
-								}
+								},
+								"description": "下标=0的元素为帖子评论未读，下标=1的元素为回复未读"
 							},
 							"response": [
 								{
@@ -9947,6 +9948,173 @@
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
+				},
+				{
+					"name": "查询未读消息数量（帖子评论，评论回复）",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/comment/getCommentUnreadCount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"comment",
+								"getCommentUnreadCount"
+							]
+						},
+						"description": "下标=0为帖子未读评论数量  \r\n下标=1为未读回复数量（帖子评论以外的回复）"
+					},
+					"response": [
+						{
+							"name": "查询未读消息数量（帖子评论，评论回复）",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/comment/getCommentUnreadCount",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"comment",
+										"getCommentUnreadCount"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 May 2020 09:31:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        2,\n        1\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "清空未读消息数量",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/comment/clearUnreadCount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"comment",
+								"clearUnreadCount"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "清空未读消息数量",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/comment/clearUnreadCount",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"comment",
+										"clearUnreadCount"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=04E9D1C8D8A6FFB3B03E6CD9598AA3D0; Path=/ut; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 May 2020 10:26:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"ok\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
 				}
 			],
 			"protocolProfileBehavior": {}

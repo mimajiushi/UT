@@ -271,6 +271,15 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         return Arrays.asList(counts);
     }
 
+    @Override
+    public BaseResponse<String> clearUnreadCount(Long uid) {
+        String key = String.format(RedisConfig.USER_UNREAD_COUNT_POST, uid);
+        redisService.remove(key);
+        key = String.format(RedisConfig.USER_UNREAD_COUNT_PARENT_COMMENT, uid);
+        redisService.remove(key);
+        return BaseResponse.ok("ok");
+    }
+
     private boolean isLikeComment(Long uid, Long commentId) {
         String key = String.format(RedisConfig.USER_LIKE_COMMENT, uid, commentId);
         String res = redisService.get(key);

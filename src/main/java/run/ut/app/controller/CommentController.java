@@ -110,4 +110,11 @@ public class CommentController extends BaseController implements CommentControll
     public List<Integer> getCommentUnreadCount() {
         return postCommentsService.getCommentUnreadCount(getUid());
     }
+
+    @Override
+    @GetMapping("clearUnreadCount")
+    @CheckLogin
+    public BaseResponse<String> clearUnreadCount() {
+        return postCommentsService.clearUnreadCount(getUid());
+    }
 }
