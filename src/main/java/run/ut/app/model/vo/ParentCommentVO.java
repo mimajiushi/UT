@@ -24,6 +24,9 @@ public class ParentCommentVO extends BaseVO implements OutputConverter<ParentCom
     @ApiModelProperty(value = "所属帖子id")
     private Long postId;
 
+    @ApiModelProperty(value = "帖子标题")
+    private String title;
+
     @ApiModelProperty(value = "评论者uid")
     private Long fromUid;
 
