@@ -10,6 +10,8 @@ import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.ChildCommentVO;
 import run.ut.app.model.vo.ParentCommentVO;
 
+import java.util.List;
+
 /**
  * <p>
  *  PostCommentsService
@@ -123,4 +125,15 @@ public interface PostCommentsService extends IService<PostComments> {
      */
     @NonNull
     CommentPage<ParentCommentVO> listCommentToSelfPost(@NonNull Long uid, @NonNull Page<PostComments> page);
+
+    /**
+     * Get the count of unread comment
+     *
+     * @param uid   uid
+     * @return ↓
+     *               elements[0]: count of unread comment from post
+     *               elements[1]: count of unread comment from parent_comment
+     */
+    @NonNull
+    List<Integer> getCommentUnreadCount(@NonNull Long uid);
 }

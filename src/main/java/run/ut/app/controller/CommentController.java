@@ -18,6 +18,7 @@ import run.ut.app.service.PostCommentsService;
 import run.ut.app.service.UserInfoService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author wenjie
@@ -101,5 +102,12 @@ public class CommentController extends BaseController implements CommentControll
                                                               @RequestParam(defaultValue = "10") Integer pageSize) {
         Page<PostComments> page = new Page<>(pageNum, pageSize);
         return postCommentsService.listCommentToSelfPost(getUid(), page);
+    }
+
+    @Override
+    @GetMapping("getCommentUnreadCount")
+    @CheckLogin
+    public List<Integer> getCommentUnreadCount() {
+        return postCommentsService.getCommentUnreadCount(getUid());
     }
 }

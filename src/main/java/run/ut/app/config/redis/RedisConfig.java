@@ -44,6 +44,9 @@ public class RedisConfig {
     public static final String USER_LIKE_COMMENT = "USER::%s::LIKE_COMMENT::%s";
     public static final String COMMENT_LIKE_COUNT = "COMMENT_LIKE_COUNT::%s";
 
+    public static final String USER_UNREAD_COUNT_POST = "USER_UNREAD_COUNT_POST::%s";
+    public static final String USER_UNREAD_COUNT_PARENT_COMMENT = "USER_UNREAD_COUNT_PARENT_COMMENT::%s";
+
     /**
      * activity cache
      */

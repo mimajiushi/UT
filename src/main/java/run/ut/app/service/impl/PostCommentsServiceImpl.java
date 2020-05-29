@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.event.CommentEvent;
 import run.ut.app.event.LikesEvent;
 import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.exception.BadRequestException;
@@ -66,6 +67,9 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         posts.setUpdateTime(null);
         postsMapper.updateById(posts);
         save(postComments);
+
+        eventPublisher.publishEvent(new CommentEvent(this, commentParam));
+
         return BaseResponse.ok("评论成功~");
     }
 
@@ -81,6 +85,9 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         save(postComments);
         posts.setUpdateTime(null);
         postsMapper.updateById(posts);
+
+        eventPublisher.publishEvent(new CommentEvent(this, commentParam));
+
         return BaseResponse.ok("回复成功~");
     }
 
@@ -246,6 +253,22 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
     public CommentPage<ParentCommentVO> listCommentToSelfPost(Long uid, Page<PostComments> page) {
         IPage<ParentCommentVO> parentCommentVOIPage = baseMapper.listCommentToSelfPost(page, uid);
         return new CommentPage<>(parentCommentVOIPage.getTotal(), parentCommentVOIPage.getRecords());
+    }
+
+    @Override
+    public List<Integer> getCommentUnreadCount(Long uid) {
+        Integer[] counts = new Integer[]{0, 0};
+        String key = String.format(RedisConfig.USER_UNREAD_COUNT_POST, uid);
+        String value = redisService.get(key);
+        if (!StringUtils.isBlank(value)) {
+            counts[0] = Integer.valueOf(value);
+        }
+        key = String.format(RedisConfig.USER_UNREAD_COUNT_PARENT_COMMENT, uid);
+        value = redisService.get(key);
+        if (!StringUtils.isBlank(value)) {
+            counts[1] = Integer.valueOf(value);
+        }
+        return Arrays.asList(counts);
     }
 
     private boolean isLikeComment(Long uid, Long commentId) {

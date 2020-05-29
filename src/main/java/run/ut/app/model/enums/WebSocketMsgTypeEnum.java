@@ -15,6 +15,7 @@ import java.util.Arrays;
 public enum WebSocketMsgTypeEnum implements IEnum<Integer> {
     RECEIVED_INVITATION(1, "收到入队邀请"),
     RECEIVED_APPLICATION(2, "收到入队申请"),
+    COMMENT(3, "帖子评论/回复"),
 
     AUTH(1000, "身份认证"),
     KEEPALIVE(1001, "心跳包");

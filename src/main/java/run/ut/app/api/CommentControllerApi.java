@@ -1,6 +1,7 @@
 package run.ut.app.api;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PathVariable;
 import run.ut.app.model.param.CommentParam;
@@ -8,6 +9,8 @@ import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.ChildCommentVO;
 import run.ut.app.model.vo.ParentCommentVO;
+
+import java.util.List;
 
 /**
  * @author wenjie
@@ -38,4 +41,7 @@ public interface CommentControllerApi {
 
     @ApiOperation(value = "用户查看自己帖子有哪些回复", notes = "需要传token，仅父评论，父评论下的子评论是另一个接口")
     CommentPage<ParentCommentVO> listCommentToSelfPost(Integer pageNum, Integer pageSize);
+
+    @ApiOperation(value = "获取未读评论/回复消息数量", notes = "index=0的元素为帖子评论未读，index=1的元素为回复未读")
+    List<Integer> getCommentUnreadCount();
 }
