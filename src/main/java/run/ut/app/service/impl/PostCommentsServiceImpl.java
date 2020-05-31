@@ -181,8 +181,6 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         });
 
         // list user and then transform map
-//        HashMap<Long, User> userHashMap = new HashMap<>(users.size());
-//        users.forEach(e -> userHashMap.put(e.getUid(), e));
         Map<Long, User> userHashMap = userService.listByIds(uids).stream().collect(Collectors.toMap(User::getUid, e -> e));
 
         // set nickname、avatar、child comments and so on.
