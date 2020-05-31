@@ -102,7 +102,14 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
             throw new NotFoundException("找不到指定活动信息~");
         }
         ActivityVO activityVO = new ActivityVO().convertFrom(activity);
-        activityVO.setReadCount(getReadCount(activityId));
+        String key = String.format(RedisConfig.ACTIVITY_READ_COUNT, activityId);
+        String value = redisService.get(key);
+        if (StringUtils.isBlank(value)) {
+            activityVO.setReadCount(1);
+        } else {
+            activityVO.setReadCount(Long.valueOf(value));
+        }
+        redisService.increment(key, 1);
         if (operatorUid != null) {
             activityVO.setAppointment(isAppointment(operatorUid, activityId))
                 .setCollect(isCollection(operatorUid, activityId));
