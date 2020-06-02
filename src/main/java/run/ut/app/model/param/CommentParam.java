@@ -21,7 +21,7 @@ public class CommentParam {
     private Long postId;
 
     @ApiModelProperty(value = "父评论id", notes = "回复帖子则默认为0，回复评论才需要")
-    private Long parentCommentId;
+    private Long parentCommentId = 0L;
 
     @ApiModelProperty(value = "被回复者uid", notes = "同上")
     private Long toUid;
