@@ -57,12 +57,12 @@ public class CommentEventListener {
             String key = String.format(RedisConfig.USER_UNREAD_COUNT_PARENT_COMMENT, commentParam.getToUid());
             redisService.increment(key, 1);
         }
-        ChildCommentVO childCommentVO = ChildCommentVO.builder()
-            .parentCommentId(commentParam.getParentCommentId())
-            .postId(postId)
-            .fromUid(uid)
-            .fromAvatar(user.getAvatar())
-            .fromNickname(user.getNickname()).build();
+        ChildCommentVO childCommentVO = new ChildCommentVO()
+            .setParentCommentId(commentParam.getParentCommentId())
+            .setPostId(postId)
+            .setFromUid(uid)
+            .setFromAvatar(user.getAvatar())
+            .setFromNickname(user.getNickname());
 
         userChannelManager.writeAndFlush(uid, childCommentVO, COMMENT);
     }

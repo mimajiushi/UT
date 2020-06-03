@@ -1,7 +1,6 @@
 package run.ut.app.model.vo;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -13,7 +12,6 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
-@Builder
 public class ChildCommentVO extends BaseVO {
 
     @ApiModelProperty(value = "评论id")
