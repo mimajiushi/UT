@@ -39,7 +39,7 @@ public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
                 // Clear cache
                 userChannelManager.remove(channel);
                 channel.close();
-                log.debug("close channel: " + channel.id().asLongText());
+                log.debug("close channel: {}", channel.id().asLongText());
             }
         }
 

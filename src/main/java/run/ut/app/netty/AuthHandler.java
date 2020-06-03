@@ -43,15 +43,6 @@ public class AuthHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             log.debug("Authentication success. uid: " + uid);
             ctx.pipeline().remove(this);
         }
-
-//        if (!"token".equals(token)) {
-//            log.debug("auth fail!");
-//            ctx.channel().close();
-//        } else {
-//            log.debug("auth success");
-//            userChannelManager.add(123L, ctx.channel());
-//            ctx.pipeline().remove(this);
-//        }
     }
 
     @Override
