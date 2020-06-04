@@ -62,9 +62,11 @@ public class CommentEventListener {
             .setPostId(postId)
             .setFromUid(uid)
             .setFromAvatar(user.getAvatar())
-            .setFromNickname(user.getNickname());
+            .setFromNickname(user.getNickname())
+            .setContent(commentParam.getContent().substring(0, 8));
 
         userChannelManager.writeAndFlush(uid, childCommentVO, COMMENT);
     }
+
 }
 
