@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 import run.ut.app.netty.UserChannelManager;
+import run.ut.app.service.RedisService;
 
 /**
  * Reset channel cache task
@@ -21,11 +22,23 @@ import run.ut.app.netty.UserChannelManager;
 public class TestTask {
 
     private final UserChannelManager userChannelManager;
+    private final RedisService redisService;
 
     @Scheduled(cron = "0/10 * * * * ?")
     @Async
-    public void reSetChannelCache() throws JsonProcessingException {
+    public void heartBeat() throws JsonProcessingException {
         userChannelManager.writeAndFlush("服务器测试心跳包", WebSocketMsgTypeEnum.KEEPALIVE);
+    }
+
+    /**
+     * 便于测试
+     */
+    @Scheduled(cron = "0/5 * * * * ?")
+    @Async
+    public void adminLoginCache() {
+        String key = "EMAIL_LOGIN::ut_test@ut.com";
+        String value = "123456";
+        redisService.set(key, value);
     }
 
 }
