@@ -20,6 +20,7 @@ import run.ut.app.service.IndexService;
 import run.ut.app.service.TeamsService;
 import run.ut.app.utils.MysqlEscapeUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,6 +78,9 @@ public class IndexController extends BaseController implements IndexControllerAp
     @GetMapping("recruitments/{teamId:\\d+}")
     public List<TeamsRecruitmentsDTO> listRecruitmentsByTeamId(@PathVariable Long teamId) {
         List<TeamsRecruitmentsDTO> teamsRecruitmentsDTOS = indexService.listRecruitmentsByTeamId(teamId);
+        if (teamsRecruitmentsDTOS.size() < 1) {
+            teamsRecruitmentsDTOS = new ArrayList<>();
+        }
         teamsRecruitmentsDTOS.add(new TeamsRecruitmentsDTO().setName("加入团队（不选择职位）").setTeamId(teamId).setId(0L));
         return teamsRecruitmentsDTOS;
     }
