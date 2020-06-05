@@ -84,7 +84,7 @@ public class UserTeamApplyLogServiceImpl extends ServiceImpl<UserTeamApplyLogMap
     @Transactional
     public BaseResponse<String> userDealWithInvitation(Long uid, DealInvitationOrApplyParam param) {
         Long[] ids = param.getIds();
-        String message = param.getMessage();
+        String message = param.getReason();
         Integer status = param.getStatus();
         ApplyStatusEnum statusEnum = ApplyStatusEnum.getByType(status);
         // check ids
@@ -116,7 +116,7 @@ public class UserTeamApplyLogServiceImpl extends ServiceImpl<UserTeamApplyLogMap
     @Transactional
     public BaseResponse<String> teamDealWithApplication(Long leaderId, DealInvitationOrApplyParam param) {
         Long[] ids = param.getIds();
-        String message = param.getMessage();
+        String message = param.getReason();
         Integer status = param.getStatus();
         ApplyStatusEnum statusEnum = ApplyStatusEnum.getByType(status);
 

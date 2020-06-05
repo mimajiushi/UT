@@ -24,5 +24,5 @@ public class DealInvitationOrApplyParam {
 
     @ApiModelProperty(value = "留言")
     @Size(max = 20, message = "留言不可超过{max}字")
-    private String message;
+    private String reason;
 }
