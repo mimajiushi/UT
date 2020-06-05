@@ -43,7 +43,7 @@ public class ActivityAppointmentServiceImpl extends ServiceImpl<ActivityAppointm
         if (ObjectUtils.isEmpty(activity)) {
             throw new NotFoundException("活动不存在！");
         }
-        if (activity.getStartTime().isAfter(LocalDateTime.now())) {
+        if (activity.getStartTime().isBefore(LocalDateTime.now())) {
             throw new BadRequestException("活动已经开始，无法预约");
         }
         int count = count(new QueryWrapper<ActivityAppointment>().eq("uid", uid).eq("activity_id", activityId));
