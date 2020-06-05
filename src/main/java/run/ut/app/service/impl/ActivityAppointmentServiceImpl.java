@@ -1,21 +1,24 @@
 package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.exception.AlreadyExistsException;
+import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
+import run.ut.app.mapper.ActivityAppointmentMapper;
 import run.ut.app.mapper.ActivityMapper;
 import run.ut.app.model.domain.Activity;
 import run.ut.app.model.domain.ActivityAppointment;
-import run.ut.app.mapper.ActivityAppointmentMapper;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.service.ActivityAppointmentService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -39,6 +42,9 @@ public class ActivityAppointmentServiceImpl extends ServiceImpl<ActivityAppointm
         Activity activity = activityMapper.selectById(activityId);
         if (ObjectUtils.isEmpty(activity)) {
             throw new NotFoundException("活动不存在！");
+        }
+        if (activity.getStartTime().isAfter(LocalDateTime.now())) {
+            throw new BadRequestException("活动已经开始，无法预约");
         }
         int count = count(new QueryWrapper<ActivityAppointment>().eq("uid", uid).eq("activity_id", activityId));
         if (count > 0) {
