@@ -93,7 +93,7 @@ public class TeamsApplyOrInviteEventListener {
     private void sendApplicationMsg(TeamApplyOrInviteParam teamApplyOrInviteParam) throws JsonProcessingException {
         Long teamId = teamApplyOrInviteParam.getTeamId();
         Teams team = teamsService.getById(teamId);
-        User user = teamsMembersService.getLeaderByTeamsId(team.getId());
+        User user = userService.getById(teamApplyOrInviteParam.getUid());
         User leader = teamsMembersService.getLeaderByTeamsId(teamId);
         String msg = String.format("用户【%s】申请加入您的【%s】队伍~", user.getNickname(), team.getName());
         String subject = "【UT】入队申请通知";
@@ -108,7 +108,7 @@ public class TeamsApplyOrInviteEventListener {
 
         // Send msg to wechat app
         userChannelManager.writeAndFlush(
-            teamApplyOrInviteParam.getUid(),
+            leader.getUid(),
             msg,
             WebSocketMsgTypeEnum.RECEIVED_APPLICATION
         );
