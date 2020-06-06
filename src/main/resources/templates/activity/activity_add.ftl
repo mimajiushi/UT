@@ -19,6 +19,10 @@
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+        #content ul li{list-style-type:disc; list-style-position:inside;}
+        #content ol li{list-style-type:decimal; list-style-position:inside;}
+    </style>
 </head>
 <body>
 <div class="layui-fluid">
@@ -58,7 +62,7 @@
                 <div class="layui-card">
                     <div class="layui-card-body ">
                         <span>活动内容</span>
-                        <div id="content"></div>
+                        <div id="content" style="list-style-type:decimal;list-style-position:inside;"></div>
                     </div>
                 </div>
                 <div class="layui-card">
