@@ -39,8 +39,6 @@
             <dl class="layui-nav-child">
                 <!-- 二级菜单 -->
                 <dd>
-                    <a onclick="xadmin.open('个人信息','${base}/admin/info')">个人信息</a></dd>
-                <dd>
                     <a id="logout">注销</a></dd>
             </dl>
         </li>
