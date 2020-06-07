@@ -1,6 +1,7 @@
 package run.ut.app.netty;
 
 import io.jsonwebtoken.Claims;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
@@ -16,7 +17,9 @@ import run.ut.app.utils.SpringUtils;
  *
  * @author wenjie
  */
+
 @Slf4j
+@ChannelHandler.Sharable
 public class AuthHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
 
     private UserChannelManager userChannelManager;
