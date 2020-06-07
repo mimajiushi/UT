@@ -38,4 +38,14 @@ public interface TeamsRecruitmentsService extends IService<TeamsRecruitments> {
     @Nonnull
     List<TeamsRecruitments> listTeamsRecruitmentsByTeamsId(@NonNull Long teamsId);
 
+    /**
+     * Remove recruitment by id
+     *
+     * @param teamId             team id
+     * @param recruitmentId      recruitment Id
+     * @return                   ok result with message
+     */
+    @NonNull
+    BaseResponse<TeamsRecruitmentsDTO> removeRecruitment(@NonNull Long teamId, @NonNull Long recruitmentId);
+
 }

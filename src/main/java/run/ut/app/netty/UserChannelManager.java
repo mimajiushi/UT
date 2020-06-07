@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 import run.ut.app.model.support.WebSocketMsg;
@@ -80,6 +81,7 @@ public class UserChannelManager {
      * @param msgObj   msg object, it will be automatically converted to json.
      * @throws JsonProcessingException If msgObj fails to convert to json.
      */
+    @Async
     public void writeAndFlush(Long uid, Object msgObj, WebSocketMsgTypeEnum typeEnum) throws JsonProcessingException {
         Channel channel = userChannelMap.get(uid);
         if (channel.isActive()) {
@@ -97,6 +99,7 @@ public class UserChannelManager {
      * @param msgObj msg object, it will be automatically converted to json.
      * @throws JsonProcessingException If msgObj fails to convert to json.
      */
+    @Async
     public void writeAndFlush(Object msgObj, WebSocketMsgTypeEnum typeEnum) throws JsonProcessingException {
         WebSocketMsg webSocketMsg = new WebSocketMsg()
             .setType(typeEnum.getType())

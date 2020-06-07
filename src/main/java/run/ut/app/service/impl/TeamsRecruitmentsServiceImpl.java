@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
+import run.ut.app.exception.NotFoundException;
 import run.ut.app.model.domain.TeamsRecruitments;
 import run.ut.app.mapper.TeamsRecruitmentsMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -55,5 +57,16 @@ public class TeamsRecruitmentsServiceImpl extends ServiceImpl<TeamsRecruitmentsM
     @Override
     public List<TeamsRecruitments> listTeamsRecruitmentsByTeamsId(@NotNull Long teamsId) {
         return list(new QueryWrapper<TeamsRecruitments>().eq("team_id", teamsId));
+    }
+
+    @Override
+    public BaseResponse<TeamsRecruitmentsDTO> removeRecruitment(Long teamId, Long recruitmentId) {
+        TeamsRecruitments teamsRecruitments = getOne(new QueryWrapper<TeamsRecruitments>().eq("id", recruitmentId).eq("team_id", teamId));
+        if (ObjectUtils.isEmpty(teamsRecruitments)) {
+            throw new NotFoundException("职位记录不存在！");
+        }
+        boolean remove = removeById(teamsRecruitments.getId());
+        return remove ? BaseResponse.ok("删除成功",
+            new TeamsRecruitmentsDTO().convertFrom(teamsRecruitments)) : BaseResponse.ok("请稍后重试");
     }
 }

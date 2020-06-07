@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.api.TeamsControllerApi;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
+import run.ut.app.model.domain.Teams;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsDTO;
@@ -97,6 +98,17 @@ public class TeamsController extends BaseController implements TeamsControllerAp
         checkUser(uid);
         teamsService.getAndCheckTeamByLeaderIdAndTeamId(uid, teamsRecruitmentsParam.getTeamId());
         return teamsRecruitmentsService.saveTeamsRecruitment(teamsRecruitmentsParam);
+    }
+
+    @Override
+    @CheckLogin
+    @PostMapping("remove/recruitment/{teamId:\\d+}/{recruitmentId:\\d+}")
+    public BaseResponse<TeamsRecruitmentsDTO> removeRecruitment(@PathVariable Long teamId, @PathVariable Long recruitmentId) {
+        Teams teams = teamsService.getTeamByLeaderIdAndTeamId(getUid(), teamId);
+        if (ObjectUtils.isEmpty(teams)) {
+            throw new AuthenticationException("队伍不存在或无权操作队伍");
+        }
+        return teamsRecruitmentsService.removeRecruitment(teamId, recruitmentId);
     }
 
     @Override
@@ -239,6 +251,8 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @PostMapping("transferLeader")
     @CheckLogin
     public BaseResponse<String> transferLeader(Long targetUid, Long teamId) {
+        Assert.notNull(targetUid, "targetUid must not be null");
+        Assert.notNull(teamId, "teamId must not be null");
         return teamsService.transferLeader(getUid(), targetUid, teamId);
     }
 

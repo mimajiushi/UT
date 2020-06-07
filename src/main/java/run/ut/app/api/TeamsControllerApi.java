@@ -37,7 +37,10 @@ public interface TeamsControllerApi {
     @ApiOperation(value = "设置招聘的职位", notes = "新增/更新，需要登录验证，只有队长才能设置")
     BaseResponse<TeamsRecruitmentsDTO> saveTeamsRecruitment(TeamsRecruitmentsParam teamsRecruitmentsParam);
 
-    @ApiOperation(value = "设置招聘职位的标签", notes = "需要登录（Token）验证，只有队长才能设置")
+    @ApiOperation(value = "删除职位", notes = "只有队长才能删除")
+    BaseResponse<TeamsRecruitmentsDTO> removeRecruitment(@PathVariable Long teamId, @PathVariable Long recruitmentId);
+
+  @ApiOperation(value = "设置招聘职位的标签", notes = "需要登录（Token）验证，只有队长才能设置")
     List<TagsDTO> saveTeamsRecruitmentsTags(String[] tagIds, Long teamId, Long teamRecruitmentId);
 
     @ApiOperation(value = "用户申请加入团队", notes = "需要登录（Token）验证，且必须通过认证")

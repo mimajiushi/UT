@@ -7531,6 +7531,94 @@
 							"body": "{\n    \"status\": 200,\n    \"message\": \"解散队伍成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						}
 					]
+				},
+				{
+					"name": "删除职位",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/teams/remove/recruitment/1/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"teams",
+								"remove",
+								"recruitment",
+								"1",
+								"2"
+							]
+						},
+						"description": "http://localhost:8080/ut/teams/remove/recruitment/{teamId:\\d+}/{recruitmentId:\\d+}  \r\nhttp://localhost:8080/ut/teams/remove/recruitment/1/2 就是删除队伍1中的id=2的职位"
+					},
+					"response": [
+						{
+							"name": "删除职位",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/teams/remove/recruitment/1/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"teams",
+										"remove",
+										"recruitment",
+										"1",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 07 Jun 2020 13:54:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"删除成功\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-15 16:43:14\",\n        \"updateTime\": \"2020-06-07 21:48:05\",\n        \"deleted\": 0,\n        \"id\": 2,\n        \"teamId\": 1,\n        \"name\": \"Java后端开发2批\",\n        \"tagIds\": \"\",\n        \"description\": \"要求：Java基础扎实，能熟练运用现有的流行框架\"\n    }\n}"
+						}
+					]
 				}
 			],
 			"protocolProfileBehavior": {}
