@@ -30,6 +30,7 @@
                         and t.`status` = #{srp.status}
                     </if>
                 </where>
+                and tr.deleted = 0
                 group by tr.id
                 order by tr.create_time desc
     </select>
