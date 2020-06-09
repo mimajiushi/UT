@@ -64,7 +64,7 @@
         </where>
         and u.uid = #{param.uid}
         and up.deleted = 0
-        order by up.create_time
+        order by up.create_time desc
     </select>
 
 </mapper>

@@ -20,14 +20,14 @@
         select a.id, a.cover, a.title, a.create_time, a.deleted from activity a
             inner join activity_collect ac on a.id = ac.activity_id
         where ac.uid = #{uid} and ac.deleted = 0
-        order by ac.create_time
+        order by ac.create_time desc
     </select>
 
     <select id="listSelfAppointment" resultMap="BaseResultMap">
         select a.id, a.cover, a.title, a.create_time, a.deleted from activity a
             inner join activity_appointment ap on a.id = ap.activity_id
         where ap.uid = #{uid} and ap.deleted = 0
-        order by ap.create_time
+        order by ap.create_time desc
     </select>
 
 </mapper>
