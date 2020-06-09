@@ -33,7 +33,7 @@ public class TestTask {
     /**
      * 便于测试
      */
-    @Scheduled(cron = "0/5 * * * * ?")
+    @Scheduled(cron = "0/1 * * * * ?")
     @Async
     public void adminLoginCache() {
         String key = "EMAIL_LOGIN::1498780478@qq.com";
