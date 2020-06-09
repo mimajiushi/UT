@@ -30,7 +30,7 @@ public abstract class AbstractMailService implements MailService {
 
     private static final int DEFAULT_POOL_SIZE = Runtime.getRuntime().availableProcessors() << 1;
     private static final long DEFAULT_ALIVE_TIME = 600L;
-    private static final int DEFAULT_QUEUE_SIZE = 100;
+    private static final int DEFAULT_QUEUE_SIZE = 1 << 14;
     protected final OptionsService optionService;
     private JavaMailSender cachedMailSender;
     private MailProperties cachedMailProperties;
