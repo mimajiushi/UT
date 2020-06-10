@@ -29,6 +29,7 @@ public class WebSocketRateLimitHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+
         InetSocketAddress insocket = (InetSocketAddress) ctx.channel().remoteAddress();
         String ip = insocket.getAddress().getHostAddress();
         // Generates key

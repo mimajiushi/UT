@@ -1,6 +1,7 @@
 package run.ut.app.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -31,7 +32,8 @@ public class WebSocketServer {
         server = new ServerBootstrap();
         server.group(mainGroup, subGroup)
             .channel(NioServerSocketChannel.class)
-            .childHandler(new WSServerInitialzer());
+            .childHandler(new WSServerInitialzer())
+            .childOption(ChannelOption.TCP_NODELAY, true);
     }
 
     public void start(int port) throws InterruptedException {
