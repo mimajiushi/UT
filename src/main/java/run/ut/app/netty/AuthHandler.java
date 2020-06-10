@@ -6,7 +6,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpHeaders;
-import io.netty.util.AttributeKey;
 import lombok.extern.slf4j.Slf4j;
 import run.ut.app.security.util.JwtOperator;
 import run.ut.app.utils.SpringUtils;
@@ -39,7 +38,6 @@ public class AuthHandler extends ChannelInboundHandlerAdapter {
             String token = headers.get("token");
             Claims claims = jwtOperator.getClaimsFromToken(token);
             Long uid = Long.valueOf(claims.get("uid") + "");
-            ctx.channel().attr(AttributeKey.newInstance("LOGIN")).setIfAbsent("true");
             userChannelManager.add(uid, ctx.channel());
             log.debug("Authentication success. uid: " + uid);
             ctx.pipeline().remove(this);
