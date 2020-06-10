@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 import run.ut.app.model.support.WebSocketMsg;
 import run.ut.app.utils.JsonUtils;
@@ -82,11 +83,15 @@ public class UserChannelManager {
      */
     public void writeAndFlush(Long uid, Object msgObj, WebSocketMsgTypeEnum typeEnum) throws JsonProcessingException {
         Channel channel = userChannelMap.get(uid);
+        if (ObjectUtils.isEmpty(channel)) {
+            return;
+        }
         if (channel.isActive()) {
             WebSocketMsg webSocketMsg = new WebSocketMsg()
                 .setType(typeEnum.getType())
                 .setMsg(msgObj);
             String json = JsonUtils.objectToJson(webSocketMsg);
+            log.debug("发送websocket消息：{}", json);
             TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame(json);
             channel.writeAndFlush(textWebSocketFrame);
         }

@@ -62,8 +62,12 @@ public class CommentEventListener {
             .setPostId(postId)
             .setFromUid(uid)
             .setFromAvatar(user.getAvatar())
-            .setFromNickname(user.getNickname())
-            .setContent(commentParam.getContent().substring(0, 8));
+            .setFromNickname(user.getNickname());
+        if (commentParam.getContent().length() > 8) {
+            childCommentVO.setContent(commentParam.getContent().substring(0, 8));
+        } else {
+            childCommentVO.setContent(commentParam.getContent());
+        }
 
         userChannelManager.writeAndFlush(uid, childCommentVO, COMMENT);
     }
