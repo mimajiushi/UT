@@ -9,7 +9,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import run.ut.app.UtApplication;
-import run.ut.app.config.netty.WebSocketConfiguration;
 import run.ut.app.netty.WebSocketServer;
 
 /**
@@ -24,7 +23,7 @@ import run.ut.app.netty.WebSocketServer;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ContextRefreshedEventListener implements ApplicationListener<ContextRefreshedEvent> {
 
-    private final WebSocketConfiguration webSocketConfiguration;
+    private final WebSocketServer webSocketServer;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -37,6 +36,7 @@ public class ContextRefreshedEventListener implements ApplicationListener<Contex
     }
 
     private void webSocketServerBoot() throws Exception {
-        WebSocketServer.getInstance().start(webSocketConfiguration.getPort());
+        webSocketServer.init();
+        webSocketServer.start();
     }
 }

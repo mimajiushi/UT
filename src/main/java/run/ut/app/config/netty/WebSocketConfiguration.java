@@ -17,4 +17,19 @@ public class WebSocketConfiguration {
 
     private String contextPath = "/ws";
 
+    /**
+     * 0 for automatic setting（The default is CPU * 2）
+     */
+    private int workerThreads = 0;
+
+    /**
+     * 0 for automatic setting (The default is CPU * 2)
+     */
+    private int bossThreads = 0;
+
+    /**
+     * Only in Linux environments can this be set to true
+     * @see <a href="https://stackoverflow.com/questions/35568365/netty-epolleventloopgroup-vs-nioeventloopgroup-which-should-i-choose-on-centos">link<a/>
+     */
+    private boolean epoll = false;
 }
