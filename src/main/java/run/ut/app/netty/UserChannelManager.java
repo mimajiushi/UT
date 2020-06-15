@@ -2,18 +2,24 @@ package run.ut.app.netty;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 import run.ut.app.model.support.WebSocketMsg;
 import run.ut.app.utils.JsonUtils;
 
+import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * It is used to manage the mapping between user and channel.
@@ -26,7 +32,9 @@ import java.util.concurrent.ConcurrentHashMap;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserChannelManager {
 
-    private ConcurrentHashMap<Long, Channel> userChannelMap = new ConcurrentHashMap<>(1 << 8);
+    private ConcurrentHashMap<Long, LinkedList<Channel>> userChannelMap = new ConcurrentHashMap<>(1 << 8);
+
+    private final Lock lock = new ReentrantLock();
 
     /**
      * Save the mapping of uid and channel
@@ -35,7 +43,17 @@ public class UserChannelManager {
      * @param channel    channel
      */
     public void add(@NonNull Long uid, @NonNull Channel channel) {
-        userChannelMap.put(uid, channel);
+        lock.lock();
+        LinkedList<Channel> channels = userChannelMap.get(uid);
+        if (ObjectUtils.isEmpty(channels) || channels.size() == 0) {
+            LinkedList<Channel> channelLinkedList = new LinkedList<>();
+            channelLinkedList.add(channel);
+            userChannelMap.put(uid, channelLinkedList);
+        } else {
+            channels.add(channel);
+            userChannelMap.put(uid, channels);
+        }
+        lock.unlock();
     }
 
     /**
@@ -43,7 +61,7 @@ public class UserChannelManager {
      *
      * @param uid    uid
      */
-    public void remove(Long uid) {
+    public void remove(@NonNull Long uid) {
         userChannelMap.remove(uid);
     }
 
@@ -52,9 +70,9 @@ public class UserChannelManager {
      *
      * @param channel    channel
      */
-    public void remove(Channel channel) {
-        userChannelMap.entrySet().stream().filter(entry -> entry.getValue() == channel)
-            .forEach(entry -> userChannelMap.remove(entry.getKey()));
+    public void remove(@NonNull Channel channel) {
+        userChannelMap.entrySet().stream().filter(entry -> entry.getValue().contains(channel))
+            .forEach(entry -> entry.getValue().remove(channel));
     }
 
     /**
@@ -62,7 +80,8 @@ public class UserChannelManager {
      * @param uid     uid
      * @return channel
      */
-    public Channel get(Long uid) {
+    @Nullable
+    public LinkedList<Channel> get(@NonNull Long uid) {
         return userChannelMap.get(uid);
     }
 
@@ -81,19 +100,24 @@ public class UserChannelManager {
      * @param msgObj   msg object, it will be automatically converted to json.
      * @throws JsonProcessingException If msgObj fails to convert to json.
      */
-    public void writeAndFlush(Long uid, Object msgObj, WebSocketMsgTypeEnum typeEnum) throws JsonProcessingException {
-        Channel channel = userChannelMap.get(uid);
-        if (ObjectUtils.isEmpty(channel)) {
+    public void writeAndFlush(@NonNull Long uid, @NonNull Object msgObj, @NonNull WebSocketMsgTypeEnum typeEnum) throws JsonProcessingException {
+        LinkedList<Channel> channelLinkedList = userChannelMap.get(uid);
+        if (ObjectUtils.isEmpty(channelLinkedList) || channelLinkedList.size() == 0) {
             return;
         }
-        if (channel.isActive()) {
-            WebSocketMsg webSocketMsg = new WebSocketMsg()
-                .setType(typeEnum.getType())
-                .setMsg(msgObj);
-            String json = JsonUtils.objectToJson(webSocketMsg);
-            log.debug("发送websocket消息：{}", json);
-            TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame(json);
-            channel.writeAndFlush(textWebSocketFrame);
+        for (Channel channel : channelLinkedList) {
+            if (channel.isActive()) {
+                WebSocketMsg webSocketMsg = new WebSocketMsg()
+                    .setType(typeEnum.getType())
+                    .setMsg(msgObj);
+                String json = JsonUtils.objectToJson(webSocketMsg);
+                TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame(json);
+                ChannelFuture channelFuture = channel.writeAndFlush(textWebSocketFrame);
+                channelFuture.addListener((ChannelFutureListener)future -> {
+                    log.debug("对uid：{}, 发送websocket消息：{}", uid, json);
+                });
+
+            }
         }
     }
 
@@ -102,15 +126,20 @@ public class UserChannelManager {
      * @param msgObj msg object, it will be automatically converted to json.
      * @throws JsonProcessingException If msgObj fails to convert to json.
      */
-    public void writeAndFlush(Object msgObj, WebSocketMsgTypeEnum typeEnum) throws JsonProcessingException {
+    public void writeAndFlush(@NonNull Object msgObj, @NonNull WebSocketMsgTypeEnum typeEnum) throws JsonProcessingException {
         WebSocketMsg webSocketMsg = new WebSocketMsg()
             .setType(typeEnum.getType())
             .setMsg(msgObj);
         String json = JsonUtils.objectToJson(webSocketMsg);
         TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame(json);
-        userChannelMap.forEach((uid, channel) -> {
-            if (channel.isActive()) {
-                channel.writeAndFlush(textWebSocketFrame);
+        userChannelMap.forEach((uid, channels) -> {
+            for (Channel channel : channels) {
+                if (channel.isActive()) {
+                    ChannelFuture channelFuture = channel.writeAndFlush(textWebSocketFrame);
+                    channelFuture.addListener((ChannelFutureListener)future -> {
+                        log.debug("对uid：{}, 发送websocket消息：{}", uid, json);
+                    });
+                }
             }
         });
     }

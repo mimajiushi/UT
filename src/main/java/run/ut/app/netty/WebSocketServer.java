@@ -36,7 +36,8 @@ public class WebSocketServer {
             .childOption(ChannelOption.TCP_NODELAY, true);
     }
 
-    public void start(int port) throws InterruptedException {
+    public void start(int port) throws Exception {
+        // TODO exception handler
         log.info("WebSocketServer - Starting...");
         server.bind(port).sync();
         log.info("WebSocketServer - Start completed.");

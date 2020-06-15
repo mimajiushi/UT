@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import run.ut.app.UtApplication;
 import run.ut.app.config.netty.WebSocketConfiguration;
 import run.ut.app.netty.WebSocketServer;
 
@@ -29,12 +30,13 @@ public class ContextRefreshedEventListener implements ApplicationListener<Contex
     public void onApplicationEvent(ContextRefreshedEvent event) {
         try {
             webSocketServerBoot();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            UtApplication.close();
         }
     }
 
-    private void webSocketServerBoot() throws InterruptedException {
+    private void webSocketServerBoot() throws Exception {
         WebSocketServer.getInstance().start(webSocketConfiguration.getPort());
     }
 }
