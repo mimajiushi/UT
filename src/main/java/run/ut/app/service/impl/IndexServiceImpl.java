@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.exception.NotFoundException;
@@ -31,7 +32,6 @@ import run.ut.app.service.*;
 import run.ut.app.utils.BeanUtils;
 
 import javax.annotation.Nonnull;
-import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class IndexServiceImpl implements IndexService {
     private final TeamsRecruitmentsTagsService teamsRecruitmentsTagsService;
 
     @Override
-    public CommentPage<StudentVO> listStudentByParam(@NotNull SearchStudentParam searchStudentParam, @NotNull Page page) {
+    public CommentPage<StudentVO> listStudentByParam(@NonNull SearchStudentParam searchStudentParam, @NonNull Page page) {
 
         IPage<StudentVO> studentVOIPage = userMapper.listStudentByParam(page, searchStudentParam);
         List<StudentVO> records = studentVOIPage.getRecords();
@@ -75,7 +75,7 @@ public class IndexServiceImpl implements IndexService {
     }
 
     @Override
-    public CommentPage<TeamVO> listTeamByParam(@NotNull SearchTeamParam searchTeamParam, @NotNull Page page) {
+    public CommentPage<TeamVO> listTeamByParam(@NonNull SearchTeamParam searchTeamParam, @NonNull Page page) {
         if (StringUtils.isAllBlank(searchTeamParam.getName(), searchTeamParam.getTagId() + "")) {
             searchTeamParam.setStatus(TeamsStatusEnum.PUBLIC.getType());
         }
@@ -94,7 +94,7 @@ public class IndexServiceImpl implements IndexService {
     }
 
     @Override
-    public CommentPage<TeamsRecruitmentsVO> listRecruitmentByParam(@NotNull SearchRecruitmentParam searchRecruitmentParam, @NotNull Page page) {
+    public CommentPage<TeamsRecruitmentsVO> listRecruitmentByParam(@NonNull SearchRecruitmentParam searchRecruitmentParam, @NonNull Page page) {
         IPage<TeamsRecruitmentsVO> teamsRecruitmentsVOIPage = teamsRecruitmentsMapper.listRecruitmentByParam(page, searchRecruitmentParam);
         long total = teamsRecruitmentsVOIPage.getTotal();
 
@@ -113,7 +113,7 @@ public class IndexServiceImpl implements IndexService {
     }
 
     @Override
-    public StudentVO showUserPageInfo(@NotNull Long uid) {
+    public StudentVO showUserPageInfo(@NonNull Long uid) {
         User user = userMapper.selectById(uid);
         if (ObjectUtils.isEmpty(user)) {
             throw new NotFoundException("该id的用户不存在！");

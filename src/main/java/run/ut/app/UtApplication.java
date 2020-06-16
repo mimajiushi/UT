@@ -1,5 +1,6 @@
 package run.ut.app;
 
+import com.alibaba.fastjson.parser.ParserConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -41,6 +42,8 @@ public class UtApplication extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         // Customize the spring config location
         System.setProperty("spring.config.additional-location", "file:${user.home}/.ut/");
+        // Fastjson loopholes
+        ParserConfig.getGlobalInstance().setSafeMode(true);
         return super.configure(builder);
     }
 }

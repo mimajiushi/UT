@@ -27,12 +27,6 @@ public class WebSocketServer {
 
     private final WebSocketConfiguration webSocketConfiguration;
 
-//    private final static WebSocketServer INSTANCE = new WebSocketServer();
-//
-//    public static WebSocketServer getInstance() {
-//        return INSTANCE;
-//    }
-
     private ServerBootstrap server;
 
     public void init() {
