@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
+import run.ut.app.config.redis.RedisKey;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.exception.WeChatException;
 import run.ut.app.handler.FileHandlers;
+import run.ut.app.mail.MailService;
 import run.ut.app.mapper.UserMapper;
 import run.ut.app.model.domain.Tags;
 import run.ut.app.model.domain.User;
@@ -34,11 +36,9 @@ import run.ut.app.security.token.AuthToken;
 import run.ut.app.security.util.JwtOperator;
 import run.ut.app.service.*;
 import run.ut.app.utils.BeanUtils;
+import run.ut.app.utils.RandomUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -60,6 +60,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private final UserExperiencesService userExperiencesService;
     private final DataSchoolService dataSchoolService;
     private final FileHandlers fileHandlers;
+    private final RedisService redisService;
+    private final MailService mailService;
 
 
     @Override
@@ -189,6 +191,40 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setAvatar(upload.getFilePath());
         updateById(user);
         return BaseResponse.ok("更换头像成功");
+    }
+
+    @Override
+    public BaseResponse<String> bindEmail(String email, Integer code, Long uid) {
+        String key = String.format(RedisKey.USER_EMAIL, uid, email);
+        String value = redisService.get(key);
+        boolean blank = StringUtils.isBlank(value);
+        boolean equals = (String.valueOf(code) + "").equals(value);
+        if (blank || !equals) {
+            throw new BadRequestException("验证码错误");
+        }
+        User user = getById(uid).setEmail(email);
+        user.setUpdateTime(null);
+        boolean update = updateById(user);
+        return update ? BaseResponse.ok("绑定成功") : BaseResponse.ok("绑定失败，请稍后再试");
+    }
+
+    @Override
+    public BaseResponse<String> sendEmailCode(String email, Long uid) {
+        User user = getById(uid);
+        String code = RandomUtils.number(6);
+        String key = String.format(RedisKey.USER_EMAIL, uid, email);
+        redisService.setKeyValTTL(key, code, RedisKey.EMAIL_CODE_TIME_OUT);
+
+        // send mail
+        Map<String, Object> data = new HashMap<>();
+        data.put("code", code);
+        data.put("nickname", user.getNickname());
+
+        String templates = "mail_template/mail_bind.ftl";
+        String subject = "邮箱绑定验证";
+        mailService.sendTemplateMail(email, subject, data, templates);
+
+        return BaseResponse.ok("验证码发送成功，请在" + RedisKey.EMAIL_CODE_TIME_OUT / 60 + "分钟内完成绑定！");
     }
 
 }

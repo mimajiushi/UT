@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
-import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.config.redis.RedisKey;
 import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
@@ -146,7 +146,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         List<UserInfoDTO> userInfoDTOList = BeanUtils.transformFromInBatch(userInfoPage.getRecords(), UserInfoDTO.class);
         for (UserInfoDTO userInfoDTO : userInfoDTOList) {
             List<String> roles = UserRolesEnum.getRoles(userInfoDTO.getRole());
-            String schoolJson = redisService.get(RedisConfig.SCHOOL_DATA_PREFIX + "::" + userInfoDTO.getSchoolId());
+            String schoolJson = redisService.get(RedisKey.SCHOOL_DATA_PREFIX + "::" + userInfoDTO.getSchoolId());
             DataSchool school = JsonUtils.jsonToObject(schoolJson, DataSchool.class);
             userInfoDTO.setRoles(roles);
             userInfoDTO.setSchool(school.getName());

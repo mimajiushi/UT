@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
-import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.config.redis.RedisKey;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.mapper.DataSchoolMapper;
 import run.ut.app.model.domain.DataSchool;
@@ -29,14 +29,14 @@ public class DataSchoolServiceImpl extends ServiceImpl<DataSchoolMapper, DataSch
 
     @Override
     public List<DataSchool> getListByProvinceId(Integer provinceId) {
-        String key = RedisConfig.SCHOOL_DATA_LIST_PREFIX + "::" + provinceId;
+        String key = RedisKey.SCHOOL_DATA_LIST_PREFIX + "::" + provinceId;
         String value = redisService.get(key);
         if (StringUtils.isEmpty(value)) {
             List<DataSchool> dataSchools = dataSchoolMapper.selectList(
                     new QueryWrapper<DataSchool>().eq("province_id", provinceId)
             );
             if (!ObjectUtils.isEmpty(dataSchools)) {
-                redisService.setKeyValTTL(key, JSON.toJSONString(dataSchools), RedisConfig.AREA_TTL);
+                redisService.setKeyValTTL(key, JSON.toJSONString(dataSchools), RedisKey.AREA_TTL);
                 return dataSchools;
             }
             throw new NotFoundException("The schools with id " + provinceId + " could not be found or have been deleted");
@@ -55,12 +55,12 @@ public class DataSchoolServiceImpl extends ServiceImpl<DataSchoolMapper, DataSch
 
     @Override
     public DataSchool getById(Integer id) {
-        String key = RedisConfig.SCHOOL_DATA_PREFIX + "::" + id;
+        String key = RedisKey.SCHOOL_DATA_PREFIX + "::" + id;
         String value = redisService.get(key);
         if (StringUtils.isEmpty(value)) {
             DataSchool dataSchool = dataSchoolMapper.selectById(id);
             if (!ObjectUtils.isEmpty(dataSchool)) {
-                redisService.setKeyValTTL(key, JSON.toJSONString(dataSchool), RedisConfig.AREA_TTL);
+                redisService.setKeyValTTL(key, JSON.toJSONString(dataSchool), RedisKey.AREA_TTL);
                 return dataSchool;
             }
             throw new NotFoundException("The school with id " + id + " could not be found or has been deleted");

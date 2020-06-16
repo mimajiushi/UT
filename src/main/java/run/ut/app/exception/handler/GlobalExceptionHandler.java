@@ -55,7 +55,6 @@ public class GlobalExceptionHandler {
         return baseResponse;
     }
 
-
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public BaseResponse handleConstraintViolationException(ConstraintViolationException e) {

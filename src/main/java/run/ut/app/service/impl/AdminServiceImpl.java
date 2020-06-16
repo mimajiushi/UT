@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.config.properties.UtProperties;
-import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.config.redis.RedisKey;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.ServiceException;
 import run.ut.app.mail.MailService;
@@ -48,7 +48,7 @@ public class AdminServiceImpl implements AdminService {
         String code = adminLoginParam.getCode();
 
         // check code
-        String redisKey = RedisConfig.EMAIL_LOGIN_PREFIX + "::" + email;
+        String redisKey = RedisKey.EMAIL_LOGIN_PREFIX + "::" + email;
         String resCode = redisService.get(redisKey);
         if (!code.equals(resCode)) {
             throw new AuthenticationException("无效帐号或验证码！");
@@ -85,9 +85,9 @@ public class AdminServiceImpl implements AdminService {
         }
 
         // set code ttl and send email
-        String key = RedisConfig.EMAIL_LOGIN_PREFIX + "::" + email;
+        String key = RedisKey.EMAIL_LOGIN_PREFIX + "::" + email;
         String code = RandomUtils.number(6);
-        redisService.setKeyValTTL(key, code, RedisConfig.EMAIL_CODE_TIME_OUT);
+        redisService.setKeyValTTL(key, code, RedisKey.EMAIL_CODE_TIME_OUT);
 
         Map<String, Object> data = new HashMap<>();
         data.put("code", code);

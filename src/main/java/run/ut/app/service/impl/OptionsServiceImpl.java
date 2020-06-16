@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import run.ut.app.config.properties.UtProperties;
-import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.config.redis.RedisKey;
 import run.ut.app.event.options.OptionsUpdatedEvent;
 import run.ut.app.exception.MissingPropertyException;
 import run.ut.app.model.domain.Options;
@@ -149,7 +149,7 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
     @Override
     public Map<String, Object> listOptions() {
         // Get options from cache
-        String resJson = redisService.get(RedisConfig.OPTIONS_KEY);
+        String resJson = redisService.get(RedisKey.OPTIONS_KEY);
 
         if (StringUtils.isBlank(resJson)) {
             List<Options> options = list();
@@ -185,7 +185,7 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
                     });
 
             // Cache the result
-            redisService.set(RedisConfig.OPTIONS_KEY, JSON.toJSONString(result));
+            redisService.set(RedisKey.OPTIONS_KEY, JSON.toJSONString(result));
 
             return result;
         }

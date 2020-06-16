@@ -3,7 +3,7 @@ package run.ut.app.config.redis;
 /**
  * redis相关配置
  */
-public class RedisConfig {
+public class RedisKey {
 
     /**
      * Expiration time of SMS in seconds
@@ -17,9 +17,11 @@ public class RedisConfig {
      */
     public static final long AREA_TTL = 60 * 60 * 24 * 7;
 
-
-    public static final String SMS_LOGIN_PREFIX = "SMS_LOGIN";
+    /**
+     * Email
+     */
     public static final String EMAIL_LOGIN_PREFIX = "EMAIL_LOGIN";
+    public static final String USER_EMAIL = "USER_EMAIL_CODE::%s::%s";
 
     public static final String AREA_PREFIX = "AREA_DATA";
     public static final String AREA_INFO_PREFIX = "AREA_INFO_DATA";
@@ -28,8 +30,6 @@ public class RedisConfig {
     public static final String SCHOOL_DATA_PREFIX = "SCHOOL_DATA";
 
     public static final String OPTIONS_KEY = "options";
-
-    public static final String CHANNEL_KEY = "CHANNEL_KEY";
 
     /**
      * post cache

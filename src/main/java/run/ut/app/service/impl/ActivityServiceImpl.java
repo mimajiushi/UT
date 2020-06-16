@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
-import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.config.redis.RedisKey;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.mapper.ActivityAppointmentMapper;
 import run.ut.app.mapper.ActivityCollectMapper;
@@ -102,7 +102,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
             throw new NotFoundException("找不到指定活动信息~");
         }
         ActivityVO activityVO = new ActivityVO().convertFrom(activity);
-        String key = String.format(RedisConfig.ACTIVITY_READ_COUNT, activityId);
+        String key = String.format(RedisKey.ACTIVITY_READ_COUNT, activityId);
         String value = redisService.get(key);
         if (StringUtils.isBlank(value)) {
             activityVO.setReadCount(1);
@@ -132,7 +132,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
     }
 
     private long getReadCount(Long activityId) {
-        String key = String.format(RedisConfig.ACTIVITY_READ_COUNT, activityId);
+        String key = String.format(RedisKey.ACTIVITY_READ_COUNT, activityId);
         String res = redisService.get(key);
         if (StringUtils.isBlank(res)) {
             return 0L;

@@ -12,7 +12,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
-import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.config.redis.RedisKey;
 import run.ut.app.event.CommentEvent;
 import run.ut.app.event.LikesEvent;
 import run.ut.app.exception.AlreadyExistsException;
@@ -107,13 +107,13 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         if (ObjectUtils.isEmpty(postComments)) {
             throw new NotFoundException("评论不存在");
         }
-        String key = String.format(RedisConfig.USER_LIKE_COMMENT, uid, commentId);
+        String key = String.format(RedisKey.USER_LIKE_COMMENT, uid, commentId);
         String res = redisService.get(key);
         if (!StringUtils.isBlank(res)) {
             throw new AlreadyExistsException("点赞过了哦~");
         }
         redisService.set(key, "1");
-        key = String.format(RedisConfig.COMMENT_LIKE_COUNT, commentId);
+        key = String.format(RedisKey.COMMENT_LIKE_COUNT, commentId);
         redisService.increment(key, 1);
 
         // publish event
@@ -124,13 +124,13 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
 
     @Override
     public BaseResponse<String> cancelLikesComment(Long uid, Long commentId) {
-        String key = String.format(RedisConfig.USER_LIKE_COMMENT, uid, commentId);
+        String key = String.format(RedisKey.USER_LIKE_COMMENT, uid, commentId);
         String res = redisService.get(key);
         if (StringUtils.isBlank(res)) {
             throw new BadRequestException("无法取消！");
         }
         redisService.remove(key);
-        key = String.format(RedisConfig.COMMENT_LIKE_COUNT, commentId);
+        key = String.format(RedisKey.COMMENT_LIKE_COUNT, commentId);
         redisService.increment(key, -1);
 
         // publish event
@@ -214,7 +214,7 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
 
     @Override
     public Long getCommentLikeCount(Long commentId) {
-        String key = String.format(RedisConfig.COMMENT_LIKE_COUNT, commentId);
+        String key = String.format(RedisKey.COMMENT_LIKE_COUNT, commentId);
         String res = redisService.get(key);
         if (StringUtils.isBlank(res)) {
             return 0L;
@@ -256,12 +256,12 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
     @Override
     public List<Integer> getCommentUnreadCount(Long uid) {
         Integer[] counts = new Integer[]{0, 0};
-        String key = String.format(RedisConfig.USER_UNREAD_COUNT_POST, uid);
+        String key = String.format(RedisKey.USER_UNREAD_COUNT_POST, uid);
         String value = redisService.get(key);
         if (!StringUtils.isBlank(value)) {
             counts[0] = Integer.valueOf(value);
         }
-        key = String.format(RedisConfig.USER_UNREAD_COUNT_PARENT_COMMENT, uid);
+        key = String.format(RedisKey.USER_UNREAD_COUNT_PARENT_COMMENT, uid);
         value = redisService.get(key);
         if (!StringUtils.isBlank(value)) {
             counts[1] = Integer.valueOf(value);
@@ -271,15 +271,15 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
 
     @Override
     public BaseResponse<String> clearUnreadCount(Long uid) {
-        String key = String.format(RedisConfig.USER_UNREAD_COUNT_POST, uid);
+        String key = String.format(RedisKey.USER_UNREAD_COUNT_POST, uid);
         redisService.remove(key);
-        key = String.format(RedisConfig.USER_UNREAD_COUNT_PARENT_COMMENT, uid);
+        key = String.format(RedisKey.USER_UNREAD_COUNT_PARENT_COMMENT, uid);
         redisService.remove(key);
         return BaseResponse.ok("ok");
     }
 
     private boolean isLikeComment(Long uid, Long commentId) {
-        String key = String.format(RedisConfig.USER_LIKE_COMMENT, uid, commentId);
+        String key = String.format(RedisKey.USER_LIKE_COMMENT, uid, commentId);
         String res = redisService.get(key);
         return !StringUtils.isBlank(res);
     }

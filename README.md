@@ -16,7 +16,7 @@
 
 #### 介绍 & 各种杂图
 
-参考我的博客链接：[介绍文档](https://wenjie.store/archives/ut%E7%9A%84%E4%B8%80%E4%BA%9B%E6%9D%82%E5%9B%BE)
+参考我的博客链接：[介绍文档](https://wenjie.store/archives/ut%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E6%9D%82%E5%9B%BE)
 
 #### 实现选型
 

@@ -1,6 +1,7 @@
 package run.ut.app.controller;
 
 
+import cn.hutool.core.lang.Validator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.utils.URIBuilder;
@@ -153,5 +154,28 @@ public class UserController extends BaseController implements UserControllerApi 
             throw new BadRequestException("只接受图片格式文件！");
         }
         return userService.updateUserAvatar(getUid(), avatar);
+    }
+
+    @Override
+    @CheckLogin
+    @PostMapping("bindEmail")
+    public BaseResponse<String> bindEmail(String email, Integer code) {
+        if (!Validator.isEmail(email)) {
+            throw new BadRequestException("非法邮箱！");
+        }
+        if (null == code) {
+            throw new BadRequestException("验证码不能为空！");
+        }
+        return userService.bindEmail(email, code, getUid());
+    }
+
+    @Override
+    @CheckLogin
+    @PostMapping("sendEmailCode")
+    public BaseResponse<String> sendEmailCode(String email) {
+        if (!Validator.isEmail(email)) {
+            throw new BadRequestException("非法邮箱！");
+        }
+        return userService.sendEmailCode(email, getUid());
     }
 }

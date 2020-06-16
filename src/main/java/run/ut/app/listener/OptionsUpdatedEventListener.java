@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.config.redis.RedisKey;
 import run.ut.app.event.options.OptionsUpdatedEvent;
 import run.ut.app.service.RedisService;
 
@@ -23,6 +23,6 @@ public class OptionsUpdatedEventListener {
 
     @EventListener
     public void handleOptionsUpdatedEvent(OptionsUpdatedEvent optionsUpdatedEvent) {
-        redisService.remove(RedisConfig.OPTIONS_KEY);
+        redisService.remove(RedisKey.OPTIONS_KEY);
     }
 }

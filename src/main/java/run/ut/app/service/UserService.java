@@ -82,4 +82,23 @@ public interface UserService extends IService<User> {
      */
     @NonNull
     BaseResponse<String> updateUserAvatar(@NonNull Long uid, @NonNull MultipartFile avatar);
+
+    /**
+     * User bind email
+     * @param email    email address
+     * @param code     code
+     * @param uid      uid
+     * @return         ok result with message
+     */
+    @NonNull
+    BaseResponse<String> bindEmail(@NonNull String email, @NonNull Integer code, @NonNull Long uid);
+
+    /**
+     * Send code to email
+     * @param email    email address
+     * @param uid      uid
+     * @return         ok result with message
+     */
+    @NonNull
+    BaseResponse<String> sendEmailCode(@NonNull String email, @NonNull Long uid);
 }

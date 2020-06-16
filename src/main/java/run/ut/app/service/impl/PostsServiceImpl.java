@@ -13,7 +13,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
-import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.config.redis.RedisKey;
 import run.ut.app.event.LikesEvent;
 import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.exception.BadRequestException;
@@ -94,8 +94,8 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         if (ObjectUtils.isEmpty(post)) {
             throw new BadRequestException("帖子不存在！");
         }
-        String key1 = String.format(RedisConfig.USER_LIKE_POST, uid, postId);
-        String key2 = String.format(RedisConfig.POST_LIKE_COUNT, postId);
+        String key1 = String.format(RedisKey.USER_LIKE_POST, uid, postId);
+        String key2 = String.format(RedisKey.POST_LIKE_COUNT, postId);
         String res = redisService.get(key1);
         if (!StringUtils.isBlank(res)) {
             throw new AlreadyExistsException("已经点赞过了");
@@ -115,8 +115,8 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         if (ObjectUtils.isEmpty(post)) {
             throw new BadRequestException("帖子不存在！");
         }
-        String key1 = String.format(RedisConfig.USER_LIKE_POST, uid, postId);
-        String key2 = String.format(RedisConfig.POST_LIKE_COUNT, postId);
+        String key1 = String.format(RedisKey.USER_LIKE_POST, uid, postId);
+        String key2 = String.format(RedisKey.POST_LIKE_COUNT, postId);
         String res = redisService.get(key1);
         if (StringUtils.isBlank(res)) {
             throw new BadRequestException("Bad request!");
@@ -213,7 +213,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         Forum forum = forumMapper.selectById(postVO.getForumId());
         postVO.setForumName(forum.getName());
 
-        String key = String.format(RedisConfig.POST_READ_COUNT, postId);
+        String key = String.format(RedisKey.POST_READ_COUNT, postId);
         redisService.increment(key, 1);
 
         return postVO;
@@ -227,7 +227,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
     @Override
     @NonNull
     public Long getPostLikeCount(Long postId) {
-        String key = String.format(RedisConfig.POST_LIKE_COUNT, postId);
+        String key = String.format(RedisKey.POST_LIKE_COUNT, postId);
         String res = redisService.get(key);
         if (StringUtils.isBlank(res)) {
             return 0L;
@@ -238,7 +238,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
     @Override
     @NonNull
     public Long getPostReadCount(Long postId) {
-        String key = String.format(RedisConfig.POST_READ_COUNT, postId);
+        String key = String.format(RedisKey.POST_READ_COUNT, postId);
         String res = redisService.get(key);
         if (StringUtils.isBlank(res)) {
             return 0L;
@@ -274,7 +274,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         if (uid == null) {
             return false;
         }
-        String key = String.format(RedisConfig.USER_LIKE_POST, uid, postId);
+        String key = String.format(RedisKey.USER_LIKE_POST, uid, postId);
         String res = redisService.get(key);
         return !StringUtils.isBlank(res);
     }

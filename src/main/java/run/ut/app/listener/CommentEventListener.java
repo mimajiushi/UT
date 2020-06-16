@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import run.ut.app.config.redis.RedisConfig;
+import run.ut.app.config.redis.RedisKey;
 import run.ut.app.event.CommentEvent;
 import run.ut.app.model.domain.Posts;
 import run.ut.app.model.domain.User;
@@ -51,10 +51,10 @@ public class CommentEventListener {
             log.warn("user or post is null, uid:{}, postId:{}", uid, postId);
         }
         if (commentParam.getParentCommentId() == null || commentParam.getParentCommentId() == 0) {
-            String key = String.format(RedisConfig.USER_UNREAD_COUNT_POST, posts.getUid());
+            String key = String.format(RedisKey.USER_UNREAD_COUNT_POST, posts.getUid());
             redisService.increment(key, 1);
         } else {
-            String key = String.format(RedisConfig.USER_UNREAD_COUNT_PARENT_COMMENT, commentParam.getToUid());
+            String key = String.format(RedisKey.USER_UNREAD_COUNT_PARENT_COMMENT, commentParam.getToUid());
             redisService.increment(key, 1);
         }
         ChildCommentVO childCommentVO = new ChildCommentVO()
