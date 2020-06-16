@@ -932,6 +932,204 @@
 							"body": "{\n    \"status\": 200,\n    \"message\": \"删除成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 						}
 					]
+				},
+				{
+					"name": "发送绑定邮箱验证码",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/user/sendEmailCode?email=1498780478@qq.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"user",
+								"sendEmailCode"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "1498780478@qq.com"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "发送绑定邮箱验证码",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/user/sendEmailCode?email=1498780478@qq.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"sendEmailCode"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "1498780478@qq.com"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=D8805F684B39EEBF0BB86E56F0D6833B; Path=/ut; HttpOnly"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 Jun 2020 14:31:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"验证码发送成功，请在10分钟内完成绑定！\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "绑定邮箱",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/user/bindEmail?email=1498780478@qq.com&code=930228",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"user",
+								"bindEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "1498780478@qq.com"
+								},
+								{
+									"key": "code",
+									"value": "930228"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "绑定邮箱",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/user/bindEmail?email=1498780478@qq.com&code=930228",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"bindEmail"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "1498780478@qq.com"
+										},
+										{
+											"key": "code",
+											"value": "930228"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 16 Jun 2020 14:32:20 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"绑定成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+						}
+					]
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -7559,7 +7757,7 @@
 								"2"
 							]
 						},
-						"description": "http://localhost:8080/ut/teams/remove/recruitment/{teamId:\\d+}/{recruitmentId:\\d+}  \r\nhttp://localhost:8080/ut/teams/remove/recruitment/1/2 就是删除队伍1中的id=2的职位"
+						"description": "http://localhost:8080/ut/teams/remove/recruitment/{teamId:\\d+}/{recruitmentId:\\d+}  \r\nhttp://localhost:8080/ut/teams/remove/recruitment/1/2 就是删除队伍id=1且职位id=2的职位"
 					},
 					"response": [
 						{
