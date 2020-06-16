@@ -7,7 +7,6 @@
   <a href="https://mp.baomidou.com/"><img src="https://img.shields.io/badge/Mybatis_Plus-3.3.1-blue.svg"></a>
   <a href="https://mp.baomidou.com/"><img src="https://img.shields.io/badge/Netty-4.1.42-brightgreen.svg"></a>
     <a href="https://redis.io/"><img src="https://img.shields.io/badge/redis-5.0.x-red.svg"></a>
-    <a href="https://github.com/magro/kryo-serializers"><img src="https://img.shields.io/badge/kryo%20serializers-0.41-lightgrey.svg"></a>
     <a href="https://github.com/alibaba/fastjson"><img src="https://img.shields.io/badge/fastjson-1.2.61-bringhtgreen.svg"></a>
     <a href="https://www.layui.com/"><img src="https://img.shields.io/badge/layui-2.4.5-red.svg"></a>
     <a href="https://github.com/google/guava"><img src="https://img.shields.io/badge/Guava-28_jre-ff69b4.svg"></a>
