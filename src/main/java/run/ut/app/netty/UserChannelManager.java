@@ -45,10 +45,8 @@ public class UserChannelManager {
      */
     public void add(@NonNull Long uid, @NonNull Channel channel) {
         lock.lock();
-//        LinkedList<Channel> channels = userChannelMap.get(uid);
         Set<Channel> channels = userChannelMap.get(uid);
         if (ObjectUtils.isEmpty(channels) || channels.size() == 0) {
-//            LinkedList<Channel> channelLinkedList = new LinkedList<>();
             Set<Channel> channelSet = new HashSet<>();
             channelSet.add(channel);
             userChannelMap.put(uid, channelSet);
@@ -104,7 +102,6 @@ public class UserChannelManager {
      * @throws JsonProcessingException If msgObj fails to convert to json.
      */
     public void writeAndFlush(@NonNull Long uid, @NonNull Object msgObj, @NonNull WebSocketMsgTypeEnum typeEnum) throws JsonProcessingException {
-//        LinkedList<Channel> channelLinkedList = userChannelMap.get(uid);
         Set<Channel> channelSet = userChannelMap.get(uid);
         if (ObjectUtils.isEmpty(channelSet) || channelSet.size() == 0) {
             return;
