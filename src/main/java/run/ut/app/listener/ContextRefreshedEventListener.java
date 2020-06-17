@@ -4,11 +4,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import run.ut.app.UtApplication;
 import run.ut.app.netty.WebSocketServer;
 
 /**
@@ -24,14 +24,17 @@ import run.ut.app.netty.WebSocketServer;
 public class ContextRefreshedEventListener implements ApplicationListener<ContextRefreshedEvent> {
 
     private final WebSocketServer webSocketServer;
+    private final ConfigurableApplicationContext context;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         try {
             webSocketServerBoot();
         } catch (Exception e) {
+            log.error("WebSocket启动异常，异常信息：{}", e.getMessage());
             e.printStackTrace();
-            UtApplication.close();
+            context.close();
+            System.exit(-1);
         }
     }
 
