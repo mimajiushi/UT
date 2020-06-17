@@ -1,12 +1,15 @@
 package run.ut.app.netty;
 
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import run.ut.app.utils.SpringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Heart Beat Handler. If the client's heartbeat frames is not received for a long time
@@ -14,14 +17,13 @@ import run.ut.app.utils.SpringUtils;
  * @author wenjie
  */
 
+@ChannelHandler.Sharable
 @Slf4j
+@Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
 
-    private UserChannelManager userChannelManager;
-
-    HeartBeatHandler() {
-        userChannelManager = SpringUtils.getBean(UserChannelManager.class);
-    }
+    private final UserChannelManager userChannelManager;
 
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {

@@ -6,9 +6,11 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpHeaders;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import run.ut.app.security.util.JwtOperator;
-import run.ut.app.utils.SpringUtils;
 
 /**
  * FullHttpRequest
@@ -16,15 +18,12 @@ import run.ut.app.utils.SpringUtils;
 
 @ChannelHandler.Sharable
 @Slf4j
+@Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AuthHandler extends ChannelInboundHandlerAdapter {
 
-    private UserChannelManager userChannelManager;
-    private JwtOperator jwtOperator;
-
-    AuthHandler() {
-        userChannelManager = SpringUtils.getBean(UserChannelManager.class);
-        jwtOperator = SpringUtils.getBean(JwtOperator.class);
-    }
+    private final UserChannelManager userChannelManager;
+    private final JwtOperator jwtOperator;
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {

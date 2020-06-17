@@ -3,9 +3,11 @@ package run.ut.app.netty;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import run.ut.app.service.RedisService;
-import run.ut.app.utils.SpringUtils;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.TimeUnit;
@@ -16,16 +18,13 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @ChannelHandler.Sharable
+@Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class WebSocketRateLimitHandler extends ChannelInboundHandlerAdapter {
 
-    private RedisService redisService;
+    private final RedisService redisService;
     private final int EXPIRE_TIME = 5;
     private final int MAX = 10;
-
-
-    WebSocketRateLimitHandler() {
-        this.redisService = SpringUtils.getBean(RedisService.class);
-    }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {

@@ -4,11 +4,13 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 import run.ut.app.model.support.WebSocketMsg;
 import run.ut.app.utils.JsonUtils;
-import run.ut.app.utils.SpringUtils;
 
 
 /**
@@ -17,13 +19,11 @@ import run.ut.app.utils.SpringUtils;
 
 @ChannelHandler.Sharable
 @Slf4j
+@Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ClientMsgHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
 
-    private UserChannelManager userChannelManager;
-
-    ClientMsgHandler() {
-        userChannelManager = SpringUtils.getBean(UserChannelManager.class);
-    }
+    private final UserChannelManager userChannelManager;
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg)
