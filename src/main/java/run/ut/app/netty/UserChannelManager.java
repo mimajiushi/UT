@@ -16,7 +16,8 @@ import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 import run.ut.app.model.support.WebSocketMsg;
 import run.ut.app.utils.JsonUtils;
 
-import java.util.LinkedList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -32,7 +33,7 @@ import java.util.concurrent.locks.ReentrantLock;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserChannelManager {
 
-    private ConcurrentHashMap<Long, LinkedList<Channel>> userChannelMap = new ConcurrentHashMap<>(1 << 8);
+    private ConcurrentHashMap<Long, Set<Channel>> userChannelMap = new ConcurrentHashMap<>(1 << 8);
 
     private final Lock lock = new ReentrantLock();
 
@@ -44,11 +45,13 @@ public class UserChannelManager {
      */
     public void add(@NonNull Long uid, @NonNull Channel channel) {
         lock.lock();
-        LinkedList<Channel> channels = userChannelMap.get(uid);
+//        LinkedList<Channel> channels = userChannelMap.get(uid);
+        Set<Channel> channels = userChannelMap.get(uid);
         if (ObjectUtils.isEmpty(channels) || channels.size() == 0) {
-            LinkedList<Channel> channelLinkedList = new LinkedList<>();
-            channelLinkedList.add(channel);
-            userChannelMap.put(uid, channelLinkedList);
+//            LinkedList<Channel> channelLinkedList = new LinkedList<>();
+            Set<Channel> channelSet = new HashSet<>();
+            channelSet.add(channel);
+            userChannelMap.put(uid, channelSet);
         } else {
             channels.add(channel);
             userChannelMap.put(uid, channels);
@@ -81,7 +84,7 @@ public class UserChannelManager {
      * @return channel
      */
     @Nullable
-    public LinkedList<Channel> get(@NonNull Long uid) {
+    public Set<Channel> get(@NonNull Long uid) {
         return userChannelMap.get(uid);
     }
 
@@ -101,11 +104,12 @@ public class UserChannelManager {
      * @throws JsonProcessingException If msgObj fails to convert to json.
      */
     public void writeAndFlush(@NonNull Long uid, @NonNull Object msgObj, @NonNull WebSocketMsgTypeEnum typeEnum) throws JsonProcessingException {
-        LinkedList<Channel> channelLinkedList = userChannelMap.get(uid);
-        if (ObjectUtils.isEmpty(channelLinkedList) || channelLinkedList.size() == 0) {
+//        LinkedList<Channel> channelLinkedList = userChannelMap.get(uid);
+        Set<Channel> channelSet = userChannelMap.get(uid);
+        if (ObjectUtils.isEmpty(channelSet) || channelSet.size() == 0) {
             return;
         }
-        for (Channel channel : channelLinkedList) {
+        for (Channel channel : channelSet) {
             if (channel.isActive()) {
                 WebSocketMsg webSocketMsg = new WebSocketMsg()
                     .setType(typeEnum.getType())
