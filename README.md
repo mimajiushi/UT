@@ -14,6 +14,10 @@
     <a href="https://developer.qiniu.com/kodo/sdk/1239/java"><img src="https://img.shields.io/badge/七牛云_SDK-7.2.18-blue.svg"></a>
 </p>
 
+#### 特别说明
+
+由于最近面试实例，开发者现在在恶补中，开发进度可能会暂停一段时间。
+
 #### 介绍 & 各种杂图
 
 参考我的博客链接：[介绍文档](https://wenjie.store/archives/ut%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E6%9D%82%E5%9B%BE)
