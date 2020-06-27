@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import run.ut.app.api.admin.AdminTagsControllerAPI;
+import run.ut.app.api.admin.AdminTagsControllerApi;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.TagsParam;
@@ -24,7 +24,7 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("admin")
 @CheckAuthorization(roles = UserRolesEnum.ROLE_ADMIN)
-public class AdminTagsController implements AdminTagsControllerAPI {
+public class AdminTagsController implements AdminTagsControllerApi {
     private final TagsService tagsService;
 
     @PostMapping("saveTag")

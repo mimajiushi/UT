@@ -22,4 +22,10 @@ public class OptionsDTO implements OutputConverter<OptionsDTO, Options> {
 
     private Object value;
 
+    private String remark;
+
+    public OptionsDTO(String key, Object value) {
+        this.key = key;
+        this.value = value;
+    }
 }

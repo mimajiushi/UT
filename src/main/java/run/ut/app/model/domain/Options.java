@@ -32,4 +32,6 @@ public class Options extends BaseEntity {
     private String optionValue;
 
     private Integer type;
+
+    private String remark;
 }

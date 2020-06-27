@@ -9,7 +9,7 @@ import run.ut.app.model.support.BaseResponse;
 import java.util.List;
 
 @Api(value = "管理员操作标签API",tags = "管理员操作标签API")
-public interface AdminTagsControllerAPI {
+public interface AdminTagsControllerApi {
 
     @ApiOperation(value = "添加/更新tags", notes = "该接口需要管理员权限")
     public BaseResponse<TagsDTO> saveTag(TagsParam tagsParam);

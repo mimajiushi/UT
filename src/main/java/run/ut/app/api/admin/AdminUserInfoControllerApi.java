@@ -11,7 +11,7 @@ import run.ut.app.model.support.CommentPage;
 import java.io.IOException;
 
 @Api(value = "管理员处理用户认证API",tags = "管理员处理用户认证API")
-public interface AdminUserInfoControllerAPI {
+public interface AdminUserInfoControllerApi {
 
     @ApiOperation(value = "审核用户认证资料", notes = "status: -1 - 审核不通过 1 - 审核通过")
     public BaseResponse<String> verifyUserInfo(Integer id,Integer status, String reason);

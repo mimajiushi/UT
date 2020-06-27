@@ -1,6 +1,8 @@
 package run.ut.app.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qiniu.common.Zone;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
@@ -17,10 +20,8 @@ import run.ut.app.config.properties.UtProperties;
 import run.ut.app.config.redis.RedisKey;
 import run.ut.app.event.options.OptionsUpdatedEvent;
 import run.ut.app.exception.MissingPropertyException;
-import run.ut.app.model.domain.Options;
 import run.ut.app.mapper.OptionsMapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
+import run.ut.app.model.domain.Options;
 import run.ut.app.model.dto.OptionsDTO;
 import run.ut.app.model.param.OptionsParam;
 import run.ut.app.model.properties.PropertyEnum;
@@ -32,6 +33,7 @@ import run.ut.app.utils.ValidationUtils;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -74,8 +76,8 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
             Options oldOption = optionKeyMap.get(key);
             if (oldOption == null || !StringUtils.equals(oldOption.getOptionValue(), value.toString())) {
                 OptionsParam optionParam = new OptionsParam();
-                optionParam.setKey(key);
-                optionParam.setValue(value.toString());
+                optionParam.setOptionKey(key);
+                optionParam.setOptionValue(value.toString());
                 ValidationUtils.validate(optionParam);
 
                 if (oldOption == null) {
@@ -107,7 +109,7 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
             return;
         }
 
-        Map<String, Object> optionMap = ServiceUtils.convertToMap(optionParams, OptionsParam::getKey, OptionsParam::getValue);
+        Map<String, Object> optionMap = ServiceUtils.convertToMap(optionParams, OptionsParam::getOptionKey, OptionsParam::getOptionValue);
         save(optionMap);
     }
 
@@ -172,17 +174,17 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
 
             // Add default property
             propertyEnumMap.keySet()
-                    .stream()
-                    .filter(key -> !keys.contains(key))
-                    .forEach(key -> {
-                        PropertyEnum propertyEnum = propertyEnumMap.get(key);
+                .stream()
+                .filter(key -> !keys.contains(key))
+                .forEach(key -> {
+                    PropertyEnum propertyEnum = propertyEnumMap.get(key);
 
-                        if (StringUtils.isBlank(propertyEnum.defaultValue())) {
-                            return;
-                        }
+                    if (StringUtils.isBlank(propertyEnum.defaultValue())) {
+                        return;
+                    }
 
-                        result.put(key, PropertyEnum.convertTo(propertyEnum.defaultValue(), propertyEnum));
-                    });
+                    result.put(key, PropertyEnum.convertTo(propertyEnum.defaultValue(), propertyEnum));
+                });
 
             // Cache the result
             redisService.set(RedisKey.OPTIONS_KEY, JSON.toJSONString(result));
@@ -194,7 +196,7 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
     }
 
     @Override
-    public Map<String, Object> listOptions(List<String> keys) {
+    public Map<String, Object> listOptionsToMap(List<String> keys) {
         if (CollectionUtils.isEmpty(keys)) {
             return Collections.emptyMap();
         }
@@ -204,8 +206,8 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
         Map<String, Object> result = new HashMap<>(keys.size());
 
         keys.stream()
-                .filter(optionMap::containsKey)
-                .forEach(key -> result.put(key, optionMap.get(key)));
+            .filter(optionMap::containsKey)
+            .forEach(key -> result.put(key, optionMap.get(key)));
 
         return result;
     }
@@ -218,6 +220,19 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
 
         return result;
     }
+
+    @Override
+    public List<OptionsDTO> listDtos(List<String> keys) {
+        if (CollectionUtils.isEmpty(keys)) {
+            return Collections.emptyList();
+        }
+        List<Options> optionsList = list(new QueryWrapper<Options>().in("option_key", keys));
+        return optionsList.stream().map(e -> {
+            OptionsDTO optionsDTO = new OptionsDTO();
+            optionsDTO.setKey(e.getOptionKey()).setValue(e.getOptionValue()).setRemark(e.getRemark());
+            return optionsDTO;
+        }).collect(Collectors.toList());
+}
 
 
     @Override

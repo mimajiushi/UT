@@ -88,7 +88,6 @@ public interface OptionsService extends IService<Options> {
     @NonNull
     @Transactional
     Map<String, Object> listOptions() throws JsonProcessingException;
-
     /**
      * Lists options by key list.
      *
@@ -96,10 +95,12 @@ public interface OptionsService extends IService<Options> {
      * @return a map of option
      */
     @NonNull
-    Map<String, Object> listOptions(@Nullable List<String> keys) throws JsonProcessingException;
+    Map<String, Object> listOptionsToMap(@Nullable List<String> keys) throws JsonProcessingException;
 
 
     List<OptionsDTO> listDtos();
+
+    List<OptionsDTO> listDtos(@Nullable List<String> keys);
 
     /**
      * Gets option value of non null.

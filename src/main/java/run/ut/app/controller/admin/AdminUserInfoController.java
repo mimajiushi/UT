@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
-import run.ut.app.api.admin.AdminUserInfoControllerAPI;
+import run.ut.app.api.admin.AdminUserInfoControllerApi;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.UserInfoDTO;
 import run.ut.app.model.enums.UserRolesEnum;
@@ -24,7 +24,7 @@ import java.io.IOException;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("admin")
 @CheckAuthorization(roles = UserRolesEnum.ROLE_ADMIN)
-public class AdminUserInfoController implements AdminUserInfoControllerAPI {
+public class AdminUserInfoController implements AdminUserInfoControllerApi {
 
     private final UserInfoService userInfoService;
 
