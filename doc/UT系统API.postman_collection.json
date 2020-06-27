@@ -2169,6 +2169,285 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "系统配置",
+					"item": [
+						{
+							"name": "获取邮箱配置",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/option/emailOptions",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"option",
+										"emailOptions"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "获取邮箱配置",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ut/admin/option/emailOptions",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"admin",
+												"option",
+												"emailOptions"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 27 Jun 2020 06:01:01 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"key\": \"email_ssl_port\",\n            \"value\": \"465\",\n            \"remark\": \"Email端口\"\n        },\n        {\n            \"key\": \"email_enabled\",\n            \"value\": \"true\",\n            \"remark\": \"是否开启邮箱服务\"\n        },\n        {\n            \"key\": \"email_protocol\",\n            \"value\": \"smtp\",\n            \"remark\": \"Email协议\"\n        },\n        {\n            \"key\": \"email_host\",\n            \"value\": \"smtp.163.com\",\n            \"remark\": \"STMP地址\"\n        },\n        {\n            \"key\": \"email_username\",\n            \"value\": \"ut_test@163.com\",\n            \"remark\": \"Email地址\"\n        },\n        {\n            \"key\": \"email_password\",\n            \"value\": \"PZEXZAQHOUKYZHGZ\",\n            \"remark\": \"Email授权码\"\n        },\n        {\n            \"key\": \"email_from_name\",\n            \"value\": \"UT平台\",\n            \"remark\": \"发件人名字\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "获取OSS配置",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/option/attachmentOptions",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"option",
+										"attachmentOptions"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "获取OSS配置",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8080/ut/admin/option/attachmentOptions",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"admin",
+												"option",
+												"attachmentOptions"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Set-Cookie",
+											"value": "JSESSIONID=BA3DFEA0816B4FFB35A7F2DFE9B566F0; Path=/ut; HttpOnly"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 27 Jun 2020 06:00:35 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"key\": \"oss_qiniu_domain_protocol\",\n            \"value\": \"https://\",\n            \"remark\": \"七牛域名协议\"\n        },\n        {\n            \"key\": \"oss_qiniu_zone\",\n            \"value\": \"z2\",\n            \"remark\": \"七牛地区\"\n        },\n        {\n            \"key\": \"attachment_type\",\n            \"value\": \"QINIUOSS\",\n            \"remark\": \"附件存储类型\"\n        },\n        {\n            \"key\": \"oss_qiniu_domain\",\n            \"value\": \"www.wenjie.store\",\n            \"remark\": \"七牛绑定域名\"\n        },\n        {\n            \"key\": \"oss_qiniu_access_key\",\n            \"value\": \"JGlXKLwD-FNx0oIqH5J2LnKSM_sWq7O9wxsxOsCz\",\n            \"remark\": \"七牛Access Key\"\n        },\n        {\n            \"key\": \"oss_qiniu_source\",\n            \"value\": \"ut/img\",\n            \"remark\": \"七牛文件目录\"\n        },\n        {\n            \"key\": \"oss_qiniu_bucket\",\n            \"value\": \"img\",\n            \"remark\": \"七牛空间名称\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "保存系统配置",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"test_key1\": \"test_value11\",\r\n    \"test_key2\": \"test_value22\",\r\n    \"test_key3\": \"test_value33\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/option/saveOptionsWithMapView",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"option",
+										"saveOptionsWithMapView"
+									]
+								},
+								"description": "已有的属性则保存，没有的属性则创建"
+							},
+							"response": [
+								{
+									"name": "保存系统配置",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"test_key1\": \"test_value11\",\r\n    \"test_key2\": \"test_value22\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/ut/admin/option/saveOptionsWithMapView",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"admin",
+												"option",
+												"saveOptionsWithMapView"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 27 Jun 2020 06:45:03 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"保存成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "获取管理员身份token（测试用）",
 					"request": {
 						"method": "POST",
