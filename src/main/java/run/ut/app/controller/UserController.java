@@ -161,7 +161,7 @@ public class UserController extends BaseController implements UserControllerApi 
     @Override
     @CheckLogin
     @PostMapping("bindEmail")
-    @HttpRequestRateLimit(limit = RateLimitEnum.RRLimit_1_60)
+    @HttpRequestRateLimit(limit = RateLimitEnum.RRLimit_1_5)
     public BaseResponse<String> bindEmail(String email, Integer code) {
         if (!Validator.isEmail(email)) {
             throw new BadRequestException("非法邮箱！");
