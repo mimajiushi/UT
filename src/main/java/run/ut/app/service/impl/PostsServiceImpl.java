@@ -162,7 +162,10 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         Long operatorUid = searchPostParam.getOperatorUid();
 
         Long forumId = searchPostParam.getForumId();
-        Forum forum = forumMapper.selectById(forumId);
+        Forum forum = null;
+        if (null != forumId) {
+            forum = forumMapper.selectById(forumId);
+        }
         if (forumId != null && ObjectUtils.isEmpty(forum)) {
             throw new NotFoundException("版块不存在！");
         }
@@ -174,9 +177,10 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         postVOS1 = setCountAndIsLike(postVOS1, operatorUid);
 
         if (!ObjectUtils.isEmpty(forum)) {
+            final Forum finalForum = forum;
             postVOS1 = postVOS1.stream().map(e -> {
-                return e.setForumName(forum.getName())
-                    .setForumId(forum.getId());
+                return e.setForumName(finalForum.getName())
+                    .setForumId(finalForum.getId());
             }).collect(Collectors.toList());
         }
 
