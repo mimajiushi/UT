@@ -13,6 +13,8 @@
         .layui-table-cell{
             height:auto !important;
         }
+        #content ul li{list-style-type:disc; list-style-position:inside;}
+        #content ol li{list-style-type:decimal; list-style-position:inside;}
     </style>
     <script src="${base}/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${base}/js/xadmin.js"></script>
@@ -62,8 +64,10 @@
 <script type="text/html" id="contentTemplate">
     <div class="layui-fluid">
         <div class="layui-card">
-            <div class="layui-card-body ">
-                {{ d.content }}
+            <div class="layui-card-body">
+                <div id="content">
+                    {{ d.content }}
+                </div>
             </div>
         </div>
     </div>

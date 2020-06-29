@@ -114,6 +114,24 @@ public class AdminMainController implements AdminMainControllerApi {
         return "bbs/forum_list";
     }
 
+    /**
+     * 设置OOS
+     * @return template path
+     */
+    @GetMapping("OOS")
+    public String OOS() {
+        return "system/system_OOS";
+    }
+
+    /**
+     * 设置mail
+     * @return template path
+     */
+    @GetMapping("email")
+    public String mail() {
+        return "system/system_email";
+    }
+
     @ResponseBody
     @GetMapping("systemInfo")
     @CheckAuthorization(roles = UserRolesEnum.ROLE_ADMIN)

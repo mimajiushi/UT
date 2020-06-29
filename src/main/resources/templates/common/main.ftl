@@ -112,6 +112,16 @@
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>查看日志</cite></a>
                     </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('OOS设置','${base}/admin/OOS')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>OOS设置</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('邮箱设置','${base}/admin/email')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>邮箱设置</cite></a>
+                    </li>
                 </ul>
             </li>
         </ul>
