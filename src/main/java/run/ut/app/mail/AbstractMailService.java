@@ -1,5 +1,6 @@
 package run.ut.app.mail;
 
+import io.netty.util.concurrent.DefaultThreadFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.lang.NonNull;
@@ -51,7 +52,7 @@ public abstract class AbstractMailService implements MailService {
                 DEFAULT_ALIVE_TIME,
                 TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>(DEFAULT_QUEUE_SIZE),
-                Executors.defaultThreadFactory(),
+                new DefaultThreadFactory("EmailThreadPool", true),
                 new ThreadPoolExecutor.CallerRunsPolicy()
             );
         }

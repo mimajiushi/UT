@@ -12,6 +12,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
+import run.ut.app.exception.WebSocketException;
 import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 import run.ut.app.model.support.WebSocketMsg;
 import run.ut.app.utils.JsonUtils;
@@ -44,17 +45,22 @@ public class UserChannelManager {
      * @param channel    channel
      */
     public void add(@NonNull Long uid, @NonNull Channel channel) {
-        lock.lock();
-        Set<Channel> channels = userChannelMap.get(uid);
-        if (ObjectUtils.isEmpty(channels) || channels.size() == 0) {
-            Set<Channel> channelSet = new HashSet<>();
-            channelSet.add(channel);
-            userChannelMap.put(uid, channelSet);
-        } else {
-            channels.add(channel);
-            userChannelMap.put(uid, channels);
+        try {
+            lock.lock();
+            Set<Channel> channels = userChannelMap.get(uid);
+            if (ObjectUtils.isEmpty(channels) || channels.size() == 0) {
+                Set<Channel> channelSet = new HashSet<>();
+                channelSet.add(channel);
+                userChannelMap.put(uid, channelSet);
+            } else {
+                channels.add(channel);
+                userChannelMap.put(uid, channels);
+            }
+        } catch (Exception e) {
+            throw new WebSocketException("缓存用户通道信息失败！");
+        } finally {
+            lock.unlock();
         }
-        lock.unlock();
     }
 
     /**
