@@ -57,6 +57,12 @@ public class AdminOptionController extends BaseController implements AdminOption
     }
 
     @Override
+    @GetMapping("wechatMPOptions")
+    public List<OptionsDTO> wechatMPOptions() {
+        return optionsService.listDtos(OptionsEnum.WECHAT_MP.getKeysList());
+    }
+
+    @Override
     @PostMapping("saveOptionsWithMapView")
     public BaseResponse<String> saveOptionsWithMapView(@RequestBody Map<String, Object> optionMap) {
         optionsService.save(optionMap);

@@ -2354,7 +2354,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"test_key1\": \"test_value11\",\r\n    \"test_key2\": \"test_value22\",\r\n    \"test_key3\": \"test_value33\"\r\n}",
+									"raw": "{\r\n    \"mp-app-id\": \"wx0520203ba32fb247\",\r\n    \"mp-app-secret\": \"a211d5b68dc57636ccf1c9dce638e9e3\",\r\n    \"authorize-url\": \"https://api.weixin.qq.com/sns/jscode2session\",\r\n    \"grant-type\": \"authorization_code\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2442,6 +2442,34 @@
 									"body": "{\n    \"status\": 200,\n    \"message\": \"保存成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 								}
 							]
+						},
+						{
+							"name": "获取微信小程序配置",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/admin/option/wechatMPOptions",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"admin",
+										"option",
+										"wechatMPOptions"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},

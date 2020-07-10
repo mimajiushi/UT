@@ -24,6 +24,9 @@ public interface AdminOptionControllerApi {
     @ApiOperation(value = "获取附件配置", notes = "只有七牛云")
     List<OptionsDTO> attachmentOptions();
 
+    @ApiOperation(value = "获取微信小程序配置", notes = "暂时只有个人版的配置，企业版还没用过")
+    List<OptionsDTO> wechatMPOptions();
+
     @ApiOperation(value = "保存配置")
     BaseResponse<String> saveOptionsWithMapView(Map<String, Object> optionMap);
 }

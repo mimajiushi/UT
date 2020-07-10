@@ -14,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.api.UserControllerApi;
 import run.ut.app.cache.lock.HttpRequestRateLimit;
-import run.ut.app.config.wechat.WechatAccountConfig;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.WeChatException;
 import run.ut.app.model.dto.TagsDTO;
@@ -27,10 +26,12 @@ import run.ut.app.model.param.UserExperiencesParam;
 import run.ut.app.model.param.UserInfoParam;
 import run.ut.app.model.param.UserSimpleParam;
 import run.ut.app.model.param.WeChatLoginParam;
+import run.ut.app.model.properties.WechatMPProperties;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.WeChatResponse;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.security.CheckLogin;
+import run.ut.app.service.OptionsService;
 import run.ut.app.service.UserExperiencesService;
 import run.ut.app.service.UserInfoService;
 import run.ut.app.service.UserService;
@@ -56,7 +57,7 @@ public class UserController extends BaseController implements UserControllerApi 
     private final UserInfoService userInfoService;
     private final UserExperiencesService userExperiencesService;
     private final RestTemplate restTemplate;
-    private final WechatAccountConfig wechatAccountConfig;
+    private final OptionsService optionsService;
 
     @Value("${spring.servlet.multipart.max-file-size}")
     private DataSize dataSize;
@@ -66,11 +67,11 @@ public class UserController extends BaseController implements UserControllerApi 
     public UserDTO wechatLogin(@RequestBody @Valid WeChatLoginParam weChatLoginParam) throws Exception {
 
         Map<String, String> params = new HashMap<>();
-        params.put("appid", wechatAccountConfig.getMpAppId());
-        params.put("secret", wechatAccountConfig.getMpAppSecret());
+        params.put("appid", optionsService.getByPropertyOfNonNull(WechatMPProperties.MP_APP_ID).toString());
+        params.put("secret", optionsService.getByPropertyOfNonNull(WechatMPProperties.MP_APP_SECRET).toString());
         params.put("js_code", weChatLoginParam.getCode());
-        params.put("grant_type", wechatAccountConfig.getGrantType());
-        URIBuilder builder = new URIBuilder(wechatAccountConfig.getAuthorizeUrl());
+        params.put("grant_type", optionsService.getByPropertyOfNonNull(WechatMPProperties.MP_GRANT_TYPE).toString());
+        URIBuilder builder = new URIBuilder(optionsService.getByPropertyOfNonNull(WechatMPProperties.MP_AUTHORIZE_URL).toString());
         for (String key : params.keySet()) {
             builder.addParameter(key, params.get(key));
         }

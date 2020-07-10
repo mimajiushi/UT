@@ -28,6 +28,12 @@ public enum OptionsEnum {
         "oss_qiniu_access_key",
         "oss_qiniu_source",
         "oss_qiniu_bucket"
+    ),
+    WECHAT_MP(
+        "mp-app-id",
+        "mp-app-secret",
+        "authorize-url",
+        "grant-type"
     );
 
     OptionsEnum(String...keys) {
