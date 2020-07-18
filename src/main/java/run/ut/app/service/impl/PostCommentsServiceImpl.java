@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.config.redis.RedisKey;
 import run.ut.app.event.CommentEvent;
@@ -226,6 +227,10 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
     public CommentPage<ChildCommentVO> listCommentToSelf(Long uid, Page<PostComments> page) {
         Page<PostComments> postCommentsPage = page(page, new QueryWrapper<PostComments>().eq("to_uid", uid).orderByDesc("create_time"));
         List<PostComments> postCommentsList = postCommentsPage.getRecords();
+
+        if (CollectionUtils.isEmpty(postCommentsList)) {
+            return CommentPage.emptyPage();
+        }
 
         HashSet<Long> uids = new HashSet<>(postCommentsList.size());
         postCommentsList.forEach(e -> uids.add(e.getFromUid()));
