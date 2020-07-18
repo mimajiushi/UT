@@ -229,7 +229,7 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         List<PostComments> postCommentsList = postCommentsPage.getRecords();
 
         if (CollectionUtils.isEmpty(postCommentsList)) {
-            return CommentPage.emptyPage();
+            return new CommentPage<>(postCommentsPage.getTotal(), new ArrayList<>());
         }
 
         HashSet<Long> uids = new HashSet<>(postCommentsList.size());
