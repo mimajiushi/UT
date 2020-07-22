@@ -53,6 +53,7 @@ public class RedisServiceImpl implements RedisService {
         Assert.hasText(key, "redis key must not be blank");
         Assert.hasText(value, "value must not be blank");
 
+        stringRedisTemplate.opsForValue().set();
         stringRedisTemplate.boundValueOps(key).set(value,ttl, TimeUnit.SECONDS);
         Long expire = stringRedisTemplate.getExpire(key, TimeUnit.SECONDS);
         if (null == expire) {
