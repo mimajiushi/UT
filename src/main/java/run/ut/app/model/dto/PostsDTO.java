@@ -1,5 +1,7 @@
 package run.ut.app.model.dto;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -24,8 +26,10 @@ import run.ut.app.model.dto.base.OutputConverter;
 @ApiModel(value = "PostsDTO 对象", description = "")
 public class PostsDTO extends BaseDTO implements OutputConverter<PostsDTO, Posts> {
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long id;
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long uid;
 
     @ApiModelProperty(value = "版块id")

@@ -1,5 +1,7 @@
 package run.ut.app.model.dto;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -22,10 +24,13 @@ import run.ut.app.model.dto.base.OutputConverter;
 @AllArgsConstructor
 public class TeamsMembersDTO extends BaseDTO implements OutputConverter<TeamsMembersDTO, TeamsMembers> {
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long id;
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long teamId;
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long uid;
 
     @ApiModelProperty(value = "0-队员 1-队长")

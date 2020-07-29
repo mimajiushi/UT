@@ -1,5 +1,7 @@
 package run.ut.app.model.dto;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.*;
 import lombok.experimental.Accessors;
 import run.ut.app.model.domain.UserExperiences;
@@ -21,8 +23,10 @@ import run.ut.app.model.dto.base.OutputConverter;
 @AllArgsConstructor
 public class UserExperiencesDTO extends BaseDTO implements OutputConverter<UserExperiencesDTO, UserExperiences> {
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long id;
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long uid;
 
     private String name;

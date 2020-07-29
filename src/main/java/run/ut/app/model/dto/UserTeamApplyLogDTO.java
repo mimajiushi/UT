@@ -1,5 +1,7 @@
 package run.ut.app.model.dto;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -24,13 +26,17 @@ import run.ut.app.model.enums.ApplyStatusEnum;
 @AllArgsConstructor
 public class UserTeamApplyLogDTO extends BaseDTO implements OutputConverter<UserTeamApplyLogDTO, UserTeamApplyLog> {
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long id;
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long uid;
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long teamId;
 
     @ApiModelProperty(value = "申请的职位id", notes = "0-直接申请加入团队，> 0则是申请对应职位")
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long recruitmentId;
 
     @ApiModelProperty(value = "1-用户申请加入团队 2-团队邀请用户")

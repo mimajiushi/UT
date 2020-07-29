@@ -1,5 +1,7 @@
 package run.ut.app.model.vo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -23,6 +25,7 @@ import java.util.List;
 @ApiModel(value = "StudentVO对象", description = "")
 public class StudentVO {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     @ApiModelProperty("uid")
     private Long uid;
 

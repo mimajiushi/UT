@@ -1,5 +1,7 @@
 package run.ut.app.model.dto;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -22,6 +24,7 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "ForumDTO 对象", description = "")
 public class ForumDTO extends BaseDTO {
 
+      @JSONField(serializeUsing = ToStringSerializer.class)
       private Long id;
 
       @ApiModelProperty(value = "版块名称")

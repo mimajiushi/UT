@@ -1,7 +1,9 @@
 package run.ut.app.model.dto;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.*;
 import lombok.experimental.Accessors;
 import run.ut.app.model.domain.User;
@@ -29,6 +31,7 @@ public class UserDTO extends BaseDTO implements OutputConverter<UserDTO, User> {
 
     private Integer id;
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long uid;
 
     private String openid;

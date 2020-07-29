@@ -20,7 +20,7 @@ public class SpringUtils implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         if (ObjectUtils.isEmpty(applicationContext)) {
-            throw new ApplicationContextException("applicationContext must is not be null");
+            throw new ApplicationContextException("applicationContext must not be null");
         }
         SpringUtils.applicationContext = applicationContext;
     }

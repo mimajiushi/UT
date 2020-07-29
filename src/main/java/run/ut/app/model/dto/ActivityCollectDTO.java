@@ -1,7 +1,9 @@
 package run.ut.app.model.dto;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.*;
 import lombok.experimental.Accessors;
 import run.ut.app.model.domain.ActivityCollect;
@@ -20,10 +22,12 @@ import run.ut.app.model.dto.base.OutputConverter;
 @AllArgsConstructor
 public class ActivityCollectDTO extends BaseDTO implements OutputConverter<ActivityCollectDTO, ActivityCollect> {
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long id;
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long uid;
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long activityId;
 }

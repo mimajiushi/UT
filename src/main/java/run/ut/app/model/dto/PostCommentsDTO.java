@@ -1,5 +1,7 @@
 package run.ut.app.model.dto;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -24,21 +26,27 @@ import run.ut.app.model.dto.base.OutputConverter;
 @ApiModel(value = "PostCommentsDTO 对象", description = "")
 public class PostCommentsDTO extends BaseDTO implements OutputConverter<PostCommentsDTO, PostComments> {
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long id;
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long postId;
 
     @ApiModelProperty(value = "父评论id，如果为0则表示没有父级")
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long parentCommentId;
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long toUid;
 
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long fromUid;
 
     @ApiModelProperty(value = "评论内容")
     private String content;
 
     @ApiModelProperty(value = "点赞数")
+    @JSONField(serializeUsing = ToStringSerializer.class)
     private Long likes;
 
 }
