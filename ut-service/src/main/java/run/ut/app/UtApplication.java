@@ -25,7 +25,7 @@ public class UtApplication extends SpringBootServletInitializer {
     private static ConfigurableApplicationContext CONTEXT;
 
     public static void main(String[] args) {
-        System.setProperty("spring.config.additional-location", "file:${user.home}/.ut/");
+        System.setProperty("spring.config.additional-location", "file:${user.home}/.ut-service/");
         CONTEXT = SpringApplication.run(UtApplication.class);
     }
 
@@ -41,7 +41,7 @@ public class UtApplication extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         // Customize the spring config location
-        System.setProperty("spring.config.additional-location", "file:${user.home}/.ut/");
+        System.setProperty("spring.config.additional-location", "file:${user.home}/.ut-service/");
         // Fastjson loopholes
         ParserConfig.getGlobalInstance().setSafeMode(true);
         return super.configure(builder);
