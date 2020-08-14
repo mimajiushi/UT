@@ -1,0 +1,32 @@
+##########################################################
+##
+## 端口，app名字，dubbo，注册中心等应用基础配置
+##
+##########################################################
+server:
+  port: ${PORT:8083}
+  servlet:
+    context-path: /ut
+spring:
+  application:
+    name: ut-test
+  servlet:
+    multipart:
+      max-file-size: 11MB
+      max-request-size: 11MB
+
+##########################################################
+##
+## dubbo 配置
+##
+##########################################################
+dubbo:
+  application:
+    name: ut-test
+  protocol:
+    name: dubbo
+    port: 12236
+  registry:
+    address: zookeeper://192.168.129.133:2181
+    timeout: 60000
+

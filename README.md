@@ -54,7 +54,7 @@ run.ut.app
 ├── schedule -- 存放定时任务，目前的定时任务大多都是测试用
 ├── security -- 自定义认证拦截逻辑
 ├── service -- 业务层代码
-└── utils -- 工具类
+└── run.ut.app.utils -- 工具类
 
 ```
 
