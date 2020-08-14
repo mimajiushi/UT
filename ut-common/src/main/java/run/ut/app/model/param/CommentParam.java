@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 
 @Data
-public class CommentParam {
+public class CommentParam implements Serializable {
 
     @ApiModelProperty(value = "帖子id")
     @NotNull(message = "post id must not be null.")
