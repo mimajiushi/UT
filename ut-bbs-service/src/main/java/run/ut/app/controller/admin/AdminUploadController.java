@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.api.admin.AdminUploadControllerApi;
-import run.ut.app.handle.FileHandlers;
+import run.ut.app.handler.FileHandlers;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.UploadResult;
 import run.ut.app.security.CheckAuthorization;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ import java.util.List;
 @CheckAuthorization(roles = {UserRolesEnum.ROLE_ADMIN, UserRolesEnum.ROLE_SPONSOR})
 public class AdminUploadController implements AdminUploadControllerApi {
 
-    @DubboReference
+    @Resource
     private FileHandlers fileHandlers;
 
     @PostMapping("uploads")

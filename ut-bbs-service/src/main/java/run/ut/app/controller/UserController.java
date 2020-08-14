@@ -15,6 +15,7 @@ import run.ut.app.api.UserControllerApi;
 import run.ut.app.cache.lock.HttpRequestRateLimit;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.WeChatException;
+import run.ut.app.handler.FileHandlers;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
@@ -27,6 +28,7 @@ import run.ut.app.model.param.UserSimpleParam;
 import run.ut.app.model.param.WeChatLoginParam;
 import run.ut.app.model.properties.WechatMPProperties;
 import run.ut.app.model.support.BaseResponse;
+import run.ut.app.model.support.UploadResult;
 import run.ut.app.model.support.WeChatResponse;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.security.CheckLogin;
@@ -56,6 +58,7 @@ public class UserController extends BaseController implements UserControllerApi 
     @DubboReference private UserInfoService userInfoService;
     @DubboReference private UserExperiencesService userExperiencesService;
     @Resource private RestTemplate restTemplate;
+    @Resource private FileHandlers fileHandlers;
     @DubboReference private OptionsService optionsService;
 
     @Value("${spring.servlet.multipart.max-file-size}")
@@ -155,7 +158,8 @@ public class UserController extends BaseController implements UserControllerApi 
         if (!ImageUtils.isImage(avatar)) {
             throw new BadRequestException("只接受图片格式文件！");
         }
-        return userService.updateUserAvatar(getUid(), avatar);
+        String avatarPath = fileHandlers.upload(avatar).getFilePath();
+        return userService.updateUserAvatar(getUid(), avatarPath);
     }
 
     @Override

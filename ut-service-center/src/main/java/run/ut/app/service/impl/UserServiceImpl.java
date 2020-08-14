@@ -15,7 +15,7 @@ import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.exception.WeChatException;
-import run.ut.app.handle.FileHandlers;
+import run.ut.app.handler.FileHandlers;
 import run.ut.app.mail.MailService;
 import run.ut.app.mapper.UserMapper;
 import run.ut.app.model.domain.Tags;
@@ -33,7 +33,6 @@ import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.UploadResult;
 import run.ut.app.model.support.WeChatResponse;
 import run.ut.app.model.vo.StudentVO;
-import run.ut.app.service.RedisService;
 import run.ut.app.security.token.AuthToken;
 import run.ut.app.security.util.JwtOperator;
 import run.ut.app.service.*;
@@ -188,10 +187,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public BaseResponse<String> updateUserAvatar(Long uid, MultipartFile avatar) {
-        UploadResult upload = fileHandlers.upload(avatar);
+    public BaseResponse<String> updateUserAvatar(Long uid, String avatarPaht) {
         User user = getById(uid);
-        user.setAvatar(upload.getFilePath());
+        user.setAvatar(avatarPaht);
         updateById(user);
         return BaseResponse.ok("更换头像成功");
     }

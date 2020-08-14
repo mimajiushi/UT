@@ -76,12 +76,12 @@ public interface UserService extends IService<User> {
     /**
      * Update user's avatar
      *
-     * @param uid       uid
-     * @param avatar    avatar (MultipartFile)
+     * @param uid           uid
+     * @param avatarPath    avatarPath
      * @return ok result with message
      */
     @NonNull
-    BaseResponse<String> updateUserAvatar(@NonNull Long uid, @NonNull MultipartFile avatar);
+    BaseResponse<String> updateUserAvatar(@NonNull Long uid, @NonNull String avatarPath);
 
     /**
      * User bind email

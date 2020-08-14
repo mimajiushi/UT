@@ -32,8 +32,6 @@ public class ActivityController extends BaseController implements ActivityContro
     @DubboReference private ActivityCollectService activityCollectService;
     @DubboReference private ActivityAppointmentService activityAppointmentService;
 
-
-
     @Override
     @GetMapping("list/activities")
     public CommentPage<ActivityVO> listActivities(SearchActivityParam searchActivityParam,

@@ -13,13 +13,13 @@ import com.qiniu.util.StringMap;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.exception.FileOperationException;
-import run.ut.app.handle.FileHandler;
 import run.ut.app.model.enums.AttachmentType;
 import run.ut.app.model.properties.QiniuOssProperties;
 import run.ut.app.model.support.QiNiuPutSet;
@@ -34,8 +34,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-
-import static run.ut.app.handle.FileHandler.isImageType;
+import static run.ut.app.handler.FileHandler.isImageType;
 
 /**
  * Qiniu oss file handler.
@@ -50,7 +49,8 @@ import static run.ut.app.handle.FileHandler.isImageType;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class QiniuOssFileHandler implements FileHandler {
 
-    private final OptionsService optionsService;
+    @DubboReference
+    private OptionsService optionsService;
 
     @Override
     public UploadResult upload(MultipartFile file) {
@@ -156,7 +156,7 @@ public class QiniuOssFileHandler implements FileHandler {
         Assert.notNull(key, "File key must not be blank");
 
         // Get all config
-        Zone zone = optionsService.getQnYunZone();
+        MyZone zone = optionsService.getQnYunZone();
         String accessKey = optionsService.getByPropertyOfNonNull(QiniuOssProperties.OSS_ACCESS_KEY).toString();
         String secretKey = optionsService.getByPropertyOfNonNull(QiniuOssProperties.OSS_SECRET_KEY).toString();
         String bucket = optionsService.getByPropertyOfNonNull(QiniuOssProperties.OSS_BUCKET).toString();

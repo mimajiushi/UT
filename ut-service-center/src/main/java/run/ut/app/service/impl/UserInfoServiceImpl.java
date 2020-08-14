@@ -15,7 +15,7 @@ import run.ut.app.config.redis.RedisKey;
 import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
-import run.ut.app.handle.FileHandlers;
+import run.ut.app.handler.FileHandlers;
 import run.ut.app.mapper.UserInfoMapper;
 import run.ut.app.mapper.UserMapper;
 import run.ut.app.model.domain.DataSchool;

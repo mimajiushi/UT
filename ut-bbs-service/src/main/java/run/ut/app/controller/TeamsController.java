@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.api.TeamsControllerApi;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
+import run.ut.app.handler.FileHandlers;
 import run.ut.app.model.domain.Teams;
 import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.TagsDTO;
@@ -22,6 +23,7 @@ import run.ut.app.model.enums.TeamsStatusEnum;
 import run.ut.app.model.param.*;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
+import run.ut.app.model.support.UploadResult;
 import run.ut.app.model.vo.ApplyOrInviteMsgVO;
 import run.ut.app.security.CheckLogin;
 import run.ut.app.service.TeamsRecruitmentsService;
@@ -30,6 +32,7 @@ import run.ut.app.service.UserInfoService;
 import run.ut.app.service.UserTeamApplyLogService;
 import run.ut.app.utils.ImageUtils;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -46,6 +49,7 @@ public class TeamsController extends BaseController implements TeamsControllerAp
     @DubboReference private TeamsService teamsService;
     @DubboReference private TeamsRecruitmentsService teamsRecruitmentsService;
     @DubboReference private UserTeamApplyLogService userTeamApplyLogService;
+    @Resource private FileHandlers fileHandlers;
 
     @Override
     @PostMapping("createTeam")
@@ -77,7 +81,8 @@ public class TeamsController extends BaseController implements TeamsControllerAp
         if (!ImageUtils.isImage(logo)) {
             throw new BadRequestException("只接受图片格式文件！");
         }
-        return teamsService.updateTeamsLogo(logo, leaderId, teamsId);
+        String logoPath = fileHandlers.upload(logo).getFilePath();
+        return teamsService.updateTeamsLogo(logoPath, leaderId, teamsId);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package run.ut.app.handler;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -12,8 +13,6 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.config.properties.AttachmentProperties;
 import run.ut.app.exception.FileOperationException;
-import run.ut.app.handle.FileHandler;
-import run.ut.app.handle.FileHandlers;
 import run.ut.app.model.enums.AttachmentType;
 import run.ut.app.model.support.UploadResult;
 import run.ut.app.service.OptionsService;
@@ -29,10 +28,9 @@ import java.util.LinkedList;
  */
 @Slf4j
 @Component
-@DubboService
 public class FileHandlersImpl implements FileHandlers {
 
-    @Autowired
+    @DubboReference
     private OptionsService optionsService;
 
     /**

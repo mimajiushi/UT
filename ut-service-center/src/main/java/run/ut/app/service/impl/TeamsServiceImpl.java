@@ -17,7 +17,7 @@ import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
-import run.ut.app.handle.FileHandlers;
+import run.ut.app.handler.FileHandlers;
 import run.ut.app.mapper.TeamsMapper;
 import run.ut.app.mapper.TeamsMembersMapper;
 import run.ut.app.mapper.TeamsRecruitmentsMapper;
@@ -201,14 +201,13 @@ public class TeamsServiceImpl extends ServiceImpl<TeamsMapper, Teams> implements
     }
 
     @Override
-    public BaseResponse<String> updateTeamsLogo(MultipartFile logo, Long leaderId, Long teamsId) {
+    public BaseResponse<String> updateTeamsLogo(String logoPath, Long leaderId, Long teamsId) {
 
         Teams team = getAndCheckTeamByLeaderIdAndTeamId(leaderId, teamsId);
         if (ObjectUtils.isEmpty(team)) {
             throw new AuthenticationException("只有队长能设置logo");
         }
-        UploadResult uploadResult = fileHandlers.upload(logo);
-        team.setLogo(uploadResult.getFilePath());
+        team.setLogo(logoPath);
         team.setUpdateTime(null);
         updateById(team);
         return BaseResponse.ok("更新团队头像成功！");

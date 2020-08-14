@@ -6,6 +6,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.transaction.annotation.Transactional;
 import run.ut.app.exception.MissingPropertyException;
+import run.ut.app.handler.MyZone;
 import run.ut.app.model.domain.Options;
 import com.baomidou.mybatisplus.extension.service.IService;
 import run.ut.app.model.dto.OptionsDTO;
@@ -183,6 +184,6 @@ public interface OptionsService extends IService<Options> {
      * @return qiniu zone
      */
     @NonNull
-    Zone getQnYunZone();
+    MyZone getQnYunZone();
 }
 

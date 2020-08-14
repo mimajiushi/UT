@@ -52,13 +52,13 @@ public interface TeamsService extends IService<Teams> {
 
     /**
      * Update team logo
-     * @param logo       logo (MultipartFile)
+     * @param logoPath   logoPath (MultipartFile)
      * @param leaderId   leader id
      * @param teamsId    team id
      * @return ok result with message
      */
     @NonNull
-    BaseResponse<String> updateTeamsLogo(@NonNull MultipartFile logo, @NonNull Long leaderId, @NonNull Long teamsId);
+    BaseResponse<String> updateTeamsLogo(@NonNull String logoPath, @NonNull Long leaderId, @NonNull Long teamsId);
 
     /**
      * Update team base info

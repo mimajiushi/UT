@@ -1,4 +1,4 @@
-package run.ut.app.handle;
+package run.ut.app.handler;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;

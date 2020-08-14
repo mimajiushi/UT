@@ -19,6 +19,7 @@ import org.springframework.util.CollectionUtils;
 import run.ut.app.config.redis.RedisKey;
 import run.ut.app.event.options.OptionsUpdatedEvent;
 import run.ut.app.exception.MissingPropertyException;
+import run.ut.app.handler.MyZone;
 import run.ut.app.mapper.OptionsMapper;
 import run.ut.app.model.domain.Options;
 import run.ut.app.model.dto.OptionsDTO;
@@ -287,33 +288,33 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
     }
 
     @Override
-    public Zone getQnYunZone() {
+    public MyZone getQnYunZone() {
         return getByProperty(QiniuOssProperties.OSS_ZONE).map(qiniuZone -> {
 
-            Zone zone;
+            MyZone zone;
             switch (qiniuZone.toString()) {
                 case "z0":
-                    zone = Zone.zone0();
+                    zone = MyZone.zone0();
                     break;
                 case "z1":
-                    zone = Zone.zone1();
+                    zone = MyZone.zone1();
                     break;
                 case "z2":
-                    zone = Zone.zone2();
+                    zone = MyZone.zone2();
                     break;
                 case "na0":
-                    zone = Zone.zoneNa0();
+                    zone = MyZone.zoneNa0();
                     break;
                 case "as0":
-                    zone = Zone.zoneAs0();
+                    zone = MyZone.zoneAs0();
                     break;
                 default:
                     // Default is detecting zone automatically
-                    zone = Zone.autoZone();
+                    zone = MyZone.autoZone();
             }
             return zone;
 
-        }).orElseGet(Zone::autoZone);
+        }).orElseGet(MyZone::autoZone);
     }
 
     private void publishOptionUpdatedEvent() {

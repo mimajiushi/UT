@@ -51,6 +51,7 @@
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <jakarta.mail.version>1.6.5</jakarta.mail.version>
         <junit.version>4.13</junit.version>
+        <hessian.version>4.0.7</hessian.version>
     </properties>
 
     <dependencyManagement>
@@ -91,6 +92,11 @@
                         <artifactId>log4j</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.caucho</groupId>
+                <artifactId>hessian</artifactId>
+                <version>${hessian.version}</version>
             </dependency>
 
             <!-- 引入spring aop依赖 -->
