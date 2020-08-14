@@ -62,6 +62,10 @@ dubbo:
   registry:
     address: zookeeper://192.168.129.133:2181
     timeout: 60000
+  consumer:
+    timeout: 3000
+  provider:
+    timeout: 3000
 
 ##########################################################
 ##
