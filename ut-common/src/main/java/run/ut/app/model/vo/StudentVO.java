@@ -11,6 +11,7 @@ import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.enums.DegreeEnum;
 import run.ut.app.model.enums.SexEnum;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "StudentVO对象", description = "")
-public class StudentVO {
+public class StudentVO implements Serializable {
 
     @JsonSerialize(using = ToStringSerializer.class)
     @ApiModelProperty("uid")

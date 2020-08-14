@@ -12,6 +12,7 @@ import run.ut.app.model.dto.base.InputConverter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * <p>
@@ -26,7 +27,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor@Builder
 @AllArgsConstructor
 @ApiModel(value = "TeamsRecruitmentsParam 对象", description = "")
-public class TeamsRecruitmentsParam implements InputConverter<TeamsRecruitments> {
+public class TeamsRecruitmentsParam implements InputConverter<TeamsRecruitments>, Serializable {
 
     @ApiModelProperty(value = "更新的时候传的岗位唯一id")
     private Long id;

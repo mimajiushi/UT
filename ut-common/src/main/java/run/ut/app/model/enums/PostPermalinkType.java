@@ -1,11 +1,13 @@
 package run.ut.app.model.enums;
 
+import java.io.Serializable;
+
 /**
  * Post Permalink type enum.
  *
  * @author wenjie
  */
-public enum PostPermalinkType implements ValueEnum<Integer> {
+public enum PostPermalinkType implements ValueEnum<Integer>, Serializable {
 
     /**
      * /archives/${url}

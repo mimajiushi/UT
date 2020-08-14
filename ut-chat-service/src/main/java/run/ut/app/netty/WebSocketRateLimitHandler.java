@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import run.ut.app.service.RedisService;
@@ -19,10 +20,11 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @ChannelHandler.Sharable
 @Component
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class WebSocketRateLimitHandler extends ChannelInboundHandlerAdapter {
 
-    private final RedisService redisService;
+    @DubboReference
+    private RedisService redisService;
+
     private final int EXPIRE_TIME = 5;
     private final int MAX = 10;
 

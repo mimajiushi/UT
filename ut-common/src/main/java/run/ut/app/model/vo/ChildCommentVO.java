@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * @author wenjie
  */
@@ -12,7 +14,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
-public class ChildCommentVO extends BaseVO {
+public class ChildCommentVO extends BaseVO implements Serializable {
 
     @ApiModelProperty(value = "评论id")
     private Long id;

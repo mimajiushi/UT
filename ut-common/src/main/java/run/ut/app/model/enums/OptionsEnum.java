@@ -2,6 +2,7 @@ package run.ut.app.model.enums;
 
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * Options Enum.
  */
 @Getter
-public enum OptionsEnum {
+public enum OptionsEnum implements Serializable {
 
     EMAIL_OPTIONS(
         "email_host",

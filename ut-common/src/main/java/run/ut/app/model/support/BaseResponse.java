@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
+import java.io.Serializable;
+
 /**
  * Global response entity.
  *
@@ -15,7 +17,7 @@ import org.springframework.lang.Nullable;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class BaseResponse<T> {
+public class BaseResponse<T> implements Serializable {
 
     /**
      * Response status.

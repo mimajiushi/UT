@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 import run.ut.app.model.domain.Posts;
 import run.ut.app.model.dto.base.InputConverter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @Accessors(chain = true)
-public class PostVO implements InputConverter<Posts> {
+public class PostVO implements InputConverter<Posts>, Serializable {
 
     @ApiModelProperty(value = "帖子id")
     private Long id;

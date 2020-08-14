@@ -25,6 +25,7 @@ import run.ut.app.service.TeamsMembersService;
 import run.ut.app.service.TeamsService;
 import run.ut.app.service.UserService;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 
 /**
@@ -35,19 +36,18 @@ import java.util.HashMap;
 @Configuration
 @Order(Ordered.HIGHEST_PRECEDENCE + 2)
 @Slf4j
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TeamsApplyOrInviteEventListener {
 
-    private final MailService mailService;
-    private final TeamsService teamsService;
-    private final TeamsMembersService teamsMembersService;
-    private final UserService userService;
+    @Resource private MailService mailService;
+    @Resource private TeamsService teamsService;
+    @Resource private TeamsMembersService teamsMembersService;
+    @Resource private UserService userService;
 
     private final String MAIL_INVITE = "mail_template/mail_invite.ftl";
     private final String MAIL_APPLY = "mail_template/mail_apply.ftl";
 
     @DubboReference
-    private final UserChannelManager userChannelManager;
+    private UserChannelManager userChannelManager;
 
 
     /**

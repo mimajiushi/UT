@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 
 /**
@@ -12,7 +13,7 @@ import javax.validation.constraints.Size;
  */
 @Data
 @ApiModel(description = "查询职位list的参数")
-public class SearchRecruitmentParam {
+public class SearchRecruitmentParam implements Serializable {
 
     @ApiModelProperty(value = "职位名称")
     @Size(max = 10, message = "查询名不能大于{max}字")

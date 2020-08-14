@@ -8,10 +8,11 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Data
 @ApiModel(value = "处理邀请/申请的请求参数")
-public class DealInvitationOrApplyParam {
+public class DealInvitationOrApplyParam implements Serializable {
 
     @ApiModelProperty(value = "申请/邀请的id集合")
     @NotNull(message = "ids must not be null")

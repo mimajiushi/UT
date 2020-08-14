@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * @author wenjie
@@ -12,7 +13,7 @@ import javax.validation.constraints.Size;
 
 @Data
 @ApiModel(description = "查询学生list的参数")
-public class SearchStudentParam {
+public class SearchStudentParam implements Serializable {
 
     private Integer grade;
 

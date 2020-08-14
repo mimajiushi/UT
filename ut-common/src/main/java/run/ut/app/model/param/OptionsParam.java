@@ -7,6 +7,7 @@ import run.ut.app.model.enums.OptionsType;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * Optional param.
@@ -14,7 +15,7 @@ import javax.validation.constraints.Size;
  * @author wenjie
  */
 @Data
-public class OptionsParam implements InputConverter<Options> {
+public class OptionsParam implements InputConverter<Options>, Serializable {
 
     @NotBlank(message = "Option key must not be blank")
     @Size(max = 100, message = "Length of option key must not be more than {max}")

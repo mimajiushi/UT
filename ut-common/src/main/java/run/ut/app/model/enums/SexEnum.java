@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Arrays;
  * @author wenjie
  */
 @Getter
-public enum SexEnum implements IEnum<Integer> {
+public enum SexEnum implements IEnum<Integer>, Serializable {
     UNKNOW(0, "保密"),
     MALE(1, "男"),
     FEMALE(2, "女");

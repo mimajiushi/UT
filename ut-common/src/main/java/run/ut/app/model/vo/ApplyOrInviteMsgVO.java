@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import run.ut.app.model.enums.ApplyStatusEnum;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -22,7 +23,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "ApplyOrInviteMsgVO 对象", description = "用户收到的邀请信息 or 团队收到的申请信息")
-public class ApplyOrInviteMsgVO {
+public class ApplyOrInviteMsgVO implements Serializable {
 
     @ApiModelProperty(value = "申请/邀请的id")
     private Long id;

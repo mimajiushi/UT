@@ -1,6 +1,7 @@
 package run.ut.app.model.support;
 
 import java.io.File;
+import java.io.Serializable;
 
 /**
  * <pre>
@@ -9,7 +10,7 @@ import java.io.File;
  *
  * @author wenjie
  */
-public class UtConst {
+public class UtConst implements Serializable {
 
     /**
      * User home directory.

@@ -23,7 +23,6 @@ import run.ut.app.security.util.JwtOperator;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AuthHandler extends ChannelInboundHandlerAdapter {
 
-    @DubboReference
     private final UserChannelManager userChannelManager;
     private final JwtOperator jwtOperator;
 

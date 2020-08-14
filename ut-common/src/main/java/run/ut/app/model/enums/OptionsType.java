@@ -1,11 +1,13 @@
 package run.ut.app.model.enums;
 
+import java.io.Serializable;
+
 /**
  * Option Type.
  *
  * @author wenjie
  */
-public enum OptionsType implements ValueEnum<Integer> {
+public enum OptionsType implements ValueEnum<Integer>, Serializable {
 
     /**
      * internal option

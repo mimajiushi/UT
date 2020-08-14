@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Arrays;
  * @author wenjie
  */
 @Getter
-public enum TeamsMemberEnum implements IEnum<Integer> {
+public enum TeamsMemberEnum implements IEnum<Integer>, Serializable {
     NORMAL(0, "普通成员"),
     LEADER(1, "队长");
 

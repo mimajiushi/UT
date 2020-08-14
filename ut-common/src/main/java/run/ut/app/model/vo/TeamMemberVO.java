@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import run.ut.app.model.enums.TeamsMemberEnum;
 
+import java.io.Serializable;
+
 /**
  * TeamMemberVO
  * @author wenjie
@@ -18,7 +20,7 @@ import run.ut.app.model.enums.TeamsMemberEnum;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "TeamMemberVO 对象", description = "")
-public class TeamMemberVO {
+public class TeamMemberVO implements Serializable {
 
     private Long id;
 

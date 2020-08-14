@@ -67,11 +67,6 @@
             <artifactId>ut-common</artifactId>
             <version>0.0.1</version>
         </dependency>
-        <dependency>
-            <groupId>run.ut.app</groupId>
-            <artifactId>ut-service-center</artifactId>
-            <version>0.0.1</version>
-        </dependency>
     </dependencies>
 
 </project>

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Arrays;
  * @author wenjie
  */
 @Getter
-public enum DegreeEnum implements IEnum<Integer> {
+public enum DegreeEnum implements IEnum<Integer>, Serializable {
     JUNIOR_COLLEGE(1, "大专"),
     REGULAR_COLLEGE(2, "本科"),
     DOCTOR_OR_ABOVE(3, "博士及以上");

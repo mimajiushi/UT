@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * @author wenjie
  */
@@ -14,7 +16,7 @@ import lombok.experimental.Accessors;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class WebSocketMsg {
+public class WebSocketMsg implements Serializable {
     private Integer type;
 
     private Object msg;

@@ -5,12 +5,14 @@ import lombok.Data;
 import run.ut.app.model.domain.Forum;
 import run.ut.app.model.dto.base.InputConverter;
 
+import java.io.Serializable;
+
 /**
  * @author wenjie
  * @date 2020-5-19
  */
 @Data
-public class ForumParam implements InputConverter<Forum> {
+public class ForumParam implements InputConverter<Forum>, Serializable {
 
     @ApiModelProperty(value = "版块id")
     private Long id;

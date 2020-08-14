@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 @Getter
 @ToString
-public enum UserRolesEnum implements IEnum<Integer> {
+public enum UserRolesEnum implements IEnum<Integer>, Serializable {
     ROLE_ADMIN(8, "ROLE_ADMIN", "系统管理员"),
     ROLE_TOURIST(0, "ROLE_TOURIST", "游客"),
     ROLE_STUDENT(1, "ROLE_STUDENT", "学生"),

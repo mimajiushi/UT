@@ -5,10 +5,11 @@ import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 @Data
 @ApiModel(value = "微信登录所需要带的参数")
-public class WeChatLoginParam {
+public class WeChatLoginParam implements Serializable {
 
     /**
      * 微信小程序的授权码

@@ -8,6 +8,7 @@ import run.ut.app.model.domain.User;
 import run.ut.app.model.dto.base.InputConverter;
 
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * <p>
@@ -20,7 +21,7 @@ import javax.validation.constraints.Size;
 @Data
 @ToString
 @ApiModel(description = "可修改参数: 昵称、描述、性别", value = "可被用户任意修改的基本信息参数")
-public class UserSimpleParam implements InputConverter<User> {
+public class UserSimpleParam implements InputConverter<User>, Serializable {
 
     @ApiModelProperty(value = "用户uid，前端不需要传，由后端解析token填充")
     private Long uid;

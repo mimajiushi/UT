@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * @author wenjie
  */
@@ -12,7 +14,7 @@ import lombok.experimental.Accessors;
 @Data
 @ApiModel(description = "查询帖子list的参数")
 @Accessors(chain = true)
-public class SearchPostParam {
+public class SearchPostParam implements Serializable {
 
     @ApiModelProperty(value = "帖子标题")
     private String title;

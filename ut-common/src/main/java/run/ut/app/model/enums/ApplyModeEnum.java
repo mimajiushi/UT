@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Arrays;
  * @author wenjie
  */
 @Getter
-public enum ApplyModeEnum implements IEnum<Integer> {
+public enum ApplyModeEnum implements IEnum<Integer>, Serializable {
     USER_TO_TEAM(1, "用户申请加入团队"),
     TEAM_TO_USER(2, "团队邀请用户加入");
 

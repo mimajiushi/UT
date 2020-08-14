@@ -20,6 +20,8 @@ import run.ut.app.service.PostsService;
 import run.ut.app.service.RedisService;
 import run.ut.app.service.UserService;
 
+import javax.annotation.Resource;
+
 import static run.ut.app.model.enums.WebSocketMsgTypeEnum.COMMENT;
 
 /**
@@ -28,16 +30,15 @@ import static run.ut.app.model.enums.WebSocketMsgTypeEnum.COMMENT;
  * @author wenjie
  */
 @Component
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Slf4j
 public class CommentEventListener {
 
-    private final RedisService redisService;
-    private final PostsService postsService;
-    private final UserService userService;
+    @Resource private RedisService redisService;
+    @Resource private PostsService postsService;
+    @Resource private UserService userService;
 
     @DubboReference
-    private final UserChannelManager userChannelManager;
+    private UserChannelManager userChannelManager;
 
     @EventListener
     @Async

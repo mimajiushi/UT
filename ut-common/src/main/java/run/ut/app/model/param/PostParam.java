@@ -8,13 +8,14 @@ import run.ut.app.model.dto.base.InputConverter;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * Post params
  * @author wenjie
  */
 @Data
-public class PostParam implements InputConverter<Posts> {
+public class PostParam implements InputConverter<Posts>, Serializable {
 
     private Long id;
 

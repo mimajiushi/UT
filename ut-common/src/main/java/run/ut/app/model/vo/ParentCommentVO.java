@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 import run.ut.app.model.domain.PostComments;
 import run.ut.app.model.dto.base.OutputConverter;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
-public class ParentCommentVO extends BaseVO implements OutputConverter<ParentCommentVO, PostComments> {
+public class ParentCommentVO extends BaseVO implements OutputConverter<ParentCommentVO, PostComments>, Serializable {
 
     @ApiModelProperty(value = "评论id")
     private Long id;

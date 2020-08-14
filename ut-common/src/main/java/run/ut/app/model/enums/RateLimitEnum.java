@@ -1,9 +1,11 @@
 package run.ut.app.model.enums;
 
+import java.io.Serializable;
+
 /**
  * @author wenjie
  */
-public enum RateLimitEnum {
+public enum RateLimitEnum implements Serializable {
 
     /**
      * M/N means that only M times can be requested in N time units

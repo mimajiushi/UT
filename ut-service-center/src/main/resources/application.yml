@@ -67,6 +67,8 @@ dubbo:
   registry:
     address: zookeeper://192.168.129.133:2181
     timeout: 60000
+  consumer:
+    check: false
 
 ##########################################################
 ##
@@ -87,22 +89,6 @@ mybatis-plus:
     cache-enabled: false
     # 非单体应用不可以开启一级缓存
     localCacheScope: STATEMENT
-
-##########################################################
-##
-## websocket 配置
-##
-##########################################################
-netty:
-  websocket:
-    port: 8088
-    context-path: /ut/ws
-    # 0表示自动设置，自动设置的值为：CPU核心数 * 2
-    boss-threads: 0
-    # 0表示自动设置，自动设置的值为：CPU核心数 * 2
-    worker-threads: 0
-    # 只能在linux和mac系统下才能设置为true，可以获得更高的性能
-    epoll: false
 
 ##########################################################
 ##
