@@ -65,7 +65,7 @@ dubbo:
     name: dubbo
     port: 12235
   registry:
-    address: zookeeper://192.168.129.133:2181
+    address: nacos://localhost:8848
     timeout: 60000
   consumer:
     check: false

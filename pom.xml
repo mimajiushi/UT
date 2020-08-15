@@ -13,7 +13,6 @@
         <module>ut-chat-service</module>
         <module>ut-common</module>
         <module>ut-service-center</module>
-        <module>ut-test</module>
     </modules>
 
     <properties>
@@ -46,12 +45,11 @@
         <validation-api.version>2.0.1.Final</validation-api.version>
         <hibernate-validator.version>6.0.8.Final</hibernate-validator.version>
         <javax.persistence-api.version>2.2</javax.persistence-api.version>
-        <curator-recipes.version>4.2.0</curator-recipes.version>
-        <zookeeper.version>3.6.1</zookeeper.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <jakarta.mail.version>1.6.5</jakarta.mail.version>
         <junit.version>4.13</junit.version>
-        <hessian.version>4.0.7</hessian.version>
+        <nacos-client.version>[0.6.1,)</nacos-client.version>
+        <spring-context-support.version>1.0.9</spring-context-support.version>
     </properties>
 
     <dependencyManagement>
@@ -93,10 +91,24 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            
             <dependency>
-                <groupId>com.caucho</groupId>
-                <artifactId>hessian</artifactId>
-                <version>${hessian.version}</version>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-registry-nacos</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+
+            <!-- Keep latest Nacos client version -->
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos-client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.spring</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring-context-support.version}</version>
             </dependency>
 
             <!-- 引入spring aop依赖 -->
@@ -322,31 +334,6 @@
                 <version>${hibernate-validator.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.apache.zookeeper</groupId>
-                <artifactId>zookeeper</artifactId>
-                <version>${zookeeper.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-log4j12</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.curator</groupId>
-                <artifactId>curator-framework</artifactId>
-                <version>${curator-recipes.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.curator</groupId>
-                <artifactId>curator-recipes</artifactId>
-                <version>${curator-recipes.version}</version>
-            </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
