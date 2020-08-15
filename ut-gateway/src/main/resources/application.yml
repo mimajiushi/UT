@@ -28,6 +28,12 @@ spring:
         # 配置中心地址
         server-addr: 127.0.0.1:8848
         file-extension: yml
+#    gateway:
+#      routes:
+#        - id: ut-chat-service-websocket
+#          uri: lb:ws://localhost:8088/ws
+#          predicates:
+#          - Path=/ws
 
 ##########################################################
 ##

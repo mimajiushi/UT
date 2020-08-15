@@ -1,5 +1,6 @@
 package run.ut.app;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableDiscoveryClient
+@Slf4j
 public class UtGateWayApplication {
 
     private static ConfigurableApplicationContext CONTEXT;
@@ -25,12 +27,4 @@ public class UtGateWayApplication {
         CONTEXT = SpringApplication.run(UtGateWayApplication.class, args);
     }
 
-
-    @Bean
-    public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
-        return builder.routes()
-            // 获取服务实际的ip和端口
-            .route("ut_chat_service_http", r -> r.path("/ws").uri("ws://localhost:8088/ws"))
-            .build();
-    }
 }
