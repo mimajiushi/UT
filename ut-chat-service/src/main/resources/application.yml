@@ -5,8 +5,6 @@
 ##########################################################
 server:
   port: ${PORT:8081}
-  servlet:
-    context-path: /ut
 spring:
   application:
     name: ut-chat-service
@@ -22,6 +20,8 @@ spring:
       config:
         # 配置中心地址
         server-addr: 127.0.0.1:8848
+        # 配置文件格式
+        file-extension: yml
 ##########################################################
 ##
 ## dubbo 配置
@@ -47,7 +47,7 @@ dubbo:
 netty:
   websocket:
     port: 8088
-    context-path: /ut/ws
+    context-path: /ws
     # 0表示自动设置，自动设置的值为：CPU核心数 * 2
     boss-threads: 0
     # 0表示自动设置，自动设置的值为：CPU核心数 * 2
