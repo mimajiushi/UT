@@ -36,27 +36,15 @@
 - 提交PR： 提交的PR后都会经过jenkins的编译、打包测试，通过了会自动在PR下留言测试结果， **请务必保证测试结果通过** （现阶段PR里面一个失败一个成功，可以参考下）。  
 - 自定义环境：如果你因为某种原因，需要更改`application.yml`的一些配置，比如开启debug，那么你完全可以在本地的`{user.home}/.ut`目录下创建`application.yml`文件，它可以有选择性地覆盖项目中默认的配置项。
 
-#### 包结构
+#### 服务结构
 
 ```
-run.ut.app
-├── api -- controller层的接口抽象层，主要用于分离Swagger2文档
-├── cache -- 跟缓存有关的业务
-├── config -- 项目相关的配置类
-├── controller -- 存放controller
-├── core -- 目前是放对返回对象的增强的逻辑
-├── event -- 自定义各种时间
-├── exception -- 异常定义、处理相关。
-├── handler -- 一些处理器
-├── listener -- 监听事件并处理
-├── mail -- 邮件相关代码
-├── mapper -- MyBaits的mapper
-├── model -- 存放DOMAIN、DTO、VO、Param等实体
-├── netty -- netty的一些代码，目前只用于搭建WebSocket服务
-├── schedule -- 存放定时任务，目前的定时任务大多都是测试用
-├── security -- 自定义认证拦截逻辑
-├── service -- 业务层代码
-└── run.ut.app.utils -- 工具类
+ut
+├── ut-common -- 一些公共类
+├── ut-bbs-service -- 提供给前端的接口
+├── ut-chat-service -- 推送、聊天（未完成）服务，核心就是Netty搭建的websocke服务
+├── ut-service-center -- mysql、redis相关的服务都在这里
+├── ut-gateway（未构建） -- 主要是用于负载ut-bbs-service、ut-chat-service，其中如何负载websocket是目前的难点之一。
 
 ```
 
