@@ -5,6 +5,8 @@ import lombok.experimental.Accessors;
 import run.ut.app.model.domain.Options;
 import run.ut.app.model.dto.base.OutputConverter;
 
+import java.io.Serializable;
+
 /**
  * Option output dto.
  *
@@ -16,7 +18,7 @@ import run.ut.app.model.dto.base.OutputConverter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OptionsDTO implements OutputConverter<OptionsDTO, Options> {
+public class OptionsDTO implements OutputConverter<OptionsDTO, Options>, Serializable {
 
     private String key;
 

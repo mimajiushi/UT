@@ -57,7 +57,7 @@ dubbo:
   application:
     name: ut-bbs-service
   protocol:
-    name: hessian
+    name: dubbo
     port: 12234
   registry:
     address: nacos://localhost:8848
