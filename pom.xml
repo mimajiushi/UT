@@ -13,11 +13,12 @@
         <module>ut-chat-service</module>
         <module>ut-common</module>
         <module>ut-service-center</module>
+        <module>ut-gateway</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
-        <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
+        <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
         <dubbo.version>2.7.7</dubbo.version>
         <commons-codec.version>1.10</commons-codec.version>
         <commons-lang3.version>3.6</commons-lang3.version>
@@ -50,10 +51,27 @@
         <junit.version>4.13</junit.version>
         <nacos-client.version>[0.6.1,)</nacos-client.version>
         <spring-context-support.version>1.0.9</spring-context-support.version>
+        <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
+        <spring-cloud-alibaba-dependencies.version>2.2.1.RELEASE</spring-cloud-alibaba-dependencies.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- Spring Boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -91,7 +109,7 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-registry-nacos</artifactId>

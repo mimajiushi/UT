@@ -14,6 +14,14 @@ spring:
     multipart:
       max-file-size: 11MB
       max-request-size: 11MB
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 127.0.0.1:8848
+      config:
+        # 配置中心地址
+        server-addr: 127.0.0.1:8848
   ##########################################################
   ##
   ## mysql 数据源配置
