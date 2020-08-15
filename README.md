@@ -12,6 +12,8 @@
     <a href="https://github.com/google/guava"><img src="https://img.shields.io/badge/Guava-28_jre-ff69b4.svg"></a>
     <a href="https://github.com/looly/hutool"><img src="https://img.shields.io/badge/hutool-5.0.3-yellow.svg"></a>
     <a href="https://developer.qiniu.com/kodo/sdk/1239/java"><img src="https://img.shields.io/badge/七牛云_SDK-7.2.18-blue.svg"></a>
+    <a href="http://dubbo.apache.org/"><img src="https://img.shields.io/badge/dubbo-2.7.7-purple.svg"></a>
+    <a href="https://nacos.io/"><img src="https://img.shields.io/badge/nacos-1.3.1-blue.svg"></a>
 </p>
 
 #### 特别说明
