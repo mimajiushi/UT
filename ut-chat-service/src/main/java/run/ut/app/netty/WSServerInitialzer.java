@@ -45,8 +45,8 @@ public class WSServerInitialzer extends ChannelInitializer<SocketChannel> {
             .addLast(new ChunkedWriteHandler())
             .addLast(new HttpObjectAggregator(1024 * 64))
             .addLast(authHandler)
-//            .addLast(new IdleStateHandler(30, 30, 5, TimeUnit.SECONDS))
-            .addLast(new IdleStateHandler(10, 10, 30, TimeUnit.MINUTES))
+            .addLast(new IdleStateHandler(30, 30, 30, TimeUnit.SECONDS))
+//            .addLast(new IdleStateHandler(10, 10, 30, TimeUnit.MINUTES))
             .addLast(heartBeatHandler)
             .addLast(new WebSocketServerProtocolHandler(webSocketConfiguration.getContextPath()))
             .addLast(clientMsgHandler);

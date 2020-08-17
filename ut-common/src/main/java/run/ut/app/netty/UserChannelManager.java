@@ -8,7 +8,14 @@ import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 
 import java.util.Set;
 
+/**
+ * User - Channel manager
+ *
+ * @author wenjie
+ * @date 2020-8-17
+ */
 public interface UserChannelManager {
+
     void add(@NonNull Long uid, @NonNull Channel channel);
 
     void remove(@NonNull Long uid);
