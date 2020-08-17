@@ -71,7 +71,7 @@ public class WebSocketServer {
         ChannelFuture channelFuture = server.bind(webSocketConfiguration.getPort()).sync();
         channelFuture.addListener(future -> {
             if (future.isSuccess()) {
-                nacosServiceRegistry.register(buildNacosRegistration());
+                register();
                 log.info("WebSocketServer - Start completed.");
             } else {
                 throw new WebSocketException("WebSocket启动失败！");
@@ -79,11 +79,15 @@ public class WebSocketServer {
         });
     }
 
+    private void register() {
+        nacosServiceRegistry.register(buildNacosRegistration());
+    }
+
     private NacosRegistration buildNacosRegistration() {
         NacosDiscoveryProperties newNacosDiscoveryProperties = new NacosDiscoveryProperties();
         BeanUtils.copyProperties(nacosDiscoveryProperties, newNacosDiscoveryProperties);
         newNacosDiscoveryProperties.setPort(webSocketConfiguration.getPort());
-        newNacosDiscoveryProperties.setService("ut-chat-service-websocket");
+        newNacosDiscoveryProperties.setService(webSocketConfiguration.getServerName());
         return new NacosRegistration(newNacosDiscoveryProperties, context);
     }
 

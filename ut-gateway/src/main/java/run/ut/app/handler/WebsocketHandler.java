@@ -41,7 +41,7 @@ public class WebsocketHandler implements GlobalFilter, Ordered {
         return Ordered.LOWEST_PRECEDENCE - 2;
     }
 
-    static String convertWsToHttp(String scheme) {
+    private static String convertWsToHttp(String scheme) {
         scheme = scheme.toLowerCase();
         return "ws".equals(scheme) ? "http" : "wss".equals(scheme) ? "https" : scheme;
     }

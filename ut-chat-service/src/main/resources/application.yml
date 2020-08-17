@@ -54,6 +54,8 @@ netty:
     worker-threads: 0
     # 只能在linux和mac系统下才能设置为true，可以获得更高的性能
     epoll: false
+    # 在nacos（注册中心）上的服务名
+    server-name: ut-chat-service-websocket
 
 ##########################################################
 ##

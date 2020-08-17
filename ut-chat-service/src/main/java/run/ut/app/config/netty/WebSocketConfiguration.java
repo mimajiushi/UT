@@ -28,6 +28,11 @@ public class WebSocketConfiguration {
     private int bossThreads = 0;
 
     /**
+     * The name of the service in nacos
+     */
+    private String serverName = "ut-chat-service-websocket";
+
+    /**
      * Only in Linux environments can this be set to true
      * @see <a href="https://stackoverflow.com/questions/35568365/netty-epolleventloopgroup-vs-nioeventloopgroup-which-should-i-choose-on-centos">link<a/>
      */
