@@ -74,6 +74,7 @@ dubbo:
     timeout: 60000
   consumer:
     timeout: 3000
+    check: false
   provider:
     timeout: 3000
 
