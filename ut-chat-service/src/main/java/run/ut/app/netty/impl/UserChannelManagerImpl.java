@@ -34,7 +34,7 @@ import java.util.concurrent.locks.ReentrantLock;
 @Slf4j
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@DubboService()
+@DubboService
 public class UserChannelManagerImpl implements UserChannelManager {
 
     private ConcurrentHashMap<Long, Set<Channel>> userChannelMap = new ConcurrentHashMap<>(1 << 8);
