@@ -41,7 +41,7 @@
 
 #### 预期架构图
 
-![UT架构图.png](https://www.wenjie.store/blog/img/UT%E6%9E%B6%E6%9E%84%E5%9B%BE_1597658906540.png)
+![UT架构图.png](https://www.wenjie.store/blog/img/UT%E6%9E%B6%E6%9E%84%E5%9B%BE_1598102194132.png)
 
 #### 服务结构
 
