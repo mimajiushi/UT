@@ -51,7 +51,7 @@ ut
 ├── ut-bbs-service -- 提供给前端的接口
 ├── ut-chat-service -- 推送、聊天（未完成）服务，核心就是Netty搭建的websocke服务
 ├── ut-service-center -- mysql、redis相关的服务都在这里
-├── ut-gateway（未构建） -- 主要是用于负载ut-bbs-service、ut-chat-service，其中如何负载websocket是目前的难点之一。
+├── ut-gateway -- 主要是用于负载ut-bbs-service、ut-chat-service，其中如何负载websocket是目前的难点之一。
 
 ```
 
