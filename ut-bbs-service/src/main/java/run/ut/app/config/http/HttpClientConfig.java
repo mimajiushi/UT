@@ -8,7 +8,6 @@ package run.ut.app.config.http;
  */
 
 
-import com.alibaba.fastjson.JSON;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.Header;
@@ -33,6 +32,7 @@ import org.apache.http.message.BasicHeaderElementIterator;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,6 +45,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
+import run.ut.app.utils.JsonUtils;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
@@ -95,7 +96,7 @@ public class HttpClientConfig {
      * 初始化RestTemplate,并加入spring的Bean工厂，由spring统一管理
      */
     @Bean
-    public RestTemplate restTemplate(ClientHttpRequestFactory factory) {
+    public RestTemplate restTemplate(@Qualifier("clientHttpRequestFactory") ClientHttpRequestFactory factory) {
         return createRestTemplate(factory);
     }
 
@@ -154,7 +155,7 @@ public class HttpClientConfig {
                     response.headerIterator(HTTP.CONN_KEEP_ALIVE));
             while (it.hasNext()) {
                 HeaderElement he = it.nextElement();
-                log.info("HeaderElement:{}", JSON.toJSONString(he));
+                log.info("HeaderElement:{}", JsonUtils.objectToJson(he));
                 String param = he.getName();
                 String value = he.getValue();
                 if (value != null && "timeout".equalsIgnoreCase(param)) {

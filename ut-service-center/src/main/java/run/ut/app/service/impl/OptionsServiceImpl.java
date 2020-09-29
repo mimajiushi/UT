@@ -31,7 +31,6 @@ import run.ut.app.utils.ServiceUtils;
 import run.ut.app.utils.ValidationUtils;
 
 import javax.validation.constraints.NotNull;
-import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -190,7 +189,7 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
             return result;
         }
 
-        return (Map<String, Object>)JsonUtils.objectToMap(resJson);
+        return JsonUtils.jsonToObject(resJson, Map.class);
     }
 
     @Override
