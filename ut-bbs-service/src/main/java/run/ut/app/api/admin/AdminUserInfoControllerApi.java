@@ -8,8 +8,6 @@ import run.ut.app.model.param.UserInfoParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 
-import java.io.IOException;
-
 @Api(value = "管理员处理用户认证API",tags = "管理员处理用户认证API")
 public interface AdminUserInfoControllerApi {
 

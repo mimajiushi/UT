@@ -11,7 +11,6 @@ import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.WeChatResponse;
 import run.ut.app.model.vo.StudentVO;
 
-import java.io.IOException;
 import java.util.List;
 
 /**

@@ -15,7 +15,6 @@ import run.ut.app.model.enums.AttachmentType;
 import run.ut.app.model.support.UploadResult;
 import run.ut.app.service.OptionsService;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedList;
 

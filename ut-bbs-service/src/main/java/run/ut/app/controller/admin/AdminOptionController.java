@@ -1,10 +1,8 @@
 package run.ut.app.controller.admin;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.admin.AdminOptionControllerApi;
 import run.ut.app.controller.BaseController;

@@ -10,8 +10,6 @@ import run.ut.app.model.param.UserInfoParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 
-import java.io.IOException;
-
 /**
  * <p>
  *  UserInfoService

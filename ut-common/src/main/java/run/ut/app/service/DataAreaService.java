@@ -6,7 +6,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.lang.NonNull;
 import run.ut.app.model.domain.DataArea;
 
-import java.io.IOException;
 import java.util.List;
 
 /**

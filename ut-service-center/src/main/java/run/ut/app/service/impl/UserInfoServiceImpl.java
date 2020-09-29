@@ -37,7 +37,6 @@ import run.ut.app.service.UserInfoService;
 import run.ut.app.utils.BeanUtils;
 import run.ut.app.utils.JsonUtils;
 
-import java.io.IOException;
 import java.util.List;
 
 import static run.ut.app.model.enums.UserRolesEnum.getByType;
