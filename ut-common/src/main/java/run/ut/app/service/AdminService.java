@@ -6,6 +6,8 @@ import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.param.AdminLoginParam;
 import run.ut.app.model.support.BaseResponse;
 
+import java.io.IOException;
+
 public interface AdminService {
 
     String LOG_PATH = "logs/spring.log";

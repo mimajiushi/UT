@@ -20,5 +20,5 @@ public interface AdminUserInfoControllerApi {
             notes = "注意，字段deleted=1，表示这段数据被软删除了，用户是看不见的，目前仅支持根据审核状态查询")
     public CommentPage<UserInfoDTO> listUserInfoByParam(UserInfoParam userInfoParam,
                                                         @RequestParam(defaultValue = "1") Integer pageNum,
-                                                        @RequestParam(defaultValue = "10") Integer pageSize) throws IOException;
+                                                        @RequestParam(defaultValue = "10") Integer pageSize);
 }

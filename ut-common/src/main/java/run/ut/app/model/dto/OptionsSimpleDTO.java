@@ -1,6 +1,9 @@
 package run.ut.app.model.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import run.ut.app.model.enums.OptionsType;
 

@@ -1,6 +1,7 @@
 package run.ut.app.model.dto.base;
 
 import org.springframework.lang.NonNull;
+
 import static run.ut.app.utils.BeanUtils.updateProperties;
 
 /**

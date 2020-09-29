@@ -19,7 +19,6 @@ import run.ut.app.model.domain.ActivityAppointment;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.service.ActivityAppointmentService;
 
-import javax.annotation.Resource;
 import java.time.LocalDateTime;
 
 /**

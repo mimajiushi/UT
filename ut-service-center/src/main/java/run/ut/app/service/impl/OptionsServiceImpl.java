@@ -1,9 +1,7 @@
 package run.ut.app.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qiniu.common.Zone;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -26,12 +24,14 @@ import run.ut.app.model.dto.OptionsDTO;
 import run.ut.app.model.param.OptionsParam;
 import run.ut.app.model.properties.PropertyEnum;
 import run.ut.app.model.properties.QiniuOssProperties;
-import run.ut.app.service.RedisService;
 import run.ut.app.service.OptionsService;
+import run.ut.app.service.RedisService;
+import run.ut.app.utils.JsonUtils;
 import run.ut.app.utils.ServiceUtils;
 import run.ut.app.utils.ValidationUtils;
 
 import javax.validation.constraints.NotNull;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -185,12 +185,12 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
                 });
 
             // Cache the result
-            redisService.set(RedisKey.OPTIONS_KEY, JSON.toJSONString(result));
+            redisService.set(RedisKey.OPTIONS_KEY, JsonUtils.objectToJson(result));
 
             return result;
         }
 
-        return JSON.parseObject(resJson, Map.class);
+        return (Map<String, Object>)JsonUtils.objectToMap(resJson);
     }
 
     @Override

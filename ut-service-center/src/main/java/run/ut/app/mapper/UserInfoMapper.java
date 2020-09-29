@@ -1,7 +1,7 @@
 package run.ut.app.mapper;
 
-import run.ut.app.model.domain.UserInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import run.ut.app.model.domain.UserInfo;
 
 /**
  * <p>

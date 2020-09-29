@@ -1,18 +1,18 @@
 package run.ut.app.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.qiniu.common.Zone;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.transaction.annotation.Transactional;
 import run.ut.app.exception.MissingPropertyException;
 import run.ut.app.handler.MyZone;
 import run.ut.app.model.domain.Options;
-import com.baomidou.mybatisplus.extension.service.IService;
 import run.ut.app.model.dto.OptionsDTO;
 import run.ut.app.model.param.OptionsParam;
 import run.ut.app.model.properties.PropertyEnum;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -88,7 +88,7 @@ public interface OptionsService extends IService<Options> {
      */
     @NonNull
     @Transactional
-    Map<String, Object> listOptions() throws JsonProcessingException;
+    Map<String, Object> listOptions();
     /**
      * Lists options by key list.
      *
@@ -96,7 +96,7 @@ public interface OptionsService extends IService<Options> {
      * @return a map of option
      */
     @NonNull
-    Map<String, Object> listOptionsToMap(@Nullable List<String> keys) throws JsonProcessingException;
+    Map<String, Object> listOptionsToMap(@Nullable List<String> keys);
 
 
     List<OptionsDTO> listDtos();

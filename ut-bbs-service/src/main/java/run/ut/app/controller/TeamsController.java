@@ -1,10 +1,8 @@
 package run.ut.app.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +21,6 @@ import run.ut.app.model.enums.TeamsStatusEnum;
 import run.ut.app.model.param.*;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
-import run.ut.app.model.support.UploadResult;
 import run.ut.app.model.vo.ApplyOrInviteMsgVO;
 import run.ut.app.security.CheckLogin;
 import run.ut.app.service.TeamsRecruitmentsService;

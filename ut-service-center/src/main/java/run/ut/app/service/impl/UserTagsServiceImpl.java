@@ -1,15 +1,15 @@
 package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import run.ut.app.mapper.TagsMapper;
+import run.ut.app.mapper.UserTagsMapper;
 import run.ut.app.model.domain.Tags;
 import run.ut.app.model.domain.UserTags;
-import run.ut.app.mapper.UserTagsMapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
 import run.ut.app.service.UserTagsService;
 
 import java.util.ArrayList;

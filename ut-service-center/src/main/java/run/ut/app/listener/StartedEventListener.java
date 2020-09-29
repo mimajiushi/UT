@@ -1,10 +1,10 @@
 package run.ut.app.listener;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
@@ -78,7 +78,12 @@ public class StartedEventListener implements ApplicationListener<ApplicationStar
             List<Integer> parentIdDistinct = dataAreaService.selectParentIdDistinct();
             for (Integer parentId : parentIdDistinct) {
                 String key = RedisKey.AREA_PREFIX + "::" + parentId;
-                List<DataArea> areasByParentId = dataAreaService.getAreaDataByParentId(parentId);
+                List<DataArea> areasByParentId = null;
+                try {
+                    areasByParentId = dataAreaService.getAreaDataByParentId(parentId);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
                 redisService.setKeyValTTL(key, JSON.toJSONString(areasByParentId), RedisKey.AREA_TTL);
             }
             log.info("加载所有省、市级信息结束...");
@@ -90,7 +95,8 @@ public class StartedEventListener implements ApplicationListener<ApplicationStar
             List<Integer> provincIdDistinct = dataSchoolService.selectProvincIdDistinct();
             for (Integer provincId : provincIdDistinct) {
                 String key = RedisKey.SCHOOL_DATA_LIST_PREFIX + "::" + provincId;
-                List<DataSchool> listByProvinceId = dataSchoolService.getListByProvinceId(provincId);
+                List<DataSchool> listByProvinceId = null;
+                listByProvinceId = dataSchoolService.getListByProvinceId(provincId);
                 redisService.setKeyValTTL(key, JSON.toJSONString(listByProvinceId), RedisKey.AREA_TTL);
             }
 

@@ -1,6 +1,6 @@
 package run.ut.app.model.dto;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -24,10 +24,10 @@ import run.ut.app.model.dto.base.OutputConverter;
 @AllArgsConstructor
 public class TeamsRecruitmentsDTO extends BaseDTO implements OutputConverter<TeamsRecruitmentsDTO, TeamsRecruitments> {
 
-    @JSONField(serializeUsing = ToStringSerializer.class)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
-    @JSONField(serializeUsing = ToStringSerializer.class)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long teamId;
 
     @ApiModelProperty(value = "招聘岗位名称")

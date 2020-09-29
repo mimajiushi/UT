@@ -56,10 +56,9 @@ public interface UserInfoService extends IService<UserInfo> {
      * @param userInfoParam    params
      * @param page             Paging object of mybatis
      * @return serInfoDTO
-     * @throws IOException IOException
      */
     @NonNull
-    CommentPage<UserInfoDTO> listUserInfoByParam(@NonNull UserInfoParam userInfoParam, @NonNull Page<UserInfo> page) throws IOException;
+    CommentPage<UserInfoDTO> listUserInfoByParam(@NonNull UserInfoParam userInfoParam, @NonNull Page<UserInfo> page);
 
     /**
      * 检验用户是否通过认证

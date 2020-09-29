@@ -1,7 +1,6 @@
 package run.ut.app.netty;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
-import com.alibaba.cloud.nacos.NacosServiceInstance;
 import com.alibaba.cloud.nacos.registry.NacosRegistration;
 import com.alibaba.cloud.nacos.registry.NacosServiceRegistry;
 import io.netty.bootstrap.ServerBootstrap;
@@ -83,6 +82,9 @@ public class WebSocketServer {
         nacosServiceRegistry.register(buildNacosRegistration());
     }
 
+    /**
+     * 因为Dubbo默认暴露的是web接口，如果网关需要调用websocket服务，则需要自己注册指定参数
+     */
     private NacosRegistration buildNacosRegistration() {
         NacosDiscoveryProperties newNacosDiscoveryProperties = new NacosDiscoveryProperties();
         BeanUtils.copyProperties(nacosDiscoveryProperties, newNacosDiscoveryProperties);

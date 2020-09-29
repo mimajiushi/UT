@@ -10,6 +10,8 @@ import run.ut.app.exception.FileOperationException;
 import run.ut.app.model.enums.AttachmentType;
 import run.ut.app.model.support.UploadResult;
 
+import java.io.IOException;
+
 import static run.ut.app.model.support.UtConst.FILE_SEPARATOR;
 
 /**

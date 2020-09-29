@@ -28,7 +28,6 @@ import run.ut.app.service.ActivityService;
 import run.ut.app.service.RedisService;
 import run.ut.app.utils.BeanUtils;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 

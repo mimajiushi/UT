@@ -17,8 +17,6 @@ import run.ut.app.service.ActivityAppointmentService;
 import run.ut.app.service.ActivityCollectService;
 import run.ut.app.service.ActivityService;
 
-import javax.annotation.Resource;
-
 /**
  * @author wenjie
  * @date 2020-5-17

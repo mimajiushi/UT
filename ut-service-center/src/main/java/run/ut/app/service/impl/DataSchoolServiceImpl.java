@@ -1,6 +1,5 @@
 package run.ut.app.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +15,7 @@ import run.ut.app.mapper.DataSchoolMapper;
 import run.ut.app.model.domain.DataSchool;
 import run.ut.app.service.DataSchoolService;
 import run.ut.app.service.RedisService;
+import run.ut.app.utils.JsonUtils;
 
 import java.util.List;
 
@@ -38,12 +38,12 @@ public class DataSchoolServiceImpl extends ServiceImpl<DataSchoolMapper, DataSch
                     new QueryWrapper<DataSchool>().eq("province_id", provinceId)
             );
             if (!ObjectUtils.isEmpty(dataSchools)) {
-                redisService.setKeyValTTL(key, JSON.toJSONString(dataSchools), RedisKey.AREA_TTL);
+                redisService.setKeyValTTL(key, JsonUtils.objectToJson(dataSchools), RedisKey.AREA_TTL);
                 return dataSchools;
             }
             throw new NotFoundException("The schools with id " + provinceId + " could not be found or have been deleted");
         }
-        return JSON.parseArray(value, DataSchool.class);
+        return JsonUtils.jsonToList(value, DataSchool.class);
     }
 
 
@@ -62,12 +62,12 @@ public class DataSchoolServiceImpl extends ServiceImpl<DataSchoolMapper, DataSch
         if (StringUtils.isEmpty(value)) {
             DataSchool dataSchool = dataSchoolMapper.selectById(id);
             if (!ObjectUtils.isEmpty(dataSchool)) {
-                redisService.setKeyValTTL(key, JSON.toJSONString(dataSchool), RedisKey.AREA_TTL);
+                redisService.setKeyValTTL(key, JsonUtils.objectToJson(dataSchool), RedisKey.AREA_TTL);
                 return dataSchool;
             }
             throw new NotFoundException("The school with id " + id + " could not be found or has been deleted");
         }
-        return JSON.parseObject(value, DataSchool.class);
+        return JsonUtils.jsonToObject(value, DataSchool.class);
     }
 
     @Override

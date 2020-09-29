@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.model.enums.AttachmentType;
 import run.ut.app.model.support.UploadResult;
 
+import java.io.IOException;
 import java.util.Collection;
 
 public interface FileHandlers {

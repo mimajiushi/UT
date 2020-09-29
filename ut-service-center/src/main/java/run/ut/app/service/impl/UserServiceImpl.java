@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.multipart.MultipartFile;
 import run.ut.app.config.redis.RedisKey;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.exception.BadRequestException;
@@ -30,7 +29,6 @@ import run.ut.app.model.enums.UserInfoStatusEnum;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.WeChatLoginParam;
 import run.ut.app.model.support.BaseResponse;
-import run.ut.app.model.support.UploadResult;
 import run.ut.app.model.support.WeChatResponse;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.security.token.AuthToken;
@@ -39,6 +37,7 @@ import run.ut.app.service.*;
 import run.ut.app.utils.BeanUtils;
 import run.ut.app.utils.RandomUtils;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 

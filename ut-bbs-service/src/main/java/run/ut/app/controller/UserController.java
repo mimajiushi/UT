@@ -28,7 +28,6 @@ import run.ut.app.model.param.UserSimpleParam;
 import run.ut.app.model.param.WeChatLoginParam;
 import run.ut.app.model.properties.WechatMPProperties;
 import run.ut.app.model.support.BaseResponse;
-import run.ut.app.model.support.UploadResult;
 import run.ut.app.model.support.WeChatResponse;
 import run.ut.app.model.vo.StudentVO;
 import run.ut.app.security.CheckLogin;

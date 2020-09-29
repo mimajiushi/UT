@@ -24,7 +24,6 @@
         <commons-lang3.version>3.6</commons-lang3.version>
         <lombok.version>1.18.8</lombok.version>
         <springfox-swagger.version>2.7.0</springfox-swagger.version>
-        <fastjson.version>1.2.68</fastjson.version>
         <mysql-connector-java.version>5.1.47</mysql-connector-java.version>
         <guava.version>28.1-jre</guava.version>
         <mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
@@ -286,11 +285,6 @@
                 <groupId>com.github.caspar-chen</groupId>
                 <artifactId>swagger-ui-layer</artifactId>
                 <version>${swagger-ui-layer.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>

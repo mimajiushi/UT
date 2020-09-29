@@ -1,8 +1,6 @@
 package run.ut.app;
 
-import com.alibaba.fastjson.parser.ParserConfig;
 import org.apache.dubbo.config.spring.context.annotation.DubboComponentScan;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -43,8 +41,6 @@ public class UtBbsServiceApplication extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         // Customize the spring config location
         System.setProperty("spring.config.additional-location", "file:${user.home}/.ut-bbs-service/");
-        // Fastjson loopholes
-        ParserConfig.getGlobalInstance().setSafeMode(true);
         return super.configure(builder);
     }
 }

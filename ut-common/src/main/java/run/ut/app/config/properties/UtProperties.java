@@ -8,9 +8,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
-import static run.ut.app.model.support.UtConst.FILE_SEPARATOR;
-import static run.ut.app.model.support.UtConst.TEMP_DIR;
-import static run.ut.app.model.support.UtConst.USER_HOME;
+
+import static run.ut.app.model.support.UtConst.*;
 import static run.ut.app.utils.UtUtils.ensureSuffix;
 
 

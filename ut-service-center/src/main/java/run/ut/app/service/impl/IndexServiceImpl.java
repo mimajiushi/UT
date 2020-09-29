@@ -16,7 +16,10 @@ import run.ut.app.mapper.TeamsMapper;
 import run.ut.app.mapper.TeamsMembersMapper;
 import run.ut.app.mapper.TeamsRecruitmentsMapper;
 import run.ut.app.mapper.UserMapper;
-import run.ut.app.model.domain.*;
+import run.ut.app.model.domain.Teams;
+import run.ut.app.model.domain.TeamsRecruitments;
+import run.ut.app.model.domain.User;
+import run.ut.app.model.domain.UserInfo;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
@@ -33,6 +36,7 @@ import run.ut.app.service.*;
 import run.ut.app.utils.BeanUtils;
 
 import javax.annotation.Nonnull;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 

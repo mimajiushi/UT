@@ -2,8 +2,6 @@ package run.ut.app.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.apache.dubbo.config.annotation.DubboService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
@@ -17,6 +15,7 @@ import run.ut.app.model.enums.AttachmentType;
 import run.ut.app.model.support.UploadResult;
 import run.ut.app.service.OptionsService;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedList;
 

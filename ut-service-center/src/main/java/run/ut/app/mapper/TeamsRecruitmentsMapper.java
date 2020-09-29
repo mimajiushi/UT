@@ -1,10 +1,10 @@
 package run.ut.app.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
 import run.ut.app.model.domain.TeamsRecruitments;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import run.ut.app.model.param.SearchRecruitmentParam;
 import run.ut.app.model.vo.TeamsRecruitmentsVO;
 

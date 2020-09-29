@@ -137,7 +137,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     }
 
     @Override
-    public CommentPage<UserInfoDTO> listUserInfoByParam(UserInfoParam userInfoParam, Page<UserInfo> page) throws IOException {
+    public CommentPage<UserInfoDTO> listUserInfoByParam(UserInfoParam userInfoParam, Page<UserInfo> page) {
         QueryWrapper<UserInfo> userInfoQueryWrapper = new QueryWrapper<>();
         Integer status = userInfoParam.getStatus();
         if (null != status) {

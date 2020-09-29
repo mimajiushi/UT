@@ -18,8 +18,6 @@ import run.ut.app.model.domain.ActivityCollect;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.service.ActivityCollectService;
 
-import javax.annotation.Resource;
-
 /**
  * <p>
  *  ActivityCollectServiceImpl
