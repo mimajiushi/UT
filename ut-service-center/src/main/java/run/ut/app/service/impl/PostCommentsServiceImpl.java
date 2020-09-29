@@ -168,6 +168,9 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         }
 
         // list child comments
+        if (CollectionUtils.isEmpty(parentCommentIds)) {
+            return new CommentPage<>(total, new ArrayList<>());
+        }
         List<PostComments> childComment = list(new QueryWrapper<PostComments>()
             .in("parent_comment_id", parentCommentIds).orderByDesc("create_time"));
         List<ChildCommentVO> childCommentVOList = childComment.stream().map(e ->
