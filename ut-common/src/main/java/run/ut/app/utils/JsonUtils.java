@@ -11,6 +11,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -220,21 +221,39 @@ public class JsonUtils {
         return jsonToObject(json, Map.class, objectMapper);
     }
 
+    /**
+     * Converts json to List(default as ArrayList)
+     *
+     * @param json    json content must not be blank
+     * @param type    object type must not be null
+     * @param <T>     target object type
+     * @return        a list
+     */
     @NonNull
     public static <T> List<T> jsonToList(@NonNull String json, @NonNull Class<T> type) {
 
         Assert.notNull(type, "Type must not be null");
 
-        return jsonToList(json, type, DEFAULT_JSON_MAPPER);
+        return jsonToCollection(json, type, ArrayList.class, DEFAULT_JSON_MAPPER);
     }
 
+    /**
+     * Converts json to Collection
+     *
+     * @param json            json content must not be blank
+     * @param type            object type must not be null
+     * @param collectionType  type must be extends Collection
+     * @param <T>             target object type
+     * @return                a list
+     */
     @NonNull
-    public static <T> List<T> jsonToList(@NonNull String json, @NonNull Class<T> type, @NonNull ObjectMapper objectMapper) {
+    public static <T> List<T> jsonToCollection(@NonNull String json, @NonNull Class<T> type, @NonNull Class<? extends Collection> collectionType, @NonNull ObjectMapper objectMapper) {
 
         Assert.notNull(type, "Type must not be null");
+        Assert.notNull(collectionType, "CollectionType must not be null");
         Assert.notNull(objectMapper, "Object mapper must not null");
 
-        CollectionType listType = objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, type);
+        CollectionType listType = objectMapper.getTypeFactory().constructCollectionType(collectionType, type);
 
         try {
             return objectMapper.readValue(json, listType);

@@ -40,7 +40,7 @@ public class UtChatServiceApplication extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         // Customize the spring config location
-        System.setProperty("spring.config.additional-location", "file:${user.home}/.ut-char-service/");
+        System.setProperty("spring.config.additional-location", "file:${user.home}/.ut-chat-service/");
         return super.configure(builder);
     }
 }
