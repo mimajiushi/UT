@@ -110,6 +110,13 @@
             <version>1.7</version>
         </dependency>
 
+        <!--elasticsearch client-->
+        <!--todo 电脑太渣，没办法分太多服务了，只能集成到这里来了-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        </dependency>
+
         <!-- Redis 连接池依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -149,6 +156,10 @@
             <version>0.0.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

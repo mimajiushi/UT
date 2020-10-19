@@ -3,7 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.2.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
     <groupId>run.ut.app</groupId>
     <artifactId>ut</artifactId>
     <packaging>pom</packaging>
@@ -52,6 +57,7 @@
         <spring-context-support.version>1.0.9</spring-context-support.version>
         <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
         <spring-cloud-alibaba-dependencies.version>2.2.1.RELEASE</spring-cloud-alibaba-dependencies.version>
+        <elasticsearch.version>7.9.2</elasticsearch.version>
     </properties>
 
     <dependencyManagement>
