@@ -1,6 +1,8 @@
 package run.ut.app.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -18,12 +20,15 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 public class PostVO implements InputConverter<Posts>, Serializable {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     @ApiModelProperty(value = "帖子id")
     private Long id;
 
+    @JsonSerialize(using = ToStringSerializer.class)
     @ApiModelProperty(value = "发帖用户的uid")
     private Long uid;
 
+    @JsonSerialize(using = ToStringSerializer.class)
     @ApiModelProperty(value = "所属版块id")
     private Long forumId;
 
@@ -42,12 +47,14 @@ public class PostVO implements InputConverter<Posts>, Serializable {
     @ApiModelProperty(value = "内容（截取一定字数）")
     private String content;
 
+    @JsonSerialize(using = ToStringSerializer.class)
     @ApiModelProperty(value = "点赞数")
     private Long likeCount;
 
     @ApiModelProperty(value = "评论数")
     private Integer commentCount;
 
+    @JsonSerialize(using = ToStringSerializer.class)
     @ApiModelProperty(value = "阅读数")
     private Long readCount;
 

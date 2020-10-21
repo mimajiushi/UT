@@ -23,7 +23,7 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "TeamsTags对象", description = "")
 public class TeamsTags extends BaseEntity {
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     private Long teamId;

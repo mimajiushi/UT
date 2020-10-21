@@ -29,7 +29,7 @@ import java.time.LocalDateTime;
 @ApiModel(value = "活动对象", description = "")
 public class Activity extends BaseEntity {
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 

@@ -24,7 +24,7 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "Forum 对象", description = "")
 public class Forum extends BaseEntity {
 
-      @TableId(value = "id", type = IdType.AUTO)
+      @TableId(value = "id", type = IdType.ASSIGN_ID)
       private Long id;
 
       @ApiModelProperty(value = "版块名称")

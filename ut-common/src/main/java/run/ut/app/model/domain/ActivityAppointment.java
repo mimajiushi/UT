@@ -25,7 +25,7 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "活动预约对象", description = "")
 public class ActivityAppointment extends BaseEntity {
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 

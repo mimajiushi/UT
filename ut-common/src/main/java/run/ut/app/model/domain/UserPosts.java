@@ -23,7 +23,7 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "UserPosts映射对象", description = "")
 public class UserPosts extends BaseEntity {
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     private Long uid;

@@ -1,6 +1,8 @@
 package run.ut.app.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -22,6 +24,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ActivityVO extends BaseVO implements OutputConverter<ActivityVO, Activity> {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     @ApiModelProperty(value = "活动标题")

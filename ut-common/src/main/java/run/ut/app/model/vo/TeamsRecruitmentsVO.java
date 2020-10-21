@@ -1,6 +1,8 @@
 package run.ut.app.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -32,9 +34,11 @@ import java.util.List;
 @ApiModel(value = "TeamsRecruitmentsVO 对象", description = "")
 public class TeamsRecruitmentsVO implements OutputConverter<TeamsRecruitmentsVO, TeamsRecruitments>, Serializable {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     @ApiModelProperty("职位id")
     private Long id;
 
+    @JsonSerialize(using = ToStringSerializer.class)
     @ApiModelProperty("职位所属团队id")
     private Long teamId;
 
