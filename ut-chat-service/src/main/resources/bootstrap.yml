@@ -67,6 +67,8 @@ logging:
     max-size: 10MB
     max-history: 20
     path: ${user.home}/.ut-chat-service/logs
+  level:
+    run.ut.app: debug
 ut:
   download-timeout: 5m
 
