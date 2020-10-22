@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Service;
+import run.ut.app.repository.EsPostRepository;
 import run.ut.app.sync.TableTemplate;
 import run.ut.app.utils.SpringUtils;
 
@@ -38,6 +39,7 @@ public class BinLogListener implements BinaryLogClient.EventListener, Applicatio
     private final TableTemplate tableTemplate;
     private final RestHighLevelClient restHighLevelClient;
     private final DataSourceProperties dataSourceProperties;
+    private final EsPostRepository esPostRepository;
     private BinaryLogClient client;
 
     @Value("${spring.datasource.database}")
@@ -87,6 +89,7 @@ public class BinLogListener implements BinaryLogClient.EventListener, Applicatio
             for (int i = 0; i < serializables.length; i++) {
                 map.put(columns.get(i), serializables[i].toString());
             }
+            // TODO 不同sql操作也要对应不同es操作
             // sync document
             IndexRequest indexRequest = new IndexRequest(table);
 
@@ -107,7 +110,7 @@ public class BinLogListener implements BinaryLogClient.EventListener, Applicatio
 
         if (eventData instanceof UpdateRowsEventData) {
             return ((UpdateRowsEventData) eventData).getRows().stream()
-                // key是before，value是after
+                // key is before，value is after
                 .map(Map.Entry::getValue)
                 .collect(Collectors.toList());
         }
