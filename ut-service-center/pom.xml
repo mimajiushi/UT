@@ -110,6 +110,13 @@
             <version>1.7</version>
         </dependency>
 
+        <!-- binlog listener -->
+        <dependency>
+            <groupId>com.github.shyiko</groupId>
+            <artifactId>mysql-binlog-connector-java</artifactId>
+            <version>${mysql-binlog-connector-java.version}</version>
+        </dependency>
+
         <!--elasticsearch client-->
         <!--todo 电脑太渣，没办法分太多服务了，只能集成到这里来了-->
         <dependency>

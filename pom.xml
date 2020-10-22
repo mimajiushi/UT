@@ -58,6 +58,7 @@
         <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
         <spring-cloud-alibaba-dependencies.version>2.2.1.RELEASE</spring-cloud-alibaba-dependencies.version>
         <elasticsearch.version>7.9.2</elasticsearch.version>
+        <mysql-binlog-connector-java.version>0.21.0</mysql-binlog-connector-java.version>
     </properties>
 
     <dependencyManagement>
@@ -217,10 +218,12 @@
                 <artifactId>mybatis-plus-generator</artifactId>
                 <version>${mybatis-plus-generator.version}</version>
             </dependency>
+
+            <!-- binlog listener -->
             <dependency>
-                <groupId>org.apache.velocity</groupId>
-                <artifactId>velocity</artifactId>
-                <version>1.7</version>
+                <groupId>com.github.shyiko</groupId>
+                <artifactId>mysql-binlog-connector-java</artifactId>
+                <version>${mysql-binlog-connector-java.version}</version>
             </dependency>
 
             <!--工具-->
