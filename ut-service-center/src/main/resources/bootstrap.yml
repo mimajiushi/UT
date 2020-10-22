@@ -31,7 +31,10 @@ spring:
   ##########################################################
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.101.156.14:3306/ut?useUnicode=true&chatacterEncoding=UTF-8&autoReconnect=true&useSSL=false
+    database: ut
+    port: 3306
+    host: 47.101.156.14
+    url: jdbc:mysql://${spring.datasource.host}:${spring.datasource.port}/${spring.datasource.database}?useUnicode=true&chatacterEncoding=UTF-8&autoReconnect=true&useSSL=false
     username: ut
     password: 7NcC8RHnyTRNEY4p
     type: com.zaxxer.hikari.HikariDataSource

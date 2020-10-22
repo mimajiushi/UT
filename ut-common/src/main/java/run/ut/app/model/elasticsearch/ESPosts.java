@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.stereotype.Component;
 import run.ut.app.model.domain.BaseEntity;
 import run.ut.app.model.dto.base.InputConverter;
 import run.ut.app.model.param.PostParam;
@@ -25,6 +26,7 @@ import run.ut.app.model.param.PostParam;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(indexName = "posts")
+@Component
 public class ESPosts extends BaseEntity implements InputConverter<PostParam> {
 
     @Id

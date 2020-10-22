@@ -1,6 +1,11 @@
 package elasticsearch;
 
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,10 +15,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.CollectionUtils;
 import run.ut.app.UtServiceCenterApplication;
+import run.ut.app.model.domain.Tags;
 import run.ut.app.model.elasticsearch.ESPosts;
 import run.ut.app.repository.EsPostRepository;
+import run.ut.app.sync.TableTemplate;
+import run.ut.app.utils.JsonUtils;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +33,10 @@ public class elasticsearchTest {
 
     @Resource
     private EsPostRepository esPostRepository;
+    @Resource
+    private TableTemplate tableTemplate;
+    @Resource
+    private RestHighLevelClient restHighLevelClient;
 
     /**
      * 插入
@@ -79,5 +92,29 @@ public class elasticsearchTest {
         for (ESPosts post : res) {
             log.info(post.toString());
         }
+    }
+
+    @Test
+    public void TableTemplateTest() {
+        List<String> columns = tableTemplate.getColumnMap().get("posts");
+        log.info("TableTemplateTest");
+        for (String column : columns) {
+            log.info(column);
+        }
+    }
+
+    /**
+     * 创建文档对象
+     */
+    @Test
+    public void createDocument() throws IOException {
+        Tags tags = Tags.builder().id(1).name("test").build();
+        IndexRequest indexRequest = new IndexRequest("new_index_1");
+
+        indexRequest.id(tags.getId()+"");
+        indexRequest.source(JsonUtils.objectToJson(tags), XContentType.JSON);
+
+        IndexResponse index = restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
+        System.out.println(index.status());
     }
 }
