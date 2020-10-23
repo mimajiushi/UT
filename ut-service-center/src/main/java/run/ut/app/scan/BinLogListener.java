@@ -5,7 +5,9 @@ import com.github.shyiko.mysql.binlog.event.*;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
@@ -17,11 +19,11 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Service;
 import run.ut.app.repository.EsPostRepository;
 import run.ut.app.sync.TableTemplate;
+import run.ut.app.utils.JsonUtils;
 import run.ut.app.utils.SpringUtils;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +57,9 @@ public class BinLogListener implements BinaryLogClient.EventListener, Applicatio
     @SneakyThrows
     @Override
     public void onEvent(Event event) {
-        log.info(event.getData().toString());
+        if (event != null && event.getData() != null) {
+            log.info(event.getData().toString());
+        }
         EventType eventType = event.getHeader().getEventType();
         if (eventType == EventType.TABLE_MAP){
             TableMapEventData tableMapEventData = event.getData();
@@ -81,54 +85,100 @@ public class BinLogListener implements BinaryLogClient.EventListener, Applicatio
         }
 
         EventData data = event.getData();
-        List<Serializable[]> values = getValues(data);
-        List<String> columns = tableTemplate.getColumnMap().get(table);
-        for (Serializable[] serializables : values) {
-            // sql's column -> value
-            Map<String, String> map = new HashMap<>(1 << 4);
-            for (int i = 0; i < serializables.length; i++) {
-                map.put(columns.get(i), serializables[i].toString());
-            }
-            // TODO 不同sql操作也要对应不同es操作
-            // sync document
-            IndexRequest indexRequest = new IndexRequest(table);
-
-            indexRequest.id(map.get("id"));
-            indexRequest.source(map, XContentType.JSON);
-
-            restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
-        }
+        sync(data);
 
     }
 
 
-    private List<Serializable[]> getValues(EventData eventData) {
+    private void sync(EventData eventData) throws IOException {
 
+        // insert
         if (eventData instanceof WriteRowsEventData) {
-            return ((WriteRowsEventData) eventData).getRows();
+            List<Serializable[]> rows = ((WriteRowsEventData) eventData).getRows();
+            List<String> columns = tableTemplate.getColumnMap().get(table);
+            for (Serializable[] serializables : rows) {
+                // sql's column -> value
+                Map<String, String> map = new HashMap<>(1 << 4);
+                for (int i = 0; i < serializables.length; i++) {
+                    if (serializables[i] instanceof byte[]) {
+                        map.put(columns.get(i), new String((byte[]) serializables[i]));
+                    } else {
+                        map.put(columns.get(i), serializables[i].toString());
+                    }
+                }
+                // sync document
+                IndexRequest indexRequest = new IndexRequest(table);
+
+                indexRequest.id(map.get("id"));
+                map.remove("id");
+                indexRequest.source(map, XContentType.JSON);
+
+                restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
+            }
         }
 
+        // update
         if (eventData instanceof UpdateRowsEventData) {
-            return ((UpdateRowsEventData) eventData).getRows().stream()
+            List<Serializable[]> rows = ((UpdateRowsEventData) eventData).getRows().stream()
                 // key is before，value is after
                 .map(Map.Entry::getValue)
                 .collect(Collectors.toList());
+            List<String> columns = tableTemplate.getColumnMap().get(table);
+            for (Serializable[] serializables : rows) {
+                // sql's column -> value
+                Map<String, String> map = new HashMap<>(1 << 4);
+                for (int i = 0; i < serializables.length; i++) {
+                    if (serializables[i] instanceof byte[]) {
+                        map.put(columns.get(i), new String((byte[]) serializables[i]));
+                    } else {
+                        map.put(columns.get(i), serializables[i].toString());
+                    }
+                }
+                UpdateRequest updateRequest = new UpdateRequest(table, map.get("id"));
+                map.remove("id");
+                updateRequest.doc(JsonUtils.objectToJson(map), XContentType.JSON);
+
+                restHighLevelClient.update(updateRequest, RequestOptions.DEFAULT);
+            }
         }
 
+        // delete
         if (eventData instanceof DeleteRowsEventData) {
-            return ((DeleteRowsEventData) eventData).getRows();
+            List<Serializable[]> rows = ((DeleteRowsEventData) eventData).getRows();
+            List<String> columns = tableTemplate.getColumnMap().get(table);
+            for (Serializable[] serializables : rows) {
+                // sql's column -> value
+                Map<String, String> map = new HashMap<>(1 << 4);
+                for (int i = 0; i < serializables.length; i++) {
+                    if (serializables[i] instanceof byte[]) {
+                        map.put(columns.get(i), new String((byte[]) serializables[i]));
+                    } else {
+                        map.put(columns.get(i), serializables[i].toString());
+                    }
+                }
+                // sync document
+                DeleteRequest deleteRequest = new DeleteRequest(table, map.get("id"));
+                restHighLevelClient.delete(deleteRequest, RequestOptions.DEFAULT);
+            }
         }
-
-        return Collections.emptyList();
     }
 
     @SneakyThrows
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        binlogClientBoot();
+        Thread thread = new Thread(() -> {
+            try {
+                binlogClientBoot();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(-1);
+            }
+        });
+        thread.setDaemon(false);
+        thread.start();
     }
 
-    private void binlogClientBoot() throws IOException {
+    public void binlogClientBoot() throws IOException {
         BinLogListener binLogListener = SpringUtils.getBean(BinLogListener.class);
         client = new BinaryLogClient(
             host,
