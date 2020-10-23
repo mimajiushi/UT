@@ -58,7 +58,7 @@ public class BinLogListener implements BinaryLogClient.EventListener, Applicatio
     @Override
     public void onEvent(Event event) {
         if (event != null && event.getData() != null) {
-            log.info(event.getData().toString());
+            log.debug(event.getData().toString());
         }
         EventType eventType = event.getHeader().getEventType();
         if (eventType == EventType.TABLE_MAP){
@@ -68,13 +68,13 @@ public class BinLogListener implements BinaryLogClient.EventListener, Applicatio
             return;
         }
         if (table.equals("")) {
-            log.warn("table is null!");
+            log.debug("table is null!");
             return;
         }
         if (eventType != EventType.EXT_UPDATE_ROWS
             && eventType != EventType.EXT_WRITE_ROWS
             && eventType != EventType.EXT_DELETE_ROWS) {
-            log.warn("eventType not in EXT_UPDATE_ROWS or EXT_WRITE_ROWS or EXT_DELETE_ROWS");
+            log.debug("eventType not in EXT_UPDATE_ROWS or EXT_WRITE_ROWS or EXT_DELETE_ROWS");
             return;
         }
         if (!tableTemplate.getColumnMap().containsKey(table)) {
