@@ -35,10 +35,6 @@ public class TableTemplate implements ApplicationListener<ContextRefreshedEvent>
     @Getter
     private Map<String, List<String>> columnMap = new HashMap<>();
 
-    /**
-     * TODO es文档对应的Reposotory
-     */
-
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
