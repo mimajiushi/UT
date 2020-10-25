@@ -1,5 +1,9 @@
 package run.ut.app.scan;
 
+import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
+import com.alibaba.cloud.nacos.discovery.NacosServiceDiscovery;
+import com.alibaba.cloud.nacos.registry.NacosRegistration;
+import com.alibaba.cloud.nacos.registry.NacosServiceRegistry;
 import com.github.shyiko.mysql.binlog.BinaryLogClient;
 import com.github.shyiko.mysql.binlog.event.*;
 import lombok.RequiredArgsConstructor;
@@ -11,13 +15,16 @@ import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Service;
-import run.ut.app.repository.EsPostRepository;
+import org.springframework.util.CollectionUtils;
 import run.ut.app.sync.TableTemplate;
 import run.ut.app.utils.JsonUtils;
 import run.ut.app.utils.SpringUtils;
@@ -30,6 +37,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
+ * TODO 要控制这个应用的启动，整个分布式环境中只能有一个，思路：靠nacos发现有重复的服务就不启动了
+ * TODO 同时循环监听，如果另一个服务挂了，这个节点的服务就要跟着启动
  *
  * @author wenjie
  */
@@ -41,7 +50,10 @@ public class BinLogListener implements BinaryLogClient.EventListener, Applicatio
     private final TableTemplate tableTemplate;
     private final RestHighLevelClient restHighLevelClient;
     private final DataSourceProperties dataSourceProperties;
-    private final EsPostRepository esPostRepository;
+    private final NacosServiceDiscovery nacosServiceDiscovery;
+    private final NacosServiceRegistry nacosServiceRegistry;
+    private final NacosDiscoveryProperties nacosDiscoveryProperties;
+    private final ApplicationContext context;
     private BinaryLogClient client;
 
     @Value("${spring.datasource.database}")
@@ -166,6 +178,13 @@ public class BinLogListener implements BinaryLogClient.EventListener, Applicatio
     @SneakyThrows
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        String serviceName = this.getClass().getSimpleName();
+        List<ServiceInstance> instances = nacosServiceDiscovery.getInstances(serviceName);
+        if(CollectionUtils.isEmpty(instances)) {
+            register(serviceName);
+        } else {
+            return;
+        }
         Thread thread = new Thread(() -> {
             try {
                 binlogClientBoot();
@@ -192,5 +211,16 @@ public class BinLogListener implements BinaryLogClient.EventListener, Applicatio
 
     public void closeBinlogClient() throws IOException {
         client.disconnect();
+    }
+
+    private void register(String serviceName) {
+        nacosServiceRegistry.register(buildNacosRegistration(serviceName));
+    }
+
+    private NacosRegistration buildNacosRegistration(String serviceName) {
+        NacosDiscoveryProperties newNacosDiscoveryProperties = new NacosDiscoveryProperties();
+        BeanUtils.copyProperties(nacosDiscoveryProperties, newNacosDiscoveryProperties);
+        newNacosDiscoveryProperties.setService(serviceName);
+        return new NacosRegistration(newNacosDiscoveryProperties, context);
     }
 }

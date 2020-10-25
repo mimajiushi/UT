@@ -1,0 +1,1 @@
+find . -name "*.java" |xargs grep -v -e ^$ -e '^\s*\/\/.*$' |wc -l > word_count.log
