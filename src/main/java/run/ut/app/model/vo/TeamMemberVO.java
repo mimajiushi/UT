@@ -1,5 +1,7 @@
 package run.ut.app.model.vo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,8 +22,10 @@ import run.ut.app.model.enums.TeamsMemberEnum;
 @ApiModel(value = "TeamMemberVO 对象", description = "")
 public class TeamMemberVO {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long uid;
 
     private String nickname;

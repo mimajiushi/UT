@@ -1,6 +1,8 @@
 package run.ut.app.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -32,9 +34,11 @@ import java.util.List;
 public class TeamsRecruitmentsVO implements OutputConverter<TeamsRecruitmentsVO, TeamsRecruitments> {
 
     @ApiModelProperty("职位id")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     @ApiModelProperty("职位所属团队id")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long teamId;
 
     @ApiModelProperty(value = "招聘岗位名称")

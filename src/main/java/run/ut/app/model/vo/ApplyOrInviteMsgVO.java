@@ -2,6 +2,8 @@ package run.ut.app.model.vo;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -25,10 +27,12 @@ import java.time.LocalDateTime;
 public class ApplyOrInviteMsgVO {
 
     @ApiModelProperty(value = "申请/邀请的id")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     @ApiModelProperty(value = "申请/邀请用户的uid",
             notes = "若需要查看用户的详细信息，前端可以根据uid去请求用户详情信息的接口")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long uid;
 
     @ApiModelProperty(value = "申请/邀请用户的昵称")
@@ -41,6 +45,7 @@ public class ApplyOrInviteMsgVO {
     private String logo;
 
     @ApiModelProperty(value = "申请/邀请的团队id", notes = "若需要查看团队的详细信息，也可以通过此id请求对应的接口")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long teamId;
 
     @ApiModelProperty(value = "申请团队的团队名")

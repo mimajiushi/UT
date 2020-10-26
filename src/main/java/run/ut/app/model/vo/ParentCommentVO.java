@@ -1,5 +1,7 @@
 package run.ut.app.model.vo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,15 +21,18 @@ import java.util.List;
 public class ParentCommentVO extends BaseVO implements OutputConverter<ParentCommentVO, PostComments> {
 
     @ApiModelProperty(value = "评论id")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     @ApiModelProperty(value = "所属帖子id")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long postId;
 
     @ApiModelProperty(value = "帖子标题")
     private String title;
 
     @ApiModelProperty(value = "评论者uid")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long fromUid;
 
     @ApiModelProperty(value = "评论者昵称")
@@ -40,6 +45,7 @@ public class ParentCommentVO extends BaseVO implements OutputConverter<ParentCom
     private String content;
 
     @ApiModelProperty(value = "点赞数")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long likes;
 
     @ApiModelProperty(value = "是否点赞过")
