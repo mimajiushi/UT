@@ -19,7 +19,7 @@ public class AbstractEsSyncHandler {
     @Autowired
     private OptionsService optionsService;
 
-    protected ConcurrentHashMap<String, Object> binLogPropertiesMap = new ConcurrentHashMap<>();
+    public static ConcurrentHashMap<String, Object> binLogPropertiesMap = new ConcurrentHashMap<>();
 
     protected void syncBinLogProperties() {
         optionsService.save(binLogPropertiesMap);

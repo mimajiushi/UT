@@ -21,8 +21,8 @@ public class RotateEventHandler extends AbstractEsSyncHandler implements EsSyncH
             String binlogFilename = rotateEventData.getBinlogFilename();
             long binlogPosition = rotateEventData.getBinlogPosition();
 
-            binLogPropertiesMap.put(BinLogProperties.BINLOG_FILENAME.getValue(), binlogFilename);
-            binLogPropertiesMap.put(BinLogProperties.BINLOG_POSITION.getValue(), binlogPosition);
+            AbstractEsSyncHandler.binLogPropertiesMap.put(BinLogProperties.BINLOG_FILENAME.getValue(), binlogFilename);
+            AbstractEsSyncHandler.binLogPropertiesMap.put(BinLogProperties.BINLOG_POSITION.getValue(), binlogPosition);
         }
     }
 }
