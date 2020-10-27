@@ -58,7 +58,7 @@
         <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
         <spring-cloud-alibaba-dependencies.version>2.2.1.RELEASE</spring-cloud-alibaba-dependencies.version>
         <elasticsearch.version>7.9.2</elasticsearch.version>
-        <mysql-binlog-connector-java.version>0.13.0</mysql-binlog-connector-java.version>
+        <mysql-binlog-connector-java.version>0.21.0</mysql-binlog-connector-java.version>
     </properties>
 
     <dependencyManagement>
