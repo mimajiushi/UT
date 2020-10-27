@@ -1,11 +1,13 @@
 package run.ut.app.elasticsearch.handler;
 
+import com.github.shyiko.mysql.binlog.event.EventData;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import run.ut.app.service.OptionsService;
 
+import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -15,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Data
 @Component
 @Slf4j
-public class AbstractEsSyncHandler {
+public class AbstractEsSyncHandler implements EsSyncHandler {
 
     @Autowired
     private OptionsService optionsService;
@@ -35,4 +37,8 @@ public class AbstractEsSyncHandler {
         }
     }
 
+    @Override
+    public void sync(EventData eventData) throws IOException {
+
+    }
 }
