@@ -1,4 +1,4 @@
-package run.ut.app.sync;
+package run.ut.app.elasticsearch;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -8,8 +8,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Service;
 import run.ut.app.mapper.ExMapper;
-import run.ut.app.scan.DocumentScan;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +38,7 @@ public class TableTemplate implements ApplicationListener<ContextRefreshedEvent>
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        columnMap.put("", new ArrayList<>());
         initColumnMap();
     }
 

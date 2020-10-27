@@ -36,7 +36,7 @@
 - 统一使用Gitee：https://gitee.com/wenjie2018/UT-APP （集成了CI/CD）
 - 代码风格：风格约束配置请参考 -> https://halo.run/archives/code-style  不懂的也可以问我。
 - 提交PR： 提交的PR后都会经过jenkins的编译、打包测试，通过了会自动在PR下留言测试结果， **请务必保证测试结果通过** （现阶段PR里面一个失败一个成功，可以参考下）。  
-- 自定义环境：如果你因为某种原因，需要更改`application.yml`的一些配置，比如开启debug，那么你完全可以在本地的`{user.home}/.ut`目录下创建`application.yml`文件，它可以有选择性地覆盖项目中默认的配置项。
+- 自定义环境：如果你因为某种原因，需要更改`bootstrap.yml`的一些配置，比如开启debug，那么你完全可以在本地的`{user.home}/.ut-xxx(对应模块名称)`目录下创建`bootstrap.yml`文件，它可以有选择性地覆盖项目中默认的配置项。
 
 
 #### 预期架构图

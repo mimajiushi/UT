@@ -18,7 +18,7 @@ import run.ut.app.UtServiceCenterApplication;
 import run.ut.app.model.domain.Tags;
 import run.ut.app.model.elasticsearch.ESPosts;
 import run.ut.app.repository.EsPostRepository;
-import run.ut.app.sync.TableTemplate;
+import run.ut.app.elasticsearch.TableTemplate;
 import run.ut.app.utils.JsonUtils;
 
 import javax.annotation.Resource;

@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import run.ut.app.UtServiceCenterApplication;
-import run.ut.app.sync.TableTemplate;
+import run.ut.app.elasticsearch.TableTemplate;
 
 import javax.annotation.Resource;
 import java.io.IOException;

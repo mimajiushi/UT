@@ -82,7 +82,7 @@ dubbo:
     name: ut-service-center
   protocol:
     name: dubbo
-    port: 12235
+    port: ${DUBBO_PORT:12235}
   registry:
     address: nacos://localhost:8848
     timeout: 60000

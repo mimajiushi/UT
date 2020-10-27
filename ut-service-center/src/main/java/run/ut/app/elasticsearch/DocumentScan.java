@@ -1,4 +1,4 @@
-package run.ut.app.scan;
+package run.ut.app.elasticsearch;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;

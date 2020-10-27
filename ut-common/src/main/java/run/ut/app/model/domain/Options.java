@@ -24,7 +24,7 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "Options对象", description = "")
 public class Options extends BaseEntity {
 
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     private String optionKey;
