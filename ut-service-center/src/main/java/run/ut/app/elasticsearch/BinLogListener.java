@@ -112,9 +112,13 @@ public class BinLogListener implements BinaryLogClient.EventListener, Applicatio
         client.connect();
     }
 
-    public void closeBinlogClient() throws IOException {
+    public void closeBinlogClient() {
         deregister(this.getClass().getSimpleName());
-        client.disconnect();
+        try {
+            client.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void register(String serviceName) {
