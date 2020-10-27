@@ -47,6 +47,7 @@ public class InsertEsSyncHandler extends AbstractEsSyncHandler implements EsSync
                 Map<String, String> map = new HashMap<>(1 << 4);
                 for (int i = 0; i < serializables.length; i++) {
                     if (serializables[i] instanceof byte[]) {
+                        // Text type corresponding to MySQL
                         map.put(columns.get(i), new String((byte[]) serializables[i]));
                     } else {
                         map.put(columns.get(i), serializables[i].toString());

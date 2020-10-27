@@ -38,6 +38,7 @@ public class TableTemplate implements ApplicationListener<ContextRefreshedEvent>
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        // Because of some special circumstances, the release of "" is required
         columnMap.put("", new ArrayList<>());
         initColumnMap();
     }

@@ -51,6 +51,7 @@ public class UpdateEsSyncHandler extends AbstractEsSyncHandler implements EsSync
                 // sql's column -> value
                 Map<String, String> map = new HashMap<>(1 << 4);
                 for (int i = 0; i < serializables.length; i++) {
+                    // Text type corresponding to MySQL
                     if (serializables[i] instanceof byte[]) {
                         map.put(columns.get(i), new String((byte[]) serializables[i]));
                     } else {

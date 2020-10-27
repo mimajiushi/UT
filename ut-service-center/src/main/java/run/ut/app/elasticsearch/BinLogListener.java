@@ -86,9 +86,8 @@ public class BinLogListener implements BinaryLogClient.EventListener, Applicatio
             try {
                 binlogClientBoot();
             } catch (Exception e) {
-                deregister(serviceName);
+                closeBinlogClient();
                 e.printStackTrace();
-                System.exit(-1);
             }
         });
         thread.setDaemon(false);
