@@ -83,8 +83,8 @@ public class elasticsearchTest {
     public void queryByParam() {
         // 无法使用空格，写接口时记得去除空格
         PageRequest pageRequest = PageRequest.of(0, 10, Sort.unsorted());
-//        Page<ESPosts> res = esPostRepository.findByTitleContainingOrContentContaining("p", "p", pageRequest);
-        Page<ESPosts> res = esPostRepository.findByTitleContainingOrContentContaining(null, null, pageRequest);
+        Page<ESPosts> res = esPostRepository.findByTitleContainingOrContentContaining("p", "p", pageRequest);
+//        Page<ESPosts> res = esPostRepository.findByTitleContainingOrContentContaining(null, null, pageRequest);
         if (CollectionUtils.isEmpty(res.toList())) {
             log.error("无结果");
         }

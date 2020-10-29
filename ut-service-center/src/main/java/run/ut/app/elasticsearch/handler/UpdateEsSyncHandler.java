@@ -4,6 +4,7 @@ import com.github.shyiko.mysql.binlog.event.EventData;
 import com.github.shyiko.mysql.binlog.event.UpdateRowsEventData;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -16,6 +17,7 @@ import run.ut.app.utils.JsonUtils;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,8 +60,17 @@ public class UpdateEsSyncHandler extends AbstractEsSyncHandler implements EsSync
                         map.put(columns.get(i), serializables[i].toString());
                     }
                 }
+                if ("1".equals(map.get("deleted"))) {
+                    DeleteRequest deleteRequest = new DeleteRequest(EsSyncHandlers.table, map.get("id"));
+                    restHighLevelClient.delete(deleteRequest, RequestOptions.DEFAULT);
+                    syncBinLogProperties();
+                }
                 UpdateRequest updateRequest = new UpdateRequest(EsSyncHandlers.table, map.get("id"));
                 map.remove("id");
+                String createTime = map.get("create_time");
+                String updateTime = map.get("update_time");
+                map.put("create_time", createTime.substring(0, createTime.length() - 2));
+                map.put("update_time", updateTime.substring(0, updateTime.length() - 2));
                 updateRequest.doc(JsonUtils.objectToJson(map), XContentType.JSON);
 
                 restHighLevelClient.update(updateRequest, RequestOptions.DEFAULT);

@@ -39,7 +39,6 @@ public abstract class AbstractMailService implements MailService {
     private JavaMailSender cachedMailSender;
     private MailProperties cachedMailProperties;
     private String cachedFromName;
-    @Nullable
     private ExecutorService executorService;
 
     protected AbstractMailService(OptionsService optionService) {
