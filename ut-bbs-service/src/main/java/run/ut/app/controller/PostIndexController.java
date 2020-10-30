@@ -22,11 +22,9 @@ public class PostIndexController extends BaseController implements PostIndexCont
 
     @Override
     @GetMapping("/list/post")
-    public CommentPage<PostVO> listPosts(SearchPostParam searchPostParam,
-                                         @RequestParam(defaultValue = "1") Integer pageNum,
-                                         @RequestParam(defaultValue = "5") Integer pageSize) {
+    public CommentPage<PostVO> listPosts(SearchPostParam searchPostParam) {
         searchPostParam.setOperatorUid(getUidFromToken());
-        return postsService.listPostsByParams(searchPostParam, pageNum, pageSize);
+        return postsService.listPostsByParams(searchPostParam);
     }
 
     @Override

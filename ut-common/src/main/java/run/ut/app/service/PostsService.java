@@ -95,13 +95,10 @@ public interface PostsService extends IService<Posts> {
      * Lists posts by params
      *
      * @param searchPostParam  search parameters
-     * @param pageNum          pageNum
-     * @param pageSize         pageSize
      * @return                 PostVO list
      */
     @NonNull
-    CommentPage<PostVO> listPostsByParams(@NonNull SearchPostParam searchPostParam,
-                                          @NonNull Integer pageNum, @NonNull Integer pageSize);
+    CommentPage<PostVO> listPostsByParams(@NonNull SearchPostParam searchPostParam);
 
     /**
      * List collection by uid

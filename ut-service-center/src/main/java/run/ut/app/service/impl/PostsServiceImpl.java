@@ -38,6 +38,7 @@ import run.ut.app.mapper.*;
 import run.ut.app.model.domain.*;
 import run.ut.app.model.elasticsearch.ESPosts;
 import run.ut.app.model.enums.LikesTypeEnum;
+import run.ut.app.model.enums.PostQuerySortEnum;
 import run.ut.app.model.param.PostParam;
 import run.ut.app.model.param.SearchPostParam;
 import run.ut.app.model.support.BaseResponse;
@@ -209,11 +210,17 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
     }
 
     @Override
-    public CommentPage<PostVO> listPostsByParams(SearchPostParam searchPostParam, Integer pageNum, Integer pageSize) {
+    public CommentPage<PostVO> listPostsByParams(SearchPostParam searchPostParam) {
+
+        Integer pageNum = searchPostParam.getPageNum();
+        Integer pageSize = searchPostParam.getPageSize();
+        Integer sortType = searchPostParam.getSortType();
+        Boolean desc = searchPostParam.getDesc();
 
         PageRequest pageRequest = PageRequest.of(pageNum - 1, pageSize);
+        PostQuerySortEnum sortEnum = PostQuerySortEnum.getByType(sortType);
 
-        String keyword = searchPostParam.getTitle();
+        String keyword = searchPostParam.getKeyword();
 
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
         nativeSearchQueryBuilder.withPageable(pageRequest);
@@ -241,9 +248,13 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
                 .setMinScore(2);
             nativeSearchQueryBuilder.withQuery(functionScoreQueryBuilder);
         }
-        // 排序，按相关度
-        nativeSearchQueryBuilder.withSort(SortBuilders.scoreSort().order(SortOrder.DESC));
-
+        // 搜索默认按相关度倒序排
+        if (StringUtils.isNoneBlank(keyword) && ObjectUtils.isEmpty(sortEnum)) {
+            nativeSearchQueryBuilder.withSort(SortBuilders.scoreSort().order(desc ? SortOrder.DESC : SortOrder.ASC));
+        } else {
+            nativeSearchQueryBuilder.withSort(SortBuilders.fieldSort(sortEnum.getColumn()).order(desc ? SortOrder.DESC : SortOrder.ASC));
+        }
+        // 查询转换
         NativeSearchQuery searchQuery = nativeSearchQueryBuilder.build();
         SearchHits<ESPosts> searchHits = elasticsearchRestTemplate.search(searchQuery, ESPosts.class);
         if (searchHits.getTotalHits() <= 0) {

@@ -16,6 +16,7 @@ import run.ut.app.model.domain.BaseEntity;
 import run.ut.app.model.dto.base.InputConverter;
 import run.ut.app.model.param.PostParam;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -49,6 +50,7 @@ public class ESPosts implements InputConverter<PostParam> {
     @Field(analyzer = "ik_max_word",type = FieldType.Text)
     private String content;
 
+    @Field(name = "likes", fielddata = true, type = FieldType.Text)
     private Long likes;
 
     /**

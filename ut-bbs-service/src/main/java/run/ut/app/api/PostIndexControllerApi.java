@@ -14,7 +14,7 @@ import run.ut.app.model.vo.PostVO;
 public interface PostIndexControllerApi {
 
     @ApiOperation(value = "获取首页帖子列表", notes = "按更新时间（回复时间）倒序，需要传入token判断用户是否点赞帖子")
-    CommentPage<PostVO> listPosts(SearchPostParam searchPostParam, Integer pageNum, Integer pageSize);
+    CommentPage<PostVO> listPosts(SearchPostParam searchPostParam);
 
     @ApiOperation(value = "帖子详情", notes = "需要传入token判断用户是否点赞、收藏帖子。在请求完这个接口之后再请求评论接口")
     PostVO postDetail(@PathVariable Long postId);
