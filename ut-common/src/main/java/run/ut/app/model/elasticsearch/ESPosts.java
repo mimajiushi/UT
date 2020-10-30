@@ -21,11 +21,11 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * Posts
+ * ESPosts
  * </p>
  *
  * @author wenjie
- * @since 2020-05-12
+ * @since 2020-10-13
  */
 @Data
 @Accessors(chain = true)

@@ -314,7 +314,11 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         String key = String.format(RedisKey.POST_LIKE_COUNT, postId);
         String res = redisService.get(key);
         if (StringUtils.isBlank(res)) {
-            return 0L;
+            Posts posts = postsMapper.selectById(postId);
+            if (ObjectUtils.isEmpty(posts)) {
+                return 0L;
+            }
+            return posts.getLikes();
         }
         return Long.valueOf(res);
     }
