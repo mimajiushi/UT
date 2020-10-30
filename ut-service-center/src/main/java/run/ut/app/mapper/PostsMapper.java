@@ -19,6 +19,8 @@ import run.ut.app.model.vo.PostVO;
  * @since 2020-05-12
  */
 public interface PostsMapper extends BaseMapper<Posts> {
+
+    @Deprecated
     IPage<PostVO> listPostsByParams(@NonNull Page page, @Param("param") SearchPostParam searchPostParam);
 
     IPage<PostVO> listCollectionByParams(@NonNull Page page, @Param("param") SearchPostParam searchPostParam);

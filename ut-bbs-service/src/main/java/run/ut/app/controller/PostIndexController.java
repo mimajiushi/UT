@@ -3,6 +3,8 @@ package run.ut.app.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.PostIndexControllerApi;
 import run.ut.app.model.param.SearchPostParam;
@@ -24,8 +26,7 @@ public class PostIndexController extends BaseController implements PostIndexCont
                                          @RequestParam(defaultValue = "1") Integer pageNum,
                                          @RequestParam(defaultValue = "5") Integer pageSize) {
         searchPostParam.setOperatorUid(getUidFromToken());
-        Page page = new Page<>(pageNum, pageSize);
-        return postsService.listPostsByParams(searchPostParam, page);
+        return postsService.listPostsByParams(searchPostParam, pageNum, pageSize);
     }
 
     @Override

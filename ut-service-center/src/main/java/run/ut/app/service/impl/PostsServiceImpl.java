@@ -8,11 +8,26 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.elasticsearch.common.lucene.search.function.FunctionScoreQuery;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
+import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilders;
+import org.elasticsearch.search.sort.SortBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.elasticsearch.core.SearchHit;
+import org.springframework.data.elasticsearch.core.SearchHits;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.config.redis.RedisKey;
 import run.ut.app.event.LikesEvent;
@@ -21,6 +36,7 @@ import run.ut.app.exception.BadRequestException;
 import run.ut.app.exception.NotFoundException;
 import run.ut.app.mapper.*;
 import run.ut.app.model.domain.*;
+import run.ut.app.model.elasticsearch.ESPosts;
 import run.ut.app.model.enums.LikesTypeEnum;
 import run.ut.app.model.param.PostParam;
 import run.ut.app.model.param.SearchPostParam;
@@ -31,6 +47,7 @@ import run.ut.app.service.PostsService;
 import run.ut.app.service.RedisService;
 import run.ut.app.utils.BeanUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,6 +72,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
     private final ApplicationEventPublisher eventPublisher;
     private final ForumMapper forumMapper;
     private final PostCommentsMapper postCommentsMapper;
+    private final ElasticsearchRestTemplate elasticsearchRestTemplate;
 
     @Override
     @Transactional
@@ -160,6 +178,7 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
     }
 
     @Override
+    @Deprecated
     public CommentPage<PostVO> listPostsByParams(SearchPostParam searchPostParam, Page page) {
         Long operatorUid = searchPostParam.getOperatorUid();
 
@@ -187,6 +206,54 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         }
 
         return new CommentPage<>(total, postVOS1);
+    }
+
+    @Override
+    public CommentPage<PostVO> listPostsByParams(SearchPostParam searchPostParam, Integer pageNum, Integer pageSize) {
+
+        PageRequest pageRequest = PageRequest.of(pageNum - 1, pageSize);
+
+        String keyword = searchPostParam.getTitle();
+
+        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
+        nativeSearchQueryBuilder.withPageable(pageRequest);
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+        // bool query filter
+        if (searchPostParam.getForumId() != null) {
+            boolQueryBuilder.must(QueryBuilders.termQuery("forum_id", searchPostParam.getForumId()));
+        }
+        if (searchPostParam.getUid() != null) {
+            boolQueryBuilder.must(QueryBuilders.termQuery("uid", searchPostParam.getOperatorUid()));
+        }
+        nativeSearchQueryBuilder.withFilter(boolQueryBuilder);
+
+        if (StringUtils.isNoneBlank(keyword)) {
+            List<FunctionScoreQueryBuilder.FilterFunctionBuilder> filterFunctionBuilders = new ArrayList<>();
+            filterFunctionBuilders.add(new FunctionScoreQueryBuilder.FilterFunctionBuilder(QueryBuilders.matchQuery("title", keyword),
+                ScoreFunctionBuilders.weightFactorFunction(10)));
+            filterFunctionBuilders.add(new FunctionScoreQueryBuilder.FilterFunctionBuilder(QueryBuilders.matchQuery("content", keyword),
+                ScoreFunctionBuilders.weightFactorFunction(5)));
+            FunctionScoreQueryBuilder.FilterFunctionBuilder[] builders =
+                new FunctionScoreQueryBuilder.FilterFunctionBuilder[filterFunctionBuilders.size()];
+            filterFunctionBuilders.toArray(builders);
+            FunctionScoreQueryBuilder functionScoreQueryBuilder = QueryBuilders.functionScoreQuery(builders)
+                .scoreMode(FunctionScoreQuery.ScoreMode.SUM)
+                .setMinScore(2);
+            nativeSearchQueryBuilder.withQuery(functionScoreQueryBuilder);
+        }
+        // 排序，按相关度
+        nativeSearchQueryBuilder.withSort(SortBuilders.scoreSort().order(SortOrder.DESC));
+
+        NativeSearchQuery searchQuery = nativeSearchQueryBuilder.build();
+        SearchHits<ESPosts> searchHits = elasticsearchRestTemplate.search(searchQuery, ESPosts.class);
+        if (searchHits.getTotalHits() <= 0) {
+            return CommentPage.emptyPage();
+        } else {
+            List<ESPosts> esPosts = searchHits.stream().map(SearchHit::getContent).collect(Collectors.toList());
+            List<PostVO> postVOS = trans2PostVOs(esPosts);
+            postVOS = setCountAndIsLike(postVOS, searchPostParam.getOperatorUid());
+            return new CommentPage<>(searchHits.getTotalHits(), postVOS);
+        }
     }
 
     @Override
@@ -291,5 +358,21 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
         }
         int count = userPostsMapper.selectCount(new QueryWrapper<UserPosts>().eq("uid", uid).eq("post_id", postId));
         return count > 0;
+    }
+
+    private List<PostVO> trans2PostVOs(List<ESPosts> esPosts) {
+        if (CollectionUtils.isEmpty(esPosts)) {
+            return new ArrayList<>();
+        }
+       return esPosts.stream().map(esPost -> {
+            PostVO postVO = new PostVO();
+            BeanUtils.updateProperties(esPost, postVO);
+            User user = userMapper.selectById(postVO.getUid());
+            Forum forum = forumMapper.selectById(postVO.getForumId());
+            postVO.setNickname(user.getNickname())
+                .setAvatar(user.getAvatar())
+                .setForumName(forum.getName());
+            return postVO;
+        }).collect(Collectors.toList());
     }
 }

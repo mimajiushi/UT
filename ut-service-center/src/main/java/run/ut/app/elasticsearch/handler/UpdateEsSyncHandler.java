@@ -66,11 +66,7 @@ public class UpdateEsSyncHandler extends AbstractEsSyncHandler implements EsSync
                     syncBinLogProperties();
                 }
                 UpdateRequest updateRequest = new UpdateRequest(EsSyncHandlers.table, map.get("id"));
-                map.remove("id");
-                String createTime = map.get("create_time");
-                String updateTime = map.get("update_time");
-                map.put("create_time", createTime.substring(0, createTime.length() - 2));
-                map.put("update_time", updateTime.substring(0, updateTime.length() - 2));
+                handleMap(map);
                 updateRequest.doc(JsonUtils.objectToJson(map), XContentType.JSON);
 
                 restHighLevelClient.update(updateRequest, RequestOptions.DEFAULT);

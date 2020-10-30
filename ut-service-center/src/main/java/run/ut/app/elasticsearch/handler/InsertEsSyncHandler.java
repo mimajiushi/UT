@@ -58,11 +58,7 @@ public class InsertEsSyncHandler extends AbstractEsSyncHandler implements EsSync
                 IndexRequest indexRequest = new IndexRequest(EsSyncHandlers.table);
 
                 indexRequest.id(map.get("id"));
-                map.remove("id");
-                String createTime = map.get("create_time");
-                String updateTime = map.get("update_time");
-                map.put("create_time", createTime.substring(0, createTime.length() - 2));
-                map.put("update_time", updateTime.substring(0, updateTime.length() - 2));
+                handleMap(map);
                 indexRequest.source(map, XContentType.JSON);
                 restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
                 syncBinLogProperties();
