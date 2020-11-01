@@ -236,10 +236,18 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
 
         if (StringUtils.isNoneBlank(keyword)) {
             List<FunctionScoreQueryBuilder.FilterFunctionBuilder> filterFunctionBuilders = new ArrayList<>();
-            filterFunctionBuilders.add(new FunctionScoreQueryBuilder.FilterFunctionBuilder(QueryBuilders.matchQuery("title", keyword),
-                ScoreFunctionBuilders.weightFactorFunction(10)));
-            filterFunctionBuilders.add(new FunctionScoreQueryBuilder.FilterFunctionBuilder(QueryBuilders.matchQuery("content", keyword),
-                ScoreFunctionBuilders.weightFactorFunction(5)));
+            filterFunctionBuilders.add(
+                new FunctionScoreQueryBuilder.FilterFunctionBuilder(
+                    QueryBuilders.matchQuery("title", keyword),
+                    ScoreFunctionBuilders.weightFactorFunction(10)
+                )
+            );
+            filterFunctionBuilders.add(
+                new FunctionScoreQueryBuilder.FilterFunctionBuilder(
+                    QueryBuilders.matchQuery("content", keyword),
+                    ScoreFunctionBuilders.weightFactorFunction(5)
+                )
+            );
             FunctionScoreQueryBuilder.FilterFunctionBuilder[] builders =
                 new FunctionScoreQueryBuilder.FilterFunctionBuilder[filterFunctionBuilders.size()];
             filterFunctionBuilders.toArray(builders);
