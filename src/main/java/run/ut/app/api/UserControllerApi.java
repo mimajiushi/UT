@@ -8,10 +8,7 @@ import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.dto.UserInfoDTO;
-import run.ut.app.model.param.UserExperiencesParam;
-import run.ut.app.model.param.UserInfoParam;
-import run.ut.app.model.param.UserSimpleParam;
-import run.ut.app.model.param.WeChatLoginParam;
+import run.ut.app.model.param.*;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.vo.StudentVO;
 
@@ -26,6 +23,9 @@ public interface UserControllerApi {
 
     @ApiOperation(value = "用户登录（微信小程序）", notes = "用户首次登录即可自动注册，无需手动注册")
     public UserDTO wechatLogin(WeChatLoginParam weChatLoginParam) throws Exception;
+
+    @ApiOperation(value = "邮箱登录（主要是便于网页、app等用户登录）")
+    public UserDTO emailLogin(EmailLoginParam emailLoginParam);
 
     @ApiOperation(value = "用户查看个人主页", notes = "需要登录Token")
     public StudentVO showSelfPage();

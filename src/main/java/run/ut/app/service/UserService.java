@@ -7,6 +7,7 @@ import run.ut.app.model.domain.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserDTO;
+import run.ut.app.model.param.EmailLoginParam;
 import run.ut.app.model.param.WeChatLoginParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.WeChatResponse;
@@ -55,6 +56,14 @@ public interface UserService extends IService<User> {
     UserDTO wechatLogin(@NonNull WeChatLoginParam weChatLoginParam, @NonNull WeChatResponse weChatResponse);
 
     /**
+     * Login by email and other params
+     * @param emailLoginParam email and code
+     * @return user info
+     */
+    @NonNull
+    UserDTO loginByEmail(@NonNull EmailLoginParam emailLoginParam);
+
+    /**
      * Get user by openId
      *
      * @param openId openId
@@ -101,4 +110,12 @@ public interface UserService extends IService<User> {
      */
     @NonNull
     BaseResponse<String> sendEmailCode(@NonNull String email, @NonNull Long uid);
+
+    /**
+     * Send code to email
+     * @param email    email address
+     * @return         ok result with message
+     */
+    @NonNull
+    BaseResponse<String> sendEmailCode(@NonNull String email);
 }

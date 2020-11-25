@@ -20,7 +20,8 @@ public class RedisKey {
     /**
      * Email
      */
-    public static final String EMAIL_LOGIN_PREFIX = "EMAIL_LOGIN";
+    public static final String ADMIN_EMAIL_LOGIN = "ADMIN_EMAIL_LOGIN";
+    public static final String USER_EMAIL_LOGIN = "USER_EMAIL_LOGIN::%s";
     public static final String USER_EMAIL = "USER_EMAIL_CODE::%s::%s";
 
     public static final String AREA_PREFIX = "AREA_DATA";

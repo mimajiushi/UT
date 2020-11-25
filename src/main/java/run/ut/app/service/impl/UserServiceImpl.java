@@ -27,6 +27,7 @@ import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.enums.SexEnum;
 import run.ut.app.model.enums.UserInfoStatusEnum;
 import run.ut.app.model.enums.UserRolesEnum;
+import run.ut.app.model.param.EmailLoginParam;
 import run.ut.app.model.param.WeChatLoginParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.UploadResult;
@@ -166,12 +167,44 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                     .setSex(SexEnum.UNKNOW);
             save(user);
             AuthToken authToken = jwtOperator.buildAuthToken(user);
-            return new UserDTO().convertFrom(user).setToken(authToken);
+            return new UserDTO().convertFrom(user).setToken(authToken).setRolesName(UserRolesEnum.getRoles(user.getRoles()));
         }
 
         // login
         AuthToken authToken = jwtOperator.buildAuthToken(user);
-        return new UserDTO().convertFrom(user).setToken(authToken);
+        return new UserDTO().convertFrom(user).setToken(authToken).setRolesName(UserRolesEnum.getRoles(user.getRoles()));
+    }
+
+    @Override
+    public UserDTO loginByEmail(EmailLoginParam emailLoginParam) {
+
+        String email = emailLoginParam.getEmail();
+        String code = emailLoginParam.getCode();
+
+        // check code
+        String redisKey = String.format(RedisKey.USER_EMAIL_LOGIN, email);
+        String resCode = redisService.get(redisKey);
+        if (!code.equals(resCode)) {
+            throw new AuthenticationException("无效帐号或验证码！");
+        }
+
+        // check roles
+        User user = getUserByEmail(email);
+        if (ObjectUtils.isEmpty(user)) {
+            // register and login
+            user = new User().setRoles(UserRolesEnum.ROLE_TOURIST.getType())
+                    .setOpenid("")
+                    .setAvatar("https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2561659095,299912888&fm=26&gp=0.jpg")
+                    .setNickname(email)
+                    .setSex(SexEnum.UNKNOW);
+            save(user);
+            AuthToken authToken = jwtOperator.buildAuthToken(user);
+            return new UserDTO().convertFrom(user).setToken(authToken).setRolesName(UserRolesEnum.getRoles(user.getRoles()));
+        }
+
+        // generate token
+        AuthToken authToken = jwtOperator.buildAuthToken(user);
+        return new UserDTO().convertFrom(user).setToken(authToken).setRolesName(UserRolesEnum.getRoles(user.getRoles()));
     }
 
     @Override
@@ -221,10 +254,33 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         data.put("nickname", user.getNickname());
 
         String templates = "mail_template/mail_bind.ftl";
-        String subject = "邮箱绑定验证";
+        String subject = "邮箱验证";
         mailService.sendTemplateMail(email, subject, data, templates);
 
         return BaseResponse.ok("验证码发送成功，请在" + RedisKey.EMAIL_CODE_TIME_OUT / 60 + "分钟内完成绑定！");
     }
 
+    @Override
+    public BaseResponse<String> sendEmailCode(String email) {
+        String code = RandomUtils.number(6);
+        String key = String.format(RedisKey.USER_EMAIL_LOGIN, email);
+        redisService.setKeyValTTL(key, code, RedisKey.EMAIL_CODE_TIME_OUT);
+
+        User user = getUserByEmail(email);
+
+        // send mail
+        Map<String, Object> data = new HashMap<>();
+        data.put("code", code);
+        if (ObjectUtils.isEmpty(user)) {
+            data.put("nickname", email);
+        } else {
+            data.put("nickname", user.getNickname());
+        }
+
+        String templates = "mail_template/mail_login.ftl";
+        String subject = "邮箱验证";
+        mailService.sendTemplateMail(email, subject, data, templates);
+
+        return BaseResponse.ok("验证码发送成功，请在" + RedisKey.EMAIL_CODE_TIME_OUT / 60 + "分钟内完成绑定！");
+    }
 }

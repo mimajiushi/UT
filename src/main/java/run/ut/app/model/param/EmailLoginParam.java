@@ -7,8 +7,8 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-@ApiModel(value = "管理员登录参数")
-public class AdminLoginParam implements Serializable {
+@ApiModel(value = "邮箱登录参数")
+public class EmailLoginParam implements Serializable {
 
     @ApiModelProperty(value = "邮箱")
     private String email;

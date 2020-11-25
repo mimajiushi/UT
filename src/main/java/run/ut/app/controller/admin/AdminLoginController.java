@@ -13,9 +13,10 @@ import run.ut.app.cache.lock.HttpRequestRateLimit;
 import run.ut.app.exception.BadRequestException;
 import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.enums.RateLimitEnum;
-import run.ut.app.model.param.AdminLoginParam;
+import run.ut.app.model.param.EmailLoginParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.service.AdminService;
+import run.ut.app.service.UserService;
 
 /**
  * admin login controller
@@ -35,16 +36,16 @@ public class AdminLoginController implements AdminLoginControllerApi {
     @Override
     @HttpRequestRateLimit(limit = RateLimitEnum.RRLimit_1_5)
     @PostMapping("loginByEmail")
-    public UserDTO loginByEmail(AdminLoginParam adminLoginParam) {
-        Assert.hasText(adminLoginParam.getEmail(), "email must not be blank");
-        Assert.hasText(adminLoginParam.getCode(), "code must not be blank");
+    public UserDTO loginByEmail(EmailLoginParam emailLoginParam) {
+        Assert.hasText(emailLoginParam.getEmail(), "email must not be blank");
+        Assert.hasText(emailLoginParam.getCode(), "code must not be blank");
 
-        boolean isEmail = Validator.isEmail(adminLoginParam.getEmail());
+        boolean isEmail = Validator.isEmail(emailLoginParam.getEmail());
         if (!isEmail) {
             throw new BadRequestException("非法邮箱！");
         }
 
-        return adminService.loginByEmail(adminLoginParam);
+        return adminService.loginByEmail(emailLoginParam);
     }
 
     @Override

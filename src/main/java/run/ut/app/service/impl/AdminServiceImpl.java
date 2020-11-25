@@ -15,7 +15,7 @@ import run.ut.app.mail.MailService;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.enums.UserRolesEnum;
-import run.ut.app.model.param.AdminLoginParam;
+import run.ut.app.model.param.EmailLoginParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.security.token.AuthToken;
 import run.ut.app.security.util.JwtOperator;
@@ -43,12 +43,12 @@ public class AdminServiceImpl implements AdminService {
 
 
     @Override
-    public UserDTO loginByEmail(AdminLoginParam adminLoginParam) {
-        String email = adminLoginParam.getEmail();
-        String code = adminLoginParam.getCode();
+    public UserDTO loginByEmail(EmailLoginParam emailLoginParam) {
+        String email = emailLoginParam.getEmail();
+        String code = emailLoginParam.getCode();
 
         // check code
-        String redisKey = RedisKey.EMAIL_LOGIN_PREFIX + "::" + email;
+        String redisKey = RedisKey.ADMIN_EMAIL_LOGIN + "::" + email;
         String resCode = redisService.get(redisKey);
         if (!code.equals(resCode)) {
             throw new AuthenticationException("无效帐号或验证码！");
@@ -85,7 +85,7 @@ public class AdminServiceImpl implements AdminService {
         }
 
         // set code ttl and send email
-        String key = RedisKey.EMAIL_LOGIN_PREFIX + "::" + email;
+        String key = RedisKey.ADMIN_EMAIL_LOGIN + "::" + email;
         String code = RandomUtils.number(6);
         redisService.setKeyValTTL(key, code, RedisKey.EMAIL_CODE_TIME_OUT);
 

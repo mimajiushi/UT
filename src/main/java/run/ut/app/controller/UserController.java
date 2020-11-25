@@ -4,10 +4,12 @@ package run.ut.app.controller;
 import cn.hutool.core.lang.Validator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 import org.springframework.util.unit.DataSize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -22,10 +24,7 @@ import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.dto.UserInfoDTO;
 import run.ut.app.model.enums.RateLimitEnum;
 import run.ut.app.model.enums.SexEnum;
-import run.ut.app.model.param.UserExperiencesParam;
-import run.ut.app.model.param.UserInfoParam;
-import run.ut.app.model.param.UserSimpleParam;
-import run.ut.app.model.param.WeChatLoginParam;
+import run.ut.app.model.param.*;
 import run.ut.app.model.properties.WechatMPProperties;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.WeChatResponse;
@@ -83,6 +82,19 @@ public class UserController extends BaseController implements UserControllerApi 
         }
         WeChatResponse weChatResponse = res.getBody();
         return userService.wechatLogin(weChatLoginParam, weChatResponse);
+    }
+
+    @Override
+    @PostMapping("loginByEmail")
+    @HttpRequestRateLimit(limit = RateLimitEnum.RRLimit_1_5)
+    public UserDTO emailLogin(EmailLoginParam emailLoginParam) {
+
+        boolean isEmail = Validator.isEmail(emailLoginParam.getEmail());
+        if (!isEmail) {
+            throw new BadRequestException("非法邮箱！");
+        }
+
+        return userService.loginByEmail(emailLoginParam);
     }
 
     @Override
@@ -174,13 +186,19 @@ public class UserController extends BaseController implements UserControllerApi 
     }
 
     @Override
-    @CheckLogin
     @PostMapping("sendEmailCode")
     @HttpRequestRateLimit(limit = RateLimitEnum.RRLimit_1_60)
     public BaseResponse<String> sendEmailCode(String email) {
         if (!Validator.isEmail(email)) {
             throw new BadRequestException("非法邮箱！");
         }
+        // login
+        try {
+            getUid();
+        } catch (Exception e) {
+            return userService.sendEmailCode(email);
+        }
+        // bind email
         return userService.sendEmailCode(email, getUid());
     }
 }
