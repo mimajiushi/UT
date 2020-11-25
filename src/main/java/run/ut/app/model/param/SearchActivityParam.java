@@ -3,6 +3,7 @@ package run.ut.app.model.param;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Arrays;
  */
 
 @Data
-public class SearchActivityParam {
+public class SearchActivityParam implements Serializable {
 
     @ApiModelProperty(value = "标题", notes = "模糊搜索")
     private String title;

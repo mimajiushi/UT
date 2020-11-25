@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Arrays;
  * @author wenjie
  */
 @Getter
-public enum UserInfoStatusEnum implements IEnum<Integer> {
+public enum UserInfoStatusEnum implements IEnum<Integer>, Serializable {
     PASS(1, "审核通过"),
     WAITING(0, "审核中"),
     FAIL(-1, "审核不通过");

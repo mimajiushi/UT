@@ -26,7 +26,7 @@ import run.ut.app.model.param.PostParam;
 @ApiModel(value = "Posts对象", description = "")
 public class Posts extends BaseEntity implements InputConverter<PostParam> {
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     private Long uid;

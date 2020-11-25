@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * SystemInfoVO
  * @author Lucien
@@ -20,7 +22,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "SystemInfoVO对象", description = "")
-public class SystemInfoVO {
+public class SystemInfoVO implements Serializable {
 
     @ApiModelProperty("Java版本")
     private String javaVersion;

@@ -8,6 +8,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -20,7 +21,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @MappedSuperclass
 @Accessors(chain = true)
-public class BaseDTO {
+public class BaseDTO implements Serializable {
 
     /**
      * Create time.

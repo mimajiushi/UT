@@ -7,8 +7,6 @@ package run.ut.app.config.http;
  * @author wenjie
  */
 
-
-import com.alibaba.fastjson.JSON;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.Header;
@@ -45,6 +43,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
+import run.ut.app.utils.JsonUtils;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
@@ -154,7 +153,7 @@ public class HttpClientConfig {
                     response.headerIterator(HTTP.CONN_KEEP_ALIVE));
             while (it.hasNext()) {
                 HeaderElement he = it.nextElement();
-                log.info("HeaderElement:{}", JSON.toJSONString(he));
+                log.info("HeaderElement:{}", JsonUtils.objectToJson(he));
                 String param = he.getName();
                 String value = he.getValue();
                 if (value != null && "timeout".equalsIgnoreCase(param)) {

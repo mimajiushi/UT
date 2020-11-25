@@ -25,7 +25,7 @@ import run.ut.app.model.enums.TeamsStatusEnum;
 @ApiModel(value = "Teams对象", description = "")
 public class Teams extends BaseEntity {
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     private String name;

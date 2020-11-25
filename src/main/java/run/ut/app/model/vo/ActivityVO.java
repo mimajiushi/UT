@@ -46,7 +46,6 @@ public class ActivityVO extends BaseVO implements OutputConverter<ActivityVO, Ac
     private boolean collect;
 
     @ApiModelProperty(value = "阅读数")
-    @JsonSerialize(using = ToStringSerializer.class)
     private long readCount;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

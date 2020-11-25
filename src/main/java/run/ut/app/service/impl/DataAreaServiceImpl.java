@@ -1,6 +1,5 @@
 package run.ut.app.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +14,7 @@ import run.ut.app.mapper.DataAreaMapper;
 import run.ut.app.model.domain.DataArea;
 import run.ut.app.service.DataAreaService;
 import run.ut.app.service.RedisService;
+import run.ut.app.utils.JsonUtils;
 
 import java.util.List;
 
@@ -36,13 +36,13 @@ public class DataAreaServiceImpl extends ServiceImpl<DataAreaMapper, DataArea> i
                             new QueryWrapper<DataArea>().select("id", "parent_id", "name")
                                     .eq("parent_id", parentId).orderByAsc("sort"));
             if (!ObjectUtils.isEmpty(dataAreas)) {
-                String value = JSON.toJSONString(dataAreas);
+                String value = JsonUtils.objectToJson(dataAreas);
                 redisService.setKeyValTTL(key, value, RedisKey.AREA_TTL);
                 return dataAreas;
             }
             throw new NotFoundException("The areaa with id " + parentId + " could not be found or have been deleted");
         }
-        return JSON.parseArray(redisRes, DataArea.class);
+        return JsonUtils.jsonToList(redisRes, DataArea.class);
     }
 
     @Override
@@ -57,12 +57,12 @@ public class DataAreaServiceImpl extends ServiceImpl<DataAreaMapper, DataArea> i
         if (StringUtils.isEmpty(redisRes)) {
             DataArea dataArea = dataAreaMapper.selectById(id);
             if (!ObjectUtils.isEmpty(dataArea)) {
-                String value = JSON.toJSONString(dataArea);
+                String value = JsonUtils.objectToJson(dataArea);
                 redisService.setKeyValTTL(key, value, RedisKey.AREA_TTL);
                 return dataArea;
             }
             throw new NotFoundException("The areaa with id " + id + " could not be found or have been deleted");
         }
-        return JSON.parseObject(redisRes, DataArea.class);
+        return JsonUtils.jsonToObject(redisRes, DataArea.class);
     }
 }

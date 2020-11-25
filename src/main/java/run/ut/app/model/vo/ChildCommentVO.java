@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * @author wenjie
  */
@@ -14,26 +16,26 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
-public class ChildCommentVO extends BaseVO {
+public class ChildCommentVO extends BaseVO implements Serializable {
 
-    @ApiModelProperty(value = "评论id")
     @JsonSerialize(using = ToStringSerializer.class)
+    @ApiModelProperty(value = "评论id")
     private Long id;
 
-    @ApiModelProperty(value = "所属帖子id")
     @JsonSerialize(using = ToStringSerializer.class)
+    @ApiModelProperty(value = "所属帖子id")
     private Long postId;
 
-    @ApiModelProperty(value = "父评论id")
     @JsonSerialize(using = ToStringSerializer.class)
+    @ApiModelProperty(value = "父评论id")
     private Long parentCommentId;
 
-    @ApiModelProperty(value = "评论者uid")
     @JsonSerialize(using = ToStringSerializer.class)
+    @ApiModelProperty(value = "评论者uid")
     private Long fromUid;
 
-    @ApiModelProperty(value = "被评论/回复者uid")
     @JsonSerialize(using = ToStringSerializer.class)
+    @ApiModelProperty(value = "被评论/回复者uid")
     private Long toUid;
 
     @ApiModelProperty(value = "评论者昵称")
@@ -48,8 +50,8 @@ public class ChildCommentVO extends BaseVO {
     @ApiModelProperty(value = "评论内容")
     private String content;
 
-    @ApiModelProperty(value = "点赞数")
     @JsonSerialize(using = ToStringSerializer.class)
+    @ApiModelProperty(value = "点赞数")
     private Long likes;
 
     @ApiModelProperty(value = "是否点赞过")

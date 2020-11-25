@@ -4,11 +4,13 @@ import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 /**
  * 地理级别枚举
  */
 @Getter
-public enum DataAreaLevelEnum implements IEnum<Integer> {
+public enum DataAreaLevelEnum implements IEnum<Integer>, Serializable {
     PROVINCE(1, "省/直辖市"),
     CITY(2, "地级市"),
     COUNTY(3, "区县"),

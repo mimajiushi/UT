@@ -1,14 +1,11 @@
 package run.ut.app.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qiniu.common.Zone;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
@@ -16,10 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
-import run.ut.app.config.properties.UtProperties;
 import run.ut.app.config.redis.RedisKey;
 import run.ut.app.event.options.OptionsUpdatedEvent;
 import run.ut.app.exception.MissingPropertyException;
+import run.ut.app.handler.MyZone;
 import run.ut.app.mapper.OptionsMapper;
 import run.ut.app.model.domain.Options;
 import run.ut.app.model.dto.OptionsDTO;
@@ -28,6 +25,7 @@ import run.ut.app.model.properties.PropertyEnum;
 import run.ut.app.model.properties.QiniuOssProperties;
 import run.ut.app.service.OptionsService;
 import run.ut.app.service.RedisService;
+import run.ut.app.utils.JsonUtils;
 import run.ut.app.utils.ServiceUtils;
 import run.ut.app.utils.ValidationUtils;
 
@@ -48,12 +46,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> implements OptionsService {
 
-    private final OptionsMapper optionsMapper;
-    private final ApplicationContext applicationContext;
     private final ApplicationEventPublisher eventPublisher;
     private final RedisService redisService;
     private final Map<String, PropertyEnum> propertyEnumMap = Collections.unmodifiableMap(PropertyEnum.getValuePropertyEnumMap());
-    private final UtProperties utProperties;
 
     @Transactional
     void save(@NonNull String key, @Nullable String value) {
@@ -174,25 +169,25 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
 
             // Add default property
             propertyEnumMap.keySet()
-                .stream()
-                .filter(key -> !keys.contains(key))
-                .forEach(key -> {
-                    PropertyEnum propertyEnum = propertyEnumMap.get(key);
+                    .stream()
+                    .filter(key -> !keys.contains(key))
+                    .forEach(key -> {
+                        PropertyEnum propertyEnum = propertyEnumMap.get(key);
 
-                    if (StringUtils.isBlank(propertyEnum.defaultValue())) {
-                        return;
-                    }
+                        if (StringUtils.isBlank(propertyEnum.defaultValue())) {
+                            return;
+                        }
 
-                    result.put(key, PropertyEnum.convertTo(propertyEnum.defaultValue(), propertyEnum));
-                });
+                        result.put(key, PropertyEnum.convertTo(propertyEnum.defaultValue(), propertyEnum));
+                    });
 
             // Cache the result
-            redisService.set(RedisKey.OPTIONS_KEY, JSON.toJSONString(result));
+            redisService.set(RedisKey.OPTIONS_KEY, JsonUtils.objectToJson(result));
 
             return result;
         }
 
-        return JSON.parseObject(resJson, Map.class);
+        return JsonUtils.jsonToObject(resJson, Map.class);
     }
 
     @Override
@@ -206,8 +201,8 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
         Map<String, Object> result = new HashMap<>(keys.size());
 
         keys.stream()
-            .filter(optionMap::containsKey)
-            .forEach(key -> result.put(key, optionMap.get(key)));
+                .filter(optionMap::containsKey)
+                .forEach(key -> result.put(key, optionMap.get(key)));
 
         return result;
     }
@@ -232,7 +227,7 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
             optionsDTO.setKey(e.getOptionKey()).setValue(e.getOptionValue()).setRemark(e.getRemark());
             return optionsDTO;
         }).collect(Collectors.toList());
-}
+    }
 
 
     @Override
@@ -290,33 +285,33 @@ public class OptionsServiceImpl extends ServiceImpl<OptionsMapper, Options> impl
     }
 
     @Override
-    public Zone getQnYunZone() {
+    public MyZone getQnYunZone() {
         return getByProperty(QiniuOssProperties.OSS_ZONE).map(qiniuZone -> {
 
-            Zone zone;
+            MyZone zone;
             switch (qiniuZone.toString()) {
                 case "z0":
-                    zone = Zone.zone0();
+                    zone = MyZone.zone0();
                     break;
                 case "z1":
-                    zone = Zone.zone1();
+                    zone = MyZone.zone1();
                     break;
                 case "z2":
-                    zone = Zone.zone2();
+                    zone = MyZone.zone2();
                     break;
                 case "na0":
-                    zone = Zone.zoneNa0();
+                    zone = MyZone.zoneNa0();
                     break;
                 case "as0":
-                    zone = Zone.zoneAs0();
+                    zone = MyZone.zoneAs0();
                     break;
                 default:
                     // Default is detecting zone automatically
-                    zone = Zone.autoZone();
+                    zone = MyZone.autoZone();
             }
             return zone;
 
-        }).orElseGet(Zone::autoZone);
+        }).orElseGet(MyZone::autoZone);
     }
 
     private void publishOptionUpdatedEvent() {

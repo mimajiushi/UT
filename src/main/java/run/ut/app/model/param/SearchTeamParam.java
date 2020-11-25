@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * @author wenjie
@@ -12,7 +13,7 @@ import javax.validation.constraints.Size;
 
 @Data
 @ApiModel(description = "查询团队list的参数")
-public class SearchTeamParam {
+public class SearchTeamParam implements Serializable {
 
     @ApiModelProperty("团队名")
     @Size(max = 10, message = "团队名不能超过{max}字")

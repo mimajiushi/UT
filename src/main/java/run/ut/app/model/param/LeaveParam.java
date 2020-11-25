@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * leave param
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * @author wenjie
  */
 @Data
-public class LeaveParam {
+public class LeaveParam implements Serializable {
 
     @ApiModelProperty("1-队长开除成员 2-成员主动离开")
     @Min(1)

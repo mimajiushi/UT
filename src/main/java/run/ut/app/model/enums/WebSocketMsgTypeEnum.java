@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Arrays;
  * @author wenjie
  */
 @Getter
-public enum WebSocketMsgTypeEnum implements IEnum<Integer> {
+public enum WebSocketMsgTypeEnum implements IEnum<Integer>, Serializable {
     RECEIVED_INVITATION(1, "收到入队邀请"),
     RECEIVED_APPLICATION(2, "收到入队申请"),
     COMMENT(3, "帖子评论/回复"),

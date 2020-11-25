@@ -1,7 +1,7 @@
 package run.ut.app.model.dto;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ActivityDTO  extends BaseDTO implements OutputConverter<ActivityDTO, Activity> {
 
-    @JSONField(serializeUsing = ToStringSerializer.class)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     @ApiModelProperty(value = "活动标题")

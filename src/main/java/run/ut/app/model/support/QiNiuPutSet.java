@@ -2,6 +2,8 @@ package run.ut.app.model.support;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * <pre>
  *     七牛上传自定义凭证回调解析
@@ -12,7 +14,7 @@ import lombok.Data;
  * @date 2018/12/3
  */
 @Data
-public class QiNiuPutSet {
+public class QiNiuPutSet implements Serializable {
 
     /**
      * 文件hash值

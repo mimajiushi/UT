@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -18,7 +19,7 @@ import java.time.LocalDateTime;
 @ToString
 @EqualsAndHashCode
 @Accessors(chain = true)
-public class BaseParam {
+public class BaseParam implements Serializable {
 
     /**
      * Create time.

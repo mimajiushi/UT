@@ -25,7 +25,7 @@ import run.ut.app.model.enums.TeamsMemberEnum;
 @ApiModel(value = "TeamsMembers对象", description = "")
 public class TeamsMembers extends BaseEntity {
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     private Long teamId;

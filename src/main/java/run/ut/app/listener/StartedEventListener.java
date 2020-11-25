@@ -1,10 +1,8 @@
 package run.ut.app.listener;
 
-import com.alibaba.fastjson.JSON;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
@@ -18,6 +16,7 @@ import run.ut.app.model.domain.DataSchool;
 import run.ut.app.service.DataAreaService;
 import run.ut.app.service.DataSchoolService;
 import run.ut.app.service.RedisService;
+import run.ut.app.utils.JsonUtils;
 
 import java.util.List;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -79,7 +78,7 @@ public class StartedEventListener implements ApplicationListener<ApplicationStar
             for (Integer parentId : parentIdDistinct) {
                 String key = RedisKey.AREA_PREFIX + "::" + parentId;
                 List<DataArea> areasByParentId = dataAreaService.getAreaDataByParentId(parentId);
-                redisService.setKeyValTTL(key, JSON.toJSONString(areasByParentId), RedisKey.AREA_TTL);
+                redisService.setKeyValTTL(key, JsonUtils.objectToJson(areasByParentId), RedisKey.AREA_TTL);
             }
             log.info("加载所有省、市级信息结束...");
 
@@ -91,13 +90,13 @@ public class StartedEventListener implements ApplicationListener<ApplicationStar
             for (Integer provincId : provincIdDistinct) {
                 String key = RedisKey.SCHOOL_DATA_LIST_PREFIX + "::" + provincId;
                 List<DataSchool> listByProvinceId = dataSchoolService.getListByProvinceId(provincId);
-                redisService.setKeyValTTL(key, JSON.toJSONString(listByProvinceId), RedisKey.AREA_TTL);
+                redisService.setKeyValTTL(key, JsonUtils.objectToJson(listByProvinceId), RedisKey.AREA_TTL);
             }
 
             List<DataSchool> allSchool = dataSchoolService.getAllSchool();
             for (DataSchool dataSchool : allSchool) {
                 String key = RedisKey.SCHOOL_DATA_PREFIX + "::" + dataSchool.getId();
-                redisService.setKeyValTTL(key, JSON.toJSONString(dataSchool), RedisKey.AREA_TTL);
+                redisService.setKeyValTTL(key, JsonUtils.objectToJson(dataSchool), RedisKey.AREA_TTL);
             }
             log.info("加载校园数据结束...");
         }, 0, 7, TimeUnit.DAYS);

@@ -1,10 +1,13 @@
 package run.ut.app.model.domain;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import run.ut.app.model.enums.DataAreaLevelEnum;
 
@@ -43,7 +46,7 @@ public class DataArea implements Serializable {
     private Float latitude;
 
     @ApiModelProperty(value = "等级(1省/直辖市,2地级市,3区县,4镇/街道)")
-    @JSONField(serialzeFeatures = SerializerFeature.WriteEnumUsingToString)
+    @JsonSerialize(using = ToStringSerializer.class)
     private DataAreaLevelEnum level;
 
     @ApiModelProperty(value = "排序")

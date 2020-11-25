@@ -1,11 +1,13 @@
 package run.ut.app.model.enums;
 
+import java.io.Serializable;
+
 /**
  * Attach origin.
  *
  * @author wenjie
  */
-public enum AttachmentType implements ValueEnum<Integer> {
+public enum AttachmentType implements ValueEnum<Integer>, Serializable {
 
     /**
      * 服务器

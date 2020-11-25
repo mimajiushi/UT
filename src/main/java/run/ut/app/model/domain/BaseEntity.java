@@ -10,6 +10,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -22,7 +23,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @MappedSuperclass
 @Accessors(chain = true)
-public class BaseEntity {
+public class BaseEntity implements Serializable {
 
     /**
      * Create time.

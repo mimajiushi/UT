@@ -16,6 +16,7 @@ import run.ut.app.model.dto.TeamsRecruitmentsDTO;
 import run.ut.app.model.dto.base.OutputConverter;
 import run.ut.app.model.enums.TeamsStatusEnum;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,10 +30,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "TeamVO 对象", description = "")
-public class TeamVO implements OutputConverter<TeamVO, Teams> {
+public class TeamVO implements OutputConverter<TeamVO, Teams>, Serializable {
 
-    @ApiModelProperty("团队id")
     @JsonSerialize(using = ToStringSerializer.class)
+    @ApiModelProperty("团队id")
     private Long id;
 
     @ApiModelProperty("团队名")

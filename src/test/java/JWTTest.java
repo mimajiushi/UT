@@ -1,10 +1,4 @@
-import com.alibaba.fastjson.JSON;
 import org.junit.Test;
-import run.ut.app.model.domain.User;
-import run.ut.app.model.param.DealInvitationOrApplyParam;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class JWTTest {
 

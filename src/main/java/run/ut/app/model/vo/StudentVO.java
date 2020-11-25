@@ -4,13 +4,17 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.UserExperiencesDTO;
 import run.ut.app.model.enums.DegreeEnum;
 import run.ut.app.model.enums.SexEnum;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -23,7 +27,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "StudentVO对象", description = "")
-public class StudentVO {
+public class StudentVO implements Serializable {
 
     @JsonSerialize(using = ToStringSerializer.class)
     @ApiModelProperty("uid")

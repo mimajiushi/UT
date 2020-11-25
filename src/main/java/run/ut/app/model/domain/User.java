@@ -24,7 +24,7 @@ import run.ut.app.model.enums.SexEnum;
 @AllArgsConstructor
 public class User extends BaseEntity {
 
-    @TableId(value = "uid", type = IdType.AUTO)
+    @TableId(value = "uid", type = IdType.ASSIGN_ID)
     private Long uid;
 
     private String openid;

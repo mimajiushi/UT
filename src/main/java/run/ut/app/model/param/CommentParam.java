@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * Comment param
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @Data
-public class CommentParam {
+public class CommentParam implements Serializable {
 
     @ApiModelProperty(value = "帖子id")
     @NotNull(message = "post id must not be null.")

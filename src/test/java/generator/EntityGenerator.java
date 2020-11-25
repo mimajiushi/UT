@@ -1,6 +1,5 @@
 package generator;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
@@ -9,6 +8,7 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.junit.Test;
+import run.ut.app.utils.JsonUtils;
 
 
 /**
@@ -89,7 +89,7 @@ public class EntityGenerator {
     @Test
     public void test(){
         String[] ids = new String[]{"1","2","3"};
-        String json = JSON.toJSONString(ids);
+        String json = JsonUtils.objectToJson(ids);
         System.out.println(json);
     }
 }

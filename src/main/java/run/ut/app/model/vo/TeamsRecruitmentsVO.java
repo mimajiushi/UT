@@ -14,6 +14,7 @@ import run.ut.app.model.domain.TeamsRecruitments;
 import run.ut.app.model.dto.TagsDTO;
 import run.ut.app.model.dto.base.OutputConverter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,14 +32,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "TeamsRecruitmentsVO 对象", description = "")
-public class TeamsRecruitmentsVO implements OutputConverter<TeamsRecruitmentsVO, TeamsRecruitments> {
+public class TeamsRecruitmentsVO implements OutputConverter<TeamsRecruitmentsVO, TeamsRecruitments>, Serializable {
 
-    @ApiModelProperty("职位id")
     @JsonSerialize(using = ToStringSerializer.class)
+    @ApiModelProperty("职位id")
     private Long id;
 
-    @ApiModelProperty("职位所属团队id")
     @JsonSerialize(using = ToStringSerializer.class)
+    @ApiModelProperty("职位所属团队id")
     private Long teamId;
 
     @ApiModelProperty(value = "招聘岗位名称")

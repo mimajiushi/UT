@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Arrays;
  * @author wenjie
  */
 @Getter
-public enum LeaveModeEnum implements IEnum<Integer> {
+public enum LeaveModeEnum implements IEnum<Integer>, Serializable {
     EXPEL_USER(1, "团队踢人"),
     USER_LEAVE(2, "成员主动离开");
 

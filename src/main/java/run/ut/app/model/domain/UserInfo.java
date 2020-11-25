@@ -26,7 +26,7 @@ import run.ut.app.model.enums.UserInfoStatusEnum;
 @ApiModel(value = "UserInfo对象", description = "")
 public class UserInfo extends BaseEntity {
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     private Long uid;

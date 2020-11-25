@@ -12,6 +12,7 @@ import run.ut.app.model.dto.base.InputConverter;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * <p>
@@ -27,7 +28,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "UserTeamApplyLogDTO 对象", description = "")
-public class TeamApplyOrInviteParam implements InputConverter<UserTeamApplyLog> {
+public class TeamApplyOrInviteParam implements InputConverter<UserTeamApplyLog>, Serializable {
 
     @ApiModelProperty(value = "可能会在某些更新情景下使用")
     private Long id;

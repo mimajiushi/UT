@@ -2,13 +2,15 @@ package run.ut.app.model.support;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * 微信小程序授权响应对象
  *
  * @author wenjie
  */
 @Data
-public class WeChatResponse {
+public class WeChatResponse implements Serializable {
     /**
      * 用户唯一标识
      */

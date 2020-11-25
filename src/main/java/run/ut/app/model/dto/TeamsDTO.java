@@ -1,6 +1,5 @@
 package run.ut.app.model.dto;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModelProperty;
@@ -27,7 +26,7 @@ import run.ut.app.model.enums.TeamsStatusEnum;
 @AllArgsConstructor
 public class TeamsDTO extends BaseDTO implements OutputConverter<TeamsDTO, Teams> {
 
-    @JSONField(serializeUsing = ToStringSerializer.class)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     private String name;

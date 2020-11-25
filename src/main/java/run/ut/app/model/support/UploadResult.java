@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.ToString;
 import org.springframework.http.MediaType;
 
+import java.io.Serializable;
+
 /**
  * Upload result dto.
  *
@@ -11,7 +13,7 @@ import org.springframework.http.MediaType;
  */
 @Data
 @ToString
-public class UploadResult {
+public class UploadResult implements Serializable {
 
     private String filename;
 
