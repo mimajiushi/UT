@@ -6,10 +6,14 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.type.CollectionType;
+import org.apache.commons.io.IOUtils;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,7 +22,7 @@ import java.util.Map;
 /**
  * Json utilities.
  *
- * @author wenjie
+ * @author chenwenjie.star
  */
 public class JsonUtils {
 
@@ -89,43 +93,55 @@ public class JsonUtils {
 
         try {
             return objectMapper.readValue(json, type);
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
 
-//    /**
-//     * Converts input stream to object specified type.
-//     *
-//     * @param inputStream input stream must not be null
-//     * @param type        object type must not be null
-//     * @param <T>         target object type
-//     * @return object specified type
-//     * @throws IOException throws when fail to convert
-//     */
-//    @NonNull
-//    public static <T> T inputStreamToObject(@NonNull InputStream inputStream, @NonNull Class<T> type) throws IOException {
-//        return inputStreamToObject(inputStream, type, null);
-//    }
-//
-//    /**
-//     * Converts input stream to object specified type.
-//     *
-//     * @param inputStream  input stream must not be null
-//     * @param type         object type must not be null
-//     * @param objectMapper object mapper must not be null
-//     * @param <T>          target object type
-//     * @return object specified type
-//     * @throws IOException throws when fail to convert
-//     */
-//    @NonNull
-//    public static <T> T inputStreamToObject(@NonNull InputStream inputStream, @NonNull Class<T> type, @NonNull ObjectMapper objectMapper) throws IOException {
-//        Assert.notNull(inputStream, "Input stream must not be null");
-//
-//        String json = IOUtils.toString(inputStream);
-//        return jsonToObject(json, type, objectMapper);
-//    }
+    /**
+     * Converts input stream to object specified type.
+     *
+     * @param inputStream input stream must not be null
+     * @param type        object type must not be null
+     * @param <T>         target object type
+     * @return object specified type
+     * @throws IOException throws when fail to convert
+     */
+    @NonNull
+    public static <T> T inputStreamToObject(@NonNull InputStream inputStream, @NonNull Class<T> type) throws IOException {
+        return inputStreamToObject(inputStream, type, DEFAULT_JSON_MAPPER);
+    }
+
+    /**
+     * Converts input stream to object specified type.
+     *
+     * @param inputStream  input stream must not be null
+     * @param type         object type must not be null
+     * @param objectMapper object mapper must not be null
+     * @param <T>          target object type
+     * @return object specified type
+     * @throws IOException throws when fail to convert
+     */
+    @NonNull
+    public static <T> T inputStreamToObject(@NonNull InputStream inputStream, @NonNull Class<T> type, @NonNull ObjectMapper objectMapper) throws IOException {
+        Assert.notNull(inputStream, "Input stream must not be null");
+
+        String json = IOUtils.toString(inputStream, Charset.defaultCharset());
+        return jsonToObject(json, type, objectMapper);
+    }
+
+    /**
+     * Converts input stream to object specified type.
+     *
+     * @param inputStream input stream must not be null
+     * @return object specified type
+     * @throws IOException throws when fail to convert
+     */
+    public static String inputStreamToJson(@NonNull InputStream inputStream) throws IOException {
+        Object map = inputStreamToObject(inputStream, Object.class);
+        return objectToJson(map);
+    }
 
     /**
      * Converts object to json format.
@@ -255,10 +271,9 @@ public class JsonUtils {
 
         try {
             return objectMapper.readValue(json, listType);
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
-
 }

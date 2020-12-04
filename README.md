@@ -107,4 +107,8 @@ ut
 
 - 特别感谢[@施晓权](https://gitee.com/sxq2017)提供的服务器，用于部署jenkins等应用。
 
+#### 字节内推
+
+- 内推传送门：https://job.toutiao.com/s/JXN9TDV
+
 
