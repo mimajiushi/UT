@@ -36,7 +36,7 @@ public class TestTask {
     @Scheduled(cron = "0/1 * * * * ?")
     @Async
     public void adminLoginCache() {
-        String key = "EMAIL_LOGIN::1498780478@qq.com";
+        String key = "ADMIN_EMAIL_LOGIN::1498780478@qq.com";
         String value = "123456";
         redisService.set(key, value);
     }

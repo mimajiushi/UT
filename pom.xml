@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>run.ut.app</groupId>
@@ -11,7 +10,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.1.RELEASE</version>
+        <version>2.4.2</version>
     </parent>
 
     <properties>
@@ -35,7 +34,6 @@
         <hutool-all.version>5.0.3</hutool-all.version>
         <jjwt-jackson.version>0.10.7</jjwt-jackson.version>
         <qiniu-java-sdk.version>7.2.18</qiniu-java-sdk.version>
-        <image4j.version>0.7zensight1</image4j.version>
         <netty-all.version>4.1.42.Final</netty-all.version>
         <httpclient.version>4.5.9</httpclient.version>
         <org.eclipse.jgit.version>5.3.0.201903130848-r</org.eclipse.jgit.version>
@@ -122,11 +120,6 @@
         </dependency>
 
         <!--工具-->
-        <dependency>
-            <groupId>net.sf.image4j</groupId>
-            <artifactId>image4j</artifactId>
-            <version>${image4j.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
@@ -243,6 +236,13 @@
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate-validator.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -257,6 +257,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.4.2</version>
             </plugin>
         </plugins>
     </build>
