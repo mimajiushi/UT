@@ -390,4 +390,19 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>ali-mirror</id>
+            <url>http://maven.aliyun.com/nexus/content/repositories/central</url>
+        </repository>
+        <repository>
+            <id>jboss-community</id>
+            <url>https://repository.jboss.org/nexus/content/repositories/public/</url>
+        </repository>
+        <repository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
+
 </project>
