@@ -26,7 +26,6 @@ public class WeChatLoginParam implements Serializable {
     /**
      * 用户头像
      */
-    @NotBlank(message = "用户头像url不能为空")
     private String avatarUrl;
 
 }

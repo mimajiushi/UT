@@ -154,7 +154,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (null != weChatResponse.getErrcode()) {
             throw new WeChatException(weChatResponse.getErrmsg());
         }
-        String avatar = weChatLoginParam.getAvatarUrl();
+        String avatar = weChatLoginParam.getAvatarUrl()+"";
         String nickname = weChatLoginParam.getNickName();
         String openid = weChatResponse.getOpenid();
         User user = getUserByOpenId(openid);
