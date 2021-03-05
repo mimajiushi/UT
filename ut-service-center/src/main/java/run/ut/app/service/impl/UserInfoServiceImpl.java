@@ -104,7 +104,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
     @Override
     @Transactional
-    public BaseResponse<String> verifyUserInfo(Integer id, Integer status, String reason) {
+    public BaseResponse<String> verifyUserInfo(String id, Integer status, String reason) {
 
         UserInfo userInfo = getById(id);
         User user = userMapper.selectById(userInfo.getUid());

@@ -12,7 +12,7 @@ import run.ut.app.model.support.CommentPage;
 public interface AdminUserInfoControllerApi {
 
     @ApiOperation(value = "审核用户认证资料", notes = "status: -1 - 审核不通过 1 - 审核通过")
-    public BaseResponse<String> verifyUserInfo(Integer id,Integer status, String reason);
+    public BaseResponse<String> verifyUserInfo(String id,Integer status, String reason);
 
     @ApiOperation(value = "用户认证资料（用户详情）list",
             notes = "注意，字段deleted=1，表示这段数据被软删除了，用户是看不见的，目前仅支持根据审核状态查询")

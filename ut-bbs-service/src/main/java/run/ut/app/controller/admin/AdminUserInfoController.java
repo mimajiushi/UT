@@ -27,7 +27,7 @@ public class AdminUserInfoController implements AdminUserInfoControllerApi {
 
     @Override
     @PostMapping("verifyUserInfo")
-    public BaseResponse<String> verifyUserInfo(Integer id, Integer status, String reason) {
+    public BaseResponse<String> verifyUserInfo(String id, Integer status, String reason) {
         Assert.notNull(id, "id must not be null");
         Assert.notNull(status, "status must not be null");
         return userInfoService.verifyUserInfo(id, status, reason);

@@ -47,7 +47,7 @@ public interface UserInfoService extends IService<UserInfo> {
      * @return ok result with message
      */
     @NonNull
-    BaseResponse<String> verifyUserInfo(@NonNull Integer id, @NonNull Integer status, @Nullable String reason);
+    BaseResponse<String> verifyUserInfo(@NonNull String id, @NonNull Integer status, @Nullable String reason);
 
     /**
      *
