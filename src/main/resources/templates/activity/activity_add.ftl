@@ -185,7 +185,7 @@
                     , acceptMime: 'image/*'
                     , before: function (obj) {
                         //预读本地文件示例，不支持ie8
-                        var index = layer.load(2);
+                        index = layer.load(2);
                         obj.preview(function (index, file, result) {
                             $('#demo').attr('src', result);
                         });
