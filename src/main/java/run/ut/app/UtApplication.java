@@ -43,4 +43,5 @@ public class UtApplication extends SpringBootServletInitializer {
         System.setProperty("spring.config.additional-location", "file:${user.home}/.ut/");
         return super.configure(builder);
     }
+
 }
