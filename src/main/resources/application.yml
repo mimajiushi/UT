@@ -131,9 +131,11 @@ netty:
 ##########################################################
 logging:
   file:
-    max-size: 10MB
-    max-history: 20
     path: ${user.home}/.ut/logs
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 20
 ut:
   download-timeout: 5m
 
