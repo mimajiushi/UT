@@ -15,4 +15,6 @@ public @interface CheckAuthorization {
 
     UserRolesEnum[] roles() default {};
 
+    UserRolesEnum[] excludeRoles() default {};
+
 }

@@ -8,11 +8,13 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.CommentControllerApi;
 import run.ut.app.model.domain.PostComments;
+import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.CommentParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.ChildCommentVO;
 import run.ut.app.model.vo.ParentCommentVO;
+import run.ut.app.security.CheckAuthorization;
 import run.ut.app.security.CheckLogin;
 import run.ut.app.service.PostCommentsService;
 import run.ut.app.service.UserInfoService;
@@ -35,7 +37,7 @@ public class CommentController extends BaseController implements CommentControll
 
     @Override
     @PostMapping("toPost")
-    @CheckLogin
+    @CheckAuthorization(excludeRoles = UserRolesEnum.ROLE_TOURIST)
     public BaseResponse<String> commentPost(@RequestBody @Valid CommentParam commentParam) {
         Long uid = getUid();
         userInfoService.checkUser(uid);
@@ -45,7 +47,7 @@ public class CommentController extends BaseController implements CommentControll
 
     @Override
     @PostMapping("replyToComments")
-    @CheckLogin
+    @CheckAuthorization(excludeRoles = UserRolesEnum.ROLE_TOURIST)
     public BaseResponse<String> replyToComments(@RequestBody @Valid CommentParam commentParam) {
         Assert.notNull(commentParam.getParentCommentId(), "parent comment id must not be null.");
         Assert.notNull(commentParam.getToUid(), "to uid must not be null.");

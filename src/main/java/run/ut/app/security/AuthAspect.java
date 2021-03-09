@@ -1,5 +1,7 @@
 package run.ut.app.security;
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.ArrayUtil;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -12,6 +14,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import run.ut.app.exception.AuthConfigException;
 import run.ut.app.exception.AuthenticationException;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.security.util.JwtOperator;
@@ -85,9 +88,20 @@ public class AuthAspect {
     private void checkRoles(CheckAuthorization annotation, int roles) {
         // get roles from annotation
         UserRolesEnum[] rolesEnums = annotation.roles();
+        UserRolesEnum[] excludeRoles = annotation.excludeRoles();
+        if (ArrayUtil.isAllNotEmpty(rolesEnums, excludeRoles)) {
+            throw new AuthConfigException("CheckAuthorization注解中roles()和excludeRoles()不能并存");
+        }
         for (UserRolesEnum roleEnum : rolesEnums) {
             int role = roleEnum.getType();
             if ((role & roles) != role) {
+                throw new AuthenticationException("用户没有相关权限！");
+            }
+        }
+        // exclude roles
+        for (UserRolesEnum excludeRole : excludeRoles) {
+            int role = excludeRole.getType();
+            if ((role & roles) == role) {
                 throw new AuthenticationException("用户没有相关权限！");
             }
         }
