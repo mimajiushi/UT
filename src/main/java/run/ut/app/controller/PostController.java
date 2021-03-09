@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.PostControllerApi;
 import run.ut.app.cache.lock.HttpRequestRateLimit;
 import run.ut.app.model.enums.RateLimitEnum;
+import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.PostParam;
 import run.ut.app.model.param.SearchPostParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.PostVO;
+import run.ut.app.security.CheckAuthorization;
 import run.ut.app.security.CheckLogin;
 import run.ut.app.service.PostsService;
 import run.ut.app.service.UserInfoService;
@@ -33,7 +35,7 @@ public class PostController extends BaseController implements PostControllerApi 
     private final PostsService postsService;
 
     @Override
-    @CheckLogin
+    @CheckAuthorization(excludeRoles = UserRolesEnum.ROLE_TOURIST)
     @PostMapping("/savePost")
     @HttpRequestRateLimit(limit = RateLimitEnum.RRLimit_1_5)
     public BaseResponse<String> savePost(@RequestBody @Valid PostParam postParam) {
