@@ -101,6 +101,16 @@ public class AuthAspect {
         // exclude roles
         for (UserRolesEnum excludeRole : excludeRoles) {
             int role = excludeRole.getType();
+            if (
+                    role == UserRolesEnum.ROLE_TOURIST.getType() ||
+                    roles == UserRolesEnum.ROLE_TOURIST.getType()
+            ) {
+                if (role == roles) {
+                    throw new AuthenticationException("用户没有相关权限！");
+                } else {
+                    return;
+                }
+            }
             if ((role & roles) == role) {
                 throw new AuthenticationException("用户没有相关权限！");
             }
