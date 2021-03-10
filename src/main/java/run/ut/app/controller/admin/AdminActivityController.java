@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import run.ut.app.api.admin.AdminActivityControllerApi;
 import run.ut.app.model.enums.UserRolesEnum;
+import run.ut.app.model.param.ActivityClassifyParam;
 import run.ut.app.model.param.ActivityParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.security.CheckAuthorization;
@@ -31,6 +32,9 @@ public class AdminActivityController implements AdminActivityControllerApi {
 
     private final ActivityService activityService;
 
+    /**
+     * todo 保存分类也需要带上分类
+     */
     @Override
     @PostMapping("saveActivity")
     public BaseResponse<String> saveActivity(@Valid ActivityParam activityParam) {
@@ -42,5 +46,17 @@ public class AdminActivityController implements AdminActivityControllerApi {
     public BaseResponse<String> delActivity(@PathVariable Long activityId) {
         boolean res = activityService.removeById(activityId);
         return res ? BaseResponse.ok("删除成功") : BaseResponse.ok("删除失败！活动可能已被删除！");
+    }
+
+    @Override
+    public BaseResponse<String> saveClassify(@Valid ActivityClassifyParam activityClassifyParam) {
+        // todo
+        return null;
+    }
+
+    @Override
+    public BaseResponse<String> delClassify(@PathVariable Long classifyId) {
+        // todo
+        return null;
     }
 }

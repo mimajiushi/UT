@@ -40,6 +40,7 @@
         <validation-api.version>2.0.1.Final</validation-api.version>
         <hibernate-validator.version>6.0.8.Final</hibernate-validator.version>
         <javax.persistence-api.version>2.2</javax.persistence-api.version>
+        <velocity-engine-core.version>2.2</velocity-engine-core.version>
     </properties>
 
     <dependencies>
@@ -115,8 +116,8 @@
         </dependency>
         <dependency>
             <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.7</version>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>${velocity-engine-core.version}</version>
         </dependency>
 
         <!--工具-->

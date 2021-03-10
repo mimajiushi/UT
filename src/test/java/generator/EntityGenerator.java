@@ -73,7 +73,7 @@ public class EntityGenerator {
 
         mpg.setCfg(cfg);
 
-        String[] tables = {""};
+        String[] tables = {"activity_classify"};
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
@@ -85,12 +85,5 @@ public class EntityGenerator {
         //strategy.setTablePrefix(pc.getModuleName() + "_");// 表前缀
         mpg.setStrategy(strategy);
         mpg.execute();
-    }
-
-    @Test
-    public void test(){
-        String[] ids = new String[]{"1","2","3"};
-        String json = JsonUtils.objectToJson(ids);
-        System.out.println(json);
     }
 }

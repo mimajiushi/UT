@@ -206,7 +206,6 @@ public class FileUtils {
     public static Path tryToSkipZipParentFolder(@NonNull Path unzippedPath) throws IOException {
         Assert.notNull(unzippedPath, "Unzipped folder must not be  null");
 
-        // TODO May cause a latent problem.
         try (Stream<Path> pathStream = Files.list(unzippedPath)) {
             List<Path> childrenPath = pathStream.collect(Collectors.toList());
 
