@@ -3,6 +3,7 @@ package run.ut.app.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Select;
 import run.ut.app.model.domain.DataArea;
+
 import java.util.List;
 
 /**

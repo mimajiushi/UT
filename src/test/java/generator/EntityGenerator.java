@@ -7,9 +7,7 @@ import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import org.junit.Test;
 import run.ut.app.model.domain.BaseEntity;
-import run.ut.app.utils.JsonUtils;
 
 
 /**

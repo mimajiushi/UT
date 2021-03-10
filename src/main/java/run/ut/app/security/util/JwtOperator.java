@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import run.ut.app.model.domain.User;
-import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.security.token.AuthToken;
 
 import javax.crypto.SecretKey;

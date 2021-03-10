@@ -1,6 +1,5 @@
 package run.ut.app.security;
 
-import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ArrayUtil;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;

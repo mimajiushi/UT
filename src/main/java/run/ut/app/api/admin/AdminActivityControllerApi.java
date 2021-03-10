@@ -8,8 +8,6 @@ import run.ut.app.model.param.ActivityClassifyParam;
 import run.ut.app.model.param.ActivityParam;
 import run.ut.app.model.support.BaseResponse;
 
-import javax.validation.Valid;
-
 /**
  * @author Lucien
  * @updater chenwenjie.star
@@ -27,7 +25,7 @@ public interface AdminActivityControllerApi {
     BaseResponse<String> delActivity(@PathVariable Long activityId);
 
     @ApiOperation(value = "创建/更新活动分类")
-    BaseResponse<String> saveClassify(ActivityClassifyParam activityClassifyParam);
+    BaseResponse<ActivityClassifyDTO> saveClassify(ActivityClassifyParam activityClassifyParam);
 
     @ApiOperation(value = "删除分类")
     BaseResponse<String> delClassify(@PathVariable Long classifyId);

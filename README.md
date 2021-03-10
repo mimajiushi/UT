@@ -48,7 +48,7 @@ run.ut.app
 ├── exception -- 异常定义、处理相关。
 ├── handler -- 一些处理器
 ├── listener -- 监听事件并处理
-├── mail -- 邮件相关代码
+├── other.mail -- 邮件相关代码
 ├── mapper -- MyBaits的mapper
 ├── model -- 存放DOMAIN、DTO、VO、Param等实体
 ├── netty -- netty的一些代码，目前只用于搭建WebSocket服务
@@ -70,6 +70,7 @@ run.ut.app
 - ✅ 用搜索引擎替代部分sql查询（在re-build分支完成了）
 - ⏰ 活动添加分类
 - ⏰ 队伍要半数或以上同意才解散
+- ⏰ 增加接口测试用例，便于后续测试迭代
 - ❌ 已zookeeper+dubbo为辅助，将消息推送拆出来（在这个分支不打算拆）
 
 （到此再稳定下现有的功能后就相当于第一个Release版本了，大概~）

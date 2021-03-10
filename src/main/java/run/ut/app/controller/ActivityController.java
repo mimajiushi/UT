@@ -16,8 +16,11 @@ import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.ActivityVO;
 import run.ut.app.security.CheckLogin;
 import run.ut.app.service.ActivityAppointmentService;
+import run.ut.app.service.ActivityClassifyService;
 import run.ut.app.service.ActivityCollectService;
 import run.ut.app.service.ActivityService;
+
+import java.util.List;
 
 /**
  * @author wenjie
@@ -32,6 +35,7 @@ public class ActivityController extends BaseController implements ActivityContro
     private final ActivityService activityService;
     private final ActivityCollectService activityCollectService;
     private final ActivityAppointmentService activityAppointmentService;
+    private final ActivityClassifyService activityClassifyService;
 
     @Override
     @GetMapping("list/activities")
@@ -96,9 +100,9 @@ public class ActivityController extends BaseController implements ActivityContro
         return activityService.listSelfAppointment(page, getUid());
     }
 
+    @GetMapping("list/activity/classify")
     @Override
-    public BaseResponse<ActivityClassifyDTO> classifyList() {
-        // todo
-        return null;
+    public List<ActivityClassifyDTO> classifyList() {
+        return activityClassifyService.getAllClassify();
     }
 }

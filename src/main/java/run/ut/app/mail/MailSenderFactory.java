@@ -10,7 +10,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.Properties;
 
 /**
- * Java mail sender factory.
+ * Java other.mail sender factory.
  *
  * @author johnniang
  * @author wenjie
@@ -18,16 +18,16 @@ import java.util.Properties;
 public class MailSenderFactory {
 
     /**
-     * Get mail sender.
+     * Get other.mail sender.
      *
-     * @param mailProperties mail properties must not be null
-     * @return java mail sender
+     * @param mailProperties other.mail properties must not be null
+     * @return java other.mail sender
      */
     @NonNull
     public JavaMailSender getMailSender(@NonNull MailProperties mailProperties) {
         Assert.notNull(mailProperties, "Mail properties must not be null");
 
-        // create mail sender
+        // create other.mail sender
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         // set properties
         setProperties(mailSender, mailProperties);

@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import lombok.*;
 import lombok.experimental.Accessors;
-import run.ut.app.model.domain.BaseEntity;
 
 /**
  * <p>

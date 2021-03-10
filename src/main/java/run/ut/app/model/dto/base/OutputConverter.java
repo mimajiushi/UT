@@ -23,10 +23,10 @@ public interface OutputConverter<DTO extends OutputConverter<DTO, DOMAIN>, DOMAI
      */
     @SuppressWarnings("unchecked")
     @NonNull
-    default <T extends DTO> T convertFrom(@NonNull DOMAIN domain) {
+    default <T extends DTO> DTO convertFrom(@NonNull DOMAIN domain) {
 
         updateProperties(domain, this);
 
-        return (T) this;
+        return (DTO) this;
     }
 }

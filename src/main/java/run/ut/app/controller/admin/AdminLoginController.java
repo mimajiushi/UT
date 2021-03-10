@@ -16,7 +16,6 @@ import run.ut.app.model.enums.RateLimitEnum;
 import run.ut.app.model.param.EmailLoginParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.service.AdminService;
-import run.ut.app.service.UserService;
 
 /**
  * admin login controller

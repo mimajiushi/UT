@@ -1,16 +1,16 @@
 package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.exception.NotFoundException;
+import run.ut.app.mapper.TeamsMembersMapper;
 import run.ut.app.mapper.UserMapper;
 import run.ut.app.model.domain.TeamsMembers;
-import run.ut.app.mapper.TeamsMembersMapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
 import run.ut.app.model.domain.User;
 import run.ut.app.model.enums.TeamsMemberEnum;
 import run.ut.app.service.TeamsMembersService;

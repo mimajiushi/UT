@@ -41,6 +41,7 @@
         <hibernate-validator.version>6.0.8.Final</hibernate-validator.version>
         <javax.persistence-api.version>2.2</javax.persistence-api.version>
         <velocity-engine-core.version>2.2</velocity-engine-core.version>
+        <testng.version>7.4.0</testng.version>
     </properties>
 
     <dependencies>
@@ -73,7 +74,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!--mail-->
+        <!--other.mail-->
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>jakarta.mail</artifactId>
@@ -239,9 +240,9 @@
         </dependency>
 
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -258,7 +259,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.4.2</version>
+                <version>${parent.version}</version>
             </plugin>
         </plugins>
     </build>

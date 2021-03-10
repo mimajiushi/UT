@@ -73,7 +73,7 @@ public class MailServiceImpl extends AbstractMailService implements ApplicationL
 
     @Override
     public void onApplicationEvent(OptionsUpdatedEvent event) {
-        // clear the cached java mail sender
+        // clear the cached java other.mail sender
         clearCache();
     }
 }

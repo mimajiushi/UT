@@ -154,7 +154,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (null != weChatResponse.getErrcode()) {
             throw new WeChatException(weChatResponse.getErrmsg());
         }
-        String avatar = weChatLoginParam.getAvatarUrl()+"";
+        String avatar = weChatLoginParam.getAvatarUrl() + "";
         String nickname = weChatLoginParam.getNickName();
         String openid = weChatResponse.getOpenid();
         User user = getUserByOpenId(openid);
@@ -248,7 +248,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String key = String.format(RedisKey.USER_EMAIL, uid, email);
         redisService.setKeyValTTL(key, code, RedisKey.EMAIL_CODE_TIME_OUT);
 
-        // send mail
+        // send other.mail
         Map<String, Object> data = new HashMap<>();
         data.put("code", code);
         data.put("nickname", user.getNickname());
@@ -268,7 +268,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         User user = getUserByEmail(email);
 
-        // send mail
+        // send other.mail
         Map<String, Object> data = new HashMap<>();
         data.put("code", code);
         if (ObjectUtils.isEmpty(user)) {

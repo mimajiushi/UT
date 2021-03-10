@@ -8,17 +8,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import run.ut.app.api.admin.AdminActivityControllerApi;
+import run.ut.app.model.dto.ActivityClassifyDTO;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.param.ActivityClassifyParam;
 import run.ut.app.model.param.ActivityParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.security.CheckAuthorization;
+import run.ut.app.service.ActivityClassifyService;
 import run.ut.app.service.ActivityService;
 
 import javax.validation.Valid;
 
 /**
  * @author Lucien
+ * @updater
  * @version 1.0
  * @date 2020/5/13 12:02
  */
@@ -31,6 +34,7 @@ import javax.validation.Valid;
 public class AdminActivityController implements AdminActivityControllerApi {
 
     private final ActivityService activityService;
+    private final ActivityClassifyService activityClassifyService;
 
     /**
      * todo 保存分类也需要带上分类
@@ -48,15 +52,15 @@ public class AdminActivityController implements AdminActivityControllerApi {
         return res ? BaseResponse.ok("删除成功") : BaseResponse.ok("删除失败！活动可能已被删除！");
     }
 
+    @PostMapping("saveClassify")
     @Override
-    public BaseResponse<String> saveClassify(@Valid ActivityClassifyParam activityClassifyParam) {
-        // todo
-        return null;
+    public BaseResponse<ActivityClassifyDTO> saveClassify(@Valid ActivityClassifyParam activityClassifyParam) {
+        return activityClassifyService.saveClassify(activityClassifyParam);
     }
 
+    @PostMapping("delClassify/{id:\\d+}")
     @Override
-    public BaseResponse<String> delClassify(@PathVariable Long classifyId) {
-        // todo
-        return null;
+    public BaseResponse<String> delClassify(@PathVariable Long id) {
+        return activityClassifyService.delClassify(id);
     }
 }

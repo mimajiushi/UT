@@ -9,6 +9,8 @@ import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.ActivityVO;
 
+import java.util.List;
+
 /**
  * @author wenjie
  */
@@ -39,8 +41,6 @@ public interface ActivityControllerApi {
     @ApiOperation(value = "获取用户预约的活动")
     CommentPage<ActivityVO> listSelfAppointment(Integer pageNum, Integer pageSize);
 
-    @ApiOperation(value = "查询活动分类")
-    BaseResponse<ActivityClassifyDTO> classifyList();
-
-
+    @ApiOperation(value = "查询活动分类（所有）")
+    List<ActivityClassifyDTO> classifyList();
 }

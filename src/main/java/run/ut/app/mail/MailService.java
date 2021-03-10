@@ -31,7 +31,7 @@ public interface MailService {
     void sendTemplateMail(String to, String subject, Map<String, Object> content, String templateName);
 
     /**
-     * Send mail with attachments
+     * Send other.mail with attachments
      *
      * @param to             recipient
      * @param subject        subject

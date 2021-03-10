@@ -1,10 +1,10 @@
 package run.ut.app.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.lang.NonNull;
 import run.ut.app.model.domain.ActivityAppointment;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
