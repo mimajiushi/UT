@@ -25,7 +25,6 @@ import javax.validation.Valid;
  * @version 1.0
  * @date 2020/5/13 12:02
  */
-
 @RestController
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
