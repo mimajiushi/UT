@@ -1744,23 +1744,23 @@
 									"formdata": [
 										{
 											"key": "id",
-											"value": " 2",
+											"value": "3",
 											"description": "传入id表示更新",
 											"type": "text"
 										},
 										{
 											"key": "title",
-											"value": " demoData2",
+											"value": "demoData",
 											"type": "text"
 										},
 										{
 											"key": "cover",
-											"value": " demoData2",
+											"value": "demoData",
 											"type": "text"
 										},
 										{
 											"key": "content",
-											"value": " demoData2",
+											"value": "demoData",
 											"type": "text"
 										},
 										{
@@ -1771,6 +1771,11 @@
 										{
 											"key": "endTime",
 											"value": "2020-05-17 11:26:09",
+											"type": "text"
+										},
+										{
+											"key": "classifyId",
+											"value": "2",
 											"type": "text"
 										}
 									]
@@ -1836,6 +1841,11 @@
 													"key": "endTime",
 													"value": "2020-05-17 11:26:09",
 													"type": "text"
+												},
+												{
+													"key": "classifyId",
+													"value": "1",
+													"type": "text"
 												}
 											]
 										},
@@ -1868,7 +1878,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Sun, 17 May 2020 03:43:13 GMT"
+											"value": "Wed, 10 Mar 2021 13:06:45 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -1898,7 +1908,7 @@
 											"formdata": [
 												{
 													"key": "id",
-													"value": " 2",
+													"value": " 3",
 													"description": "传入id表示更新",
 													"type": "text"
 												},
@@ -1925,6 +1935,11 @@
 												{
 													"key": "endTime",
 													"value": "2020-05-17 11:26:09",
+													"type": "text"
+												},
+												{
+													"key": "classifyId",
+													"value": "2",
 													"type": "text"
 												}
 											]

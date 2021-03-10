@@ -12,6 +12,7 @@ import run.ut.app.model.domain.Activity;
 import run.ut.app.model.dto.base.InputConverter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -31,6 +32,10 @@ import java.time.LocalDateTime;
 public class ActivityParam implements Serializable, InputConverter<Activity> {
     @ApiModelProperty(value = "活动id，更新时传入")
     private Long id;
+
+    @ApiModelProperty(value = "活动分类id")
+    @NotNull(message = "分类活动分类不能为空")
+    private Long classifyId;
 
     @ApiModelProperty(value = "活动标题")
     @NotBlank(message = "活动标题不能为空")

@@ -35,9 +35,6 @@ public class AdminActivityController implements AdminActivityControllerApi {
     private final ActivityService activityService;
     private final ActivityClassifyService activityClassifyService;
 
-    /**
-     * todo 保存分类也需要带上分类
-     */
     @Override
     @PostMapping("saveActivity")
     public BaseResponse<String> saveActivity(@Valid ActivityParam activityParam) {

@@ -33,7 +33,8 @@ public class Activity extends BaseEntity {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
-
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long classifyId;
 
     @ApiModelProperty(value = "活动标题")
     private String title;
