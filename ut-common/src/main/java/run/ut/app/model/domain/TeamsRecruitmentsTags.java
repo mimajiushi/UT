@@ -2,6 +2,8 @@ package run.ut.app.model.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -29,6 +31,7 @@ public class TeamsRecruitmentsTags extends BaseEntity {
 
     private Long teamRecruitmentId;
 
-    private Integer tagId;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long tagId;
 
 }

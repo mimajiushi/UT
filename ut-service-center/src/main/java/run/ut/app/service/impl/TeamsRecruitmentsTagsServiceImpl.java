@@ -36,7 +36,7 @@ public class TeamsRecruitmentsTagsServiceImpl extends ServiceImpl<TeamsRecruitme
     @Override
     public List<Tags> listByTeamsRecruitmentsId(Long teamRecruitmentId) {
         List<TeamsRecruitmentsTags> teamsRecruitmentsTags = list(new QueryWrapper<TeamsRecruitmentsTags>().eq("team_recruitment_id", teamRecruitmentId));
-        List<Integer> tagIds = new ArrayList<>();
+        List<Long> tagIds = new ArrayList<>();
         for (TeamsRecruitmentsTags recruitmentsTags : teamsRecruitmentsTags) {
             tagIds.add(recruitmentsTags.getTagId());
         }

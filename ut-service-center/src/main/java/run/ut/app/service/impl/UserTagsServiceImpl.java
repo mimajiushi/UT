@@ -33,7 +33,7 @@ public class UserTagsServiceImpl extends ServiceImpl<UserTagsMapper, UserTags> i
     @Override
     public List<Tags> listByUid(Long uid) {
         List<UserTags> userTags = list(new QueryWrapper<UserTags>().eq("uid", uid));
-        List<Integer> tagIds = new ArrayList<>();
+        List<Long> tagIds = new ArrayList<>();
         for (UserTags userTag : userTags) {
             tagIds.add(userTag.getTagId());
         }

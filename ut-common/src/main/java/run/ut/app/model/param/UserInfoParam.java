@@ -1,5 +1,7 @@
 package run.ut.app.model.param;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -30,6 +32,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class UserInfoParam extends BaseParam implements InputConverter<UserInfo> {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long uid;
 
     @NotNull(message = "必须选择学校")

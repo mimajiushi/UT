@@ -12,6 +12,7 @@ import run.ut.app.model.enums.SexEnum;
 import run.ut.app.security.token.AuthToken;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -28,8 +29,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO extends BaseDTO implements OutputConverter<UserDTO, User> {
-
-    private Integer id;
 
     @JsonSerialize(using = ToStringSerializer.class)
     private Long uid;
@@ -52,6 +51,8 @@ public class UserDTO extends BaseDTO implements OutputConverter<UserDTO, User> {
     private SexEnum sex;
 
     private Integer roles;
+
+    private List<String> rolesName;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;

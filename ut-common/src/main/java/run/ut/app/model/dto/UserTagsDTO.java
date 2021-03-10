@@ -27,6 +27,7 @@ public class UserTagsDTO extends BaseDTO {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long uid;
 
-    private Integer tagId;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long tagId;
 
 }

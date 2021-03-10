@@ -35,7 +35,7 @@ public class TeamsTagsServiceImpl extends ServiceImpl<TeamsTagsMapper, TeamsTags
     @Override
     public List<Tags> listByTeamsId(Long teamsId) {
         List<TeamsTags> teamsTags = list(new QueryWrapper<TeamsTags>().eq("team_id", teamsId));
-        List<Integer> tagIds = new ArrayList<>();
+        List<Long> tagIds = new ArrayList<>();
         for (TeamsTags teamsTag : teamsTags) {
             tagIds.add(teamsTag.getTagId());
         }
