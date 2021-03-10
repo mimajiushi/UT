@@ -26,10 +26,10 @@ import javax.validation.constraints.NotBlank;
 @ApiModel(value = "TagsParam", description = "")
 public class TagsParam extends BaseDTO implements InputConverter<Tags> {
 
-    private Integer id;
+    private Long id;
 
     @Deprecated
-    private Integer parentId;
+    private Long parentId;
 
     @NotBlank(message = "标签名不能为空")
     private String name;

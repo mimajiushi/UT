@@ -1,5 +1,7 @@
 package run.ut.app.model.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.*;
 import lombok.experimental.Accessors;
 import run.ut.app.model.domain.Tags;
@@ -21,7 +23,8 @@ import run.ut.app.model.dto.base.OutputConverter;
 @AllArgsConstructor
 public class TagsDTO extends BaseDTO implements OutputConverter<TagsDTO, Tags> {
 
-    private Integer id;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long id;
 
     private Integer parentId;
 
