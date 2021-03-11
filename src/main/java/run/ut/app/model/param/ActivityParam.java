@@ -34,7 +34,7 @@ public class ActivityParam implements Serializable, InputConverter<Activity> {
     private Long id;
 
     @ApiModelProperty(value = "活动分类id")
-    @NotNull(message = "分类活动分类不能为空")
+    @NotNull(message = "活动分类不能为空")
     private Long classifyId;
 
     @ApiModelProperty(value = "活动标题")

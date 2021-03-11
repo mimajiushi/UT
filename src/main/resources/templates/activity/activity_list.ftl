@@ -180,7 +180,7 @@
                                 layer.msg("请选择操作行！", {icon: 5});
                                 return;
                             }
-                            xadmin.open('编辑活动','${base}/admin/activityEdit/'+ checkStatus.data[0].id,800,600);
+                            xadmin.open('编辑活动','${base}/admin/activityEdit/' + checkStatus.data[0].id, 800, 600);
                             break;
                     }
                 });

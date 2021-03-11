@@ -37,6 +37,13 @@
                 </div>
                 <div class="layui-card">
                     <div class="layui-card-body">
+                        <span>活动分类</span>
+                        <select id="classify" name="classify" required="" lay-verify="classify" autocomplete="off" class="layui-input" style="z-index: 99999">
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-card">
+                    <div class="layui-card-body">
                         <div class="layui-inline">
                             <input type="text" class="layui-input" id="startTime" name="startTime" placeholder="选择活动开始时间" lay-verify="required" readonly="readonly">
                         </div>
@@ -82,6 +89,7 @@
         var layer = layui.layer;
         var laydate = layui.laydate;
         var upload = layui.upload;
+        var index;
 
         if (store.enabled) {
             var user = store.get('user');
@@ -96,6 +104,28 @@
                         "UT-Token": user.token.access_token
                     }
                 });
+
+                // 加载分类
+                let classifyList;
+                index = layer.load(2);
+                $.ajax({
+                    type: "GET",
+                    url: "${base}/activity/list/activity/classify",
+                    success: function(res){
+                        let data = res.data;
+                        for(let e of data) {
+                            classifyList += "<option value='" + e.id + "'>" + e.cname + "</option>";
+                        }
+                        $("#classify").html(classifyList);
+                        layer.close(index);
+                        form.render();
+                    },
+                    error:function (jqXHR) {
+                        layer.close(index);
+                        failReqHandler("${base}",jqXHR);
+                    }
+                });
+                layer.close(index);
 
                 //富文本
                 var E = window.wangEditor;
@@ -134,6 +164,7 @@
                         url: "${base}/admin/activity/saveActivity",
                         data: {
                             title: data.title
+                            , classifyId: $("#classify").val()
                             , content: editor.txt.html()
                             , startTime: data.startTime
                             , endTime: data.endTime

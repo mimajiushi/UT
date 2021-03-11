@@ -38,6 +38,13 @@
                 </div>
                 <div class="layui-card">
                     <div class="layui-card-body">
+                        <span>活动分类</span>
+                        <select id="classify" name="classify" required="" lay-verify="classify" autocomplete="off" class="layui-input" >
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-card">
+                    <div class="layui-card-body">
                         <div class="layui-inline">
                             <input type="text" class="layui-input" id="startTime" name="startTime" placeholder="选择活动开始时间" lay-verify="required" readonly="readonly">
                         </div>
@@ -81,6 +88,7 @@
         var layer = layui.layer;
         var laydate = layui.laydate;
         var upload = layui.upload;
+        var index;
 
         if (store.enabled) {
             var user = store.get('user');
@@ -109,12 +117,18 @@
                 };
                 editor.create();
 
-                //赋值
+                // 表单赋值
+                let classifyId;
+                let index;
+                debugger
+                let activityId = '${activityId}'
+                index = layer.load(2);
                 $.ajax({
                     type: "GET",
-                    url: "${base}/activity/detail/" + ${Request["activityId"]!"0"},
+                    url: "${base}/activity/detail/" + activityId,
                     success: function(res){
                         var data = res.data;
+                        classifyId = data.classifyId;
                         form.val('myForm',{
                             id: data.id
                             , title: data.title
@@ -124,11 +138,43 @@
                         });
                         $('#demo').attr('src', data.cover);
                         editor.txt.html(data.content);
+                        loadClassify()
+                        layer.close(index);
                     },
                     error:function (jqXHR) {
+                        layer.close(index);
                         failReqHandler("${base}",jqXHR);
                     }
                 });
+                layer.close(index);
+
+                // 请求所有分类
+                function loadClassify() {
+                    let classifyList;
+                    index = layer.load(2);
+                    $.ajax({
+                        type: "GET",
+                        url: "${base}/activity/list/activity/classify",
+                        success: function(res){
+                            let data = res.data;
+                            for(let e of data) {
+                                if (classifyId === e.id) {
+                                    classifyList += "<option value='" + e.id + "' selected>" + e.cname + "</option>";
+                                    continue;
+                                }
+                                classifyList += "<option value='" + e.id + "'>" + e.cname + "</option>";
+                            }
+                            $("#classify").html(classifyList);
+                            layer.close(index);
+                            form.render();
+                        },
+                        error:function (jqXHR) {
+                            layer.close(index);
+                            failReqHandler("${base}",jqXHR);
+                        }
+                    });
+                    layer.close(index);
+                }
 
                 //更新
                 form.on('submit(push)', function(data){
@@ -143,6 +189,7 @@
                         url: "${base}/admin/activity/saveActivity",
                         data: {
                             id: data.id
+                            , classifyId: $("#classify").val()
                             , title: data.title
                             , content: editor.txt.html()
                             , startTime: data.startTime
@@ -187,7 +234,6 @@
 
 
                 //封面上传
-                var index;
                 var uploadInst = upload.render({
                     elem: '#upload'
                     , url: '${base}/admin/uploads'
@@ -195,7 +241,7 @@
                     , acceptMime: 'image/*'
                     , before: function (obj) {
                         //预读本地文件示例，不支持ie8
-                        var index = layer.load(2);
+                        index = layer.load(2);
                         obj.preview(function (index, file, result) {
                             $('#demo').attr('src', result);
                         });

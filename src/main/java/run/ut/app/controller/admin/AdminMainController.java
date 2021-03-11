@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import run.ut.app.api.admin.AdminMainControllerApi;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.model.support.BaseResponse;
@@ -101,8 +102,10 @@ public class AdminMainController implements AdminMainControllerApi {
      * @return template path
      */
     @GetMapping("activityEdit/{activityId:\\d+}")
-    public String activityEdit(@PathVariable Long activityId) {
-        return "activity/activity_edit";
+    public ModelAndView activityEdit(@PathVariable Long activityId) {
+        ModelAndView modelAndView = new ModelAndView("activity/activity_edit");
+        modelAndView.addObject("activityId", activityId + "");
+        return modelAndView;
     }
 
     @GetMapping("activity/classifyList")
