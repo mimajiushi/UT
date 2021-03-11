@@ -163,7 +163,7 @@
                                 type: "POST",
                                 dataType : 'json',
                                 contentType : 'application/json',
-                                url: "${base}/admin/delTags",
+                                url: "${base}/admin/activity/delClassify",
                                 data: JSON.stringify([data.id]),
                                 success: function (res) {
                                     obj.del();
