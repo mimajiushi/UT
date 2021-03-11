@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.util.Assert;
+import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,6 +22,7 @@ import run.ut.app.utils.ExceptionUtils;
 import run.ut.app.utils.ValidationUtils;
 
 import javax.validation.ConstraintViolationException;
+import org.springframework.validation.BindException;
 import java.util.Map;
 
 /**
@@ -108,6 +110,17 @@ public class GlobalExceptionHandler {
         HttpStatus status = HttpStatus.BAD_GATEWAY;
         baseResponse.setStatus(status.value());
         baseResponse.setMessage(status.getReasonPhrase());
+        return baseResponse;
+    }
+
+    @ExceptionHandler(BindException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public BaseResponse handleBindException(BindException e) {
+        BaseResponse<?> baseResponse = handleBaseException(e);
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        baseResponse.setStatus(status.value());
+        String errMessage = e.getBindingResult().getFieldError().getDefaultMessage();
+        baseResponse.setMessage(errMessage);
         return baseResponse;
     }
 
