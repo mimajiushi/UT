@@ -3,10 +3,7 @@ package run.ut.app.controller.admin;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import run.ut.app.api.admin.AdminActivityControllerApi;
 import run.ut.app.model.dto.ActivityClassifyDTO;
 import run.ut.app.model.enums.UserRolesEnum;
@@ -18,6 +15,7 @@ import run.ut.app.service.ActivityClassifyService;
 import run.ut.app.service.ActivityService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author Lucien
@@ -54,9 +52,10 @@ public class AdminActivityController implements AdminActivityControllerApi {
         return activityClassifyService.saveClassify(activityClassifyParam);
     }
 
-    @PostMapping("delClassify/{id:\\d+}")
+    @PostMapping("delClassify")
     @Override
-    public BaseResponse<String> delClassify(@PathVariable Long id) {
-        return activityClassifyService.delClassify(id);
+    public BaseResponse<String> delClassify(@RequestBody List<Long> ids) {
+        boolean res = activityClassifyService.removeByIds(ids);
+        return res ? BaseResponse.ok("删除成功") : BaseResponse.ok("删除失败，请刷新后重试");
     }
 }

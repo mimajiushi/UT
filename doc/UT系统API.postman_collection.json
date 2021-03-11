@@ -2013,12 +2013,7 @@
 											"value": "1369594002036834306",
 											"type": "text"
 										}
-									],
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+									]
 								},
 								"url": {
 									"raw": "http://localhost:8080/ut/admin/activity/saveClassify",
@@ -2257,8 +2252,17 @@
 										"type": "text"
 									}
 								],
+								"body": {
+									"mode": "raw",
+									"raw": "[1369902427559993345]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8080/ut/admin/activity/delClassify/1369594533488705538",
+									"raw": "http://localhost:8080/ut/admin/activity/delClassify",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -2268,63 +2272,11 @@
 										"ut",
 										"admin",
 										"activity",
-										"delClassify",
-										"1369594533488705538"
+										"delClassify"
 									]
 								}
 							},
 							"response": [
-								{
-									"name": "删除失败",
-									"originalRequest": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "UT-Token",
-												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiJvbmpZRjVsZElwOEJkc3NEYjl5WGVIVkZDN2hzIiwicm9sZXMiOjEzLCJpYXQiOjE2MTUzNTczMDYsImV4cCI6MTY0Njg5MzMwNn0.ITlacL6jplTtOQbQY2i2qL87f_yJND3Wf0GvWU9lnNo",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "http://localhost:8080/ut/admin/activity/delClassify/1369594533488705538",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "8080",
-											"path": [
-												"ut",
-												"admin",
-												"activity",
-												"delClassify",
-												"1369594533488705538"
-											]
-										}
-									},
-									"status": "Internal Server Error",
-									"code": 500,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Transfer-Encoding",
-											"value": "chunked"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 10 Mar 2021 10:29:13 GMT"
-										},
-										{
-											"key": "Connection",
-											"value": "close"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"status\": 500,\n    \"message\": \"删除失败，请重试\",\n    \"devMessage\": null,\n    \"data\": null\n}"
-								},
 								{
 									"name": "删除成功",
 									"originalRequest": {
@@ -2336,8 +2288,17 @@
 												"type": "text"
 											}
 										],
+										"body": {
+											"mode": "raw",
+											"raw": "[1369902427559993345]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
 										"url": {
-											"raw": "http://localhost:8080/ut/admin/activity/delClassify/1369594533488705538",
+											"raw": "http://localhost:8080/ut/admin/activity/delClassify",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -2347,8 +2308,7 @@
 												"ut",
 												"admin",
 												"activity",
-												"delClassify",
-												"1369594533488705538"
+												"delClassify"
 											]
 										}
 									},
@@ -2366,7 +2326,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Wed, 10 Mar 2021 10:25:19 GMT"
+											"value": "Thu, 11 Mar 2021 07:00:43 GMT"
 										},
 										{
 											"key": "Keep-Alive",
@@ -2379,6 +2339,69 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"status\": 200,\n    \"message\": \"删除成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								},
+								{
+									"name": "删除失败",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiJvbmpZRjVsZElwOEJkc3NEYjl5WGVIVkZDN2hzIiwicm9sZXMiOjEzLCJpYXQiOjE2MTUzNTczMDYsImV4cCI6MTY0Njg5MzMwNn0.ITlacL6jplTtOQbQY2i2qL87f_yJND3Wf0GvWU9lnNo",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[1369902427559993345]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/ut/admin/activity/delClassify",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"admin",
+												"activity",
+												"delClassify"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 11 Mar 2021 07:06:03 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"删除失败，请刷新后重试\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 								}
 							]
 						}

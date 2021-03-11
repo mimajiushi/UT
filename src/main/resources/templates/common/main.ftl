@@ -87,6 +87,11 @@
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>活动列表</cite></a>
                     </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('活动分类','${base}/admin/activity/classifyList')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>活动分类</cite></a>
+                    </li>
                 </ul>
             </li>
             <li>

@@ -31,7 +31,4 @@ public interface ActivityClassifyService extends IService<ActivityClassify> {
      */
     @NonNull
     BaseResponse<ActivityClassifyDTO> saveClassify(@NonNull ActivityClassifyParam param);
-
-    @NonNull
-    BaseResponse<String> delClassify(@NonNull Long id);
 }

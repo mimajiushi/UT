@@ -8,6 +8,8 @@ import run.ut.app.model.param.ActivityClassifyParam;
 import run.ut.app.model.param.ActivityParam;
 import run.ut.app.model.support.BaseResponse;
 
+import java.util.List;
+
 /**
  * @author Lucien
  * @updater chenwenjie.star
@@ -28,6 +30,6 @@ public interface AdminActivityControllerApi {
     BaseResponse<ActivityClassifyDTO> saveClassify(ActivityClassifyParam activityClassifyParam);
 
     @ApiOperation(value = "删除分类")
-    BaseResponse<String> delClassify(@PathVariable Long classifyId);
+    BaseResponse<String> delClassify(List<Long> ids);
 
 }

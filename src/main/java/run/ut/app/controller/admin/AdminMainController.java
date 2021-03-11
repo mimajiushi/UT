@@ -105,6 +105,11 @@ public class AdminMainController implements AdminMainControllerApi {
         return "activity/activity_edit";
     }
 
+    @GetMapping("activity/classifyList")
+    public String activityClassifyList() {
+        return "activity/activity_classify_list";
+    }
+
     /**
      * 板块列表
      * @return template path

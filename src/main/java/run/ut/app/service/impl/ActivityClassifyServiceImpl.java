@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.exception.AlreadyExistsException;
 import run.ut.app.exception.ServiceException;
@@ -33,7 +34,8 @@ public class ActivityClassifyServiceImpl extends ServiceImpl<ActivityClassifyMap
 
     @Override
     public List<ActivityClassifyDTO> getAllClassify() {
-        return lambdaQuery().list().stream().map(e -> new ActivityClassifyDTO().convertFrom(e)).collect(Collectors.toList());
+        return lambdaQuery().orderByDesc(ActivityClassify::getUpdateTime).list()
+                .stream().map(e -> new ActivityClassifyDTO().convertFrom(e)).collect(Collectors.toList());
     }
 
     @Override
@@ -54,14 +56,5 @@ public class ActivityClassifyServiceImpl extends ServiceImpl<ActivityClassifyMap
             updateById(param.convertTo());
         }
         return BaseResponse.ok(new ActivityClassifyDTO().convertFrom(param.convertTo()));
-    }
-
-    @Override
-    public BaseResponse<String> delClassify(Long id) {
-        boolean res = removeById(id);
-        if (!res) {
-            throw new ServiceException("删除失败，请重试");
-        }
-        return BaseResponse.ok("删除成功");
     }
 }
