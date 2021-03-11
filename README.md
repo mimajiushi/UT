@@ -2,12 +2,11 @@
 
 <p>
   <a href="https://gitee.com/Lewage59/UT-WeChat"><img src="https://img.shields.io/badge/前端项目-UT_WeChat%20-orange.svg"></a>
-  <a href="https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/html/"><img src="https://img.shields.io/badge/Spring%20Boot-2.3.1.RELEASE-brightgreen.svg"></a>
+  <a href="https://docs.spring.io/spring-boot/docs/2.4.3/reference/html/"><img src="https://img.shields.io/badge/Spring%20Boot-2.4.3-brightgreen.svg"></a>
   <a href="https://www.mysql.com/"><img src="https://img.shields.io/badge/Mysql-5.7-bringhtgreen.svg"></a>
-  <a href="https://mp.baomidou.com/"><img src="https://img.shields.io/badge/Mybatis_Plus-3.3.1-blue.svg"></a>
+  <a href="https://mp.baomidou.com/"><img src="https://img.shields.io/badge/Mybatis_Plus-3.4.2-blue.svg"></a>
   <a href="https://mp.baomidou.com/"><img src="https://img.shields.io/badge/Netty-4.1.42-brightgreen.svg"></a>
     <a href="https://redis.io/"><img src="https://img.shields.io/badge/redis-5.0.x-red.svg"></a>
-    <a href="https://github.com/alibaba/fastjson"><img src="https://img.shields.io/badge/fastjson-1.2.61-bringhtgreen.svg"></a>
     <a href="https://www.layui.com/"><img src="https://img.shields.io/badge/layui-2.4.5-red.svg"></a>
     <a href="https://github.com/google/guava"><img src="https://img.shields.io/badge/Guava-28_jre-ff69b4.svg"></a>
     <a href="https://github.com/looly/hutool"><img src="https://img.shields.io/badge/hutool-5.0.3-yellow.svg"></a>
