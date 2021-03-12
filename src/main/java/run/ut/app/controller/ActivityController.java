@@ -37,7 +37,6 @@ public class ActivityController extends BaseController implements ActivityContro
     private final ActivityAppointmentService activityAppointmentService;
     private final ActivityClassifyService activityClassifyService;
 
-    // todo 同样要有分类id、分类名
     @Override
     @GetMapping("list/activities")
     public CommentPage<ActivityVO> listActivities(SearchActivityParam searchActivityParam,
@@ -49,7 +48,6 @@ public class ActivityController extends BaseController implements ActivityContro
         return activityService.listActivities(page, searchActivityParam);
     }
 
-    // todo 返回体中应该还有分类名
     @Override
     @GetMapping("detail/{activityId:\\d+}")
     public ActivityVO activityDetail(@PathVariable Long activityId) {
