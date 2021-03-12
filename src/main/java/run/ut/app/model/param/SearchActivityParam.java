@@ -13,6 +13,9 @@ import java.util.Arrays;
 @Data
 public class SearchActivityParam implements Serializable {
 
+    @ApiModelProperty(value = "分类id")
+    private String classifyId;
+
     @ApiModelProperty(value = "标题", notes = "模糊搜索")
     private String title;
 

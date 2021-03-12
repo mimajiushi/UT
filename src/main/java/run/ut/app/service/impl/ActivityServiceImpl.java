@@ -2,6 +2,7 @@ package run.ut.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -18,16 +19,19 @@ import run.ut.app.mapper.ActivityMapper;
 import run.ut.app.model.domain.Activity;
 import run.ut.app.model.domain.ActivityAppointment;
 import run.ut.app.model.domain.ActivityCollect;
+import run.ut.app.model.dto.ActivityClassifyDTO;
 import run.ut.app.model.param.ActivityParam;
 import run.ut.app.model.param.SearchActivityParam;
 import run.ut.app.model.support.BaseResponse;
 import run.ut.app.model.support.CommentPage;
 import run.ut.app.model.vo.ActivityVO;
+import run.ut.app.service.ActivityClassifyService;
 import run.ut.app.service.ActivityService;
 import run.ut.app.service.RedisService;
 import run.ut.app.utils.BeanUtils;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -47,6 +51,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
     private final ActivityAppointmentMapper activityAppointmentMapper;
     private final ActivityCollectMapper activityCollectMapper;
     private final ActivityMapper activityMapper;
+    private final ActivityClassifyService activityClassifyService;
 
     @Override
     public BaseResponse<String> saveActivity(ActivityParam activityParam) {
@@ -66,13 +71,18 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
 
     @Override
     public CommentPage<ActivityVO> listActivities(Page<Activity> page, SearchActivityParam searchActivityParam) {
-        QueryWrapper<Activity> wrapper = new QueryWrapper<>();
-        wrapper.select("id", "title", "cover", "start_time", "end_time", "appointment_count", "create_time", "update_time");
+        LambdaQueryChainWrapper<Activity> lambdaQuery = lambdaQuery();
+         QueryWrapper<Activity> wrapper = new QueryWrapper<>();
+        wrapper.select("id", "classify_id", "title", "cover", "start_time", "end_time", "appointment_count", "create_time", "update_time");
         Long operatorUid = searchActivityParam.getOperatorUid();
+        String classifyId = searchActivityParam.getClassifyId();
         String title = searchActivityParam.getTitle();
         String column = searchActivityParam.getOrder();
         SearchActivityParam.OrderEnum value = SearchActivityParam.OrderEnum.getByColumn(column);
-        if (!StringUtils.isBlank(title)) {
+        if (StringUtils.isNotBlank(classifyId)) {
+            wrapper.eq("classify_id", classifyId);
+        }
+        if (StringUtils.isNotBlank(title)) {
             wrapper.like("title", title);
         }
         if (null != value) {
@@ -82,10 +92,15 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
         }
         Page<Activity> activityPage = page(page, wrapper);
 
+        // query activity classify and then convert to map
+        Map<Long, ActivityClassifyDTO> classifyDTOMap = activityClassifyService.getAllClassify()
+                .stream().collect(Collectors.toMap(ActivityClassifyDTO::getId, e -> e));
+
         List<Activity> activityList = activityPage.getRecords();
         List<ActivityVO> activityVOList = activityList.stream().map(activity -> {
             ActivityVO activityVO = new ActivityVO().convertFrom(activity)
-                .setReadCount(getReadCount(activity.getId()));
+                    .setReadCount(getReadCount(activity.getId()))
+                    .setCname(classifyDTOMap.getOrDefault(activity.getClassifyId(), new ActivityClassifyDTO()).getCname());
             if (operatorUid != null) {
                 activityVO.setAppointment(isAppointment(operatorUid, activityVO.getId()));
             }
@@ -102,12 +117,13 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
             throw new NotFoundException("找不到指定活动信息~");
         }
         ActivityVO activityVO = new ActivityVO().convertFrom(activity);
+        activityVO.setCname(activityClassifyService.getById(activity.getClassifyId()).getCname());
         String key = String.format(RedisKey.ACTIVITY_READ_COUNT, activityId);
         String value = redisService.get(key);
         if (StringUtils.isBlank(value)) {
             activityVO.setReadCount(1);
         } else {
-            activityVO.setReadCount(Long.valueOf(value));
+            activityVO.setReadCount(Long.parseLong(value));
         }
         redisService.increment(key, 1);
         if (operatorUid != null) {

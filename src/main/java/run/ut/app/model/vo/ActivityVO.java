@@ -30,6 +30,9 @@ public class ActivityVO extends BaseVO implements OutputConverter<ActivityVO, Ac
     @JsonSerialize(using = ToStringSerializer.class)
     private Long classifyId;
 
+    @ApiModelProperty(value = "活动分类")
+    private String cname;
+
     @ApiModelProperty(value = "活动标题")
     private String title;
 

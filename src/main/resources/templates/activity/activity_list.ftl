@@ -100,6 +100,7 @@
                     }
                 });
 
+                // todo 加上分类名渲染
                 //渲染表格
                 var activityList = table.render({
                     elem: '#activityList'
@@ -109,6 +110,7 @@
                         {type: 'radio'}
                         , {field: 'title', title: '标题'}
                         , {field: 'cover', title: '封面图', event: 'photo', templet: '#photoTemplate'}
+                        , {field: 'cname', title: '分类'}
                         , {field: 'appointmentCount', title: '预约数'}
                         , {field: 'startTime', title: '开始时间'}
                         , {field: 'endTime', title: '结束时间'}
