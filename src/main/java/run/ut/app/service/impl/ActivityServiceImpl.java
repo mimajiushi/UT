@@ -71,8 +71,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
 
     @Override
     public CommentPage<ActivityVO> listActivities(Page<Activity> page, SearchActivityParam searchActivityParam) {
-        LambdaQueryChainWrapper<Activity> lambdaQuery = lambdaQuery();
-         QueryWrapper<Activity> wrapper = new QueryWrapper<>();
+        QueryWrapper<Activity> wrapper = new QueryWrapper<>();
         wrapper.select("id", "classify_id", "title", "cover", "start_time", "end_time", "appointment_count", "create_time", "update_time");
         Long operatorUid = searchActivityParam.getOperatorUid();
         String classifyId = searchActivityParam.getClassifyId();

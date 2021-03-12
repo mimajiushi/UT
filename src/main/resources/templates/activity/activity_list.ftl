@@ -40,6 +40,10 @@
                 <div class="layui-card-body ">
                     <form class="layui-form layui-col-space5">
                         <div class="layui-inline">
+                            <select id="classify" name="classify" required="" lay-verify="classify" autocomplete="off" class="layui-input">
+                            </select>
+                        </div>
+                        <div class="layui-inline">
                             <input type="text" name="key" lay-verify="search" placeholder="请输入活动标题" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-inline">
@@ -85,6 +89,7 @@
         var layer = layui.layer;
         var laytpl = layui.laytpl;
         var table = layui.table;
+        var index;
 
         if (store.enabled) {
             var user = store.get('user');
@@ -100,7 +105,6 @@
                     }
                 });
 
-                // todo 加上分类名渲染
                 //渲染表格
                 var activityList = table.render({
                     elem: '#activityList'
@@ -135,12 +139,36 @@
                     }
                 });
 
+                // 加载分类
+                index = layer.load(2);
+                let classifyList;
+                $.ajax({
+                    type: "GET",
+                    url: "${base}/activity/list/activity/classify",
+                    success: function(res){
+                        let data = res.data;
+                        classifyList += "<option value='' selected>请选择分类</option>";
+                        for(let e of data) {
+                            classifyList += "<option value='" + e.id + "'>" + e.cname + "</option>";
+                        }
+                        $("#classify").html(classifyList);
+                        layer.close(index);
+                        form.render();
+                    },
+                    error:function (jqXHR) {
+                        layer.close(index);
+                        failReqHandler("${base}",jqXHR);
+                    }
+                });
+                layer.close(index);
+
                 //搜索
                 form.on('submit(search)', function(data){
                     var data = data.field;
                     activityList.reload({
                         where: {
-                            title: data.key
+                            title: data.key,
+                            classifyId: $("#classify").val()
                         }
                         ,page: {
                             curr: 1
