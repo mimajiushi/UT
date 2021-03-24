@@ -145,7 +145,7 @@ public class PostCommentsServiceImpl extends ServiceImpl<PostCommentsMapper, Pos
         return page(page, new QueryWrapper<PostComments>()
             .eq("post_id", postId)
             .eq("parent_comment_id", 0)
-            .orderByDesc("likes"));
+            .orderByDesc("likes", "create_time"));
     }
 
     @Override
