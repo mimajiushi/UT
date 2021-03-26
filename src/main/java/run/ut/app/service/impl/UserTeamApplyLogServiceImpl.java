@@ -198,7 +198,8 @@ public class UserTeamApplyLogServiceImpl extends ServiceImpl<UserTeamApplyLogMap
                     .setUpdateTime(null);
             TeamsMembers teamsMember = new TeamsMembers().setTeamId(userTeamApplyLog.getTeamId()).
                     setUid(userTeamApplyLog.getUid()).
-                    setIsLeader(TeamsMemberEnum.NORMAL);
+                    setIsLeader(TeamsMemberEnum.NORMAL).
+                    setRecruitmentId(userTeamApplyLog.getRecruitmentId());
             teamsMembers.add(teamsMember);
         }
     }
