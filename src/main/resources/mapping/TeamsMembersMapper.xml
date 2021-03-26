@@ -24,10 +24,12 @@
     
     <select id="listSimpleMemberInfoByTeamsId" resultMap="memberVO">
         select tem.id, u.uid, u.avatar, u.nickname, tem.is_leader
+             , tr.name recruitment
         from teams_members tem
-            inner join `user` u on u.uid = tem.uid
+                 inner join `user` u on u.uid = tem.uid
+                 inner join teams_recruitments tr on tr.id = tem.recruitment_id
         where tem.team_id = #{teamsId}
-                    and tem.deleted = 0
+          and tem.deleted = 0
         order by tem.create_time;
     </select>
 
