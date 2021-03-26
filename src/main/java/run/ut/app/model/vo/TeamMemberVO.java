@@ -35,4 +35,6 @@ public class TeamMemberVO implements Serializable {
     private String avatar;
 
     private TeamsMemberEnum role;
+
+    private String recruitment;
 }

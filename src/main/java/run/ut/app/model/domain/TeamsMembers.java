@@ -32,6 +32,8 @@ public class TeamsMembers extends BaseEntity {
 
     private Long uid;
 
+    private Long recruitmentId;
+
     @ApiModelProperty(value = "0-队员 1-队长")
     private TeamsMemberEnum isLeader;
 

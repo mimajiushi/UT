@@ -33,6 +33,9 @@ public class TeamsMembersDTO extends BaseDTO implements OutputConverter<TeamsMem
     @JsonSerialize(using = ToStringSerializer.class)
     private Long uid;
 
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long recruitmentId;
+
     @ApiModelProperty(value = "0-队员 1-队长")
     private Integer isLeader;
 

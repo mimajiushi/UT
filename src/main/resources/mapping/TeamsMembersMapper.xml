@@ -19,6 +19,7 @@
         <result column="nickname" property="nickname" />
         <result column="avatar" property="avatar" />
         <result column="is_leader" property="role" />
+        <result column="recruitment" property="recruitment" />
     </resultMap>
     
     <select id="listSimpleMemberInfoByTeamsId" resultMap="memberVO">
