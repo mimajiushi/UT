@@ -19,7 +19,7 @@ public interface RedisService {
      */
     void set(String key, String value);
 
-    public long setList(String key, List list);
+    public long setList(String key, List<?> list);
 
     String get(String key);
 

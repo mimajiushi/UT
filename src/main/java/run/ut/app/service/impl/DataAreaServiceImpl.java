@@ -30,7 +30,7 @@ public class DataAreaServiceImpl extends ServiceImpl<DataAreaMapper, DataArea> i
     public List<DataArea> getAreaDataByParentId(Integer parentId) {
         String key = RedisKey.AREA_PREFIX + "::" + parentId;
         String redisRes = redisService.get(key);
-        if (StringUtils.isEmpty(redisRes)) {
+        if (StringUtils.hasText(redisRes)) {
             List<DataArea> dataAreas = dataAreaMapper.
                     selectList(
                             new QueryWrapper<DataArea>().select("id", "parent_id", "name")

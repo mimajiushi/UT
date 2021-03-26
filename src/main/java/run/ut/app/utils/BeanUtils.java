@@ -42,7 +42,7 @@ public class BeanUtils {
         // Init the instance
         try {
             // New instance for the target class
-            T targetInstance = targetClass.newInstance();
+            T targetInstance = targetClass.getDeclaredConstructor().newInstance();
             // Copy properties
             org.springframework.beans.BeanUtils.copyProperties(source, targetInstance, getNullPropertyNames(source));
             // Return the target instance

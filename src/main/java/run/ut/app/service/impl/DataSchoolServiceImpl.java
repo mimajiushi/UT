@@ -31,7 +31,7 @@ public class DataSchoolServiceImpl extends ServiceImpl<DataSchoolMapper, DataSch
     public List<DataSchool> getListByProvinceId(Integer provinceId) {
         String key = RedisKey.SCHOOL_DATA_LIST_PREFIX + "::" + provinceId;
         String value = redisService.get(key);
-        if (StringUtils.isEmpty(value)) {
+        if (StringUtils.hasText(value)) {
             List<DataSchool> dataSchools = dataSchoolMapper.selectList(
                     new QueryWrapper<DataSchool>().eq("province_id", provinceId)
             );
@@ -57,7 +57,7 @@ public class DataSchoolServiceImpl extends ServiceImpl<DataSchoolMapper, DataSch
     public DataSchool getById(Integer id) {
         String key = RedisKey.SCHOOL_DATA_PREFIX + "::" + id;
         String value = redisService.get(key);
-        if (StringUtils.isEmpty(value)) {
+        if (StringUtils.hasText(value)) {
             DataSchool dataSchool = dataSchoolMapper.selectById(id);
             if (!ObjectUtils.isEmpty(dataSchool)) {
                 redisService.setKeyValTTL(key, JsonUtils.objectToJson(dataSchool), RedisKey.AREA_TTL);

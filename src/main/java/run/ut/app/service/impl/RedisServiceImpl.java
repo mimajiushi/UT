@@ -1,5 +1,6 @@
 package run.ut.app.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,11 +17,10 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Slf4j
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RedisServiceImpl implements RedisService {
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-    @Autowired
-    private RedisTemplate redisTemplate;
+    private final StringRedisTemplate stringRedisTemplate;
+    private final RedisTemplate<?, ?> redisTemplate;
 
     @Override
     public void set(String key, String value) {
