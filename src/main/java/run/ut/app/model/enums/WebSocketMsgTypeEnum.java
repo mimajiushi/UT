@@ -19,7 +19,12 @@ public enum WebSocketMsgTypeEnum implements IEnum<Integer>, Serializable {
     COMMENT(3, "帖子评论/回复"),
 
     AUTH(1000, "身份认证"),
-    KEEPALIVE(1001, "心跳包");
+    KEEPALIVE(1001, "心跳包"),
+
+    //聊天信息
+    TEXT_MSG(2000, "文本消息"),
+    IMG_MSG(2001, "图片"),
+    ;
 
     private int type;
 
