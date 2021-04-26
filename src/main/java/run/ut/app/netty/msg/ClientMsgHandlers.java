@@ -1,13 +1,13 @@
 package run.ut.app.netty.msg;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+import run.ut.app.model.dto.ChatHistoryDTO;
+import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -18,7 +18,6 @@ import java.util.LinkedList;
  */
 @Slf4j
 @Component
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ClientMsgHandlers {
 
     private final Collection<ClientMsgHandler> clientMsgHandlers = new LinkedList<>();
@@ -26,6 +25,12 @@ public class ClientMsgHandlers {
     public ClientMsgHandlers(ApplicationContext applicationContext) {
         // Add all file handler
         addClientMsgHandlers(applicationContext.getBeansOfType(ClientMsgHandler.class).values());
+    }
+
+    public void handle(WebSocketMsgTypeEnum typeEnum, ChatHistoryDTO chatHistoryDTO) {
+        for (ClientMsgHandler clientMsgHandler : clientMsgHandlers) {
+            clientMsgHandler.handle(typeEnum, chatHistoryDTO);
+        }
     }
 
 

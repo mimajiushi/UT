@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.util.Assert;
-import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.BindException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -22,7 +22,6 @@ import run.ut.app.utils.ExceptionUtils;
 import run.ut.app.utils.ValidationUtils;
 
 import javax.validation.ConstraintViolationException;
-import org.springframework.validation.BindException;
 import java.util.Map;
 
 /**
