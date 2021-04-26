@@ -14,7 +14,7 @@ import run.ut.app.netty.UserChannelManager;
 import run.ut.app.service.ChatHistoryService;
 
 /**
- * keep-alive frame handler
+ * text msg handler
  *
  * @author chenwenjie.star
  * @date 2021/4/26 11:35 上午
