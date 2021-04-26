@@ -23,7 +23,11 @@ public enum WebSocketMsgTypeEnum implements IEnum<Integer>, Serializable {
 
     //聊天信息
     TEXT_MSG(2000, "文本消息"),
-    IMG_MSG(2001, "图片");
+    IMG_MSG(2001, "图片"),
+
+    //ACK
+    SERVER_ACK(3001, "服务端返回ack"),
+    CLIENT_ACK(3002, "客户端返回ack");
 
     private int type;
 

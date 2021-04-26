@@ -30,10 +30,11 @@ public class ClientMsgHandler extends SimpleChannelInboundHandler<TextWebSocketF
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg)
         throws Exception {
+        // todo 套进线程池
         String json = msg.text();
         ChatHistoryDTO chatHistoryDTO = JsonUtils.jsonToObject(json, ChatHistoryDTO.class);
         WebSocketMsgTypeEnum type = WebSocketMsgTypeEnum.getByType(chatHistoryDTO.getType());
-        clientMsgHandlers.handle(type, chatHistoryDTO);
+        clientMsgHandlers.handle(ctx, type, chatHistoryDTO);
     }
 
     @Override

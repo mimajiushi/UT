@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import lombok.*;
 import lombok.experimental.Accessors;
+import run.ut.app.model.dto.ChatHistoryDTO;
+import run.ut.app.model.dto.base.InputConverter;
 
 /**
  * <p>
@@ -21,15 +23,10 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "聊天记录对象", description = "")
-public class ChatHistory extends BaseEntity {
+public class ChatHistory extends BaseEntity implements InputConverter<ChatHistoryDTO> {
 
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
-
-    /**
-     * 聊天消息id
-     */
-    private Long chatId;
 
     /**
      * 发送者id
@@ -50,6 +47,16 @@ public class ChatHistory extends BaseEntity {
      * 消息类型
      */
     private Integer type;
+
+    /**
+     * 0 - 未读 1 - 已读
+     */
+    private Integer msgRead;
+
+    /**
+     * 客户端传的时间戳
+     */
+    private Long timeStamp;
 
 
 }

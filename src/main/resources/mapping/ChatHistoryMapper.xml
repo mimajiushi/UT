@@ -8,11 +8,12 @@
         <result column="update_time" property="updateTime" />
         <result column="deleted" property="deleted" />
         <result column="create_time" property="createTime" />
-        <result column="chat_id" property="chatId" />
         <result column="from_uid" property="fromUid" />
         <result column="to_uid" property="toUid" />
         <result column="content" property="content" />
         <result column="type" property="type" />
+        <result column="msg_read" property="msgRead" />
+        <result column="time_stamp" property="timeStamp" />
     </resultMap>
 
 </mapper>

@@ -6,6 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpHeaders;
+import io.netty.util.AttributeKey;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,7 @@ public class AuthHandler extends ChannelInboundHandlerAdapter {
             userChannelManager.add(uid, ctx.channel());
             log.debug("Authentication success. uid: " + uid);
             ctx.pipeline().remove(this);
+            ctx.channel().attr(AttributeKey.valueOf("uid")).setIfAbsent(uid);
             ctx.fireChannelRead(msg);
         } else {
             ctx.channel().close();

@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import lombok.*;
 import lombok.experimental.Accessors;
 import run.ut.app.model.domain.ChatHistory;
+import run.ut.app.model.dto.base.InputConverter;
 import run.ut.app.model.dto.base.OutputConverter;
 
 /**
@@ -21,14 +22,10 @@ import run.ut.app.model.dto.base.OutputConverter;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "ChatHistoryDTO 对象", description = "")
-public class ChatHistoryDTO extends BaseDTO implements OutputConverter<ChatHistoryDTO, ChatHistory> {
+public class ChatHistoryDTO extends BaseDTO
+        implements OutputConverter<ChatHistoryDTO, ChatHistory>, InputConverter<ChatHistory> {
 
     private Long id;
-
-    /**
-     * 聊天消息id
-     */
-    private Long chatId;
 
     /**
      * 发送者id
@@ -49,6 +46,16 @@ public class ChatHistoryDTO extends BaseDTO implements OutputConverter<ChatHisto
      * 消息类型
      */
     private Integer type;
+
+    /**
+     * 0 - 未读 1 - 已读
+     */
+    private Integer msgRead;
+
+    /**
+     * 客户端传的时间戳
+     */
+    private Long timeStamp;
 
 
 }

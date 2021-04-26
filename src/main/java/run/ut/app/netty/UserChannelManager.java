@@ -1,6 +1,5 @@
 package run.ut.app.netty;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -22,13 +21,13 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.Collectors;
 
 /**
  * It is used to manage the mapping between user and channel.
  *
  * @author wenjie
  */
-
 @Slf4j
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -85,11 +84,26 @@ public class UserChannelManager {
     /**
      * Get channel by uid
      * @param uid     uid
-     * @return channel
+     * @return        channel
      */
     @Nullable
     public Set<Channel> get(@NonNull Long uid) {
         return userChannelMap.get(uid);
+    }
+
+    /**
+     * Get channels that can be writable by uid
+     *
+     * @param uid    uid
+     * @return       set of channel
+     */
+    @Nullable
+    public Set<Channel> getWritAbleChannel(Long uid) {
+        Set<Channel> channels = userChannelMap.get(uid);
+        if (ObjectUtils.isEmpty(channels)) {
+            return null;
+        }
+        return channels.stream().filter(Channel::isWritable).collect(Collectors.toSet());
     }
 
     /**
@@ -105,15 +119,14 @@ public class UserChannelManager {
      *
      * @param uid      uid
      * @param msgObj   msg object, it will be automatically converted to json.
-     * @throws JsonProcessingException If msgObj fails to convert to json.
      */
-    public void writeAndFlush(@NonNull Long uid, @NonNull Object msgObj, @NonNull WebSocketMsgTypeEnum typeEnum) throws JsonProcessingException {
+    public void writeAndFlush(@NonNull Long uid, @NonNull Object msgObj, @NonNull WebSocketMsgTypeEnum typeEnum) {
         Set<Channel> channelSet = userChannelMap.get(uid);
         if (ObjectUtils.isEmpty(channelSet) || channelSet.size() == 0) {
             return;
         }
         for (Channel channel : channelSet) {
-            if (channel.isActive()) {
+            if (channel.isWritable()) {
                 WebSocketMsg webSocketMsg = new WebSocketMsg()
                     .setType(typeEnum.getType())
                     .setMsg(msgObj);
@@ -131,9 +144,8 @@ public class UserChannelManager {
     /**
      * Write and flush to every user
      * @param msgObj msg object, it will be automatically converted to json.
-     * @throws JsonProcessingException If msgObj fails to convert to json.
      */
-    public void writeAndFlush(@NonNull Object msgObj, @NonNull WebSocketMsgTypeEnum typeEnum) throws JsonProcessingException {
+    public void writeAndFlush(@NonNull Object msgObj, @NonNull WebSocketMsgTypeEnum typeEnum) {
         WebSocketMsg webSocketMsg = new WebSocketMsg()
             .setType(typeEnum.getType())
             .setMsg(msgObj);
@@ -141,7 +153,7 @@ public class UserChannelManager {
         TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame(json);
         userChannelMap.forEach((uid, channels) -> {
             for (Channel channel : channels) {
-                if (channel.isActive()) {
+                if (channel.isWritable()) {
                     ChannelFuture channelFuture = channel.writeAndFlush(textWebSocketFrame);
                     channelFuture.addListener((ChannelFutureListener)future -> {
                         log.debug("对uid：{}, 发送websocket消息：{}", uid, json);

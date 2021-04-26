@@ -1,10 +1,10 @@
 package run.ut.app.service.impl;
 
-import run.ut.app.model.domain.ChatHistory;
-import run.ut.app.mapper.ChatHistoryMapper;
-import run.ut.app.service.ChatHistoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import run.ut.app.mapper.ChatHistoryMapper;
+import run.ut.app.model.domain.ChatHistory;
+import run.ut.app.service.ChatHistoryService;
 
 /**
  * <p>
@@ -17,4 +17,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ChatHistoryServiceImpl extends ServiceImpl<ChatHistoryMapper, ChatHistory> implements ChatHistoryService {
 
+    @Override
+    public ChatHistory getOneByFromUidAndTimeStamp(Long uid, Long timeStamp) {
+        return lambdaQuery()
+                .eq(ChatHistory::getFromUid, uid)
+                .eq(ChatHistory::getTimeStamp, timeStamp)
+                .last("limit 1").one();
+    }
 }

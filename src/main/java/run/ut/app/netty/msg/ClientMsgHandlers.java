@@ -1,5 +1,6 @@
 package run.ut.app.netty.msg;
 
+import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.lang.NonNull;
@@ -27,9 +28,9 @@ public class ClientMsgHandlers {
         addClientMsgHandlers(applicationContext.getBeansOfType(ClientMsgHandler.class).values());
     }
 
-    public void handle(WebSocketMsgTypeEnum typeEnum, ChatHistoryDTO chatHistoryDTO) {
+    public void handle(ChannelHandlerContext ctx, WebSocketMsgTypeEnum typeEnum, ChatHistoryDTO chatHistoryDTO) {
         for (ClientMsgHandler clientMsgHandler : clientMsgHandlers) {
-            clientMsgHandler.handle(typeEnum, chatHistoryDTO);
+            clientMsgHandler.handle(ctx, typeEnum, chatHistoryDTO);
         }
     }
 

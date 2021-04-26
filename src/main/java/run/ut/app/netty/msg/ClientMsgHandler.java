@@ -1,5 +1,6 @@
 package run.ut.app.netty.msg;
 
+import io.netty.channel.ChannelHandlerContext;
 import run.ut.app.model.dto.ChatHistoryDTO;
 import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 
@@ -9,7 +10,7 @@ import run.ut.app.model.enums.WebSocketMsgTypeEnum;
  */
 public interface ClientMsgHandler {
 
-    void handle(WebSocketMsgTypeEnum typeEnum, ChatHistoryDTO chatHistoryDTO);
+    void handle(ChannelHandlerContext ctx, WebSocketMsgTypeEnum typeEnum, ChatHistoryDTO chatHistoryDTO);
 
     boolean support(WebSocketMsgTypeEnum typeEnum);
 
