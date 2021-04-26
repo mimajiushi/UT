@@ -9,6 +9,8 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 
 /**
+ * todo 替换成跟数据库有映射关系的类
+ *
  * @author wenjie
  */
 @Data

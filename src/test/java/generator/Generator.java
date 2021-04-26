@@ -11,18 +11,9 @@ import run.ut.app.model.domain.BaseEntity;
 
 
 /**
- * 实体生成
- *
- * @author fengshuonan
- * @date 2017-08-23 12:15
+ * Mybatis-Plus 代码生成器
  */
-public class EntityGenerator {
-
-    /**
-     * <p>
-     * 读取控制台内容
-     * </p>
-     */
+public class Generator {
 
     public static void main(String[] args) {
         // 代码生成器
@@ -58,7 +49,7 @@ public class EntityGenerator {
         pc.setXml("run.ut.app.mapper");
         pc.setService("run.ut.app.service");
         pc.setServiceImpl("run.ut.app.service.impl");
-        pc.setController("tmp");
+        pc.setController("run.ut.app.tmp");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -71,7 +62,7 @@ public class EntityGenerator {
 
         mpg.setCfg(cfg);
 
-        String[] tables = {"activity_classify"};
+        String[] tables = {"chat_history"};
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
