@@ -4,6 +4,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import io.netty.util.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,16 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import run.ut.app.exception.WebSocketException;
+import run.ut.app.model.dto.ChatHistoryDTO;
 import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 import run.ut.app.model.support.WebSocketMsg;
+import run.ut.app.netty.task.RetryTimerTask;
 import run.ut.app.utils.JsonUtils;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
@@ -36,6 +40,7 @@ public class UserChannelManager {
     private ConcurrentHashMap<Long, Set<Channel>> userChannelMap = new ConcurrentHashMap<>(1 << 8);
 
     private final Lock lock = new ReentrantLock();
+    private final Timer timer = new HashedWheelTimer();
 
     /**
      * Save the mapping of uid and channel
@@ -116,6 +121,7 @@ public class UserChannelManager {
 
     /**
      * Write and flush by uid
+     * （message delivery is not guaranteed）
      *
      * @param uid      uid
      * @param msgObj   msg object, it will be automatically converted to json.
@@ -134,7 +140,57 @@ public class UserChannelManager {
                 TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame(json);
                 ChannelFuture channelFuture = channel.writeAndFlush(textWebSocketFrame);
                 channelFuture.addListener((ChannelFutureListener)future -> {
-                    log.debug("对uid：{}, 发送websocket消息：{}", uid, json);
+                    log.debug("对uid：{}, 发送websocket（通知）消息：{}", uid, json);
+
+                });
+
+            }
+        }
+    }
+
+    /**
+     * Write and flush server ack
+     *
+     * @param chatHistoryDTO ack
+     */
+    public void writeAndFlushServerAck(@NonNull ChatHistoryDTO chatHistoryDTO) {
+        chatHistoryDTO.setType(WebSocketMsgTypeEnum.SERVER_ACK.getType());
+        Set<Channel> channelSet = userChannelMap.get(chatHistoryDTO.getFromUid());
+        if (ObjectUtils.isEmpty(channelSet) || channelSet.size() == 0) {
+            return;
+        }
+        for (Channel channel : channelSet) {
+            if (channel.isWritable()) {
+                String json = JsonUtils.objectToJson(chatHistoryDTO);
+                TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame(json);
+                ChannelFuture channelFuture = channel.writeAndFlush(textWebSocketFrame);
+                channelFuture.addListener((ChannelFutureListener)future -> {
+                    log.debug("对uid：{}, 发送websocket（ACK）消息：{}", chatHistoryDTO.getToUid(), json);
+                });
+
+            }
+        }
+    }
+
+    /**
+     * Write and flush server ack
+     *
+     * @param chatHistoryDTO ack
+     */
+    public void writeAndFlushChatMsg(@NonNull ChatHistoryDTO chatHistoryDTO) {
+        Long uid = chatHistoryDTO.getToUid();
+        Set<Channel> channelSet = userChannelMap.get(uid);
+        if (ObjectUtils.isEmpty(channelSet) || channelSet.size() == 0) {
+            return;
+        }
+        for (Channel channel : channelSet) {
+            if (channel.isWritable()) {
+                String json = JsonUtils.objectToJson(chatHistoryDTO);
+                TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame(json);
+                ChannelFuture channelFuture = channel.writeAndFlush(textWebSocketFrame);
+                channelFuture.addListener((ChannelFutureListener)future -> {
+                    log.debug("对uid：{}, 发送websocket（聊天）消息：{}", uid, json);
+                    checkAckAndResend(channel, json, chatHistoryDTO.getId(), uid);
                 });
 
             }
@@ -143,6 +199,8 @@ public class UserChannelManager {
 
     /**
      * Write and flush to every user
+     * （message delivery is not guaranteed）
+     *
      * @param msgObj msg object, it will be automatically converted to json.
      */
     public void writeAndFlush(@NonNull Object msgObj, @NonNull WebSocketMsgTypeEnum typeEnum) {
@@ -156,10 +214,25 @@ public class UserChannelManager {
                 if (channel.isWritable()) {
                     ChannelFuture channelFuture = channel.writeAndFlush(textWebSocketFrame);
                     channelFuture.addListener((ChannelFutureListener)future -> {
-                        log.debug("对uid：{}, 发送websocket消息：{}", uid, json);
+                        log.debug("对uid：{}, 发送websocket（通知）消息：{}", uid, json);
                     });
                 }
             }
         });
+    }
+
+    /**
+     * check msg ack and resend msg if not ack
+     */
+    protected void checkAckAndResend(Channel channel, String msg, Long chatId, Long uid) {
+        RetryTimerTask retryTimerTask = new RetryTimerTask(() -> {
+            Attribute<Object> attr = channel.attr(AttributeKey.valueOf(chatId.toString()));
+            if (attr == null || attr.get() == null) {
+                channel.writeAndFlush(new TextWebSocketFrame(msg));
+                log.debug("对uid：{}, 发送websocket（聊天）消息：{}", uid, msg);
+                throw new WebSocketException(String.format("没有收到uid：[%s]用户的消息ack", uid));
+            }
+        }, 5, 10);
+        timer.newTimeout(retryTimerTask, 5, TimeUnit.SECONDS);
     }
 }

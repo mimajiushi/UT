@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import run.ut.app.model.dto.ChatHistoryDTO;
 import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 import run.ut.app.netty.UserChannelManager;
 import run.ut.app.service.RedisService;
@@ -40,5 +41,14 @@ public class TestTask {
         String value = "123456";
         redisService.set(key, value);
     }
+
+    @Scheduled(cron = "0 0/1 * * * ?")
+    @Async
+    public void chatMsgReSend() throws JsonProcessingException {
+        userChannelManager.writeAndFlushChatMsg(
+                new ChatHistoryDTO().setId(1L).setToUid(21L).setContent("test")
+        );
+    }
+
 
 }

@@ -45,14 +45,11 @@ public class TextMsgHandler implements ClientMsgHandler {
         // 持久化消息
         ChatHistory chatHistory = chatHistoryDTO.convertTo();
         chatHistoryService.save(chatHistory);
+        chatHistoryDTO = chatHistory.convertTo();
         // 返回server-ack给发送者
-        userChannelManager.writeAndFlush(
-                uid, chatHistory.getId(), WebSocketMsgTypeEnum.SERVER_ACK
-        );
-        // 判断目标用户时候有设备在线，有则推送
-        userChannelManager.writeAndFlush(
-                chatHistory.getToUid(), chatHistory, WebSocketMsgTypeEnum.TEXT_MSG
-        );
+        userChannelManager.writeAndFlushServerAck(chatHistoryDTO);
+        // 用户在线则推送，客户端确认接收后会返回ack，那时候消息才会更改为已读状态
+        userChannelManager.writeAndFlushChatMsg(chatHistoryDTO);
     }
 
     @Override
