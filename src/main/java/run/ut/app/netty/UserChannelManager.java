@@ -228,7 +228,7 @@ public class UserChannelManager {
         RetryTimerTask retryTimerTask = new RetryTimerTask(t -> {
             Attribute<Object> attr = channel.attr(AttributeKey.valueOf(chatId.toString()));
             if (attr == null || attr.get() == null) {
-                log.error("对uid:{}，发送消息后没有收到ack，尝试重发", uid);
+                log.error("对uid:[{}]，发送消息后没有收到ack，尝试重发，消息id：[{}]", uid, chatId);
                 channel.writeAndFlush(new TextWebSocketFrame(msg));
                 log.debug("对uid：{}, 发送websocket（聊天）消息：{}", uid, msg);
             } else {
