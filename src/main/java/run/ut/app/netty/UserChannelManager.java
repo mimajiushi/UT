@@ -225,12 +225,14 @@ public class UserChannelManager {
      * check msg ack and resend msg if not ack
      */
     protected void checkAckAndResend(Channel channel, String msg, Long chatId, Long uid) {
-        RetryTimerTask retryTimerTask = new RetryTimerTask(() -> {
+        RetryTimerTask retryTimerTask = new RetryTimerTask(t -> {
             Attribute<Object> attr = channel.attr(AttributeKey.valueOf(chatId.toString()));
             if (attr == null || attr.get() == null) {
+                log.error("对uid:{}，发送消息后没有收到ack，尝试重发", uid);
                 channel.writeAndFlush(new TextWebSocketFrame(msg));
                 log.debug("对uid：{}, 发送websocket（聊天）消息：{}", uid, msg);
-                throw new WebSocketException(String.format("没有收到uid：[%s]用户的消息ack", uid));
+            } else {
+                t.cancel();
             }
         }, 5, 10);
         timer.newTimeout(retryTimerTask, 5, TimeUnit.SECONDS);

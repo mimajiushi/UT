@@ -22,28 +22,26 @@ public class RetryTimerTask implements TimerTask {
 
     private int retryTimes = 0;
 
-    private Runnable task;
+    private TimerTask task;
 
-    public RetryTimerTask(Runnable task, long tick, int retries) {
+    public RetryTimerTask(TimerTask task, long tick, int retries) {
         this.tick = tick;
         this.retries = retries;
         this.task = task;
     }
 
     @Override
-    public void run(Timeout timeout) {
-        try {
-            task.run();
+    public void run(Timeout timeout) throws Exception {
+        if (timeout.isCancelled()) {
+            return;
+        }
+        task.run(timeout);
+        if ((++retryTimes) >= retries) {
+            // 重试次数超过了设置的值
+            log.debug("失败重试次数超过阈值: {}，不再重试", retries);
             timeout.cancel();
-        } catch (Throwable e) {
-            if ((++retryTimes) >= retries) {
-                // 重试次数超过了设置的值
-                log.debug("失败重试次数超过阈值: {}，不再重试，错误信息：{}", retries, e.getMessage());
-                timeout.cancel();
-            } else {
-                log.debug("任务失败，{}秒后重试，错误信息：{}", tick, e.getMessage());
-                rePut(timeout);
-            }
+        } else {
+            rePut(timeout);
         }
     }
 
