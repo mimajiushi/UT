@@ -22,8 +22,8 @@ public enum WebSocketMsgTypeEnum implements IEnum<Integer>, Serializable {
     KEEPALIVE(1001, "心跳包"),
 
     //聊天信息
-    TEXT_MSG(2000, "文本消息"),
-    IMG_MSG(2001, "图片"),
+    SINGLE_TEXT_MSG(2000, "单聊文本消息"),
+    SINGLE_IMG_MSG(2001, "单聊图片"),
 
     //ACK
     SERVER_ACK(3001, "服务端返回ack"),

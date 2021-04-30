@@ -12,6 +12,8 @@ import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 import run.ut.app.netty.UserChannelManager;
 import run.ut.app.service.RedisService;
 
+import java.util.Date;
+
 /**
  * Reset channel cache task
  *
@@ -46,9 +48,14 @@ public class TestTask {
     @Async
     public void chatMsgReSend() throws JsonProcessingException {
         userChannelManager.writeAndFlushChatMsg(
-                new ChatHistoryDTO().setId(1L).setToUid(21L).setContent("test")
+                new ChatHistoryDTO()
+                        .setId(1L)
+                        .setFromUid(214L)
+                        .setToUid(21L)
+                        .setContent("测试内容")
+                        .setMsgRead(-1)
+                        .setTimeStamp(new Date().getTime())
+                        .setType(WebSocketMsgTypeEnum.SINGLE_IMG_MSG.getType())
         );
     }
-
-
 }

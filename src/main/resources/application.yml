@@ -44,7 +44,7 @@ spring:
   ##########################################################
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.101.156.14:3306/ut
+    url: jdbc:mysql://1.116.231.110:3306/ut
     username: ut
     password: 7NcC8RHnyTRNEY4p
     type: com.zaxxer.hikari.HikariDataSource
@@ -64,7 +64,7 @@ spring:
   ##
   ##########################################################
   redis:
-    host: 47.101.156.14
+    host: 1.116.231.110
     database: 0
     port: 6379
     password: 6KbRAVKdTgXhEko0

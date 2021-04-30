@@ -22,7 +22,7 @@ import run.ut.app.service.ChatHistoryService;
 @Slf4j
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class TextMsgHandler implements ClientMsgHandler {
+public class SingleTextMsgHandler implements ClientMsgHandler {
 
     private final UserChannelManager userChannelManager;
     private final ChatHistoryService chatHistoryService;
@@ -54,6 +54,6 @@ public class TextMsgHandler implements ClientMsgHandler {
 
     @Override
     public boolean support(WebSocketMsgTypeEnum typeEnum) {
-        return typeEnum.equals(WebSocketMsgTypeEnum.TEXT_MSG);
+        return typeEnum.equals(WebSocketMsgTypeEnum.SINGLE_IMG_MSG);
     }
 }
