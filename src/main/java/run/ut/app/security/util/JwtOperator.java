@@ -30,7 +30,7 @@ public class JwtOperator {
     private String secret;
 
     // @Value("${expire-time-in-second:1209600}") // 2 weeks
-    @Value("${expire-time-in-second:31536000}") // 10 year for test
+    @Value("${expire-time-in-second:3153600000}") // 100 year for test
     private Long expirationTimeInSecond;
 
     /**

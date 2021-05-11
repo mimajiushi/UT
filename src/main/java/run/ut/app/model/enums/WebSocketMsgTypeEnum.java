@@ -29,9 +29,9 @@ public enum WebSocketMsgTypeEnum implements IEnum<Integer>, Serializable {
     SERVER_ACK(3001, "服务端返回ack"),
     CLIENT_ACK(3002, "客户端返回ack");
 
+    @JsonValue
     private int type;
 
-    @JsonValue
     private String name;
 
     WebSocketMsgTypeEnum(int type, String name) {

@@ -7,6 +7,8 @@ import lombok.*;
 import lombok.experimental.Accessors;
 import run.ut.app.model.dto.ChatHistoryDTO;
 import run.ut.app.model.dto.base.InputConverter;
+import run.ut.app.model.enums.MsgReadStatusEnum;
+import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 
 /**
  * <p>

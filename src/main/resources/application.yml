@@ -107,7 +107,7 @@ mybatis-plus:
     cache-enabled: false
     # 单体应用可以开启一级缓存
     localCacheScope: SESSION
-    # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 ##########################################################
 ##
