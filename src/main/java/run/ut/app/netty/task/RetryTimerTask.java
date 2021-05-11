@@ -32,7 +32,7 @@ public class RetryTimerTask implements TimerTask {
 
     @Override
     public void run(Timeout timeout) throws Exception {
-        if (timeout.isCancelled()) {
+        if (timeout.isCancelled() || timeout.isExpired()) {
             return;
         }
         task.run(timeout);

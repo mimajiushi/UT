@@ -57,7 +57,7 @@ public class TestTask {
                         .setContent("测试内容")
                         .setMsgRead(0)
                         .setTimeStamp(new Date().getTime())
-                        .setType(WebSocketMsgTypeEnum.SINGLE_IMG_MSG.getType())
+                        .setType(WebSocketMsgTypeEnum.SINGLE_TEXT_MSG.getType())
                         .setCreateTime(LocalDateTime.now())
                         .setUpdateTime(LocalDateTime.now())
                         .setDeleted(0)
