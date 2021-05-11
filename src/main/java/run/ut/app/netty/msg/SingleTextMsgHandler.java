@@ -33,7 +33,7 @@ public class SingleTextMsgHandler implements ClientMsgHandler {
             return;
         }
         Long uid = Long.valueOf(ctx.channel().attr(AttributeKey.valueOf("uid")).get().toString());
-        // 先根据时间戳（long类型）查询消息，如果该时间戳类型的时间存在，且内容一样，那么直接返回ack
+        // 先根据时间戳（long类型）查询消息，如果该时间戳存在，且内容一样，说明是因为客户端没收到ack重发的消息，那么直接返回ack
         chatHistoryDTO.setFromUid(uid);
         ChatHistory chatHistoryOld = chatHistoryService.getOneByFromUidAndTimeStamp(uid, chatHistoryDTO.getTimeStamp());
         if (!ObjectUtils.isEmpty(chatHistoryOld) && chatHistoryOld.getContent().equals(chatHistoryDTO.getContent())) {

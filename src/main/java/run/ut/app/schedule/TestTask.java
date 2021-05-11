@@ -12,6 +12,7 @@ import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 import run.ut.app.netty.UserChannelManager;
 import run.ut.app.service.RedisService;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -44,18 +45,22 @@ public class TestTask {
         redisService.set(key, value);
     }
 
-    @Scheduled(cron = "0 0/1 * * * ?")
+//    @Scheduled(cron = "0 0/1 * * * ?") // 测试重发消息
+    @Scheduled(cron = "0/5 * * * * ?") // 发送消息
     @Async
     public void chatMsgReSend() throws JsonProcessingException {
         userChannelManager.writeAndFlushChatMsg(
-                new ChatHistoryDTO()
+                (ChatHistoryDTO) new ChatHistoryDTO()
                         .setId(1L)
-                        .setFromUid(214L)
+                        .setFromUid(1367497062361047042L)
                         .setToUid(21L)
                         .setContent("测试内容")
-                        .setMsgRead(-1)
+                        .setMsgRead(0)
                         .setTimeStamp(new Date().getTime())
                         .setType(WebSocketMsgTypeEnum.SINGLE_IMG_MSG.getType())
+                        .setCreateTime(LocalDateTime.now())
+                        .setUpdateTime(LocalDateTime.now())
+                        .setDeleted(0)
         );
     }
 }
