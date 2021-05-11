@@ -34,4 +34,7 @@ public class ChatHistoryParam implements Serializable {
 
     @ApiModelProperty(value = "获取消息数")
     private Integer count = 20;
+
+    @ApiModelProperty(value = "id不为空时 -1则 获取历史消息 1则 获取最新消息")
+    private Integer type;
 }
