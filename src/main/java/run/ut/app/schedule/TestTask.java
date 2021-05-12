@@ -56,7 +56,7 @@ public class TestTask {
                         .setId(chatId.incrementAndGet())
                         .setFromUid(1367497062361047042L)
                         .setToUid(21L)
-                        .setContent("测试内容")
+                        .setContent("测试内容：" + chatId.get())
                         .setMsgRead(MsgReadStatusEnum.UN_READ.getType())
                         .setTimeStamp(new Date().getTime())
                         .setType(WebSocketMsgTypeEnum.SINGLE_TEXT_MSG.getType())
