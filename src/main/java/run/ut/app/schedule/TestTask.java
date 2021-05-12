@@ -14,6 +14,7 @@ import run.ut.app.service.RedisService;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Reset channel cache task
@@ -27,6 +28,7 @@ public class TestTask {
 
     private final UserChannelManager userChannelManager;
     private final RedisService redisService;
+    private final AtomicLong chatId = new AtomicLong(0L);
 
     @Scheduled(cron = "0/10 * * * * ?")
     @Async
@@ -46,12 +48,12 @@ public class TestTask {
     }
 
 //    @Scheduled(cron = "0 0/1 * * * ?") // 测试重发消息
-    @Scheduled(cron = "0/5 * * * * ?") // 发送消息
+    @Scheduled(cron = "0/3 * * * * ?") // 发送消息
     @Async
     public void chatMsgReSend() throws JsonProcessingException {
         userChannelManager.writeAndFlushChatMsg(
                 (ChatHistoryDTO) new ChatHistoryDTO()
-                        .setId(1L)
+                        .setId(chatId.incrementAndGet())
                         .setFromUid(1367497062361047042L)
                         .setToUid(21L)
                         .setContent("测试内容")

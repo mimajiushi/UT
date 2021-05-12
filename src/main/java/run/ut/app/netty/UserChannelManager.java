@@ -179,6 +179,7 @@ public class UserChannelManager {
      */
     public void writeAndFlushChatMsg(@NonNull ChatHistoryDTO chatHistoryDTO) {
         Long uid = chatHistoryDTO.getToUid();
+        Long chatId = chatHistoryDTO.getId();
         Set<Channel> channelSet = userChannelMap.get(uid);
         if (ObjectUtils.isEmpty(channelSet) || channelSet.size() == 0) {
             return;
@@ -188,7 +189,7 @@ public class UserChannelManager {
                 String json = JsonUtils.objectToJson(chatHistoryDTO);
                 TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame(json);
                 ChannelFuture channelFuture = channel.writeAndFlush(textWebSocketFrame);
-                channel.attr(AttributeKey.valueOf(chatHistoryDTO.getId().toString()));
+                channel.attr(AttributeKey.valueOf(chatId.toString())).set(chatId);
                 channelFuture.addListener((ChannelFutureListener)future -> {
                     log.debug("对uid：{}, 发送websocket（聊天）消息：{}", uid, json);
                     checkAckAndResend(channel, json, chatHistoryDTO.getId(), uid);
@@ -228,9 +229,8 @@ public class UserChannelManager {
     protected void checkAckAndResend(Channel channel, String msg, Long chatId, Long uid) {
         RetryTimerTask retryTimerTask = new RetryTimerTask(t -> {
             if (channel.attr(AttributeKey.valueOf(chatId.toString())).get() != null) {
-                log.error("对uid:[{}]，发送消息后没有收到ack，尝试重发，消息id：[{}]", uid, chatId);
                 channel.writeAndFlush(new TextWebSocketFrame(msg));
-                log.debug("对uid：{}, 发送websocket（聊天）消息：{}", uid, msg);
+                throw new WebSocketException(String.format("对uid[%s]发送消息后没收到ack，消息id为：[%s]，已重发", uid, chatId));
             } else {
                 t.cancel();
             }
