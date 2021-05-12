@@ -1,6 +1,5 @@
 package run.ut.app.schedule;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +29,11 @@ public class TestTask {
     private final RedisService redisService;
     private final AtomicLong chatId = new AtomicLong(0L);
 
-    @Scheduled(cron = "0/10 * * * * ?")
-    @Async
-    public void heartBeat() throws JsonProcessingException {
-        userChannelManager.writeAndFlush("服务器测试心跳包", WebSocketMsgTypeEnum.KEEPALIVE);
-    }
+//    @Scheduled(cron = "0/10 * * * * ?")
+//    @Async
+//    public void heartBeat() {
+//        userChannelManager.writeAndFlush("服务器测试心跳包", WebSocketMsgTypeEnum.KEEPALIVE);
+//    }
 
     /**
      * 便于测试
@@ -50,7 +49,7 @@ public class TestTask {
 //    @Scheduled(cron = "0 0/1 * * * ?") // 测试重发消息
     @Scheduled(cron = "0/3 * * * * ?") // 发送消息
     @Async
-    public void chatMsgReSend() throws JsonProcessingException {
+    public void chatMsgReSend() {
         userChannelManager.writeAndFlushChatMsg(
                 (ChatHistoryDTO) new ChatHistoryDTO()
                         .setId(chatId.incrementAndGet())

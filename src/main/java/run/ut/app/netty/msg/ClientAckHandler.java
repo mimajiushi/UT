@@ -8,10 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
-import run.ut.app.model.domain.ChatHistory;
 import run.ut.app.model.dto.ChatHistoryDTO;
 import run.ut.app.model.enums.WebSocketMsgTypeEnum;
-import run.ut.app.netty.UserChannelManager;
 import run.ut.app.service.ChatHistoryService;
 
 /**
