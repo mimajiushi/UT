@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import run.ut.app.model.dto.ChatHistoryDTO;
+import run.ut.app.model.enums.MsgReadStatusEnum;
 import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 import run.ut.app.netty.UserChannelManager;
 import run.ut.app.service.RedisService;
@@ -56,7 +57,7 @@ public class TestTask {
                         .setFromUid(1367497062361047042L)
                         .setToUid(21L)
                         .setContent("测试内容")
-                        .setMsgRead(0)
+                        .setMsgRead(MsgReadStatusEnum.UN_READ.getType())
                         .setTimeStamp(new Date().getTime())
                         .setType(WebSocketMsgTypeEnum.SINGLE_TEXT_MSG.getType())
                         .setCreateTime(LocalDateTime.now())
