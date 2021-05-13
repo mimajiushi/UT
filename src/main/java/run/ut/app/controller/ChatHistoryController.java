@@ -30,7 +30,7 @@ public class ChatHistoryController extends BaseController implements ChatHistory
 
 
     @Override
-    @GetMapping("list/chat/history/single")
+    @RequestMapping("list/chat/history/single")
     @CheckLogin
     public List<ChatHistoryDTO> listSingleChatHistory(@RequestBody @Valid ChatHistoryParam chatHistoryParam) {
         Long selfUid = getUid();

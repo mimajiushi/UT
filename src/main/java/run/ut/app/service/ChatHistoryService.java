@@ -39,5 +39,12 @@ public interface ChatHistoryService extends IService<ChatHistory> {
     @Nullable
     List<ChatHistoryDTO> listSingleChatHistory(@NonNull Long selfUid, @NonNull ChatHistoryParam chatHistoryParam);
 
+    /**
+     * Set msg read by id
+     *
+     * @param chatId    chat id
+     */
+    void setMsgReadById(@NonNull Long chatId);
+
 
 }

@@ -11,6 +11,7 @@ import run.ut.app.model.enums.MsgReadStatusEnum;
 import run.ut.app.model.enums.WebSocketMsgTypeEnum;
 import run.ut.app.netty.UserChannelManager;
 import run.ut.app.service.RedisService;
+import run.ut.app.utils.IdUtils;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -28,7 +29,6 @@ public class TestTask {
 
     private final UserChannelManager userChannelManager;
     private final RedisService redisService;
-    private final AtomicLong chatId = new AtomicLong(0L);
 
 //    @Scheduled(cron = "0/10 * * * * ?")
 //    @Async
@@ -51,12 +51,13 @@ public class TestTask {
     @Scheduled(cron = "0/3 * * * * ?") // 发送消息
     @Async
     public void chatMsgReSend() {
+        long chatId = IdUtils.snowflakeId();
         userChannelManager.writeAndFlushChatMsg(
                 (ChatHistoryDTO) new ChatHistoryDTO()
-                        .setId(chatId.incrementAndGet())
+                        .setId(chatId)
                         .setFromUid(1367497062361047042L)
                         .setToUid(21L)
-                        .setContent("测试内容：" + chatId.get())
+                        .setContent("测试内容：" + chatId)
                         .setMsgRead(MsgReadStatusEnum.UN_READ.getType())
                         .setTimeStamp(new Date().getTime())
                         .setType(WebSocketMsgTypeEnum.SINGLE_TEXT_MSG.getType())

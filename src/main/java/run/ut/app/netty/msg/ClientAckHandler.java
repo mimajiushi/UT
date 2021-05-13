@@ -39,7 +39,7 @@ public class ClientAckHandler implements ClientMsgHandler {
             return;
         }
         attr.set(null);
-        // todo 设置数据库消息已读
+        chatHistoryService.setMsgReadById(chatId);
         log.debug("接收到消息id为[{}]的ack", chatId);
     }
 

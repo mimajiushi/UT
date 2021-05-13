@@ -1,5 +1,7 @@
 package run.ut.app.model.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -25,16 +27,19 @@ import run.ut.app.model.dto.base.OutputConverter;
 public class ChatHistoryDTO extends BaseDTO
         implements OutputConverter<ChatHistoryDTO, ChatHistory>, InputConverter<ChatHistory> {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**
      * 发送者id
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long fromUid;
 
     /**
      * 接受者uid
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long toUid;
 
     /**
@@ -55,6 +60,7 @@ public class ChatHistoryDTO extends BaseDTO
     /**
      * 客户端传的时间戳
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long timeStamp;
 
 

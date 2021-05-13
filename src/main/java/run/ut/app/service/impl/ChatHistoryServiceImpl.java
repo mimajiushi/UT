@@ -65,4 +65,12 @@ public class ChatHistoryServiceImpl extends ServiceImpl<ChatHistoryMapper, ChatH
                 .map(InputConverter::convertTo)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void setMsgReadById(Long chatId) {
+        lambdaUpdate()
+                .eq(ChatHistory::getId, chatId)
+                .set(ChatHistory::getMsgRead, MsgReadStatusEnum.READ.getType())
+                .update();
+    }
 }
