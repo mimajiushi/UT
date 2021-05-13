@@ -6,9 +6,15 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.type.CollectionType;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.ApplicationContextException;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,12 +26,21 @@ import java.util.Map;
  *
  * @author wenjie
  */
-public class JsonUtils {
+@Component
+public class JsonUtils implements ApplicationContextAware {
 
     /**
      * Default json mapper.
      */
-    public final static ObjectMapper DEFAULT_JSON_MAPPER = createDefaultJsonMapper();
+    public static ObjectMapper objectMapper;
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        if (ObjectUtils.isEmpty(applicationContext)) {
+            throw new ApplicationContextException("applicationContext must not be null");
+        }
+        JsonUtils.objectMapper = applicationContext.getBean(ObjectMapper.class);
+    }
 
     private JsonUtils() {
     }
@@ -69,7 +84,7 @@ public class JsonUtils {
      */
     @NonNull
     public static <T> T jsonToObject(@NonNull String json, @NonNull Class<T> type) {
-        return jsonToObject(json, type, DEFAULT_JSON_MAPPER);
+        return jsonToObject(json, type, objectMapper);
     }
 
     /**
@@ -135,7 +150,7 @@ public class JsonUtils {
      */
     @NonNull
     public static String objectToJson(@NonNull Object source) {
-        return objectToJson(source, DEFAULT_JSON_MAPPER);
+        return objectToJson(source, objectMapper);
     }
 
     /**
@@ -168,7 +183,7 @@ public class JsonUtils {
      */
     @NonNull
     public static <T> T mapToObject(@NonNull Map<String, ?> sourceMap, @NonNull Class<T> type) {
-        return mapToObject(sourceMap, type, DEFAULT_JSON_MAPPER);
+        return mapToObject(sourceMap, type, objectMapper);
     }
 
     /**
@@ -199,7 +214,7 @@ public class JsonUtils {
      */
     @NonNull
     public static Map<?, ?> objectToMap(@NonNull Object source) {
-        return objectToMap(source, DEFAULT_JSON_MAPPER);
+        return objectToMap(source, objectMapper);
     }
 
     /**
@@ -232,7 +247,7 @@ public class JsonUtils {
 
         Assert.notNull(type, "Type must not be null");
 
-        return jsonToCollection(json, type, ArrayList.class, DEFAULT_JSON_MAPPER);
+        return jsonToCollection(json, type, ArrayList.class, objectMapper);
     }
 
     /**
@@ -260,5 +275,4 @@ public class JsonUtils {
             throw new RuntimeException(e);
         }
     }
-
 }

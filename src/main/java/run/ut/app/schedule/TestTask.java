@@ -15,7 +15,6 @@ import run.ut.app.utils.IdUtils;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Reset channel cache task
