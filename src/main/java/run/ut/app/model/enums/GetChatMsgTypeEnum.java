@@ -1,7 +1,6 @@
 package run.ut.app.model.enums;
 
 import com.baomidou.mybatisplus.annotation.IEnum;
-import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
 import java.io.Serializable;

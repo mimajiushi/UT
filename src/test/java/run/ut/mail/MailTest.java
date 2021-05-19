@@ -1,9 +1,8 @@
-package other.mail;
+package run.ut.mail;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 import run.ut.app.UtApplication;
@@ -13,9 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Test send other.mail
+ * Test send run.ut.mail
  *
- * Please check your network, if the other.mail fails to be sent
+ * Please check your network, if the run.ut.mail fails to be sent
  *
  * @author wenjie
  * @date 2020-4-6
@@ -34,7 +33,7 @@ public class MailTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void sendTemplateMailTest() throws Exception{
+    public void sendTemplateMailTest() throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("nickname", "chenwenjie");
         data.put("code", "123456");

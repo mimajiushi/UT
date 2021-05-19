@@ -46,7 +46,7 @@ run.ut.app
 ├── exception -- 异常定义、处理相关。
 ├── handler -- 一些处理器
 ├── listener -- 监听事件并处理
-├── other.mail -- 邮件相关代码
+├── run.ut.mail -- 邮件相关代码
 ├── mapper -- MyBaits的mapper
 ├── model -- 存放DOMAIN、DTO、VO、Param等实体
 ├── netty -- netty的一些代码，目前只用于搭建WebSocket服务

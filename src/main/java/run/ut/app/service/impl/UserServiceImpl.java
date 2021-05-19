@@ -248,7 +248,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String key = String.format(RedisKey.USER_EMAIL, uid, email);
         redisService.setKeyValTTL(key, code, RedisKey.EMAIL_CODE_TIME_OUT);
 
-        // send other.mail
+        // send run.ut.mail
         Map<String, Object> data = new HashMap<>();
         data.put("code", code);
         data.put("nickname", user.getNickname());
@@ -268,7 +268,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         User user = getUserByEmail(email);
 
-        // send other.mail
+        // send run.ut.mail
         Map<String, Object> data = new HashMap<>();
         data.put("code", code);
         if (ObjectUtils.isEmpty(user)) {

@@ -1,6 +1,5 @@
 package run.ut.app.netty.task;
 
-import cn.hutool.core.util.ReflectUtil;
 import io.netty.util.Timeout;
 import io.netty.util.Timer;
 import io.netty.util.TimerTask;

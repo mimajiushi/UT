@@ -24,7 +24,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Abstract other.mail service.
+ * Abstract run.ut.mail service.
  *
  * @author johnniang
  * @author wenjie
@@ -83,7 +83,7 @@ public abstract class AbstractMailService implements MailService {
     }
 
     /**
-     * Send other.mail template.
+     * Send run.ut.mail template.
      *
      * @param callback mime message callback.
      */
@@ -93,7 +93,7 @@ public abstract class AbstractMailService implements MailService {
             return;
         }
 
-        // check if other.mail is enable
+        // check if run.ut.mail is enable
         Boolean emailEnabled = optionService.getByPropertyOrDefault(EmailProperties.ENABLED, Boolean.class);
 
         if (!emailEnabled) {
@@ -102,7 +102,7 @@ public abstract class AbstractMailService implements MailService {
             return;
         }
 
-        // get other.mail sender
+        // get run.ut.mail sender
         JavaMailSender mailSender = getMailSender();
         printMailConfig();
 
@@ -130,7 +130,7 @@ public abstract class AbstractMailService implements MailService {
     }
 
     /**
-     * Send other.mail template if executor service is enable.
+     * Send run.ut.mail template if executor service is enable.
      *
      * @param callback   callback message handler
      * @param tryToAsync if the send procedure should try to asynchronous
@@ -138,25 +138,25 @@ public abstract class AbstractMailService implements MailService {
     protected void sendMailTemplate(boolean tryToAsync, @Nullable Callback callback) {
         ExecutorService executorService = getExecutorService();
         if (tryToAsync && executorService != null) {
-            // send other.mail asynchronously
+            // send run.ut.mail asynchronously
             executorService.execute(() -> sendMailTemplate(callback));
         } else {
-            // send other.mail synchronously
+            // send run.ut.mail synchronously
             sendMailTemplate(callback);
         }
     }
 
     /**
-     * Get java other.mail sender.
+     * Get java run.ut.mail sender.
      *
-     * @return java other.mail sender
+     * @return java run.ut.mail sender
      */
     @NonNull
     private synchronized JavaMailSender getMailSender() {
         if (this.cachedMailSender == null) {
-            // create other.mail sender factory
+            // create run.ut.mail sender factory
             MailSenderFactory mailSenderFactory = new MailSenderFactory();
-            // get other.mail sender
+            // get run.ut.mail sender
             this.cachedMailSender = mailSenderFactory.getMailSender(getMailProperties());
         }
 
@@ -166,12 +166,12 @@ public abstract class AbstractMailService implements MailService {
     /**
      * Get from-address.
      *
-     * @param javaMailSender java other.mail sender.
+     * @param javaMailSender java run.ut.mail sender.
      * @return from-name internet address
      * @throws UnsupportedEncodingException throws when you give a wrong character encoding
      */
     private synchronized InternetAddress getFromAddress(@NonNull JavaMailSender javaMailSender) throws UnsupportedEncodingException {
-        Assert.notNull(javaMailSender, "Java other.mail sender must not be null");
+        Assert.notNull(javaMailSender, "Java run.ut.mail sender must not be null");
 
         if (StringUtils.isBlank(this.cachedFromName)) {
             // set personal name
@@ -187,18 +187,18 @@ public abstract class AbstractMailService implements MailService {
             return new InternetAddress(username, this.cachedFromName, mailSender.getDefaultEncoding());
         }
 
-        throw new UnsupportedOperationException("Unsupported java other.mail sender: " + javaMailSender.getClass().getName());
+        throw new UnsupportedOperationException("Unsupported java run.ut.mail sender: " + javaMailSender.getClass().getName());
     }
 
     /**
-     * Get other.mail properties.
+     * Get run.ut.mail properties.
      *
-     * @return other.mail properties
+     * @return run.ut.mail properties
      */
     @NonNull
     private synchronized MailProperties getMailProperties() {
         if (cachedMailProperties == null) {
-            // create other.mail properties
+            // create run.ut.mail properties
             MailProperties mailProperties = new MailProperties(log.isDebugEnabled());
 
             // set properties
@@ -214,14 +214,14 @@ public abstract class AbstractMailService implements MailService {
     }
 
     /**
-     * Print other.mail configuration.
+     * Print run.ut.mail configuration.
      */
     private void printMailConfig() {
         if (!log.isDebugEnabled()) {
             return;
         }
 
-        // get other.mail properties
+        // get run.ut.mail properties
         MailProperties mailProperties = getMailProperties();
         log.debug(mailProperties.toString());
     }
@@ -233,7 +233,7 @@ public abstract class AbstractMailService implements MailService {
         this.cachedMailSender = null;
         this.cachedFromName = null;
         this.cachedMailProperties = null;
-        log.debug("Cleared all other.mail caches");
+        log.debug("Cleared all run.ut.mail caches");
     }
 
     /**
