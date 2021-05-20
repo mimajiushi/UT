@@ -54,6 +54,6 @@ public class SingleTextMsgHandler implements ClientMsgHandler {
 
     @Override
     public boolean support(WebSocketMsgTypeEnum typeEnum) {
-        return typeEnum.equals(WebSocketMsgTypeEnum.SINGLE_IMG_MSG);
+        return typeEnum.equals(WebSocketMsgTypeEnum.SINGLE_TEXT_MSG);
     }
 }

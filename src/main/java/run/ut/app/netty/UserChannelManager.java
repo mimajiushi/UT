@@ -165,7 +165,7 @@ public class UserChannelManager {
                 TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame(json);
                 ChannelFuture channelFuture = channel.writeAndFlush(textWebSocketFrame);
                 channelFuture.addListener((ChannelFutureListener)future -> {
-                    log.debug("对uid：{}, 发送websocket（ACK）消息：{}", chatHistoryDTO.getToUid(), json);
+                    log.debug("对uid：{}, 发送websocket（ACK）消息：{}", chatHistoryDTO.getFromUid(), json);
                 });
 
             }

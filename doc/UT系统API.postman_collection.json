@@ -1797,6 +1797,101 @@
 							},
 							"response": [
 								{
+									"name": "更新活动信息",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "id",
+													"value": " 3",
+													"description": "传入id表示更新",
+													"type": "text"
+												},
+												{
+													"key": "title",
+													"value": " demoData2",
+													"type": "text"
+												},
+												{
+													"key": "cover",
+													"value": " demoData2",
+													"type": "text"
+												},
+												{
+													"key": "content",
+													"value": " demoData2",
+													"type": "text"
+												},
+												{
+													"key": "startTime",
+													"value": "2020-05-17 11:26:09",
+													"type": "text"
+												},
+												{
+													"key": "endTime",
+													"value": "2020-05-17 11:26:09",
+													"type": "text"
+												},
+												{
+													"key": "classifyId",
+													"value": "2",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8080/ut/admin/activity/saveActivity",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"admin",
+												"activity",
+												"saveActivity"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 17 May 2020 03:45:39 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"更新活动成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								},
+								{
 									"name": "创建活动",
 									"originalRequest": {
 										"method": "POST",
@@ -1891,101 +1986,6 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"status\": 200,\n    \"message\": \"活动发布成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
-								},
-								{
-									"name": "更新活动信息",
-									"originalRequest": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "UT-Token",
-												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "formdata",
-											"formdata": [
-												{
-													"key": "id",
-													"value": " 3",
-													"description": "传入id表示更新",
-													"type": "text"
-												},
-												{
-													"key": "title",
-													"value": " demoData2",
-													"type": "text"
-												},
-												{
-													"key": "cover",
-													"value": " demoData2",
-													"type": "text"
-												},
-												{
-													"key": "content",
-													"value": " demoData2",
-													"type": "text"
-												},
-												{
-													"key": "startTime",
-													"value": "2020-05-17 11:26:09",
-													"type": "text"
-												},
-												{
-													"key": "endTime",
-													"value": "2020-05-17 11:26:09",
-													"type": "text"
-												},
-												{
-													"key": "classifyId",
-													"value": "2",
-													"type": "text"
-												}
-											]
-										},
-										"url": {
-											"raw": "http://localhost:8080/ut/admin/activity/saveActivity",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "8080",
-											"path": [
-												"ut",
-												"admin",
-												"activity",
-												"saveActivity"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Transfer-Encoding",
-											"value": "chunked"
-										},
-										{
-											"key": "Date",
-											"value": "Sun, 17 May 2020 03:45:39 GMT"
-										},
-										{
-											"key": "Keep-Alive",
-											"value": "timeout=60"
-										},
-										{
-											"key": "Connection",
-											"value": "keep-alive"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"status\": 200,\n    \"message\": \"更新活动成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 								}
 							]
 						},
@@ -2031,6 +2031,71 @@
 								}
 							},
 							"response": [
+								{
+									"name": "重复名称",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiJvbmpZRjVsZElwOEJkc3NEYjl5WGVIVkZDN2hzIiwicm9sZXMiOjEzLCJpYXQiOjE2MTUzNTczMDYsImV4cCI6MTY0Njg5MzMwNn0.ITlacL6jplTtOQbQY2i2qL87f_yJND3Wf0GvWU9lnNo",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "cname",
+													"value": "测试分类2",
+													"type": "text"
+												}
+											],
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/ut/admin/activity/saveClassify",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"admin",
+												"activity",
+												"saveClassify"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 10 Mar 2021 10:18:52 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 400,\n    \"message\": \"该分类id/名称已存在\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								},
 								{
 									"name": "新增活动分类",
 									"originalRequest": {
@@ -2099,71 +2164,6 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": null,\n        \"updateTime\": null,\n        \"deleted\": 0,\n        \"id\": null,\n        \"cname\": \"测试分类3\"\n    }\n}"
-								},
-								{
-									"name": "重复名称",
-									"originalRequest": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "UT-Token",
-												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiJvbmpZRjVsZElwOEJkc3NEYjl5WGVIVkZDN2hzIiwicm9sZXMiOjEzLCJpYXQiOjE2MTUzNTczMDYsImV4cCI6MTY0Njg5MzMwNn0.ITlacL6jplTtOQbQY2i2qL87f_yJND3Wf0GvWU9lnNo",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "cname",
-													"value": "测试分类2",
-													"type": "text"
-												}
-											],
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:8080/ut/admin/activity/saveClassify",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "8080",
-											"path": [
-												"ut",
-												"admin",
-												"activity",
-												"saveClassify"
-											]
-										}
-									},
-									"status": "Bad Request",
-									"code": 400,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Transfer-Encoding",
-											"value": "chunked"
-										},
-										{
-											"key": "Date",
-											"value": "Wed, 10 Mar 2021 10:18:52 GMT"
-										},
-										{
-											"key": "Connection",
-											"value": "close"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"status\": 400,\n    \"message\": \"该分类id/名称已存在\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 								},
 								{
 									"name": "更新分类",
@@ -2454,6 +2454,75 @@
 							},
 							"response": [
 								{
+									"name": "新增版块",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "UT-Token",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "测试版块",
+													"description": "版块名称",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:8080/ut/admin/forum/saveForum",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"ut",
+												"admin",
+												"forum",
+												"saveForum"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Set-Cookie",
+											"value": "JSESSIONID=8822FB043DA52DDEF5016067CD2B1D83; Path=/ut; HttpOnly"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 19 May 2020 12:38:17 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"message\": \"新增版块成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
+								},
+								{
 									"name": "更新版块",
 									"originalRequest": {
 										"method": "POST",
@@ -2522,75 +2591,6 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"status\": 200,\n    \"message\": \"更新成功\",\n    \"devMessage\": null,\n    \"data\": null\n}"
-								},
-								{
-									"name": "新增版块",
-									"originalRequest": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "UT-Token",
-												"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "formdata",
-											"formdata": [
-												{
-													"key": "name",
-													"value": "测试版块",
-													"description": "版块名称",
-													"type": "text"
-												}
-											]
-										},
-										"url": {
-											"raw": "http://localhost:8080/ut/admin/forum/saveForum",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "8080",
-											"path": [
-												"ut",
-												"admin",
-												"forum",
-												"saveForum"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Set-Cookie",
-											"value": "JSESSIONID=8822FB043DA52DDEF5016067CD2B1D83; Path=/ut; HttpOnly"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Transfer-Encoding",
-											"value": "chunked"
-										},
-										{
-											"key": "Date",
-											"value": "Tue, 19 May 2020 12:38:17 GMT"
-										},
-										{
-											"key": "Keep-Alive",
-											"value": "timeout=60"
-										},
-										{
-											"key": "Connection",
-											"value": "keep-alive"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"status\": 200,\n    \"message\": \"新增版块成功~\",\n    \"devMessage\": null,\n    \"data\": null\n}"
 								}
 							]
 						},
@@ -5037,7 +5037,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/ut/index/team/1",
+							"raw": "http://localhost:8080/ut/index/team/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -5047,13 +5047,13 @@
 								"ut",
 								"index",
 								"team",
-								"1"
+								"2"
 							]
 						}
 					},
 					"response": [
 						{
-							"name": "查看id为2的队伍信息",
+							"name": "根据队伍id获取队伍信息",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
@@ -5086,7 +5086,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Fri, 27 Mar 2020 13:54:57 GMT"
+									"value": "Sat, 27 Mar 2021 11:47:32 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -5098,7 +5098,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"adawa\",\n        \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n        \"description\": \"awdawd\",\n        \"tags\": [\n            {\n                \"createTime\": \"2020-03-11 13:04:34\",\n                \"updateTime\": \"2020-02-25 13:45:43\",\n                \"deleted\": 0,\n                \"id\": 2,\n                \"parentId\": 1,\n                \"name\": \"Java\",\n                \"level\": 1\n            },\n            {\n                \"createTime\": \"2020-03-11 13:04:53\",\n                \"updateTime\": \"2020-02-25 13:45:50\",\n                \"deleted\": 0,\n                \"id\": 3,\n                \"parentId\": 1,\n                \"name\": \"PHP\",\n                \"level\": 1\n            }\n        ],\n        \"tagIds\": \"2,3\",\n        \"status\": \"招募中\",\n        \"recruitments\": [\n            {\n                \"createTime\": \"2020-03-15 16:42:27\",\n                \"updateTime\": \"2020-03-15 18:21:06\",\n                \"deleted\": 0,\n                \"id\": 6,\n                \"teamId\": 2,\n                \"name\": \"php后端开发1批\",\n                \"tagIds\": \"1,2,3\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 16:43:14\",\n                \"updateTime\": \"2020-03-15 17:08:25\",\n                \"deleted\": 0,\n                \"id\": 7,\n                \"teamId\": 2,\n                \"name\": \"php后端开发2批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:29\",\n                \"updateTime\": \"2020-03-14 06:29:02\",\n                \"deleted\": 0,\n                \"id\": 8,\n                \"teamId\": 2,\n                \"name\": \"php后端开发3批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:32\",\n                \"updateTime\": \"2020-03-14 06:29:05\",\n                \"deleted\": 0,\n                \"id\": 9,\n                \"teamId\": 2,\n                \"name\": \"php后端开发4批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:36\",\n                \"updateTime\": \"2020-03-14 06:29:09\",\n                \"deleted\": 0,\n                \"id\": 10,\n                \"teamId\": 2,\n                \"name\": \"php后端开发5批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            }\n        ],\n        \"members\": [\n            {\n                \"id\": 4,\n                \"uid\": 21,\n                \"nickname\": \"chenwenjie\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"role\": \"队长\"\n            },\n            {\n                \"id\": 31,\n                \"uid\": 29,\n                \"nickname\": \"UT_8B1260\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            },\n            {\n                \"id\": 32,\n                \"uid\": 28,\n                \"nickname\": \"UT_8B1261\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            },\n            {\n                \"id\": 33,\n                \"uid\": 27,\n                \"nickname\": \"UT_8B1262\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            },\n            {\n                \"id\": 35,\n                \"uid\": 25,\n                \"nickname\": \"UT_8B1264\",\n                \"avatar\": \"https://www.wenjie.store/ut/img%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.jpg\",\n                \"role\": \"普通成员\"\n            }\n        ],\n        \"createTime\": \"2020-03-14\"\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"id\": \"2\",\n        \"name\": \"adawa\",\n        \"logo\": \"https://www.wenjie.store/ut/img/79765660_p0_master1200_1584241420441.jpg\",\n        \"description\": \"awdawd\",\n        \"tags\": [\n            {\n                \"createTime\": \"2020-03-11 13:04:34\",\n                \"updateTime\": \"2020-04-13 23:14:01\",\n                \"deleted\": 0,\n                \"id\": \"2\",\n                \"parentId\": 1,\n                \"name\": \"Java\",\n                \"level\": 1\n            },\n            {\n                \"createTime\": \"2020-03-11 13:04:53\",\n                \"updateTime\": \"2020-04-13 23:14:01\",\n                \"deleted\": 0,\n                \"id\": \"3\",\n                \"parentId\": 1,\n                \"name\": \"PHP\",\n                \"level\": 1\n            }\n        ],\n        \"tagIds\": \"2,3\",\n        \"status\": \"招募中\",\n        \"recruitments\": [\n            {\n                \"createTime\": \"2020-03-15 16:42:27\",\n                \"updateTime\": \"2020-03-15 18:21:06\",\n                \"deleted\": 0,\n                \"id\": \"6\",\n                \"teamId\": \"2\",\n                \"name\": \"php后端开发1批\",\n                \"tagIds\": \"1,2,3\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 16:43:14\",\n                \"updateTime\": \"2020-03-15 17:08:25\",\n                \"deleted\": 0,\n                \"id\": \"7\",\n                \"teamId\": \"2\",\n                \"name\": \"php后端开发2批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:29\",\n                \"updateTime\": \"2020-03-14 06:29:02\",\n                \"deleted\": 0,\n                \"id\": \"8\",\n                \"teamId\": \"2\",\n                \"name\": \"php后端开发3批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:32\",\n                \"updateTime\": \"2020-03-14 06:29:05\",\n                \"deleted\": 0,\n                \"id\": \"9\",\n                \"teamId\": \"2\",\n                \"name\": \"php后端开发4批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            },\n            {\n                \"createTime\": \"2020-03-15 17:08:36\",\n                \"updateTime\": \"2020-03-14 06:29:09\",\n                \"deleted\": 0,\n                \"id\": \"10\",\n                \"teamId\": \"2\",\n                \"name\": \"php后端开发5批\",\n                \"tagIds\": \"\",\n                \"description\": \"要求：php基础扎实，能熟练运用现有的流行框架\"\n            }\n        ],\n        \"members\": [\n            {\n                \"id\": \"4\",\n                \"uid\": \"21\",\n                \"nickname\": \"chen2021\",\n                \"avatar\": \"https://www.wenjie.store/ut/img/wx0520203ba32fb247.o6zAJsz0ACQSiymv7WpL_Ncs5zEA.Pv9aqOfrBAXWc83c9290c4c3ad30d3119c618cc1682c_1585017012156.png\",\n                \"role\": \"队长\",\n                \"recruitment\": \"无职\"\n            },\n            {\n                \"id\": \"1375363452371521538\",\n                \"uid\": \"214\",\n                \"nickname\": \"fengfeng\",\n                \"avatar\": \"https://wx.qlogo.cn/mmopen/vi_32/bSNKPNc3V7KG9PNdHAiaG6ljMAHHOGIf6n32YXRlWOE75LVKNY2B6c4pdtpCbkSlcQIaqXRuI5S2yIgVgnIsseQ/132\",\n                \"role\": \"普通成员\",\n                \"recruitment\": \"无职\"\n            }\n        ],\n        \"createTime\": \"2020-03-14\"\n    }\n}"
 						}
 					]
 				},
@@ -10681,7 +10681,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/ut/activity/list/activities?pageNum=1&pageSize=5&order=create_time",
+							"raw": "http://localhost:8080/ut/activity/list/activities?pageNum=1&pageSize=5&order=create_time&classifyId=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -10712,6 +10712,10 @@
 									"key": "order",
 									"value": "create_time",
 									"description": "排序字段，create_time则最近发布的排在最前，appointment_count则预约人数最多的排在最前。默认是预约最多的排在前面"
+								},
+								{
+									"key": "classifyId",
+									"value": "1"
 								}
 							]
 						},
@@ -10804,6 +10808,90 @@
 							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 4,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-06-05 20:54:05\",\n                \"updateTime\": \"2021-03-10 14:04:36\",\n                \"id\": \"13\",\n                \"classifyId\": \"1\",\n                \"cname\": \"测试\",\n                \"title\": \"吹水大会\",\n                \"cover\": \"https://www.wenjie.store/ut/img/5_1591361568220.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 111111,\n                \"appointment\": true,\n                \"collect\": false,\n                \"readCount\": 82,\n                \"startTime\": \"2020-06-29 00:00:00\",\n                \"endTime\": \"2020-06-30 00:00:00\",\n                \"deleted\": 0\n            },\n            {\n                \"createTime\": \"2020-06-09 16:14:25\",\n                \"updateTime\": \"2021-03-11 19:37:07\",\n                \"id\": \"14\",\n                \"classifyId\": \"1369902386044772353\",\n                \"cname\": \"测试分类5\",\n                \"title\": \"吹水大会（二期）\",\n                \"cover\": \"https://www.wenjie.store/ut/img/4_1591690391853.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 100001,\n                \"appointment\": true,\n                \"collect\": false,\n                \"readCount\": 123,\n                \"startTime\": \"2023-08-09 00:00:00\",\n                \"endTime\": \"2024-06-09 00:00:00\",\n                \"deleted\": 0\n            },\n            {\n                \"createTime\": \"2021-03-11 20:44:38\",\n                \"updateTime\": \"2021-03-11 20:44:38\",\n                \"id\": \"1369992659059982337\",\n                \"classifyId\": \"1369917335559270402\",\n                \"cname\": \"测试分类77\",\n                \"title\": \"sczsczsczszs\",\n                \"cover\": \"https://www.wenjie.store/ut/img/WechatIMG64_1615466674354.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 0,\n                \"appointment\": false,\n                \"collect\": false,\n                \"readCount\": 1,\n                \"startTime\": \"2021-03-11 00:00:00\",\n                \"endTime\": \"2021-03-11 00:00:00\",\n                \"deleted\": 0\n            },\n            {\n                \"createTime\": \"2020-05-19 15:13:08\",\n                \"updateTime\": \"2021-03-10 14:04:34\",\n                \"id\": \"8\",\n                \"classifyId\": \"1\",\n                \"cname\": \"测试\",\n                \"title\": \"测试活动\",\n                \"cover\": \"https://www.wenjie.store/ut/img/头像_1589872260013.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 0,\n                \"appointment\": false,\n                \"collect\": false,\n                \"readCount\": 9,\n                \"startTime\": \"2020-05-04 00:00:00\",\n                \"endTime\": \"2020-05-19 15:10:55\",\n                \"deleted\": 0\n            }\n        ]\n    }\n}"
 						},
 						{
+							"name": "活动列表（标题模糊查询）",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiIiLCJyb2xlcyI6MTUsImlhdCI6MTU4NDEwNzk3NiwiZXhwIjoxNjE1NjQzOTc2fQ._IbeBiAAq5EzHTm004v_v407YagXXh1-65w726sbCHw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/activity/list/activities?pageNum=1&pageSize=5&title=吹水",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"activity",
+										"list",
+										"activities"
+									],
+									"query": [
+										{
+											"key": "pageNum",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "5"
+										},
+										{
+											"key": "title",
+											"value": "吹水",
+											"description": "标题（模糊搜索）"
+										},
+										{
+											"key": "order",
+											"value": "create_time",
+											"description": "排序字段，create_time则最近发布的排在最前，appointment_count则预约人数最多的排在最前。默认是预约最多的排在前面",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Mar 2021 06:32:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-06-05 20:54:05\",\n                \"updateTime\": \"2021-03-10 14:04:36\",\n                \"id\": \"13\",\n                \"classifyId\": \"1\",\n                \"cname\": \"测试\",\n                \"title\": \"吹水大会\",\n                \"cover\": \"https://www.wenjie.store/ut/img/5_1591361568220.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 111111,\n                \"appointment\": true,\n                \"collect\": false,\n                \"readCount\": 82,\n                \"startTime\": \"2020-06-29 00:00:00\",\n                \"endTime\": \"2020-06-30 00:00:00\",\n                \"deleted\": 0\n            },\n            {\n                \"createTime\": \"2020-06-09 16:14:25\",\n                \"updateTime\": \"2021-03-11 19:37:07\",\n                \"id\": \"14\",\n                \"classifyId\": \"1369902386044772353\",\n                \"cname\": \"测试分类5\",\n                \"title\": \"吹水大会（二期）\",\n                \"cover\": \"https://www.wenjie.store/ut/img/4_1591690391853.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 100001,\n                \"appointment\": true,\n                \"collect\": false,\n                \"readCount\": 123,\n                \"startTime\": \"2023-08-09 00:00:00\",\n                \"endTime\": \"2024-06-09 00:00:00\",\n                \"deleted\": 0\n            }\n        ]\n    }\n}"
+						},
+						{
 							"name": "活动列表（排序：最近发布的）",
 							"originalRequest": {
 								"method": "GET",
@@ -10888,7 +10976,7 @@
 							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 4,\n        \"rows\": [\n            {\n                \"createTime\": \"2021-03-11 20:44:38\",\n                \"updateTime\": \"2021-03-11 20:44:38\",\n                \"id\": \"1369992659059982337\",\n                \"classifyId\": \"1369917335559270402\",\n                \"cname\": \"测试分类77\",\n                \"title\": \"sczsczsczszs\",\n                \"cover\": \"https://www.wenjie.store/ut/img/WechatIMG64_1615466674354.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 0,\n                \"appointment\": false,\n                \"collect\": false,\n                \"readCount\": 1,\n                \"startTime\": \"2021-03-11 00:00:00\",\n                \"endTime\": \"2021-03-11 00:00:00\",\n                \"deleted\": 0\n            },\n            {\n                \"createTime\": \"2020-06-09 16:14:25\",\n                \"updateTime\": \"2021-03-11 19:37:07\",\n                \"id\": \"14\",\n                \"classifyId\": \"1369902386044772353\",\n                \"cname\": \"测试分类5\",\n                \"title\": \"吹水大会（二期）\",\n                \"cover\": \"https://www.wenjie.store/ut/img/4_1591690391853.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 100001,\n                \"appointment\": true,\n                \"collect\": false,\n                \"readCount\": 123,\n                \"startTime\": \"2023-08-09 00:00:00\",\n                \"endTime\": \"2024-06-09 00:00:00\",\n                \"deleted\": 0\n            },\n            {\n                \"createTime\": \"2020-06-05 20:54:05\",\n                \"updateTime\": \"2021-03-10 14:04:36\",\n                \"id\": \"13\",\n                \"classifyId\": \"1\",\n                \"cname\": \"测试\",\n                \"title\": \"吹水大会\",\n                \"cover\": \"https://www.wenjie.store/ut/img/5_1591361568220.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 111111,\n                \"appointment\": true,\n                \"collect\": false,\n                \"readCount\": 82,\n                \"startTime\": \"2020-06-29 00:00:00\",\n                \"endTime\": \"2020-06-30 00:00:00\",\n                \"deleted\": 0\n            },\n            {\n                \"createTime\": \"2020-05-19 15:13:08\",\n                \"updateTime\": \"2021-03-10 14:04:34\",\n                \"id\": \"8\",\n                \"classifyId\": \"1\",\n                \"cname\": \"测试\",\n                \"title\": \"测试活动\",\n                \"cover\": \"https://www.wenjie.store/ut/img/头像_1589872260013.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 0,\n                \"appointment\": false,\n                \"collect\": false,\n                \"readCount\": 9,\n                \"startTime\": \"2020-05-04 00:00:00\",\n                \"endTime\": \"2020-05-19 15:10:55\",\n                \"deleted\": 0\n            }\n        ]\n    }\n}"
 						},
 						{
-							"name": "活动列表（标题模糊查询）",
+							"name": "活动列表（分类id）",
 							"originalRequest": {
 								"method": "GET",
 								"header": [
@@ -10908,7 +10996,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/ut/activity/list/activities?pageNum=1&pageSize=5&title=吹水",
+									"raw": "http://localhost:8080/ut/activity/list/activities?pageNum=1&pageSize=5&order=create_time&classifyId=1",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -10932,13 +11020,17 @@
 										{
 											"key": "title",
 											"value": "吹水",
-											"description": "标题（模糊搜索）"
+											"description": "标题（模糊搜索）",
+											"disabled": true
 										},
 										{
 											"key": "order",
 											"value": "create_time",
-											"description": "排序字段，create_time则最近发布的排在最前，appointment_count则预约人数最多的排在最前。默认是预约最多的排在前面",
-											"disabled": true
+											"description": "排序字段，create_time则最近发布的排在最前，appointment_count则预约人数最多的排在最前。默认是预约最多的排在前面"
+										},
+										{
+											"key": "classifyId",
+											"value": "1"
 										}
 									]
 								}
@@ -10957,7 +11049,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Fri, 12 Mar 2021 06:32:27 GMT"
+									"value": "Mon, 29 Mar 2021 05:30:45 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -10969,7 +11061,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-06-05 20:54:05\",\n                \"updateTime\": \"2021-03-10 14:04:36\",\n                \"id\": \"13\",\n                \"classifyId\": \"1\",\n                \"cname\": \"测试\",\n                \"title\": \"吹水大会\",\n                \"cover\": \"https://www.wenjie.store/ut/img/5_1591361568220.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 111111,\n                \"appointment\": true,\n                \"collect\": false,\n                \"readCount\": 82,\n                \"startTime\": \"2020-06-29 00:00:00\",\n                \"endTime\": \"2020-06-30 00:00:00\",\n                \"deleted\": 0\n            },\n            {\n                \"createTime\": \"2020-06-09 16:14:25\",\n                \"updateTime\": \"2021-03-11 19:37:07\",\n                \"id\": \"14\",\n                \"classifyId\": \"1369902386044772353\",\n                \"cname\": \"测试分类5\",\n                \"title\": \"吹水大会（二期）\",\n                \"cover\": \"https://www.wenjie.store/ut/img/4_1591690391853.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 100001,\n                \"appointment\": true,\n                \"collect\": false,\n                \"readCount\": 123,\n                \"startTime\": \"2023-08-09 00:00:00\",\n                \"endTime\": \"2024-06-09 00:00:00\",\n                \"deleted\": 0\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"total\": 2,\n        \"rows\": [\n            {\n                \"createTime\": \"2020-06-05 20:54:05\",\n                \"updateTime\": \"2021-03-10 14:04:36\",\n                \"id\": \"13\",\n                \"classifyId\": \"1\",\n                \"cname\": \"测试\",\n                \"title\": \"吹水大会\",\n                \"cover\": \"https://www.wenjie.store/ut/img/5_1591361568220.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 111111,\n                \"appointment\": false,\n                \"collect\": false,\n                \"readCount\": 87,\n                \"startTime\": \"2020-06-29 00:00:00\",\n                \"endTime\": \"2020-06-30 00:00:00\",\n                \"deleted\": 0\n            },\n            {\n                \"createTime\": \"2020-05-19 15:13:08\",\n                \"updateTime\": \"2021-03-10 14:04:34\",\n                \"id\": \"8\",\n                \"classifyId\": \"1\",\n                \"cname\": \"测试\",\n                \"title\": \"测试活动\",\n                \"cover\": \"https://www.wenjie.store/ut/img/头像_1589872260013.jpg\",\n                \"content\": null,\n                \"appointmentCount\": 0,\n                \"appointment\": false,\n                \"collect\": false,\n                \"readCount\": 9,\n                \"startTime\": \"2020-05-04 00:00:00\",\n                \"endTime\": \"2020-05-19 15:10:55\",\n                \"deleted\": 0\n            }\n        ]\n    }\n}"
 						}
 					]
 				},
@@ -11627,6 +11719,249 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "聊天消息API",
+			"item": [
+				{
+					"name": "获取单聊消息",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiJvbmpZRjVsZElwOEJkc3NEYjl5WGVIVkZDN2hzIiwicm9sZXMiOjEzLCJpYXQiOjE2MjA3MTcyMDksImV4cCI6NDc3NDMxNzIwOX0.XfNWZlELKpnwBQ5fa8tKiHxgjc3NsdC0MNoyAL4NBL8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"targetUid\": 1367497062361047042,\n  \"chatId\": 2,\n  \"type\": -1,\n  \"count\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ut/chat/list/chat/history/single",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"chat",
+								"list",
+								"chat",
+								"history",
+								"single"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "根据chatId获取历史消息",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiJvbmpZRjVsZElwOEJkc3NEYjl5WGVIVkZDN2hzIiwicm9sZXMiOjEzLCJpYXQiOjE2MjA3MTcyMDksImV4cCI6NDc3NDMxNzIwOX0.XfNWZlELKpnwBQ5fa8tKiHxgjc3NsdC0MNoyAL4NBL8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"targetUid\": 1367497062361047042,\n  \"chatId\": 5,\n  \"type\": -1,\n  \"count\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/chat/list/chat/history/single",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"chat",
+										"list",
+										"chat",
+										"history",
+										"single"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 May 2021 08:03:59 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"createTime\": \"2021-05-11 15:18:54\",\n            \"updateTime\": \"2021-05-11 15:18:56\",\n            \"deleted\": 0,\n            \"id\": 1,\n            \"fromUid\": 21,\n            \"toUid\": 1367497062361047042,\n            \"content\": \"测试消息\",\n            \"type\": 2000,\n            \"msgRead\": 0,\n            \"timeStamp\": 12345\n        },\n        {\n            \"createTime\": \"2021-05-11 15:18:54\",\n            \"updateTime\": \"2021-05-11 15:18:56\",\n            \"deleted\": 0,\n            \"id\": 2,\n            \"fromUid\": 21,\n            \"toUid\": 1367497062361047042,\n            \"content\": \"测试消息2\",\n            \"type\": 2000,\n            \"msgRead\": 0,\n            \"timeStamp\": 12345\n        },\n        {\n            \"createTime\": \"2021-05-11 15:18:54\",\n            \"updateTime\": \"2021-05-11 15:18:56\",\n            \"deleted\": 0,\n            \"id\": 3,\n            \"fromUid\": 21,\n            \"toUid\": 1367497062361047042,\n            \"content\": \"测试消息3\",\n            \"type\": 2000,\n            \"msgRead\": 1,\n            \"timeStamp\": 12345\n        },\n        {\n            \"createTime\": \"2021-05-11 15:18:54\",\n            \"updateTime\": \"2021-05-11 15:18:56\",\n            \"deleted\": 0,\n            \"id\": 4,\n            \"fromUid\": 21,\n            \"toUid\": 1367497062361047042,\n            \"content\": \"测试消息4\",\n            \"type\": 2000,\n            \"msgRead\": 0,\n            \"timeStamp\": 12345\n        }\n    ]\n}"
+						},
+						{
+							"name": "根据chatId获取未读消息",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiJvbmpZRjVsZElwOEJkc3NEYjl5WGVIVkZDN2hzIiwicm9sZXMiOjEzLCJpYXQiOjE2MjA3MTcyMDksImV4cCI6NDc3NDMxNzIwOX0.XfNWZlELKpnwBQ5fa8tKiHxgjc3NsdC0MNoyAL4NBL8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"targetUid\": 1367497062361047042,\n  \"chatId\": 1,\n  \"type\": 1,\n  \"count\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/chat/list/chat/history/single",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"chat",
+										"list",
+										"chat",
+										"history",
+										"single"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 May 2021 08:04:50 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"createTime\": \"2021-05-11 15:18:54\",\n            \"updateTime\": \"2021-05-11 15:18:56\",\n            \"deleted\": 0,\n            \"id\": 2,\n            \"fromUid\": 21,\n            \"toUid\": 1367497062361047042,\n            \"content\": \"测试消息2\",\n            \"type\": 2000,\n            \"msgRead\": 0,\n            \"timeStamp\": 12345\n        },\n        {\n            \"createTime\": \"2021-05-11 15:18:54\",\n            \"updateTime\": \"2021-05-11 15:18:56\",\n            \"deleted\": 0,\n            \"id\": 4,\n            \"fromUid\": 21,\n            \"toUid\": 1367497062361047042,\n            \"content\": \"测试消息4\",\n            \"type\": 2000,\n            \"msgRead\": 0,\n            \"timeStamp\": 12345\n        },\n        {\n            \"createTime\": \"2021-05-11 15:18:54\",\n            \"updateTime\": \"2021-05-11 15:18:56\",\n            \"deleted\": 0,\n            \"id\": 5,\n            \"fromUid\": 21,\n            \"toUid\": 1367497062361047042,\n            \"content\": \"测试消息5\",\n            \"type\": 2000,\n            \"msgRead\": 0,\n            \"timeStamp\": 12345\n        }\n    ]\n}"
+						},
+						{
+							"name": "无chatId获取获取最近消息",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiJvbmpZRjVsZElwOEJkc3NEYjl5WGVIVkZDN2hzIiwicm9sZXMiOjEzLCJpYXQiOjE2MjA3MTcyMDksImV4cCI6NDc3NDMxNzIwOX0.XfNWZlELKpnwBQ5fa8tKiHxgjc3NsdC0MNoyAL4NBL8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"targetUid\": 1367497062361047042,\n  \"count\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/chat/list/chat/history/single",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"chat",
+										"list",
+										"chat",
+										"history",
+										"single"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 May 2021 08:05:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": [\n        {\n            \"createTime\": \"2021-05-11 15:18:54\",\n            \"updateTime\": \"2021-05-11 15:18:56\",\n            \"deleted\": 0,\n            \"id\": 1,\n            \"fromUid\": 21,\n            \"toUid\": 1367497062361047042,\n            \"content\": \"测试消息\",\n            \"type\": 2000,\n            \"msgRead\": 0,\n            \"timeStamp\": 12345\n        },\n        {\n            \"createTime\": \"2021-05-11 15:18:54\",\n            \"updateTime\": \"2021-05-11 15:18:56\",\n            \"deleted\": 0,\n            \"id\": 2,\n            \"fromUid\": 21,\n            \"toUid\": 1367497062361047042,\n            \"content\": \"测试消息2\",\n            \"type\": 2000,\n            \"msgRead\": 0,\n            \"timeStamp\": 12345\n        },\n        {\n            \"createTime\": \"2021-05-11 15:18:54\",\n            \"updateTime\": \"2021-05-11 15:18:56\",\n            \"deleted\": 0,\n            \"id\": 3,\n            \"fromUid\": 21,\n            \"toUid\": 1367497062361047042,\n            \"content\": \"测试消息3\",\n            \"type\": 2000,\n            \"msgRead\": 1,\n            \"timeStamp\": 12345\n        },\n        {\n            \"createTime\": \"2021-05-11 15:18:54\",\n            \"updateTime\": \"2021-05-11 15:18:56\",\n            \"deleted\": 0,\n            \"id\": 4,\n            \"fromUid\": 21,\n            \"toUid\": 1367497062361047042,\n            \"content\": \"测试消息4\",\n            \"type\": 2000,\n            \"msgRead\": 0,\n            \"timeStamp\": 12345\n        },\n        {\n            \"createTime\": \"2021-05-11 15:18:54\",\n            \"updateTime\": \"2021-05-11 15:18:56\",\n            \"deleted\": 0,\n            \"id\": 5,\n            \"fromUid\": 21,\n            \"toUid\": 1367497062361047042,\n            \"content\": \"测试消息5\",\n            \"type\": 2000,\n            \"msgRead\": 0,\n            \"timeStamp\": 12345\n        }\n    ]\n}"
+						}
+					]
 				}
 			]
 		}

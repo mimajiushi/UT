@@ -49,6 +49,7 @@ public class ChatHistoryDTO extends BaseDTO
 
     /**
      * 消息类型
+     * @see run.ut.app.model.enums.WebSocketMsgTypeEnum
      */
     private Integer type;
 

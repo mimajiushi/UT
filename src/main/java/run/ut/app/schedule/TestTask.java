@@ -46,8 +46,8 @@ public class TestTask {
         redisService.set(key, value);
     }
 
-//    @Scheduled(cron = "0 0/1 * * * ?") // 测试重发消息
-    @Scheduled(cron = "0/3 * * * * ?") // 发送消息
+//    @Scheduled(cron = "0 0/5 * * * ?") // 测试重发消息
+    @Scheduled(cron = "0/30 * * * * ?") // 发送消息
     @Async
     public void chatMsgReSend() {
         long chatId = IdUtils.snowflakeId();
