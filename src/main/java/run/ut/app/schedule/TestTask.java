@@ -16,6 +16,8 @@ import run.ut.app.utils.IdUtils;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import static run.ut.app.config.redis.RedisKey.USER_EMAIL_LOGIN;
+
 /**
  * Reset channel cache task
  *
@@ -42,8 +44,10 @@ public class TestTask {
     @Async
     public void adminLoginCache() {
         String key = "ADMIN_EMAIL_LOGIN::1498780478@qq.com";
+        String key2 = String.format(USER_EMAIL_LOGIN, "1498780478@qq.com");
         String value = "123456";
         redisService.set(key, value);
+        redisService.set(key2, value);
     }
 
 //    @Scheduled(cron = "0 0/5 * * * ?") // 测试重发消息
