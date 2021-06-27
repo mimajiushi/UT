@@ -1163,6 +1163,91 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "获取自己详细信息",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "UT-Token",
+								"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiJvbmpZRjVsZElwOEJkc3NEYjl5WGVIVkZDN2hzIiwicm9sZXMiOjEzLCJpYXQiOjE2MjQ3MjI1OTgsImV4cCI6NDc3ODMyMjU5OH0.8uauEsph-j2w3uW7K-ZNp_hiKnJxP1aiENvEDARmB1k",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/ut/user/showSelfPage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ut",
+								"user",
+								"showSelfPage"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取自己详细信息",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "UT-Token",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiJvbmpZRjVsZElwOEJkc3NEYjl5WGVIVkZDN2hzIiwicm9sZXMiOjEzLCJpYXQiOjE2MjQ3MjI1OTgsImV4cCI6NDc3ODMyMjU5OH0.8uauEsph-j2w3uW7K-ZNp_hiKnJxP1aiENvEDARmB1k",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/ut/user/showSelfPage",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"showSelfPage"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 26 Jun 2021 16:02:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONID=2A29B6C99CACA43C6E639F0B4A6FA5D8; Path=/ut; HttpOnly"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"uid\": \"21\",\n        \"nickname\": \"chen2021\",\n        \"realName\": \"chenwenjie\",\n        \"avatar\": \"https://www.wenjie.store/ut/img/tmp_e99e7ecffb1cff4d2aea77e5203de7f838cb59545c2d5af3_1620910177957.jpg\",\n        \"sex\": \"男\",\n        \"roles\": 13,\n        \"phoneNumber\": \"15521245562\",\n        \"email\": \"1498780478@qq.com\",\n        \"degree\": \"本科\",\n        \"grade\": 2017,\n        \"subject\": \"信息工程\",\n        \"tags\": [\n            {\n                \"createTime\": \"2020-03-11 13:04:03\",\n                \"updateTime\": \"2020-04-13 23:13:59\",\n                \"deleted\": 0,\n                \"id\": \"1\",\n                \"parentId\": 0,\n                \"name\": \"技术\",\n                \"level\": 0\n            },\n            {\n                \"createTime\": \"2020-03-11 13:04:34\",\n                \"updateTime\": \"2020-04-13 23:14:01\",\n                \"deleted\": 0,\n                \"id\": \"2\",\n                \"parentId\": 1,\n                \"name\": \"Java\",\n                \"level\": 1\n            },\n            {\n                \"createTime\": \"2020-03-11 13:04:53\",\n                \"updateTime\": \"2020-04-13 23:14:01\",\n                \"deleted\": 0,\n                \"id\": \"3\",\n                \"parentId\": 1,\n                \"name\": \"PHP\",\n                \"level\": 1\n            }\n        ],\n        \"tagIds\": null,\n        \"schoolId\": null,\n        \"school\": \"广州大学华软软件学院\",\n        \"experiences\": [\n            {\n                \"createTime\": \"2020-03-11 23:39:09\",\n                \"updateTime\": \"2020-03-22 16:49:25\",\n                \"deleted\": 0,\n                \"id\": \"3\",\n                \"uid\": \"21\",\n                \"name\": \"校园物流\",\n                \"awards\": \"二等奖\",\n                \"role\": \"后端开发\",\n                \"projectUrl\": \"https://wenjie.store\",\n                \"description\": \"校园物流是一个xxxxx\",\n                \"startTime\": \"2017-09-09\",\n                \"endTime\": \"2020-09-09\"\n            },\n            {\n                \"createTime\": \"2020-03-11 23:37:40\",\n                \"updateTime\": \"2020-03-16 19:39:13\",\n                \"deleted\": 0,\n                \"id\": \"2\",\n                \"uid\": \"21\",\n                \"name\": \"UT平台\",\n                \"awards\": \"一等奖\",\n                \"role\": \"后端开发\",\n                \"projectUrl\": \"https://wenjie.store\",\n                \"description\": \"UT平台是一个xxxxxxxxxx系统\",\n                \"startTime\": \"2017-09-09\",\n                \"endTime\": \"2020-09-09\"\n            }\n        ],\n        \"description\": \"1.曾参与过xxx项目，项目已上线，获得过xxx奖。\\n2.曾参与过xxx项目，项目已上线，获得过xxx奖。\\n3. 曾参与过xxx项目，项目已上线，获得过xxx奖\",\n        \"credentialsPhotoFront\": \"https://www.wenjie.store/ut/img/1_1583926508010.jpg\",\n        \"credentialsPhotoReverse\": \"https://www.wenjie.store/ut/img/2_1583926508842.jpg\",\n        \"hasAuthInfo\": true\n    }\n}"
+						}
+					]
 				}
 			]
 		},
