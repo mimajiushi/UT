@@ -2,6 +2,7 @@ package run.ut.api.login;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.ActiveProfiles;
 import org.testng.annotations.Test;
 import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.enums.UserRolesEnum;
@@ -16,6 +17,7 @@ import static run.ut.utils.AssertUtil.*;
  * @date 2021/7/29 4:08 下午
  */
 @Slf4j
+@ActiveProfiles("not-websocket")
 public class LoginApiTest extends BaseApiTest {
 
     @LocalServerPort
