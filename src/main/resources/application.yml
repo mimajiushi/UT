@@ -7,9 +7,19 @@ server:
   port: ${PORT:8080}
   servlet:
     context-path: /ut
+  forward-headers-strategy: native
+  error:
+    include-message: always
+  compression:
+    enabled: true
 spring:
   application:
     name: ut-app
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  output:
+    ansi:
+      enabled: always
   servlet:
     multipart:
       max-file-size: 11MB

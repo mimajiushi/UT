@@ -98,7 +98,7 @@ run.ut.app
 
 #### 字节内推
 
-- 内推传送门：https://job.toutiao.com/s/JXN9TDV
+- 内推传送门：https://job.toutiao.com/s/evCFDkN
 
 
 
