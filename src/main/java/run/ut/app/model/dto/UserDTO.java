@@ -48,6 +48,7 @@ public class UserDTO extends BaseDTO implements OutputConverter<UserDTO, User> {
 
     private String description;
 
+    @Setter(AccessLevel.NONE)
     private SexEnum sex;
 
     private Integer roles;
@@ -61,4 +62,12 @@ public class UserDTO extends BaseDTO implements OutputConverter<UserDTO, User> {
     private LocalDateTime updateTime;
 
     private AuthToken token;
+
+    public void setSex(String sex) {
+        this.sex = SexEnum.getByName(sex);
+    }
+
+    public void setSex(SexEnum sex) {
+        this.sex = sex;
+    }
 }

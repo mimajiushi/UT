@@ -39,7 +39,7 @@
         <hibernate-validator.version>6.0.8.Final</hibernate-validator.version>
         <javax.persistence-api.version>2.2</javax.persistence-api.version>
         <velocity-engine-core.version>2.2</velocity-engine-core.version>
-        <testng.version>7.4.0</testng.version>
+        <testng.version>7.3.0</testng.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
     </properties>
 
@@ -100,6 +100,20 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.junit</groupId>
+                    <artifactId>junit-bom</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--        todo 检查版本更新状况-->
         <dependency>

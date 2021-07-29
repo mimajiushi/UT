@@ -1,5 +1,6 @@
 package run.ut.app.utils;
 
+import cn.hutool.core.bean.BeanUtil;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.lang.NonNull;
@@ -129,5 +130,13 @@ public class BeanUtils {
         }
 
         return emptyNames;
+    }
+
+    @NonNull
+    public static <T> T toBean(Object source, Class<T> clazz) {
+        Assert.notNull(source, "object must not be null");
+        Assert.notNull(clazz, "clazz must not be null");
+
+        return BeanUtil.toBean(source, clazz);
     }
 }
