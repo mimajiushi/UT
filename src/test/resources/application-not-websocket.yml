@@ -125,6 +125,7 @@ mybatis-plus:
 ##########################################################
 netty:
   websocket:
+    enable: false
     port: 8088
     context-path: /ut/ws
     # 0表示自动设置，自动设置的值为：CPU核心数 * 2

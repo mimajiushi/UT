@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 @Data
 public class WebSocketConfiguration {
 
+    private boolean enable = true;
+
     private int port;
 
     private String contextPath = "/ws";

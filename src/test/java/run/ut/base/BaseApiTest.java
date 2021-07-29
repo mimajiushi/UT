@@ -4,7 +4,6 @@ import com.jayway.jsonpath.JsonPath;
 import lombok.extern.slf4j.Slf4j;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -13,15 +12,12 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import run.ut.app.UtApplication;
 import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.param.EmailLoginParam;
 import run.ut.app.service.RedisService;
-import run.ut.app.utils.BeanUtils;
 import run.ut.app.utils.JsonUtils;
-import run.ut.app.utils.UriUtils;
 
 import java.nio.charset.StandardCharsets;
 
@@ -41,10 +37,13 @@ import static run.ut.app.config.redis.RedisKey.USER_EMAIL_LOGIN;
         classes = UtApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
-@ActiveProfiles("test")
+@ActiveProfiles("not-websocket")
 @Slf4j
 @AutoConfigureMockMvc
 public class BaseApiTest extends AbstractTestNGSpringContextTests {
+
+    @LocalServerPort
+    int port;
 
     @Autowired
     private MockMvc mvc;
@@ -52,25 +51,12 @@ public class BaseApiTest extends AbstractTestNGSpringContextTests {
     @Autowired
     private RedisService redisService;
 
-    @Value("${server.servlet.context-path}")
-    private String contextPath;
-
-    @LocalServerPort
-    int port;
-
-    String blogUrl;
-
     private final String LOGIN_PATH = "/user/loginByEmail";
 
     @BeforeTest
     public void setUp() {
+        log.info("当前端口：{}", port);
         MockitoAnnotations.openMocks(this);
-    }
-
-    @BeforeSuite
-    public void baseSetUp() {
-        // 初始化url
-        blogUrl = UriUtils.stringFormat("http://localhost:{port}/{contextPath}/", port, contextPath);
     }
 
     public void cacheAdminLogin() {

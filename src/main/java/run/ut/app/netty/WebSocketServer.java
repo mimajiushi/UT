@@ -58,14 +58,18 @@ public class WebSocketServer {
     }
 
     public void start() throws Exception {
-        log.info("WebSocketServer - Starting...");
-        ChannelFuture channelFuture = server.bind(webSocketConfiguration.getPort()).sync();
-        channelFuture.addListener(future -> {
-            if (future.isSuccess()) {
-                log.info("WebSocketServer - Start completed.");
-            } else {
-                throw new WebSocketException("WebSocket启动失败！");
-            }
-        });
+        if (webSocketConfiguration.isEnable()) {
+
+            log.info("WebSocketServer - Starting...");
+            ChannelFuture channelFuture = server.bind(webSocketConfiguration.getPort()).sync();
+            channelFuture.addListener(future -> {
+                if (future.isSuccess()) {
+                    log.info("WebSocketServer - Start completed.");
+                } else {
+                    throw new WebSocketException("WebSocket启动失败！");
+                }
+            });
+        }
+        log.info("netty.websocket.enable=false，不开启websocket服务");
     }
 }

@@ -1,10 +1,8 @@
 package run.ut.api.login;
 
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.testng.annotations.Test;
-import run.ut.app.UtApplication;
 import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.enums.UserRolesEnum;
 import run.ut.app.security.token.AuthToken;
@@ -17,19 +15,18 @@ import static run.ut.utils.AssertUtil.*;
  * @author chenwenjie.star
  * @date 2021/7/29 4:08 下午
  */
-@SpringBootTest(
-        classes = UtApplication.class,
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
-)
-@AutoConfigureMockMvc
-@ActiveProfiles("test")
+@Slf4j
 public class LoginApiTest extends BaseApiTest {
+
+    @LocalServerPort
+    int port;
 
     /**
      * 管理员登陆校验
      */
     @Test
     public void adminLoginTest() throws Exception {
+        log.info("当前端口：{}", port);
         // 使用包含全部信息的账号测试
         UserDTO userDTO = loginByAdmin();
 
