@@ -6,13 +6,13 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import run.ut.app.UtApplication;
 import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.param.EmailLoginParam;
@@ -55,13 +55,37 @@ public class BaseApiTest extends AbstractTestNGSpringContextTests {
         MockitoAnnotations.openMocks(this);
     }
 
+    public final String ADMIN_ACCOUNT = "1498780478@qq.com";
+    public final String TOURIST_ACCOUNT = "chenwenjie@bytedance.com";
+    public final String STUDENT_ACCOUNT = "1599603313@qq.com";
+
+
+    private final String CODE = "123456";
+
+    /**
+     * 缓存管理员登陆邮箱+验证码
+     */
     public void cacheAdminLogin() {
-        // 设置邮箱缓存
-        String key = "ADMIN_EMAIL_LOGIN::1498780478@qq.com";
-        String key2 = String.format(USER_EMAIL_LOGIN, "1498780478@qq.com");
-        String value = "123456";
-        redisService.set(key, value);
-        redisService.set(key2, value);
+        String key = String.format("ADMIN_EMAIL_LOGIN::%s", ADMIN_ACCOUNT);
+        String key2 = String.format(USER_EMAIL_LOGIN, ADMIN_ACCOUNT);
+        redisService.set(key, CODE);
+        redisService.set(key2, CODE);
+    }
+
+    /**
+     * 缓存游客登陆邮箱+验证码
+     */
+    public void cacheTouristLogin() {
+        String key = String.format(USER_EMAIL_LOGIN, TOURIST_ACCOUNT);
+        redisService.set(key, CODE);
+    }
+
+    /**
+     * 缓存学生登陆邮箱+验证码
+     */
+    public void cacheStudentLogin() {
+        String key = String.format(USER_EMAIL_LOGIN, STUDENT_ACCOUNT);
+        redisService.set(key, CODE);
     }
 
     /**
@@ -97,8 +121,27 @@ public class BaseApiTest extends AbstractTestNGSpringContextTests {
      * @see #login
      */
     public UserDTO loginByAdmin() throws Exception {
-        return login("1498780478@qq.com", "123456");
+        return login(ADMIN_ACCOUNT, CODE);
     }
+
+    /**
+     * 登陆游客账号
+     *
+     * @see #login
+     */
+    public UserDTO loginByTourist() throws Exception {
+        return login(TOURIST_ACCOUNT, CODE);
+    }
+
+    /**
+     * 登陆学生账号
+     *
+     * @see #login
+     */
+    public UserDTO loginByStudent() throws Exception {
+        return login(STUDENT_ACCOUNT, CODE);
+    }
+
 
     /**
      * 获取管理员Token
@@ -107,6 +150,23 @@ public class BaseApiTest extends AbstractTestNGSpringContextTests {
      */
     public String getAdminToken() throws Exception {
         return loginByAdmin().getToken().getAccessToken();
+    }
+
+    /**
+     * 获取游客Token
+     *
+     * @see #login
+     */
+    public String getTouristToken() throws Exception {
+        return loginByTourist().getToken().getAccessToken();
+    }
+    /**
+     * 获取学生Token
+     *
+     * @see #login
+     */
+    public String getStudentToken() throws Exception {
+        return loginByStudent().getToken().getAccessToken();
     }
 
 

@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import run.ut.app.exception.FrequentAccessException;
 import run.ut.app.model.enums.RateLimitEnum;
@@ -29,8 +30,17 @@ public class HttpRequestRateLimitAspect {
 
     private final RedisService redisService;
 
+    @Value("${server.http-request.rate-limit}")
+    private boolean enable;
+
+
     @Around("@annotation(run.ut.app.cache.lock.HttpRequestRateLimit)")
     public Object requestRateLimit(ProceedingJoinPoint point) throws Throwable {
+
+        if (!enable) {
+            return point.proceed();
+        }
+
         // Gets request URI
         String requestURI = ServletUtils.getRequestURI();
         // Gets user-agent from header

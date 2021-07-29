@@ -11,6 +11,9 @@ server:
     include-message: always
   compression:
     enabled: false
+  # 是否让限流注解生效
+  http-request:
+    rate-limit: false
 spring:
   application:
     name: ut-app

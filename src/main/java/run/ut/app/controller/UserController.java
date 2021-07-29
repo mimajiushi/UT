@@ -84,7 +84,7 @@ public class UserController extends BaseController implements UserControllerApi 
 
     @Override
     @PostMapping("loginByEmail")
-    @HttpRequestRateLimit(limit = RateLimitEnum.RRLimit_1_5)
+    @HttpRequestRateLimit(limit = RateLimitEnum.RRLimit_1_2)
     public UserDTO emailLogin(@RequestBody @Valid EmailLoginParam emailLoginParam) {
 
         boolean isEmail = Validator.isEmail(emailLoginParam.getEmail());
