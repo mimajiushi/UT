@@ -20,15 +20,11 @@ import static run.ut.utils.AssertUtil.*;
 @ActiveProfiles("not-websocket")
 public class LoginApiTest extends BaseApiTest {
 
-    @LocalServerPort
-    int port;
-
     /**
      * 管理员登陆校验
      */
     @Test
     public void adminLoginTest() throws Exception {
-        log.info("当前端口：{}", port);
         // 使用包含全部信息的账号测试
         UserDTO userDTO = loginByAdmin();
 

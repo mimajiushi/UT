@@ -42,9 +42,6 @@ import static run.ut.app.config.redis.RedisKey.USER_EMAIL_LOGIN;
 @AutoConfigureMockMvc
 public class BaseApiTest extends AbstractTestNGSpringContextTests {
 
-    @LocalServerPort
-    int port;
-
     @Autowired
     private MockMvc mvc;
 
@@ -55,7 +52,6 @@ public class BaseApiTest extends AbstractTestNGSpringContextTests {
 
     @BeforeTest
     public void setUp() {
-        log.info("当前端口：{}", port);
         MockitoAnnotations.openMocks(this);
     }
 
