@@ -8,10 +8,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 import org.testng.annotations.BeforeTest;
 import run.ut.app.UtApplication;
 import run.ut.app.model.dto.UserDTO;
@@ -81,17 +83,19 @@ public class BaseApiTest extends AbstractTestNGSpringContextTests {
         emailLoginParam.setEmail(email);
         emailLoginParam.setCode(code);
 
-        MvcResult mvcResult = mvc.perform(
+        ResultActions resultActions = mvc.perform(
                 post(LOGIN_PATH)
                         .content(JsonUtils.objectToJson(emailLoginParam))
                         .contentType(MediaType.APPLICATION_JSON)
         )
-                .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data", notNullValue()))
-                .andReturn();
-        String response = mvcResult.getResponse().getContentAsString(StandardCharsets.UTF_8);
-        return JsonUtils.mapToObject(JsonPath.read(response, "$.data"), UserDTO.class);
+                .andExpect(jsonPath("$.data", notNullValue()));
+        MockHttpServletResponse response = resultActions.andReturn().getResponse();
+        response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+        resultActions.andDo(print());
+
+        String responseJson = response.getContentAsString(StandardCharsets.UTF_8);
+        return JsonUtils.mapToObject(JsonPath.read(responseJson, "$.data"), UserDTO.class);
     }
 
     /**
@@ -111,12 +115,4 @@ public class BaseApiTest extends AbstractTestNGSpringContextTests {
     public String getAdminToken() throws Exception {
         return loginByAdmin().getToken().getAccessToken();
     }
-
-
-
-
-
-
-
-
 }
