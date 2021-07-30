@@ -182,7 +182,7 @@ public class JsonUtils implements ApplicationContextAware {
      * @return the object specified type
      */
     @NonNull
-    public static <T> T mapToObject(@NonNull Map<String, ?> sourceMap, @NonNull Class<T> type) {
+    public static <T> T mapToObject(@NonNull Map<?, ?> sourceMap, @NonNull Class<T> type) {
         return mapToObject(sourceMap, type, objectMapper);
     }
 
@@ -196,7 +196,7 @@ public class JsonUtils implements ApplicationContextAware {
      * @return the object specified type
      */
     @NonNull
-    public static <T> T mapToObject(@NonNull Map<String, ?> sourceMap, @NonNull Class<T> type, @NonNull ObjectMapper objectMapper) {
+    public static <T> T mapToObject(@NonNull Map<?, ?> sourceMap, @NonNull Class<T> type, @NonNull ObjectMapper objectMapper) {
         Assert.notEmpty(sourceMap, "Source map must not be empty");
 
         // Serialize the map

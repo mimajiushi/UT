@@ -1,31 +1,32 @@
 package run.ut.base;
 
-import com.jayway.jsonpath.JsonPath;
 import lombok.extern.slf4j.Slf4j;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.util.ObjectUtils;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 import run.ut.app.UtApplication;
 import run.ut.app.model.dto.UserDTO;
 import run.ut.app.model.param.EmailLoginParam;
+import run.ut.app.model.support.BaseResponse;
 import run.ut.app.service.RedisService;
 import run.ut.app.utils.JsonUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
-import static org.hamcrest.Matchers.notNullValue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static run.ut.app.config.redis.RedisKey.USER_EMAIL_LOGIN;
 
 /**
@@ -43,7 +44,7 @@ import static run.ut.app.config.redis.RedisKey.USER_EMAIL_LOGIN;
 public class BaseApiTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private MockMvc mvc;
+    protected MockMvc mvc;
 
     @Autowired
     private RedisService redisService;
@@ -89,6 +90,32 @@ public class BaseApiTest extends AbstractTestNGSpringContextTests {
     }
 
     /**
+     * http请求
+     */
+    public BaseResponse httpRequest(
+            String uri, HttpHeaders headers,
+            Object unJsonObject, HttpMethod method,
+            Object...uriVars
+    ) throws Exception {
+
+        MockHttpServletRequestBuilder request = request(method, uri, uriVars);
+        if (!ObjectUtils.isEmpty(unJsonObject)) {
+            request.content(JsonUtils.objectToJson(unJsonObject));
+        }
+        if (!ObjectUtils.isEmpty(headers) && !headers.isEmpty()) {
+            request.headers(headers);
+        }
+
+        MvcResult mvcResult = mvc.perform(
+                request.contentType(MediaType.APPLICATION_JSON_UTF8).accept(MediaType.APPLICATION_JSON_UTF8)
+        ).andDo(print()).andReturn();
+
+        String response = mvcResult.getResponse().getContentAsString(StandardCharsets.UTF_8);
+        return JsonUtils.jsonToObject(response, BaseResponse.class);
+    }
+
+
+    /**
      * 登陆
      *
      * @param email       账号邮箱
@@ -101,18 +128,8 @@ public class BaseApiTest extends AbstractTestNGSpringContextTests {
         emailLoginParam.setEmail(email);
         emailLoginParam.setCode(code);
 
-        MvcResult mvcResult = mvc.perform(
-                post(LOGIN_PATH)
-                        .content(JsonUtils.objectToJson(emailLoginParam))
-                        .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .accept(MediaType.APPLICATION_JSON_UTF8)
-        )
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data", notNullValue()))
-                .andReturn();
-        String response = mvcResult.getResponse().getContentAsString(StandardCharsets.UTF_8);
-        return JsonUtils.mapToObject(JsonPath.read(response, "$.data"), UserDTO.class);
+        BaseResponse baseResponse = httpRequest(LOGIN_PATH, null, emailLoginParam, HttpMethod.POST, UserDTO.class);
+        return JsonUtils.mapToObject((Map<?, ?>) baseResponse.getData(), UserDTO.class);
     }
 
     /**

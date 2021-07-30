@@ -1138,6 +1138,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"1498780478@qq.com\",\n  \"code\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:8080/ut/user/loginByEmail?email=1599603313@qq.com&code=582102",
 							"protocol": "http",
@@ -1162,7 +1171,82 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "用户邮箱登录（自动注册）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"1498780478@qq.com\",\n  \"code\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/ut/user/loginByEmail?email=1599603313@qq.com&code=582102",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ut",
+										"user",
+										"loginByEmail"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "1599603313@qq.com"
+										},
+										{
+											"key": "code",
+											"value": "582102"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "vary",
+									"value": "accept-encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Jul 2021 03:46:52 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"devMessage\": null,\n    \"data\": {\n        \"createTime\": \"2020-03-09 13:41:30\",\n        \"updateTime\": \"2021-03-21 01:46:46\",\n        \"deleted\": 0,\n        \"uid\": \"21\",\n        \"openid\": \"onjYF5ldIp8BdssDb9yXeHVFC7hs\",\n        \"nickname\": \"chen2021\",\n        \"avatar\": \"https://www.wenjie.store/ut/img/tmp_e99e7ecffb1cff4d2aea77e5203de7f838cb59545c2d5af3_1620910177957.jpg\",\n        \"phoneNumber\": \"15521245562\",\n        \"email\": \"1498780478@qq.com\",\n        \"description\": \"1.曾参与过xxx项目，项目已上线，获得过xxx奖。\\n2.曾参与过xxx项目，项目已上线，获得过xxx奖。\\n3. 曾参与过xxx项目，项目已上线，获得过xxx奖\",\n        \"sex\": \"男\",\n        \"roles\": 13,\n        \"rolesName\": [\n            \"学生\",\n            \"活动主办方\",\n            \"系统管理员\"\n        ],\n        \"token\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIxLCJvcGVuaWQiOiJvbmpZRjVsZElwOEJkc3NEYjl5WGVIVkZDN2hzIiwicm9sZXMiOjEzLCJpYXQiOjE2Mjc1MzA0MTEsImV4cCI6NDc4MTEzMDQxMX0.3CgKY39yAdgZj1SPpRMpwyamtD0Zmmqi6FKW4ePXNc8\",\n            \"expiration_time\": 4781130411971\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "获取自己详细信息",
