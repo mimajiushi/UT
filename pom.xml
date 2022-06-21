@@ -18,7 +18,7 @@
         <commons-lang3.version>3.6</commons-lang3.version>
         <lombok.version>1.18.8</lombok.version>
         <springfox-swagger.version>2.7.0</springfox-swagger.version>
-        <mysql-connector-java.version>8.0.23</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.28</mysql-connector-java.version>
         <guava.version>28.1-jre</guava.version>
         <mybatis-plus-boot-starter.version>3.4.2</mybatis-plus-boot-starter.version>
         <mybatis-plus-generator.version>3.4.1</mybatis-plus-generator.version>
